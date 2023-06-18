@@ -11,16 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('guru', function (Blueprint $table) {
+        Schema::create('bidang_usaha', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->nullable()->index('fk_guru_to_users');
-            $table->foreignId('jurusan_id')->nullable()->index('fk_guru_to_jurusan');
-            $table->string('nip');
-            $table->string('nama');
-            $table->enum('jenis_kelamin', [1, 2]);
-            $table->string('kontak');
-            $table->longText('alamat');
-            $table->longText('foto')->nullable();
+            $table->string('title');
             // $table->timestamps();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->nullable()->useCurrentOnUpdate();
@@ -33,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('guru');
+        Schema::dropIfExists('bidang_usaha');
     }
 };

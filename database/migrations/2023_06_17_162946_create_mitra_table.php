@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('mitra', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
+            $table->foreignId('user_id')->nullable()->index('fk_mitra_to_users');
+            $table->foreignId('bidang_usaha_id')->nullable()->index('fk_mitra_to_bidang_usaha');
             $table->string('nama');
-            $table->enum('bidang_industri', [1, 2, 3, 4, 5, 6]);
             $table->string('kontak');
             $table->string('nama_pimpinan')->nullable();
             $table->string('nama_pembimbing')->nullable();

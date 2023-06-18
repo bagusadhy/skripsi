@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('siswa', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
-            $table->integer('jurusan_id');
-            $table->integer('kelas_id');
+            $table->foreignId('user_id')->nullable()->index('fk_siswa_to_users');
+            $table->foreignId('jurusan_id')->nullable()->index('fk_siswa_to_jurusan');
+            $table->foreignId('kelas_id')->nullable()->index('fk_siswa_to_kelas');
             $table->string('nisn');
             $table->string('nama');
             $table->enum('jenis_kelamin', [1, 2])->nullable();

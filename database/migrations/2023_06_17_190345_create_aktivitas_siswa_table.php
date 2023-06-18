@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('aktivitas_siswa', function (Blueprint $table) {
             $table->id();
-            $table->integer('siswa_id');
+             $table->foreignId('siswa_id')->nullable()->index('fk_aktivitas_siswa_to_siswa');
             $table->date('tanggal');
+            $table->enum('presensi', [1, 2, 3]);
             $table->longText('jurnal');
-            $table->enum('status', [1, 2, 3]);
             // $table->timestamps();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->nullable()->useCurrentOnUpdate();

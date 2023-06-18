@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('bimbingan', function (Blueprint $table) {
             $table->id();
-            $table->integer('guru_id');
-            $table->integer('mitra_id');
+            $table->foreignId('guru_id')->nullable()->index('fk_bimbingan_to_guru');
+            $table->foreignId('mitra_id')->nullable()->index('fk_bimbingan_to_mitra');
             // $table->timestamps();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->nullable()->useCurrentOnUpdate();

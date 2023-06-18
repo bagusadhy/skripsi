@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('monitoring', function (Blueprint $table) {
             $table->id();
-            $table->integer('guru_id');
-            $table->integer('mitra_id');
+            $table->foreignId('guru_id')->nullable()->index('fk_monitoring_to_guru');
+            $table->foreignId('mitra_id')->nullable()->index('fk_monitoring_to_mitra');
             $table->longText('tujuan');
             $table->integer('peserta_pkl');
             $table->longText('deskripsi');

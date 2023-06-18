@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('pendaftar_pkl', function (Blueprint $table) {
             $table->id();
-            $table->integer('siswa_id');
-            $table->integer('mitra_id');
+            $table->foreignId('siswa_id')->nullable()->index('fk_pendaftar_pkl_to_siswa');
+            $table->foreignId('mitra_id')->nullable()->index('fk_pendaftar_pkl_to_mitra');
             $table->enum('status', [0, 1, 2, 3])->default(0);
             // $table->timestamps();
             $table->timestamp('created_at')->useCurrent();

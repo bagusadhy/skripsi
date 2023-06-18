@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('dokumen_siswa', function (Blueprint $table) {
             $table->id();
-            $table->integer('siswa_id');
+            $table->foreignId('siswa_id')->nullable()->index('fk_dokumen_siswa_to_siswa');
             $table->longText('surat_pernyataan_siswa');
             $table->longText('surat_izin_ortu');
             // $table->timestamps();

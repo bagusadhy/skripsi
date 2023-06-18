@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('laporan', function (Blueprint $table) {
             $table->id();
-            $table->integer('siswa_id');
+             $table->foreignId('siswa_id')->nullable()->index('fk_laporan_to_siswa');
             $table->longText('nilai');
             // $table->timestamps();
             $table->timestamp('created_at')->useCurrent();

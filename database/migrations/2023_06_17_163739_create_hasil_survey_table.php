@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('hasil_survey', function (Blueprint $table) {
             $table->id();
-            $table->integer('survey_id');
-            $table->integer('mitra_id');
+              $table->foreignId('survey_id')->nullable()->index('fk_hasil_survey_to_survey');
+            $table->foreignId('mitra_id')->nullable()->index('fk_hasil_survey_to_mitra');
             $table->string('title');
             $table->integer('skala')->nullable();
             $table->string('deskripsi')->nullable();

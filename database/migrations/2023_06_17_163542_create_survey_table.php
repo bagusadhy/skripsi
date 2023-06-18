@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('survey', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->enum('jenis_survey', [1, 2]);
             // $table->timestamps();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->nullable()->useCurrentOnUpdate();

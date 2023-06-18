@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('peserta_pkl', function (Blueprint $table) {
             $table->id();
-            $table->integer('siswa_id');
-            $table->integer('mitra_id');
-            $table->integer('periode_id');
+             $table->foreignId('siswa_id')->nullable()->index('fk_peserta_pkl_to_siswa');
+             $table->foreignId('mitra_id')->nullable()->index('fk_peserta_pkl_to_mitra');
+             $table->foreignId('periode_id')->nullable()->index('fk_peserta_pkl_to_periode_pkl');
             // $table->timestamps();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->nullable()->useCurrentOnUpdate();
