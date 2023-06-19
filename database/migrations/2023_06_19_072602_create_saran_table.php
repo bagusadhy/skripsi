@@ -11,12 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('hasil_survey', function (Blueprint $table) {
+        Schema::create('saran', function (Blueprint $table) {
             $table->id();
-              $table->foreignId('survey_id')->nullable()->index('fk_hasil_survey_to_survey');
-            $table->foreignId('mitra_id')->nullable()->index('fk_hasil_survey_to_mitra');
-            $table->string('title');
-            $table->integer('skala')->nullable();
+            $table->foreignId('mitra_id')->nullable()->index('fk_saran_to_mitra');
+            $table->longText('saran');
             // $table->timestamps();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->nullable()->useCurrentOnUpdate();
@@ -29,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('hasil_survey');
+        Schema::dropIfExists('saran');
     }
 };
