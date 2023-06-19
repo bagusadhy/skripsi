@@ -13,9 +13,8 @@ return new class extends Migration
     {
         Schema::create('hasil_survey', function (Blueprint $table) {
             $table->id();
-              $table->foreignId('survey_id')->nullable()->index('fk_hasil_survey_to_survey');
+            $table->foreignId('survey_id')->nullable()->index('fk_hasil_survey_to_survey');
             $table->foreignId('mitra_id')->nullable()->index('fk_hasil_survey_to_mitra');
-            $table->string('title');
             $table->integer('skala')->nullable();
             // $table->timestamps();
             $table->timestamp('created_at')->useCurrent();
