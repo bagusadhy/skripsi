@@ -5,6 +5,7 @@ namespace App\Models\Kegiatan;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+
 class Nilai extends Model
 {
     // use HasFactory;
@@ -29,4 +30,9 @@ class Nilai extends Model
         'updated_at',
         'deleted_at',
     ];
+
+    public function siswa()
+    {
+        return $this->belongsTo(Siswa::class, 'siswa_id', 'id');
+    }
 }

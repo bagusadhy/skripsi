@@ -2,9 +2,10 @@
 
 namespace App\Models\MasterData;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Kegiatan\HasilSurvey;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Survey extends Model
 {
@@ -29,4 +30,9 @@ class Survey extends Model
         'updated_at',
         'deleted_at',
     ];
+
+    public function hasil_survey()
+    {
+        return $this->hasMany(HasilSurvey::class, 'survey_id');
+    }
 }

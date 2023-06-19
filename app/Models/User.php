@@ -2,6 +2,10 @@
 
 namespace App\Models;
 
+use App\Models\ManagementAccess\Role;
+use App\Models\MasterData\Guru;
+use App\Models\MasterData\Mitra;
+use App\Models\MasterData\Siswa;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -68,4 +72,21 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class, 'role_id', 'id');
+    }
+    public function siswa()
+    {
+        return $this->hasOne(Siswa::class, 'user_id');
+    }
+    public function guru()
+    {
+        return $this->hasOne(Guru::class, 'guru_id');
+    }
+    public function mitra()
+    {
+        return $this->hasOne(Mitra::class, 'mitra_id');
+    }
 }

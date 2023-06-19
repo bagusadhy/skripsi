@@ -2,9 +2,10 @@
 
 namespace App\Models\Kegiatan;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\MasterData\Siswa;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class AktvitasSiswa extends Model
 {
@@ -33,4 +34,9 @@ class AktvitasSiswa extends Model
         'updated_at',
         'deleted_at',
     ];
+
+    public function siswa()
+    {
+        return $this->belongsTo(Siswa::class, 'siswa_id', 'id');
+    }
 }

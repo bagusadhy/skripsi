@@ -2,9 +2,13 @@
 
 namespace App\Models\MasterData;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\User;
+use App\Models\Kegiatan\Bimbingan;
+use App\Models\MasterData\Jurusan;
+use App\Models\Kegiatan\Monitoring;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Guru extends Model
 {
@@ -35,4 +39,22 @@ class Guru extends Model
         'updated_at',
         'deleted_at',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+    public function jurusan()
+    {
+        return $this->belongsTo(Jurusan::class, 'jurusan_id', 'id');
+    }
+
+    public function bimbingan()
+    {
+        return $this->hasMany(Bimbingan::class, 'guru_id');
+    }
+    public function monitoring()
+    {
+        return $this->hasMany(Monitoring::class, 'guru_id');
+    }
 }

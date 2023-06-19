@@ -2,9 +2,11 @@
 
 namespace App\Models\Kegiatan;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\MasterData\Guru;
+use App\Models\MasterData\Mitra;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Bimbingan extends Model
 {
@@ -30,4 +32,14 @@ class Bimbingan extends Model
         'updated_at',
         'deleted_at',
     ];
+
+    public function guru()
+    {
+        return $this->belongsTo(Guru::class, 'guru_id', 'id');
+    }
+
+    public function mitra()
+    {
+        return $this->belongsTo(Mitra::class, 'mitra_id', 'id');
+    }
 }

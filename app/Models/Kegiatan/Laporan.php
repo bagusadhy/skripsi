@@ -29,4 +29,9 @@ class Laporan extends Model
         'updated_at',
         'deleted_at',
     ];
+
+    public function siswa()
+    {
+        return $this->belongsTo(Siswa::class, 'siswa_id', 'id');
+    }
 }

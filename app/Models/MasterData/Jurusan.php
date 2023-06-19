@@ -2,9 +2,12 @@
 
 namespace App\Models\MasterData;
 
+use App\Models\MasterData\Siswa;
+use App\Models\MasterData\Guru;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+
 class Jurusan extends Model
 {
     // use HasFactory;
@@ -28,4 +31,14 @@ class Jurusan extends Model
         'updated_at',
         'deleted_at',
     ];
+
+    public function siswa()
+    {
+        return $this->hasMany(Siswa::class, 'jurusan_id');
+    }
+
+    public function guru()
+    {
+        return $this->hasMany(Guru::class, 'jurusan_id');
+    }
 }

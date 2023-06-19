@@ -2,9 +2,11 @@
 
 namespace App\Models\Kegiatan;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\MasterData\Mitra;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
 class Saran extends Model
 {
     // use HasFactory;
@@ -29,4 +31,9 @@ class Saran extends Model
         'updated_at',
         'deleted_at',
     ];
+
+    public function mitra()
+    {
+        return $this->belongsTo(Mitra::class, 'mitra_id', 'id');
+    }
 }

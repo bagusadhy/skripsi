@@ -2,6 +2,7 @@
 
 namespace App\Models\MasterData;
 
+use App\Models\Kegiatan\PesertaPkl;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -33,4 +34,9 @@ class PeriodePkl extends Model
         'updated_at',
         'deleted_at',
     ];
+
+    public function peserta()
+    {
+        return $this->hasMany(PesertaPkl::class, 'periode_id');
+    }
 }

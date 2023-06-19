@@ -2,9 +2,17 @@
 
 namespace App\Models\MasterData;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\User;
+use App\Models\Kegiatan\Saran;
+use App\Models\Kegiatan\Bimbingan;
+use App\Models\Kegiatan\Monitoring;
+use App\Models\Kegiatan\PesertaPkl;
+use App\Models\Kegiatan\HasilSurvey;
+use App\Models\Kegiatan\PendaftarPkl;
+use App\Models\MasterData\BidangUsaha;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Mitra extends Model
 {
@@ -36,4 +44,38 @@ class Mitra extends Model
         'updated_at',
         'deleted_at',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+    public function bidang_usaha()
+    {
+        return $this->belongsTo(BidangUsaha::class, 'bidang_usaha_id', 'id');
+    }
+
+    public function bimbingan()
+    {
+        return $this->hasMany(Bimbingan::class, 'mitra_id');
+    }
+    public function monitoring()
+    {
+        return $this->hasMany(Monitoring::class, 'mitra_id');
+    }
+    public function pendaftar_pkl()
+    {
+        return $this->hasMany(PendaftarPkl::class, 'mitra_id');
+    }
+    public function peserta_pkl()
+    {
+        return $this->hasMany(PesertaPkl::class, 'mitra_id');
+    }
+    public function hasil_survey()
+    {
+        return $this->hasOne(HasilSurvey::class, 'mitra_id');
+    }
+    public function saran()
+    {
+        return $this->hasOne(Saran::class, 'mitra_id');
+    }
 }

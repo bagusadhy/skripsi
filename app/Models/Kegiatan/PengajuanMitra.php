@@ -2,9 +2,11 @@
 
 namespace App\Models\Kegiatan;
 
+use App\Models\MasterData\BidangUsaha;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+
 class PengajuanMitra extends Model
 {
     // use HasFactory;
@@ -33,4 +35,13 @@ class PengajuanMitra extends Model
         'updated_at',
         'deleted_at',
     ];
+
+    public function bidang_usaha()
+    {
+        return $this->belongsTo(BidangUsaha::class, 'bidang_usaha_id', 'id');
+    }
+    public function siswa()
+    {
+        return $this->belongsTo(Siswa::class, 'siswa_id', 'id');
+    }
 }

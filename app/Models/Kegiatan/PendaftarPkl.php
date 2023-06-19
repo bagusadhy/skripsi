@@ -2,9 +2,12 @@
 
 namespace App\Models\Kegiatan;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\MasterData\Mitra;
+use App\Models\MasterData\Siswa;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
 class PendaftarPkl extends Model
 {
     // use HasFactory;
@@ -30,4 +33,13 @@ class PendaftarPkl extends Model
         'updated_at',
         'deleted_at',
     ];
+
+    public function mitra()
+    {
+        return $this->belongsTo(Mitra::class, 'mitra_id', 'id');
+    }
+    public function siswa()
+    {
+        return $this->belongsTo(Siswa::class, 'siswa_id', 'id');
+    }
 }

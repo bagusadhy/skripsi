@@ -2,6 +2,8 @@
 
 namespace App\Models\Kegiatan;
 
+use App\Models\MasterData\Mitra;
+use App\Models\MasterData\Survey;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -31,4 +33,13 @@ class HasilSurvey extends Model
         'updated_at',
         'deleted_at',
     ];
+
+    public function survey()
+    {
+        return $this->belongsTo(Survey::class, 'survey_id', 'id');
+    }
+    public function mitra()
+    {
+        return $this->belongsTo(Mitra::class, 'mitra_id', 'id');
+    }
 }
