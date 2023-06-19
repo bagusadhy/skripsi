@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('siswa_id')->nullable()->index('fk_pengajuan_mitra_to_siswa');
             $table->foreignId('bidang_usaha_id')->nullable()->index('fk_pengajuan_mitra_to_bidang_usaha');
             $table->string('nama');
+            $table->string('email');
             $table->string('kontak');
             $table->longText('alamat');
             $table->longText('alasan');
