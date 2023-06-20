@@ -32,6 +32,7 @@ class PengajuanMitra extends Model
         'kontak',
         'alamat',
         'alasan',
+        'status',
         'created_at',
         'updated_at',
         'deleted_at',
