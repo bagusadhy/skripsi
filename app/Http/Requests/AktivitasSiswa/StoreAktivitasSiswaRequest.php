@@ -3,6 +3,8 @@
 namespace App\Http\Requests\AktivitasSiswa;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Gate;
+use Symfony\Component\HttpFoundation\Response;
 
 class StoreAktivitasSiswaRequest extends FormRequest
 {
@@ -11,7 +13,7 @@ class StoreAktivitasSiswaRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +24,18 @@ class StoreAktivitasSiswaRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'siswa_id' => [
+                'required', 'integer',
+            ],
+            'tanggal' => [
+                'required', 'date',
+            ],
+            'jurnal' => [
+                'required', 'string',
+            ],
+            'status' => [
+                'required', 'integer', 'in:1,2,3'
+            ],
         ];
     }
 }

@@ -3,6 +3,8 @@
 namespace App\Http\Requests\PengajuanMitra;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Gate;
+use Symfony\Component\HttpFoundation\Response;
 
 class StorePengajuanMitraRequest extends FormRequest
 {
@@ -11,7 +13,7 @@ class StorePengajuanMitraRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +24,27 @@ class StorePengajuanMitraRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'siswa_id' => [
+                'required', 'integer',
+            ],
+            'bidang_usaha_id' => [
+                'required', 'integer',
+            ],
+            'nama' => [
+                'required', 'string', 'max:255',
+            ],
+            'email' => [
+                'required', 'string', 'email', 'max:255',
+            ],
+            'alamat' => [
+                'required', 'string', 'max:255',
+            ],
+            'kontak' => [
+                'required', 'string', 'max:50',
+            ],
+            'alasan' => [
+                'required', 'string', 'max:1000',
+            ],
         ];
     }
 }

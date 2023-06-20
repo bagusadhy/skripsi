@@ -3,6 +3,8 @@
 namespace App\Http\Requests\Monitoring;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Gate;
+use Symfony\Component\HttpFoundation\Response;
 
 class StoreMonitoringRequest extends FormRequest
 {
@@ -11,7 +13,7 @@ class StoreMonitoringRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +24,27 @@ class StoreMonitoringRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'guru_id' => [
+                'required', 'integer',
+            ],
+            'mitra_id' => [
+                'required', 'integer',
+            ],
+            'tujuan' => [
+                'required', 'string', 'max:255',
+            ],
+            'peserta_pkl' => [
+                'required', 'integer',
+            ],
+            'deskripsi' => [
+                'required', 'string', 'max:1000',
+            ],
+            'tanggal_pelaksanaan' => [
+                'required', 'date',
+            ],
+            'foto' => [
+                'required', 'mimes:jpg,svg,png', 'max:10000',
+            ],
         ];
     }
 }

@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Requests\BidangUsaha;
+namespace App\Http\Requests\DokumenSiswa;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
 use Symfony\Component\HttpFoundation\Response;
-use Illuminate\Validation\Rule;
 
-class UpdateBidangUsahaRequest extends FormRequest
+
+class UpdateDokumenSiswaRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,8 +25,14 @@ class UpdateBidangUsahaRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => [
-                'required', 'string', Rule::unique('bidang_usaha')->ignore($this->bidang_usaha)
+            'siswa_id' => [
+                'required', 'integer',
+            ],
+            'surat_pernyataan_siswa' => [
+                'required', 'mimes:application/pdf', 'max:2048',
+            ],
+            'surat_izin_ortu' => [
+                'required', 'mimes:application/pdf', 'max:2048',
             ],
         ];
     }

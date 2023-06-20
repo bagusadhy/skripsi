@@ -3,7 +3,8 @@
 namespace App\Http\Requests\BidangUsaha;
 
 use Illuminate\Foundation\Http\FormRequest;
-
+use Illuminate\Support\Facades\Gate;
+use Symfony\Component\HttpFoundation\Response;
 class StoreBidangUsahaRequest extends FormRequest
 {
     /**
@@ -11,7 +12,7 @@ class StoreBidangUsahaRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +23,9 @@ class StoreBidangUsahaRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'title' => [
+                'required', 'string', 'unique:bidang_usaha'
+            ],
         ];
     }
 }

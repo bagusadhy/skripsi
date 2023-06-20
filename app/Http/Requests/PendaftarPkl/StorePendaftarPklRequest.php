@@ -3,6 +3,8 @@
 namespace App\Http\Requests\PendaftarPkl;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Gate;
+use Symfony\Component\HttpFoundation\Response;
 
 class StorePendaftarPklRequest extends FormRequest
 {
@@ -11,7 +13,7 @@ class StorePendaftarPklRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +24,12 @@ class StorePendaftarPklRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'siswa_id' => [
+                'required', 'integer',
+            ],
+            'mitra_id' => [
+                'required', 'integer',
+            ],
         ];
     }
 }

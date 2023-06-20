@@ -3,6 +3,9 @@
 namespace App\Http\Requests\User;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Validation\Rule;
+use Symfony\Component\HttpFoundation\Response;
 
 class UpdateUserRequest extends FormRequest
 {
@@ -11,7 +14,7 @@ class UpdateUserRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +25,19 @@ class UpdateUserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'nama' => [
+                'required', 'string', 'max:255'
+            ],
+            'email' => [
+                'required', 'string', 'email', Rule::unique('users')->ignore($this->user), 'max:255'
+
+            ],
+            'password' => [
+                'required', 'string', 'min:8',
+            ],
+            'role_id' => [
+                'required', 'integer',
+            ],
         ];
     }
 }

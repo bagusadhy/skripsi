@@ -3,6 +3,8 @@
 namespace App\Http\Requests\HasilSurvey;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Gate;
+use Symfony\Component\HttpFoundation\Response;
 
 class StoreHasilSurveyRequest extends FormRequest
 {
@@ -11,7 +13,7 @@ class StoreHasilSurveyRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +24,15 @@ class StoreHasilSurveyRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'survey_id' => [
+                'required', 'integer',
+            ],
+            'mitra_id' => [
+                'required', 'integer',
+            ],
+            'skala' => [
+                'required', 'integer',
+            ],
         ];
     }
 }

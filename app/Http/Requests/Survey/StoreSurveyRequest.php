@@ -3,6 +3,8 @@
 namespace App\Http\Requests\Survey;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Gate;
+use Symfony\Component\HttpFoundation\Response;
 
 class StoreSurveyRequest extends FormRequest
 {
@@ -11,7 +13,7 @@ class StoreSurveyRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +24,9 @@ class StoreSurveyRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'title' => [
+                'required', 'string',
+            ],
         ];
     }
 }

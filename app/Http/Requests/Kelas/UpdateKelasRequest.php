@@ -3,7 +3,9 @@
 namespace App\Http\Requests\Kelas;
 
 use Illuminate\Foundation\Http\FormRequest;
-
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Validation\Rule;
+use Symfony\Component\HttpFoundation\Response;
 class UpdateKelasRequest extends FormRequest
 {
     /**
@@ -11,7 +13,7 @@ class UpdateKelasRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +24,9 @@ class UpdateKelasRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'title' => [
+                'required', 'string', Rule::unique('kelas')->ignore($this->kelas), 'max:255'
+            ],
         ];
     }
 }

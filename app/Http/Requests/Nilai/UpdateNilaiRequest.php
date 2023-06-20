@@ -3,6 +3,8 @@
 namespace App\Http\Requests\Nilai;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Gate;
+use Symfony\Component\HttpFoundation\Response;
 
 class UpdateNilaiRequest extends FormRequest
 {
@@ -11,7 +13,7 @@ class UpdateNilaiRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +24,12 @@ class UpdateNilaiRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'siswa_id' => [
+                'required', 'integer',
+            ],
+            'nilai' => [
+                'required', 'mimes:application/pdf', 'max:10000',
+            ],
         ];
     }
 }

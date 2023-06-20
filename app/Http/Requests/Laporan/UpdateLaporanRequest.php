@@ -3,6 +3,8 @@
 namespace App\Http\Requests\Laporan;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Gate;
+use Symfony\Component\HttpFoundation\Response;
 
 class UpdateLaporanRequest extends FormRequest
 {
@@ -11,7 +13,7 @@ class UpdateLaporanRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +24,12 @@ class UpdateLaporanRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'siswa_id' => [
+                'required', 'integer',
+            ],
+            'laporan' => [
+                'required', 'mimes:application/pdf', 'max:10000',
+            ],
         ];
     }
 }

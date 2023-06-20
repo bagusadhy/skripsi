@@ -3,6 +3,8 @@
 namespace App\Http\Requests\PeriodePkl;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Gate;
+use Symfony\Component\HttpFoundation\Response;
 
 class UpdatePeriodePklRequest extends FormRequest
 {
@@ -11,7 +13,7 @@ class UpdatePeriodePklRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +24,12 @@ class UpdatePeriodePklRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'tanggal_dimulai' => [
+                'required', 'date',
+            ],
+            'tanggal_berakhir' => [
+                'required', 'date',
+            ],
         ];
     }
 }
