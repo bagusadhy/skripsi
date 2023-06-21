@@ -1,7 +1,8 @@
 <?php
 
-use App\Providers\RouteServiceProvider;
 use Laravel\Fortify\Features;
+use Illuminate\Support\Facades\Auth;
+use App\Providers\RouteServiceProvider;
 
 return [
 
@@ -61,7 +62,29 @@ return [
     |
     */
 
-    'home' => RouteServiceProvider::HOME,
+    // 'home' => RouteServiceProvider::HOME,
+    'home' => function () {
+        // dd(Auth::user()->role_id);
+
+        switch (Auth::user()->role_id) {
+            case 1:
+                return route('backsite.dashboard.index');
+                break;
+            case 2:
+                return route('guru.dashboard.index');
+                break;
+            case 3:
+                return route('mitra.dashboard.index');
+                break;
+            case 4:
+                return route('siswa.dashboard.index');
+                break;
+
+            default:
+                return route('login');
+                break;
+        }
+    },
 
     /*
     |--------------------------------------------------------------------------
