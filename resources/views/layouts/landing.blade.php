@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 
@@ -13,12 +12,14 @@
 
 </head>
 
-<body class="bg-[#F9F9F9]" >
+<body>
 
     {{-- @include('sweetalert::alert') --}}
 
     <section class="mx-10">
+        @include('components.frontsite.landing.header')
         @yield('content')
+        @include('components.frontsite.landing.footer')
     </section>
 
     @stack('before-script')
