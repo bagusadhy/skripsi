@@ -5,19 +5,21 @@ namespace App\Http\Controllers\Backsite;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class SurveyController extends Controller
+class LaporanController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth');
     }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('pages.backsite.master-data.survey.index');
+        return view('pages.backsite.kegiatan.laporan.index');
     }
+
 
     /**
      * Show the form for creating a new resource.
