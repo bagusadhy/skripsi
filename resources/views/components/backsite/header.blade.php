@@ -1,10 +1,10 @@
 <section class="mx-10">
     <nav class=" bg-white -mx-10 px-10">
         <div class="flex justify-between items-center w-full">
-            <div>
+            <a href="{{ route('index') }}">
                 <img src="{{ asset('assets/frontsite/logo.png') }}" alt=""
                     class="scale-50 -mx-8 md:mx-0 md:scale-75">
-            </div>
+            </a>
 
             <div class="">
                 <a href="{{ route('logout') }}"
@@ -21,7 +21,7 @@
                                 fill="#C43E40" />
                         </svg>
                     </span>
-  \                  <span class="hidden lg:block">
+                    <span class="hidden lg:block">
                         Keluar
                     </span>
                     <form action="{{ route('logout') }}" id="logout-form" method="POST" style="display: none;">
