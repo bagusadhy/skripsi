@@ -1,7 +1,7 @@
 <section class="bg-[##F9F9F9] mt-10 -mx-10 md:px-10">
     <div class="flex justify-between gap-10 flex-col lg:flex-row">
-        <aside class="bg-white px-2 py-2 w-screen overflow-hidden rounded-md lg:basis-3/12 h-fit">
-            <div class="border-2 border-gray-500 rounded-md px-3 mb-5 py-3">
+        <aside class="bg-white px-2 py-2 w-screen lg:w-64 rounded-md">
+            <div class="border-2 border-gray-300 rounded-md px-3 mb-5 py-3">
                 <div class="flex items-center gap-3">
                     <img src="https://ui-avatars.com/api/?name={{ Auth::user()->name }}" alt=""
                         class="rounded-full w-[41px] h-[41px] bg-cover">
@@ -21,11 +21,11 @@
                 <div class="divide-y mt-10">
                     <span class="text-sm font-bold text-gray-500 block mb-3">Master Data</span>
                     <a href="{{ route('backsite.survey.index') }}"
-                        class="block py-3 px-3 rounded {{ request()->is('backsite/survey') ? 'bg-gray-300 font-bold' : 'hover:bg-gray-300' }}">
+                        class="block py-3 px-3 rounded {{ request()->is('backsite/survey') || request()->is('backsite/survey/*') ? 'bg-gray-300 font-bold' : 'hover:bg-gray-300' }}">
                         Survey
                     </a>
                     <a href="{{ route('backsite.periode.index') }}"
-                        class="block py-3 px-3 rounded {{ request()->is('backsite/periode') ? 'bg-gray-300 font-bold' : 'hover:bg-gray-300' }}">
+                        class="block py-3 px-3 rounded {{ request()->is('backsite/periode') || request()->is('backsite/periode/*') ? 'bg-gray-300 font-bold' : 'hover:bg-gray-300' }}">
                         Periode PKL
                     </a>
                     <a href="{{ route('backsite.bidang_usaha.index') }}"

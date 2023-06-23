@@ -1,9 +1,9 @@
 <section class="mx-10">
-    <nav class="py-2 bg-white -mx-10 px-10">
-        <div class="flex justify-between items-center">
+    <nav class=" bg-white -mx-10 px-10">
+        <div class="flex justify-between items-center w-full">
             <div>
                 <img src="{{ asset('assets/frontsite/logo.png') }}" alt=""
-                    class="scale-75 -mx-8 md:mx-0 md:scale-100">
+                    class="scale-50 -mx-8 md:mx-0 md:scale-75">
             </div>
 
             <div class="">
@@ -21,7 +21,7 @@
                                 fill="#C43E40" />
                         </svg>
                     </span>
-                    <span class="hidden lg:block">
+  \                  <span class="hidden lg:block">
                         Keluar
                     </span>
                     <form action="{{ route('logout') }}" id="logout-form" method="POST" style="display: none;">

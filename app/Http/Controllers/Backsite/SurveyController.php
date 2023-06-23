@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Backsite;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Models\MasterData\Survey;
+
+use App\Http\Requests\Survey\UpdateSurveyRequest;
+use App\Http\Requests\Survey\StoreSurveyRequest;
 
 class SurveyController extends Controller
 {
@@ -16,7 +19,11 @@ class SurveyController extends Controller
      */
     public function index()
     {
-        return view('pages.backsite.master-data.survey.index');
+        $data = Survey::orderBy('id', 'ASC')->get();
+
+        // dd($data);
+
+        return view('pages.backsite.master-data.survey.index', compact('data'));
     }
 
     /**
@@ -24,15 +31,20 @@ class SurveyController extends Controller
      */
     public function create()
     {
-        //
+        return abort(404);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreSurveyRequest $request)
     {
-        //
+        $data = $request->all();
+        Survey::create($data);
+
+
+        alert()->success('Success Message', 'Berhasil Menambahkan Data');
+        return redirect(route('backsite.survey.index'));
     }
 
     /**
@@ -40,30 +52,37 @@ class SurveyController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return abort(404);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Survey $survey)
     {
-        //
+        return view('pages.backsite.master-data.survey.edit', compact('survey'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateSurveyRequest $request, Survey $survey)
     {
-        //
+        $data = $request->all();
+        $survey->update($data);
+
+        alert()->success('Success Message', 'Berhasil Mengubah Data');
+        return redirect(route('backsite.survey.index'));
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Survey $survey)
     {
-        //
+        $survey->forceDelete();
+
+        alert()->success('Success Message', 'Berhasil Menghapus Data');
+        return back();
     }
 }
