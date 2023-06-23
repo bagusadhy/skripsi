@@ -2,7 +2,8 @@ import defaultTheme from "tailwindcss/defaultTheme";
 import forms from "@tailwindcss/forms";
 import typography from "@tailwindcss/typography";
 import { ThemeProvider } from "@material-tailwind/react";
-// const withMT = require("@material-tailwind/html/utils/withMT");
+const withMT = require("@material-tailwind/html/utils/withMT");
+const initTE = require("tw-elements/dist/plugin.cjs");
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -12,6 +13,7 @@ export default {
         "./storage/framework/views/*.php",
         "./resources/views/**/*.blade.php",
         "./resources/**/*.js",
+        "./node_modules/tw-elements/dist/js/**/*.js",
     ],
 
     theme: {
@@ -29,5 +31,5 @@ export default {
         },
     },
 
-    plugins: [forms, typography, ThemeProvider],
+    plugins: [forms, typography, ThemeProvider, withMT, initTE],
 };

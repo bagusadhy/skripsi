@@ -18,6 +18,8 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
-        "@material-tailwind/react": "^2.0.4"
+        "@material-tailwind/html": "^2.0.0",
+        "@material-tailwind/react": "^2.0.4",
+        "tw-elements": "^1.0.0-beta2"
     }
 }
