@@ -24,7 +24,7 @@ class StoreJurusanRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => [
+            'jurusan' => [
                 'required', 'string', 'unique:jurusan', 'max:255'
             ],
         ];

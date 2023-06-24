@@ -25,7 +25,7 @@ class UpdateJurusanRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => [
+            'jurusan' => [
                 'required', 'string', Rule::unique('jurusan')->ignore($this->jurusan) , 'max:255'
             ],
         ];
