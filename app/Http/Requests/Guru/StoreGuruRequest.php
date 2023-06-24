@@ -25,9 +25,6 @@ class StoreGuruRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_id' => [
-                'required', 'integer',
-            ],
             'jurusan_id' => [
                 'required', 'integer',
             ],
@@ -45,6 +42,9 @@ class StoreGuruRequest extends FormRequest
             ],
             'jenis_kelamin' => [
                 'required', 'in:1,2',
+            ],
+            'alamat' => [
+                'required', 'string', 'max:1000',
             ],
         ];
     }

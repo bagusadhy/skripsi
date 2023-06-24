@@ -14,7 +14,7 @@ class UpdateGuruRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -25,9 +25,6 @@ class UpdateGuruRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_id' => [
-                'required', 'integer',
-            ],
             'jurusan_id' => [
                 'required', 'integer',
             ],
@@ -45,6 +42,9 @@ class UpdateGuruRequest extends FormRequest
             ],
             'jenis_kelamin' => [
                 'required', 'in:1,2',
+            ],
+            'alamat' => [
+                'required', 'string', 'max:1000',
             ],
         ];
     }

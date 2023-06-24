@@ -34,6 +34,7 @@ class Guru extends Model
         'nip',
         'jenis_kelamin',
         'kontak',
+        'alamat',
         'foto',
         'created_at',
         'updated_at',
