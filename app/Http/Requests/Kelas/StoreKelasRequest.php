@@ -24,7 +24,7 @@ class StoreKelasRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => [
+            'kelas' => [
                 'required', 'string', 'unique:kelas', 'max:255'
             ],
         ];

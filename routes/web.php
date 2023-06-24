@@ -50,7 +50,16 @@ Route::prefix('backsite')->name('backsite.')->middleware(['auth:sanctum', 'verif
     Route::resource('periode', PeriodePklController::class);
     Route::resource('bidang_usaha', BidangUsahaController::class);
     Route::resource('jurusan', JurusanController::class);
-    Route::resource('kelas', KelasController::class);
+
+    // Route::get('kelas/{kelas}/edit ', [KelasController::class, 'edit'])->name('kelas.edit');
+    // Route::put('kelas/update/{kelas}', [KelasController::class, 'update'])->name('kelas.update');
+    // Route::delete('kelas/destroy/{kelas}', [KelasController::class, 'destroy'])->name('kelas.destroy');
+    Route::resource('kelas', KelasController::class)->parameters(['kelas' => 'kelas']);
+    // Route::get('kelas/index', [KelasController::class, 'index'])->name('backsite.kelas.index');
+    // Route::post('kelas/store', [KelasController::class, 'store'])->name('backsite.kelas.store');
+    // Route::get('kelas/create', [KelasController::class, 'create'])->name('backsite.kelas.create');
+    // Route::get('kelas/show/{kelas}', [KelasController::class, 'show'])->name('backsite.kelas.show');
+
     Route::resource('siswa', SiswaController::class);
     Route::resource('guru', GuruController::class);
     Route::resource('mitra', MitraController::class);

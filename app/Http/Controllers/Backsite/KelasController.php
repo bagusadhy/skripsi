@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Backsite;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Models\MasterData\Kelas;
 
+use App\Http\Requests\Kelas\StoreKelasRequest;
+use App\Http\Requests\Kelas\UpdateKelasRequest;
 class KelasController extends Controller
 {
     public function __construct()
@@ -17,7 +19,8 @@ class KelasController extends Controller
      */
     public function index()
     {
-        return view('pages.backsite.master-data.kelas.index');
+        $data = Kelas::orderBy('id', 'ASC')->get();
+        return view('pages.backsite.master-data.kelas.index', compact('data'));
     }
 
 
@@ -26,15 +29,19 @@ class KelasController extends Controller
      */
     public function create()
     {
-        //
+        return abort(404);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreKelasRequest $request)
     {
-        //
+        $data = $request->all();
+        Kelas::create($data);
+
+        alert()->success('Berhasil', 'Data berhasil ditambahkan');
+        return redirect(route('backsite.kelas.index'));
     }
 
     /**
@@ -42,30 +49,37 @@ class KelasController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return abort(404);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Kelas $kelas)
     {
-        //
+        return view('pages.backsite.master-data.kelas.edit', compact('kelas'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateKelasRequest $request, Kelas $kelas)
     {
-        //
+        $data = $request->all();
+        $kelas->update($data);
+
+        alert()->success('Berhasil', 'Data berhasil diubah');
+        return redirect(route('backsite.kelas.index'));
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Kelas $kelas)
     {
-        //
+        $kelas->delete();
+
+        alert()->success('Berhasil', 'Data berhasil dihapus');
+        return back();
     }
 }

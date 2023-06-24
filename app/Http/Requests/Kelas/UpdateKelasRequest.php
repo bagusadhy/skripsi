@@ -24,7 +24,7 @@ class UpdateKelasRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => [
+            'kelas' => [
                 'required', 'string', Rule::unique('kelas')->ignore($this->kelas), 'max:255'
             ],
         ];
