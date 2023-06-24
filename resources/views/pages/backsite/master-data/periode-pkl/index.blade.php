@@ -83,6 +83,9 @@
                                         </svg>
                                     </span>
                                 </label>
+                                @if ($errors->has('tanggal_dimulai'))
+                                    <p style="font-style: bold; color: red;">{{ $errors->first('tanggal_dimulai') }}</p>
+                                @endif
                                 <label class="relative block mb-5">
                                     <span class="font-medium">Tanggal Selesai<code class="text-red-500">*</code></span>
                                     <input type="text" id="tanggal_berakhir" name="tanggal_berakhir"
@@ -105,6 +108,9 @@
                                         </svg>
                                     </span>
                                 </label>
+                                @if ($errors->has('tanggal_berakhir'))
+                                    <p style="font-style: bold; color: red;">{{ $errors->first('tanggal_berakhir') }}</p>
+                                @endif
                                 <div class="flex justify-end mt-4">
                                     <button type="submit"
                                         class="px-8 py-2 bg-blue-700 text-white rounded-md">Tambahkan</button>

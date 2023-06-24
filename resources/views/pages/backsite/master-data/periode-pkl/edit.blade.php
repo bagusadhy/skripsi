@@ -66,6 +66,9 @@
                             </svg>
                         </span>
                     </label>
+                    @if ($errors->has('tanggal_dimulai'))
+                        <p style="font-style: bold; color: red;">{{ $errors->first('tanggal_dimulai') }}</p>
+                    @endif
                     <label class="relative block mb-5">
                         <span class="font-medium">Tanggal Selesai<code class="text-red-500">*</code></span>
                         <input type="text" id="tanggal_berakhir" name="tanggal_berakhir"
@@ -86,6 +89,9 @@
                             </svg>
                         </span>
                     </label>
+                    @if ($errors->has('tanggal_berakhir'))
+                        <p style="font-style: bold; color: red;">{{ $errors->first('tanggal_berakhir') }}</p>
+                    @endif
                     <label class="relative block mb-5">
                         <span class="font-medium">Status<code class="text-red-500">*</code></span>
                         <select data-te-select-init class="" name="status">

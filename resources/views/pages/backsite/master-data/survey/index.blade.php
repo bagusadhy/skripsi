@@ -66,7 +66,7 @@
                                 <textarea class="w-full h-20 rounded-md border border-gray-300 px-5 py-3 focus:outline-none resize-none"
                                     name="title"id="title" required></textarea>
                                 @if ($errors->has('title'))
-                                    <p style="font-style: bold; color: red;">{{ $errors->first('name') }}</p>
+                                    <p style="font-style: bold; color: red;">{{ $errors->first('title') }}</p>
                                 @endif
                                 <div class="flex justify-end mt-4">
                                     <button type="submit"
