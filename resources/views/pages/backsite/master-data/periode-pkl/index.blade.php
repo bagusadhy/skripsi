@@ -141,7 +141,7 @@
                                     @if ($periode->status == '1')
                                         <td>
                                             <span
-                                                class="inline-block whitespace-nowrap rounded-lg bg-primary-100 w-16 py-2 text-center align-baseline text-[0.75em] font-bold leading-none text-primary-700">
+                                                class="inline-block whitespace-nowrap rounded-lg bg-blue-200 w-16 py-2 text-center align-baseline text-[0.75em] font-bold leading-none text-primary-700">
                                                 aktif
                                             </span>
                                         </td>
@@ -248,6 +248,7 @@
         $(document).ready(function() {
 
             var table = $('#periode-table').DataTable();
+            
             $('#periode-table tfoot th').each(function(i) {
                 var title = $('#periode-table thead th').eq($(this).index()).text();
                 $(this).html(

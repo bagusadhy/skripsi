@@ -25,9 +25,6 @@ class UpdateSiswaRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_id' => [
-                'required', 'integer',
-            ],
             'jurusan_id' => [
                 'required', 'integer',
             ],
@@ -50,7 +47,7 @@ class UpdateSiswaRequest extends FormRequest
                 'required', 'in:1,2',
             ],
             'agama' => [
-                'requered', 'string', 'max:20'
+                'required', 'string', 'max:20'
             ],
             'alamat' => [
                 'required', 'string', 'max:255'
