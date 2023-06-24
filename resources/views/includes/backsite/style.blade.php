@@ -1,7 +1,10 @@
+{{-- library or package --}}
 <link rel="stylesheet" type="text/css" href="{{ url('https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css') }}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
+
+{{-- tailwind templates or components --}}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/tw-elements.min.css" />
-
 <script src="https://cdn.tailwindcss.com/3.3.0"></script>
 
 
