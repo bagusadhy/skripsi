@@ -56,7 +56,7 @@
                         <p style="font-style: bold; color: red;">{{ $errors->first('name') }}</p>
                     @endif
                     <div class="flex justify-end mt-4">
-                        <button type="submit" class="px-8 py-2 bg-blue-700 text-white rounded-md">Tambahkan</button>
+                        <button type="submit" class="px-8 py-2 bg-blue-700 text-white rounded-md">Simpan</button>
                     </div>
                 </form>
             </div>
