@@ -25,10 +25,10 @@ class StorePeriodePklRequest extends FormRequest
     {
         return [
             'tanggal_dimulai' => [
-                'required', 'date',
+                'required', 'date', 'before:tanggal_berakhir',
             ],
             'tanggal_berakhir' => [
-                'required', 'date',
+                'required', 'date', 'after:tanggal_dimulai',
             ],
         ];
     }
