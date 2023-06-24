@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Survey')
+@section('title', 'Bidang Usaha')
 
 @section('content')
     <main class="basis-10/12 bg-white h-fit">
