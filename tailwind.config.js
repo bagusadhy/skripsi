@@ -1,9 +1,6 @@
 import defaultTheme from "tailwindcss/defaultTheme";
 import forms from "@tailwindcss/forms";
 import typography from "@tailwindcss/typography";
-import { ThemeProvider } from "@material-tailwind/react";
-const withMT = require("@material-tailwind/html/utils/withMT");
-const initTE = require("tw-elements/dist/plugin.cjs");
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -30,6 +27,6 @@ export default {
             },
         },
     },
-
-    plugins: [forms, typography, ThemeProvider, withMT, initTE],
+    darkMode: "class",
+    plugins: [forms, typography, require("tw-elements/dist/plugin.cjs")],
 };
