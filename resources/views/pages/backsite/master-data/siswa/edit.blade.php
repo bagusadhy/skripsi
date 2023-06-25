@@ -75,7 +75,7 @@
                         <label for="jurusan" class="block">
                             <span class="font-medium">Jurusan<code class="text-red-500">*</code></span>
                         </label>
-                        <select data-te-select-init data-te-select-placeholder="Pilih Jurusan" name="jurusan_id">
+                        <select data-te-select-init data-te-select-placeholder="Pilih Jurusan" name="jurusan_id" required>
                             @foreach ($jurusan as $items)
                                 <option value="{{ $items->id }}"
                                     {{ $data[0]->id_jurusan == $items->id ? 'selected' : '' }}>{{ $items->jurusan }}
@@ -90,7 +90,7 @@
                         <label for="kelas" class="block">
                             <span class="font-medium">Kelas<code class="text-red-500">*</code></span>
                         </label>
-                        <select data-te-select-init data-te-select-placeholder="Pilih Kelas" name="kelas_id">
+                        <select data-te-select-init data-te-select-placeholder="Pilih Kelas" name="kelas_id" required>
                             @foreach ($kelas as $items)
                                 <option value="{{ $items->id }}"
                                     {{ $data[0]->id_kelas == $items->id ? 'selected' : '' }}>{{ $items->kelas }}</option>
@@ -105,7 +105,8 @@
                         <label for="nama" class="block">
                             <span class="font-medium">Jenis Kelamin<code class="text-red-500">*</code></span>
                         </label>
-                        <select data-te-select-init data-te-select-placeholder="Pilih Jenis Kelamin" name="jenis_kelamin">
+                        <select data-te-select-init data-te-select-placeholder="Pilih Jenis Kelamin" name="jenis_kelamin"
+                            required>
                             <option value="1" {{ $data[0]->jenis_kelamin == '1' ? 'selected' : '' }}>Laki-laki
                             </option>
                             <option value="2" {{ $data[0]->jenis_kelamin == '2' ? 'selected' : '' }}>Perempuan
