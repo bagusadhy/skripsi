@@ -24,9 +24,6 @@ class StoreMitraRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_id' => [
-                'required', 'integer',
-            ],
             'bidang_usaha_id' => [
                 'required', 'integer',
             ],
