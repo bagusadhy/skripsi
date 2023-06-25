@@ -45,7 +45,6 @@ class GuruController extends Controller
      */
     public function store(StoreGuruRequest $request)
     {
-        // dd($request->alamat);
         $user_data = [
             'name' => $request->nama,
             'email' => $request->email,
@@ -58,8 +57,6 @@ class GuruController extends Controller
         $guru = $request->all();
         $guru['user_id'] = $user->id;
         unset($guru['email']);
-
-        // dd($guru);
 
         Guru::create($guru);
 

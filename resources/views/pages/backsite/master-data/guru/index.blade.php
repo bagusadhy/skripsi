@@ -98,8 +98,8 @@
                                     <label for="jurusan" class="block">
                                         <span class="font-medium">Jurusan<code class="text-red-500">*</code></span>
                                     </label>
-                                    <select data-te-select-init data-te-select-placeholder="Pilih Jurusan"
-                                        name="jurusan_id">
+                                    <select data-te-select-init data-te-select-placeholder="Pilih Jurusan" name="jurusan_id"
+                                        required>
                                         <option disabled selected></option>
                                         @foreach ($jurusan as $items)
                                             <option value="{{ $items->id }}">{{ $items->jurusan }}</option>
@@ -114,7 +114,7 @@
                                         <span class="font-medium">Jenis Kelamin<code class="text-red-500">*</code></span>
                                     </label>
                                     <select data-te-select-init data-te-select-placeholder="Pilih Jenis Kelamin"
-                                        name="jenis_kelamin">
+                                        name="jenis_kelamin" required>
                                         <option disabled selected></option>
                                         <option value="1">Laki-laki</option>
                                         <option value="2">Perempuan</option>
