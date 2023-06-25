@@ -63,8 +63,8 @@
                         <label for="nisn" class="block">
                             <span class="font-medium">NISN<code class="text-red-500">*</code></span>
                         </label>
-                        <input type="text"
-                            class="w-full h-11 rounded-md border border-gray-300 px-5 py-3 focus:outline-none resize-none"
+                        <input type="number"
+                            class="w-full h-11 rounded-md border border-gray-300 px-5 py-3 focus:outline-none resize-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                             name="nisn" id="nisn" required value="{{ $data[0]->nisn }}"></input>
                         @if ($errors->has('nisn'))
                             <p style="font-style: bold; color: red;">{{ $errors->first('nisn') }}</p>
@@ -171,7 +171,7 @@
                                 <code class="text-red-500">*</code></span>
                         </label>
                         <input type="number"
-                            class="w-full h-11 rounded-md border border-gray-300 px-5 py-3 focus:outline-none resize-none"
+                            class="w-full h-11 rounded-md border border-gray-300 px-5 py-3 focus:outline-none resize-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                             name="kontak" id="kontak" required value="{{ $data[0]->kontak }}"></input>
                         @if ($errors->has('kontak'))
                             <p style="font-style: bold; color: red;">{{ $errors->first('kontak') }}</p>

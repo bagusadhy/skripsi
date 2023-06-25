@@ -75,8 +75,8 @@
                                     <label for="nisn" class="block">
                                         <span class="font-medium">NISN<code class="text-red-500">*</code></span>
                                     </label>
-                                    <input type="text"
-                                        class="w-full h-11 rounded-md border border-gray-300 px-5 py-3 focus:outline-none resize-none"
+                                    <input type="number"
+                                        class="w-full h-11 rounded-md border border-gray-300 px-5 py-3 focus:outline-none resize-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                                         name="nisn" id="nisn" required value="{{ old('nisn') }}"></input>
                                     @if ($errors->has('nisn'))
                                         <p style="font-style: bold; color: red;">{{ $errors->first('nisn') }}</p>
@@ -88,7 +88,8 @@
                                     </label>
                                     <input type="email"
                                         class="w-full h-11 rounded-md border border-gray-300 px-5 py-3 focus:outline-none resize-none"
-                                        name="email" id="email" required value="{{ old('email') }}" autofocus></input>
+                                        name="email" id="email" required value="{{ old('email') }}"
+                                        autofocus></input>
                                     @if ($errors->has('email'))
                                         <p style="font-style: bold; color: red;">{{ $errors->first('email') }}</p>
                                     @endif
@@ -97,7 +98,8 @@
                                     <label for="jurusan" class="block">
                                         <span class="font-medium">Jurusan<code class="text-red-500">*</code></span>
                                     </label>
-                                    <select data-te-select-init data-te-select-placeholder="Pilih Jurusan" name="jurusan_id">
+                                    <select data-te-select-init data-te-select-placeholder="Pilih Jurusan"
+                                        name="jurusan_id">
                                         <option disabled selected></option>
                                         @foreach ($jurusan as $items)
                                             <option value="{{ $items->id }}">{{ $items->jurusan }}</option>
@@ -142,7 +144,8 @@
                                     </label>
                                     <input type="text"
                                         class="w-full h-11 rounded-md border border-gray-300 px-5 py-3 focus:outline-none resize-none"
-                                        name="tempat_lahir" id="tempat_lahir" required value="{{ old('tempat_lahir') }}"></input>
+                                        name="tempat_lahir" id="tempat_lahir" required
+                                        value="{{ old('tempat_lahir') }}"></input>
                                     @if ($errors->has('tempat_lahir'))
                                         <p style="font-style: bold; color: red;">{{ $errors->first('tempat_lahir') }}</p>
                                     @endif
@@ -192,7 +195,7 @@
                                             <code class="text-red-500">*</code></span>
                                     </label>
                                     <input type="number"
-                                        class="w-full h-11 rounded-md border border-gray-300 px-5 py-3 focus:outline-none resize-none"
+                                        class="w-full h-11 rounded-md border border-gray-300 px-5 py-3 focus:outline-none resize-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                                         name="kontak" id="kontak" required value="{{ old('kontak') }}"></input>
                                     @if ($errors->has('kontak'))
                                         <p style="font-style: bold; color: red;">{{ $errors->first('kontak') }}</p>
@@ -204,8 +207,8 @@
                                             <code class="text-red-500">*</code></span>
                                     </label>
                                     <textarea type="text"
-                                        class="w-full h-20 rounded-md border border-gray-300 px-5 py-3 focus:outline-none resize-none"
-                                        name="alamat" id="alamat" required value="{{ old('alamat') }}"></textarea>
+                                        class="w-full h-20 rounded-md border border-gray-300 px-5 py-3 focus:outline-none resize-none" name="alamat"
+                                        id="alamat" required value="{{ old('alamat') }}"></textarea>
                                     @if ($errors->has('alamat'))
                                         <p style="font-style: bold; color: red;">{{ $errors->first('alamat') }}</p>
                                     @endif
@@ -328,14 +331,14 @@
         $(document).ready(function() {
 
             const tanggal_mulai = flatpickr('#tanggal_lahir', {
-            altInput: true,
-            altFormat: 'd F Y',
-            dateFormat: 'Y-m-d',
-            disableMobile: 'true',
-            locale: {
-                "firstDayOfWeek": 1 // start week on Monday
-            }
-        });
+                altInput: true,
+                altFormat: 'd F Y',
+                dateFormat: 'Y-m-d',
+                disableMobile: 'true',
+                locale: {
+                    "firstDayOfWeek": 1 // start week on Monday
+                }
+            });
             var table = $('#siswa-table').DataTable({
                 "autoWidth": true,
                 // "scrollX": true,
