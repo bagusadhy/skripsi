@@ -75,8 +75,8 @@
                                     <label for="nip" class="block">
                                         <span class="font-medium">NIP<code class="text-red-500">*</code></span>
                                     </label>
-                                    <input type="text"
-                                        class="w-full h-11 rounded-md border border-gray-300 px-5 py-3 focus:outline-none resize-none"
+                                    <input type="number"
+                                        class="w-full h-11 rounded-md border border-gray-300 px-5 py-3 focus:outline-none resize-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                                         name="nip" id="nip" required value="{{ old('nip') }}"></input>
                                     @if ($errors->has('nip'))
                                         <p style="font-style: bold; color: red;">{{ $errors->first('nip') }}</p>
@@ -129,7 +129,7 @@
                                             <code class="text-red-500">*</code></span>
                                     </label>
                                     <input type="number"
-                                        class="w-full h-11 rounded-md border border-gray-300 px-5 py-3 focus:outline-none resize-none"
+                                        class="w-full h-11 rounded-md border border-gray-300 px-5 py-3 focus:outline-none resize-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                                         name="kontak" id="kontak" required value="{{ old('kontak') }}"></input>
                                     @if ($errors->has('kontak'))
                                         <p style="font-style: bold; color: red;">{{ $errors->first('kontak') }}</p>
