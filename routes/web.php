@@ -44,6 +44,8 @@ Route::prefix('backsite')->name('backsite.')->middleware(['auth:sanctum', 'verif
     Route::put('periode/activated/{periode}', [PeriodePklController::class, 'activated'])->name('periode.activated');
     Route::put('periode/disactivated/{periode}', [PeriodePklController::class, 'disactivated'])->name('periode.disactivated');
 
+    Route::post('pengajuan_mitra/terima/{pengajuan_mitra}', [PengajuanMitraController::class, 'terima'])->name('pengajuan_mitra.terima');
+
     // resource routes
     Route::resource('dashboard', DashboardController::class);
     Route::resource('survey', SurveyController::class);

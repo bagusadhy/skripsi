@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Models\Kegiatan\PengajuanMitra;
+use App\Models\User;
+use App\Models\MasterData\Mitra;
 
 class PengajuanMitraController extends Controller
 {
@@ -59,15 +61,26 @@ class PengajuanMitraController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, PengajuanMitra $pengajuan)
     {
-        return abort(404);
+        $data = [
+            'status' => 3,
+        ];
+        $pengajuan->update($data);
+
+        alert()->success('Berhasil', 'Pengajuan mitra telah ditolak');
+        return back();
     }
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
+    {
+        return abort(404);
+    }
+
+    public function terima(string $id)
     {
         return abort(404);
     }
