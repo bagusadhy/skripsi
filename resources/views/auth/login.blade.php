@@ -80,7 +80,7 @@
                         </div>
 
                         <div class="block mt-5 mb-3">
-                            <button type="submit" class="h-11 w-full rounded-md bg-primary text-white block" id="fill"
+                            <button type="submit" class="h-11 w-full rounded-md bg-blue-700 text-white block" id="fill"
                                 x-show="username.length && password.length">Masuk</button>
 
                             <div class=" w-full rounded-md bg-gray-500 cursor-not-allowed text-white text-center py-2.5"
