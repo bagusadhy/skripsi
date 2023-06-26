@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Backsite;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use App\Models\Kegiatan\PengajuanMitra;
+
 class PengajuanMitraController extends Controller
 {
     public function __construct()
@@ -17,7 +19,8 @@ class PengajuanMitraController extends Controller
      */
     public function index()
     {
-        return view('pages.backsite.kegiatan.pengajuan-mitra.index');
+        $pengajuan = PengajuanMitra::with('siswa', 'bidang_usaha')->get();
+        return view('pages.backsite.kegiatan.pengajuan-mitra.index', compact('pengajuan'));
     }
 
 
