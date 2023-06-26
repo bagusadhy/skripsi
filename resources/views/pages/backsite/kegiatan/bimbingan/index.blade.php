@@ -107,18 +107,17 @@
                     <table id="bimbingan-table">
                         <thead>
                             <tr>
-                                <th>Guru</th>
+                                <th class="whitespace-nowrap">Guru</th>
                                 @for ($i = 1; $i <= $total; $i++)
-                                    <th>Mitra {{ $i }}</th>
+                                    <th class="whitespace-nowrap">Mitra {{ $i }}</th>
                                 @endfor
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody class="overflow-x-scroll">
                             @for ($i = 0; $i < count($bimbingan); $i++)
-                                {{-- {{ dd($bimbingan) }} --}}
 
-                                <tr class="hover:bg-neutral-200 outline-2">
+                                <tr class="hover:bg-neutral-200 outline-2" data-entry-id="">
                                     <td class="whitespace-nowrap">{{ $bimbingan[$keys[$i]][0]->guru->nama }}</td>
 
                                     @for ($j = 0; $j < count($bimbingan[$keys[$i]]); $j++)
@@ -148,14 +147,14 @@
                                                 aria-labelledby="dropdownMenuButton1" data-te-dropdown-menu-ref>
                                                 <li>
                                                     <a class="block w-full whitespace-nowrap bg-transparent px-16 py-2 text-sm font-normal hover:bg-neutral-200"
-                                                        href="{{ route('backsite.bimbingan.edit', $bimbingan[$keys[$i]][0]->id) }}"
+                                                        href="{{ route('backsite.bimbingan.edit', $bimbingan[$keys[$i]][0]->guru_id) }}"
                                                         data-te-dropdown-item-ref>Edit</a>
                                                 </li>
                                                 <li>
                                                     <a class="block w-full whitespace-nowrap bg-transparent px-16 py-2 text-sm font-normal hover:bg-neutral-200"
-                                                        href="{{ route('backsite.bimbingan.destroy', $bimbingan[$keys[$i]][0]->id) }}"
+                                                        href="{{ route('backsite.bimbingan.destroy', $bimbingan[$keys[$i]][0]->guru_id) }}"
                                                         data-te-dropdown-item-ref
-                                                        onclick="event.preventDefault(); $('#form-delete').attr('action', '{{ route('backsite.bimbingan.destroy', $bimbingan[$keys[$i]][0]->id) }}'); document.getElementById('form-delete').submit()">Hapus
+                                                        onclick="event.preventDefault(); $('#form-delete').attr('action', '{{ route('backsite.bimbingan.destroy', $bimbingan[$keys[$i]][0]->guru_id) }}'); document.getElementById('form-delete').submit()">Hapus
                                                         <form action="" id="form-delete" method="post"
                                                             style="display: none">
                                                             @csrf
