@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Backsite;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use App\Models\Kegiatan\PendaftarPkl;
+
 class PendaftarPklController extends Controller
 {
     public function __construct()
@@ -17,7 +19,8 @@ class PendaftarPklController extends Controller
      */
     public function index()
     {
-        return view('pages.backsite.kegiatan.pendaftar-pkl.index');
+        $pendaftar = PendaftarPkl::with('siswa', 'mitra')->get();
+        return view('pages.backsite.kegiatan.pendaftar-pkl.index', compact('pendaftar'));
     }
 
 
@@ -26,7 +29,7 @@ class PendaftarPklController extends Controller
      */
     public function create()
     {
-        //
+        return abort(404);
     }
 
     /**
@@ -34,7 +37,7 @@ class PendaftarPklController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return abort(404);
     }
 
     /**
@@ -42,7 +45,7 @@ class PendaftarPklController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return abort(404);
     }
 
     /**
@@ -50,7 +53,7 @@ class PendaftarPklController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return abort(404);
     }
 
     /**
@@ -58,7 +61,7 @@ class PendaftarPklController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        return abort(404);
     }
 
     /**
@@ -66,6 +69,6 @@ class PendaftarPklController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        return abort(404);
     }
 }
