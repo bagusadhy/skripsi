@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Backsite;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use App\Models\Kegiatan\Monitoring;
+
 class MonitoringController extends Controller
 {
     public function __construct()
@@ -17,7 +19,8 @@ class MonitoringController extends Controller
      */
     public function index()
     {
-        return view('pages.backsite.kegiatan.monitoring.index');
+        $monitoring = Monitoring::with('guru', 'mitra')->get();
+        return view('pages.backsite.kegiatan.monitoring.index', compact('monitoring'));
     }
 
 
