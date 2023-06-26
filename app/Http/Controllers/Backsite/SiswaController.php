@@ -43,7 +43,7 @@ class SiswaController extends Controller
      */
     public function create()
     {
-        //
+        return abort(404);
     }
 
     /**
@@ -85,7 +85,7 @@ class SiswaController extends Controller
      */
     public function show(Siswa $siswa)
     {
-        //
+        return abort(404);
     }
 
     /**
