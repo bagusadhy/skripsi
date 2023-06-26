@@ -28,7 +28,7 @@ class UpdateBimbinganRequest extends FormRequest
                 'required', 'integer',
             ],
             'mitra_id' => [
-                'required', 'integer',
+                'required', 'array',
             ],
         ];
     }

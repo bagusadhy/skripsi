@@ -3,7 +3,13 @@
 namespace App\Http\Controllers\Backsite;
 
 use App\Http\Controllers\Controller;
+use App\Models\Kegiatan\Bimbingan;
+use App\Models\MasterData\Guru;
+use App\Models\MasterData\Mitra;
+
 use Illuminate\Http\Request;
+use App\Http\Requests\Bimbingan\StoreBimbinganRequest;
+use App\Http\Requests\Bimbingan\UpdateBimbinganRequest;
 
 class BimbinganController extends Controller
 {
@@ -17,7 +23,14 @@ class BimbinganController extends Controller
      */
     public function index()
     {
-        return view('pages.backsite.kegiatan.bimbingan.index');
+        $guru = Guru::orderBy('id', 'ASC')->get();
+        $mitra = Mitra::leftJoin('bimbingan', 'mitra.id', '=', 'bimbingan.mitra_id')->whereNull('bimbingan.mitra_id')->select('mitra.*')->get();
+        $data_bimbingan = Bimbingan::with('guru', 'mitra')->get();
+        $bimbingan = $data_bimbingan->groupBy('guru_id');
+        $keys = $bimbingan->keys();
+
+        $total = Bimbingan::select('guru_id')->groupBy('guru_id')->orderBy('guru_id', 'desc')->count();
+        return view('pages.backsite.kegiatan.bimbingan.index', compact('bimbingan', 'guru', 'mitra', 'total', 'keys'));
     }
 
 
@@ -32,9 +45,21 @@ class BimbinganController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreBimbinganRequest $request)
     {
-        //
+        // dd($request->all());
+        $mitra = $request->mitra_id;
+        foreach ($mitra as $list_mitra) {
+            $data = [
+                'guru_id' => $request->guru_id,
+                'mitra_id' => $list_mitra,
+            ];
+
+            Bimbingan::create($data);
+        }
+
+        alert()->success('Berhasil', 'Data Bimbingan Berhasil Ditambahkan');
+        return redirect(route('backsite.bimbingan.index'));
     }
 
     /**
@@ -56,7 +81,7 @@ class BimbinganController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateBimbinganRequest $request, string $id)
     {
         //
     }
