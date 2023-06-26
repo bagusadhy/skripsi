@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Backsite;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use App\Models\Kegiatan\Laporan;
+
 class LaporanController extends Controller
 {
     public function __construct()
@@ -17,7 +19,8 @@ class LaporanController extends Controller
      */
     public function index()
     {
-        return view('pages.backsite.kegiatan.laporan.index');
+        $laporan = Laporan::with('siswa')->get();
+        return view('pages.backsite.kegiatan.laporan.index', compact('laporan'));
     }
 
 
