@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Backsite;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use App\Models\Kegiatan\Nilai;
+
 class NilaiController extends Controller
 {
     public function __construct()
@@ -17,7 +19,8 @@ class NilaiController extends Controller
      */
     public function index()
     {
-        return view('pages.backsite.kegiatan.nilai.index');
+        $nilai = Nilai::with('siswa')->get();
+        return view('pages.backsite.kegiatan.nilai.index', compact('nilai'));
     }
 
 
