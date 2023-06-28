@@ -5,7 +5,6 @@
 
 {{-- tailwind templates or components --}}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/tw-elements.min.css" />
-<script src="https://cdn.tailwindcss.com/3.3.0"></script>
 
 
 <link rel="preconnect" href="{{ url('https://fonts.googleapis.com') }}">

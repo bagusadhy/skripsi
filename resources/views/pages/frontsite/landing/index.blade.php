@@ -111,19 +111,3 @@
 
 
 @endsection
-@push('after-script')
-    <script type="text/javascript">
-        const toggler = document.querySelector('#toggler');
-        const mobile = document.querySelector('#mobile-menu');
-        const open = document.querySelector('#openBtn');
-        const close = document.querySelector('#closeBtn');
-
-
-        toggler.addEventListener('click', function() {
-            mobile.classList.toggle('hidden');
-            open.classList.toggle('hidden');
-            close.classList.toggle('hidden');
-
-        })
-    </script>
-@endpush
