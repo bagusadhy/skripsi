@@ -28,7 +28,7 @@
                                         <div class="text-base font-medium text-[#1E2B4F]">
                                             Hi, {{ Auth::user()->name }}
                                         </div>
-                                        <img class="h-12 w-12 rounded-full ring-1 ring-offset-4 ring-[#0D63F3]"
+                                        <img class="h-10 w-10 rounded-full ring-1 ring-offset-4 ring-[#0D63F3]"
                                             src="{{ asset('assets/frontsite/authenticated-user.svg') }}"
                                             alt="User Profile" />
                                     </div>
