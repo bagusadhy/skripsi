@@ -3,7 +3,7 @@
 @section('title', 'Jurusan')
 
 @section('content')
-    <main class="w-screen h-screen lg:h-fit bg-white">
+    <main class="basis-10/12 bg-white min-h-screen px-10 py-5 ">
 
         @if ($errors->any())
             <div class="mb-3 hidden w-full items-center rounded-lg bg-danger-100 px-6 py-5 text-base text-warning-800 data-[te-alert-show]:inline-flex"

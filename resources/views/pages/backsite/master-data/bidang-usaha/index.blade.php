@@ -3,7 +3,7 @@
 @section('title', 'Bidang Usaha')
 
 @section('content')
-    <main class="w-screen h-screen lg:h-fit bg-white">
+    <main class="basis-10/12 bg-white min-h-screen px-10 py-5 ">
 
         @if ($errors->any())
             <div class="mb-3 hidden w-full items-center rounded-lg bg-danger-100 px-6 py-5 text-base text-warning-800 data-[te-alert-show]:inline-flex"
@@ -63,7 +63,8 @@
                                 <label for="title" class="block">
                                     <span class="font-medium">Bidang Usaha <code class="text-red-500">*</code></span>
                                 </label>
-                                <input type="text" class="w-full h-11 rounded-md border border-gray-300 px-5 py-3 focus:outline-none resize-none"
+                                <input type="text"
+                                    class="w-full h-11 rounded-md border border-gray-300 px-5 py-3 focus:outline-none resize-none"
                                     name="title"id="title" required></input>
                                 @if ($errors->has('title'))
                                     <p style="font-style: bold; color: red;">{{ $errors->first('title') }}</p>
@@ -112,14 +113,14 @@
                                                 aria-labelledby="dropdownMenuButton1" data-te-dropdown-menu-ref>
                                                 <li>
                                                     <a class="block w-full whitespace-nowrap bg-transparent px-16 py-2 text-sm font-normal hover:bg-neutral-200"
-                                                        href="{{ route('backsite.bidang_usaha.edit',$bidang->id) }}"
+                                                        href="{{ route('backsite.bidang_usaha.edit', $bidang->id) }}"
                                                         data-te-dropdown-item-ref>Edit</a>
                                                 </li>
                                                 <li>
                                                     <a class="block w-full whitespace-nowrap bg-transparent px-16 py-2 text-sm font-normal hover:bg-neutral-200"
-                                                        href="{{ route('backsite.bidang_usaha.destroy',$bidang->id) }}"
+                                                        href="{{ route('backsite.bidang_usaha.destroy', $bidang->id) }}"
                                                         data-te-dropdown-item-ref
-                                                        onclick="event.preventDefault(); $('#form-delete').attr('action', '{{ route('backsite.bidang_usaha.destroy',$bidang->id) }}'); document.getElementById('form-delete').submit()">Hapus
+                                                        onclick="event.preventDefault(); $('#form-delete').attr('action', '{{ route('backsite.bidang_usaha.destroy', $bidang->id) }}'); document.getElementById('form-delete').submit()">Hapus
                                                         <form action="" id="form-delete" method="post"
                                                             style="display: none">
                                                             @csrf

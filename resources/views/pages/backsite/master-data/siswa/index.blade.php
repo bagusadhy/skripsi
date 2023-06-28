@@ -3,7 +3,7 @@
 @section('title', 'Siswa')
 
 @section('content')
-    <main class="w-screen h-screen lg:h-fit bg-white overflow-x-hidden">
+    <main class="basis-10/12 bg-white min-h-screen px-10 py-5  overflow-x-hidden">
 
         @if ($errors->any())
             <div class="mb-3 hidden w-full items-center rounded-lg bg-danger-100 px-6 py-5 text-base text-warning-800 data-[te-alert-show]:inline-flex"
@@ -98,8 +98,8 @@
                                     <label for="jurusan" class="block">
                                         <span class="font-medium">Jurusan<code class="text-red-500">*</code></span>
                                     </label>
-                                    <select data-te-select-init data-te-select-placeholder="Pilih Jurusan"
-                                        name="jurusan_id" required>
+                                    <select data-te-select-init data-te-select-placeholder="Pilih Jurusan" name="jurusan_id"
+                                        required>
                                         <option disabled selected></option>
                                         @foreach ($jurusan as $items)
                                             <option value="{{ $items->id }}">{{ $items->jurusan }}</option>
@@ -113,7 +113,8 @@
                                     <label for="kelas" class="block">
                                         <span class="font-medium">Kelas<code class="text-red-500">*</code></span>
                                     </label>
-                                    <select data-te-select-init data-te-select-placeholder="Pilih Kelas" name="kelas_id" required>
+                                    <select data-te-select-init data-te-select-placeholder="Pilih Kelas" name="kelas_id"
+                                        required>
                                         <option disabled selected></option>
                                         @foreach ($kelas as $items)
                                             <option value="{{ $items->id }}">{{ $items->kelas }}</option>

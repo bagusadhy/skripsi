@@ -3,7 +3,7 @@
 @section('title', 'Mitra')
 
 @section('content')
-    <main class="w-screen h-screen lg:h-fit bg-white overflow-x-hidden">
+    <main class="basis-10/12 bg-white min-h-screen px-10 py-5  overflow-x-hidden">
 
         @if ($errors->any())
             <div class="mb-3 hidden w-full items-center rounded-lg bg-danger-100 px-6 py-5 text-base text-warning-800 data-[te-alert-show]:inline-flex"
@@ -89,7 +89,8 @@
                                     </label>
                                     <input type="text"
                                         class="w-full h-11 rounded-md border border-gray-300 px-5 py-3 focus:outline-none resize-none"
-                                        name="nama_pimpinan" id="nama_pimpinan" required value="{{ old('nama_pimpinan') }}"></input>
+                                        name="nama_pimpinan" id="nama_pimpinan" required
+                                        value="{{ old('nama_pimpinan') }}"></input>
                                     @if ($errors->has('nama_pimpinan'))
                                         <p style="font-style: bold; color: red;">{{ $errors->first('nama_pimpinan') }}</p>
                                     @endif
@@ -100,7 +101,8 @@
                                     </label>
                                     <input type="text"
                                         class="w-full h-11 rounded-md border border-gray-300 px-5 py-3 focus:outline-none resize-none"
-                                        name="nama_pembimbing" id="nama_pembimbing" required value="{{ old('nama_pembimbing') }}"></input>
+                                        name="nama_pembimbing" id="nama_pembimbing" required
+                                        value="{{ old('nama_pembimbing') }}"></input>
                                     @if ($errors->has('nama_pembimbing'))
                                         <p style="font-style: bold; color: red;">{{ $errors->first('nama_pembimbing') }}</p>
                                     @endif

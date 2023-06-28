@@ -3,7 +3,7 @@
 @section('title', 'Peserta')
 
 @section('content')
-    <main class="w-screen h-screen lg:h-fit bg-white overflow-x-hidden">
+    <main class="basis-10/12 bg-white min-h-screen px-10 py-5  overflow-x-hidden">
 
         @if ($errors->any())
             <div class="mb-3 hidden w-full items-center rounded-lg bg-danger-100 px-6 py-5 text-base text-warning-800 data-[te-alert-show]:inline-flex"
@@ -54,7 +54,8 @@
                                 <tr>
                                     <td class="whitespace-nowrap">{{ $data->siswa->nama }}</td>
                                     <td class="whitespace-nowrap">{{ $data->mitra->nama }}</td>
-                                    <td class="whitespace-nowrap">{{ $data->periode->tanggal_dimulai." - ".$data->periode->tanggal_berakhir }}</td>
+                                    <td class="whitespace-nowrap">
+                                        {{ $data->periode->tanggal_dimulai . ' - ' . $data->periode->tanggal_berakhir }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
