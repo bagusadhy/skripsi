@@ -10,9 +10,9 @@
         <div class="-mx-10 bg-no-repeat text-white bg-center lg:h-[624px] overflow-hidden bg-cover"
             style="background-image: url('assets/frontsite/hero.png')">
             <div class="h-full w-full backdrop-blur-sm px-10 self-center flex flex-col justify-center py-10">
-                <h1 class="font-bold text-6xl mb-20">Program <br> Praktik Kerja Lapangan<br>
+                <h1 class="font-bold text-6xl lg:text-6xl mb-10 lg:max-w-2xl">Program Praktik Kerja Lapangan
                     SMK Negeri 2 Malang</h1>
-                <p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                <p class="text-justify max-w-2xl">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
                     tempor incididunt ut labore et dolore magna
                     aliqua.</p>
             </div>

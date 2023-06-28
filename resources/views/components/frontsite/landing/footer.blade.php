@@ -1,14 +1,17 @@
-<footer class="bg-success -mx-10">
+<footer class="bg-success -mx-10 px-0 md:px-20">
     <div class="p-10">
-        <div class="">
-            <img src="{{ asset('assets/frontsite/logo-smk.png') }}" alt=""
-                class="mb-5 scale-75 -mx-10 md:mx-0 md:scale-100">
-            <p class="text-white mb-10">Jl. Veteran No.17, Ketawanggede, Kec. Lowokwaru, <br> Kota Malang, Jawa
-                Timur 65145</p>
+        <div class="flex justify-between">
+            <div class="flex flex-col justify-start">
+                <img src="{{ asset('assets/frontsite/logo-smk.png') }}" alt=""
+                    class="mb-2 -ml-20 max-w-xs scale-50">
+                <p class="text-white max-w-sm mb-10 text-sm">SMK Negeri 2 Malang merupakan sebuah sekolah menengah
+                    kejuruan yang terletak di
+                    Jalan Veteran 17, Ketawanggede, Lowokwaru, Kota Malang, Jawa Timur.</p>
+            </div>
         </div>
 
         <div class="flex gap-5 justify-center md:justify-start">
-            <a href="">
+            <a href="{{ url('https://www.instagram.com/smkn2malang/') }}">
                 <span>
                     <svg width="32" height="32" viewBox="0 0 32 32" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
@@ -18,7 +21,7 @@
                     </svg>
                 </span>
             </a>
-            <a href="">
+            <a href="{{ url('https://www.facebook.com/pages/SMKN%202%20Malang/1485673051724205/') }}">
                 <span>
                     <svg width="32" height="32" viewBox="0 0 32 32" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
@@ -35,17 +38,7 @@
                     </svg>
                 </span>
             </a>
-            <a href="">
-                <span>
-                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M10.052 32C22.128 32 28.734 19.6856 28.734 9.02522C28.734 8.68063 28.734 8.33111 28.722 7.98651C30.0081 6.84069 31.1181 5.4221 32 3.7972C30.7986 4.4491 29.5255 4.87875 28.222 5.0722C29.5951 4.06214 30.6234 2.47288 31.116 0.599828C29.826 1.54039 28.414 2.20066 26.942 2.55172C25.9524 1.25462 24.6428 0.395329 23.2162 0.10695C21.7895 -0.181429 20.3254 0.117199 19.0507 0.956578C17.7759 1.79596 16.7616 3.12924 16.1649 4.74991C15.5682 6.37058 15.4224 8.18818 15.75 9.92118C13.1395 9.76008 10.5856 8.92546 8.25409 7.47144C5.92254 6.01743 3.86537 3.97649 2.216 1.48101C1.37868 3.26081 1.12315 5.3661 1.50129 7.36935C1.87944 9.37261 2.86291 11.1236 4.252 12.2669C3.21108 12.2234 2.19304 11.8794 1.28 11.2626V11.3734C1.28179 13.2379 1.80661 15.0444 2.76575 16.4876C3.72488 17.9308 5.0595 18.9222 6.544 19.2942C5.98053 19.4853 5.39846 19.5805 4.814 19.5773C4.40197 19.5788 3.99076 19.5318 3.586 19.437C4.00557 21.042 4.82255 22.4452 5.92249 23.4502C7.02244 24.4553 8.35027 25.0117 9.72 25.0416C7.39311 27.2908 4.5188 28.5107 1.56 28.5048C1.03864 28.5075 0.517646 28.4705 0 28.394C3.00303 30.7503 6.4906 32.0014 10.052 32Z"
-                            fill="white" />
-                    </svg>
-                </span>
-            </a>
-            <a href="">
+            <a href="{{ url('https://www.youtube.com/@smknegeri2malang680') }}">
                 <span>
                     <svg width="32" height="32" viewBox="0 0 32 32" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
@@ -65,6 +58,6 @@
         </div>
     </div>
 
-    <hr>
-    <p class="text-center text-white">Copyright © {{ date('Y') }} SMK Negeri 2 Malang.</p>
+    {{-- <hr class="bg-slate-50"> --}}
+    <p class="text-center text-white py-5 text-sm">© {{ date('Y') }} SMK Negeri 2 Malang. All rights reserved.</p>
 </footer>
