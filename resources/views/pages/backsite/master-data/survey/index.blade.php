@@ -36,6 +36,7 @@
                         class="focus:outline-none text-base sm:text-lg md:text-xl lg:text-2xl font-bold leading-normal text-gray-800">
                         Survey</p>
                 </div>
+                <!-- Toggler -->
             </div>
 
             <div id="accordionExample" class="shadow-lg mb-3 rounded-lg">

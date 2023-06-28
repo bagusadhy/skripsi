@@ -11,11 +11,20 @@ import {
     Dropdown,
     Ripple,
     initTE,
+    Sidenav,
+    Offcanvas,
 } from "tw-elements";
-initTE({ Datepicker, Input, Collapse, Select, Dropdown, Ripple });
+initTE({
+    Datepicker,
+    Input,
+    Collapse,
+    Select,
+    Dropdown,
+    Ripple,
+    Sidenav,
+    Offcanvas,
+});
 
 window.Alpine = Alpine;
-
 Alpine.plugin(focus);
-
 Alpine.start();
