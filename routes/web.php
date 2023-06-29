@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
+// backsite controller
 use App\Http\Controllers\Backsite\GuruController;
 use App\Http\Controllers\Backsite\KelasController;
 use App\Http\Controllers\Backsite\MitraController;
@@ -17,11 +19,20 @@ use App\Http\Controllers\Backsite\PeriodePklController;
 use App\Http\Controllers\Backsite\PesertaPklController;
 use App\Http\Controllers\Backsite\BidangUsahaController;
 use App\Http\Controllers\Backsite\HasilSurveyController;
-use App\Http\Controllers\Backsite\DokumenSiswaController;
 use App\Http\Controllers\Backsite\PendaftarPklController;
 use App\Http\Controllers\Backsite\AktivitasSiswaController;
 use App\Http\Controllers\Backsite\PengajuanMitraController;
+use App\Http\Controllers\Backsite\DokumenSiswaController;
+
+// siswa controller
 use App\Http\Controllers\Frontsite\Siswa\DashboardController as DashboardSiswaController;
+
+
+// auth controller
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\RegisterGuruController;
+use App\Http\Controllers\Auth\RegisterMitraController;
+use App\Http\Controllers\Auth\RegisterSiswaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +48,12 @@ use App\Http\Controllers\Frontsite\Siswa\DashboardController as DashboardSiswaCo
 // landing page controller
 Route::resource('/', LandingController::class);
 
+Route::prefix('auth')->name('auth.')->group(function () {
+    Route::resource('register', RegisterController::class);
+    Route::resource('register_siswa', RegisterSiswaController::class);
+    Route::resource('register_guru', RegisterGuruController::class);
+    Route::resource('register_mitra', RegisterMitraController::class);
+});
 
 // Backsite controller
 Route::prefix('backsite')->name('backsite.')->middleware(['auth:sanctum', 'verified'])->group(function () {
