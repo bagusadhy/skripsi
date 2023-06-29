@@ -15,9 +15,9 @@
             {{-- login card --}}
             <div class="w-full">
                 <a href="{{ route('index') }}">
-                    <img src="{{ asset('assets/frontsite/logo-smk-dark.png') }}" class="mx-auto" alt="">
+                    <img src="{{ asset('assets/frontsite/logo-smk-dark.png') }}" class="mx-auto scale-75" alt="">
                 </a>
-                <div class="mt-14 drop-shadow-lg rounded px-10 py-8 bg-white">
+                <div class="mt-8 drop-shadow-lg rounded px-10 py-8 bg-white">
 
                     {{-- alert --}}
                     @if (session('status'))
@@ -95,7 +95,7 @@
                         <a href="" class="text-gray-500 text-sm">Lupa Password</a>
                     </div>
                     <div>
-                        <p class="text-sm text-gray-500 text-center">Belum memiliki akun? <a href="{{ route('register') }}"
+                        <p class="text-sm text-gray-500 text-center">Belum memiliki akun? <a href="{{ route('auth.register.index') }}"
                                 class="text-primary font-bold text-sm">Daftar Sekarang</a>
                         </p>
                     </div>
