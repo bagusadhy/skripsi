@@ -37,22 +37,22 @@ class StoreSiswaRequest extends FormRequest
                 'required', 'string', 'max:255'
             ],
             'tempat_lahir' => [
-                'required', 'string', 'max:255'
+                'nullable', 'string', 'max:255'
             ],
             'tanggal_lahir' => [
-                'required', 'date',
+                'nullable', 'date',
             ],
             'jenis_kelamin' => [
-                'required', 'in:1,2',
+                'nullable', 'in:1,2',
             ],
             'agama' => [
-                'required', 'string', 'max:20'
+                'nullable', 'string', 'max:20'
             ],
             'alamat' => [
-                'required', 'string', 'max:255'
+                'nullable', 'string', 'max:255'
             ],
             'kontak' => [
-                'required', 'string', 'max:50'
+                'nullable', 'string', 'max:50'
             ],
             'foto' => [
                 'nullable', 'mimes:jpg,svg,png', 'max:10000'
