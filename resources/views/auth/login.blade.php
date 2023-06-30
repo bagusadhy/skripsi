@@ -4,12 +4,12 @@
 
 @section('content')
 
-    <section class="lg:mx-10 px-5 lg:px-10 py-14">
+    <section class="lg:mx-10 px-5 lg:px-10 py-10">
         <div class="flex items-center justify-between gap-10">
 
             {{-- hero image --}}
             <div class="w-full h-full hidden lg:block">
-                <img src="{{ asset('assets/frontsite/login.png') }}" class="h-auto w-full" alt="">
+                <img src="{{ asset('assets/frontsite/login.png') }}" class="h-auto w-full scale-90" alt="">
             </div>
 
             {{-- login card --}}
@@ -35,10 +35,10 @@
                         @csrf
 
                         <div class="block mb-5">
-                            <label for="username" class="block mb-3 font-medium">Email / Username</label>
+                            <label for="email" class="block mb-3 font-medium">Email</label>
                             <input type="email" name="email" id="email" value="{{ old('email') }}"
                                 class="block border w-full rounded-md border-gray-500 h-11 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-1 focus:border-blue-500 px-5"
-                                placeholder="Alamat Email" x-model="username" required autofocus>
+                                x-model="username" required autofocus>
                             @if ($errors->has('email'))
                                 <p class="text-red-500 mb-3 text-sm">{{ $errors->first('email') }}</p>
                             @endif
@@ -51,8 +51,8 @@
 
                                 <input :type="show ? 'password' : 'text'" name="password" id="password"
                                     value="{{ old('password') }} }}"
-                                    class="h-full pl-5 pr-14 rounded-md focus:outline-none w-full focus:ring-2 focus:ring-blue-500 focus:border-1 focus:border-blue-500 "
-                                    placeholder="Kata Sandi" x-model="password" required>
+                                    class="h-full pl-5 pr-14 rounded-md focus:outline-none w-full focus:ring-2 border border-gray-200 focus:ring-blue-500 focus:border-1 focus:border-blue-500 "
+                                    x-model="password" required>
                                 @if ($errors->has('password'))
                                     <p class="text-red mb-3 text-sm">{{ $errors->first('password') }}</p>
                                 @endif
