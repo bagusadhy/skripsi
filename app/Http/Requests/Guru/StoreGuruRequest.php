@@ -35,16 +35,16 @@ class StoreGuruRequest extends FormRequest
                 'required', 'string', 'max:255',
             ],
             'kontak' => [
-                'required', 'string', 'max:50',
+                'nullable', 'string', 'max:50',
             ],
             'foto' => [
                 'nullable', 'mimes:jpg,svg,png', 'max:10000',
             ],
             'jenis_kelamin' => [
-                'required', 'in:1,2',
+                'nullable', 'in:1,2',
             ],
             'alamat' => [
-                'required', 'string', 'max:1000',
+                'nullable', 'string', 'max:1000',
             ],
         ];
     }

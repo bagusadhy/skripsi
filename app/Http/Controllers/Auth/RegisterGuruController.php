@@ -3,7 +3,15 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
+
+use App\Models\User;
+use App\Models\MasterData\Guru;
+use App\Models\MasterData\Jurusan;
+
 use Illuminate\Http\Request;
+use App\Http\Requests\Guru\StoreGuruRequest;
 
 class RegisterGuruController extends Controller
 {
@@ -12,7 +20,8 @@ class RegisterGuruController extends Controller
      */
     public function index()
     {
-       dd('guru');
+        $jurusan = Jurusan::all();
+        return view('auth.register-guru', compact('jurusan'));
     }
 
     /**
@@ -26,9 +35,36 @@ class RegisterGuruController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreGuruRequest $request)
     {
-        //
+        $request->validate([
+            'email' => ['email', 'unique:users', 'max:255'],
+        ]);
+
+        $user = [
+            'name' => $request->nama,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'role_id' => 2,
+        ];
+
+        $guru = $request->all();
+        unset($guru['email']);
+        unset($guru['password']);
+
+
+        try {
+            DB::transaction(function () use ($user, $guru) {
+                $create_user = User::create($user);
+
+                $guru['user_id'] = $create_user->id;
+                Guru::create($guru);
+            });
+        } catch (\Throwable $th) {
+            return back();
+        }
+
+        return redirect(route('login'));
     }
 
     /**

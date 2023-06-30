@@ -17,9 +17,9 @@ return new class extends Migration
             $table->foreignId('jurusan_id')->nullable()->index('fk_guru_to_jurusan');
             $table->string('nip');
             $table->string('nama');
-            $table->enum('jenis_kelamin', [1, 2]);
-            $table->string('kontak');
-            $table->longText('alamat');
+            $table->enum('jenis_kelamin', [1, 2])->nullable();
+            $table->string('kontak')->nullable();
+            $table->longText('alamat')->nullable();
             $table->longText('foto')->nullable();
             // $table->timestamps();
             $table->timestamp('created_at')->useCurrent();
