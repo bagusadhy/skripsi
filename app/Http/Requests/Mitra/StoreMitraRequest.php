@@ -31,16 +31,16 @@ class StoreMitraRequest extends FormRequest
                 'required', 'string', 'max:255',
             ],
             'alamat' => [
-                'required', 'string', 'max:255',
+                'nullable', 'string', 'max:255',
             ],
             'kontak' => [
-                'required', 'string', 'max:50',
+                'nullable', 'string', 'max:50',
             ],
             'nama_pimpinan' => [
-                'required', 'string', 'max:255',
+                'nullable', 'string', 'max:255',
             ],
             'nama_pembimbing' => [
-                'required', 'string', 'max:255',
+                'nullable', 'string', 'max:255',
             ],
             'foto' => [
                 'nullable', 'mimes:jpg,svg,png', 'max:10000',

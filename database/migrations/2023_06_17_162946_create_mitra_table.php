@@ -16,10 +16,10 @@ return new class extends Migration
             $table->foreignId('user_id')->nullable()->index('fk_mitra_to_users');
             $table->foreignId('bidang_usaha_id')->nullable()->index('fk_mitra_to_bidang_usaha');
             $table->string('nama');
-            $table->string('kontak');
+            $table->string('kontak')->nullable();
             $table->string('nama_pimpinan')->nullable();
             $table->string('nama_pembimbing')->nullable();
-            $table->longText('alamat');
+            $table->longText('alamat')->nullable();
             $table->longText('foto')->nullable();
             // $table->timestamps();
             $table->timestamp('created_at')->useCurrent();
