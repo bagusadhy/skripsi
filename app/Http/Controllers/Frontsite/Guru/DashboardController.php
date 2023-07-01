@@ -18,8 +18,7 @@ class DashboardController extends Controller
         $guru = Guru::where('user_id', Auth::user()->id)->first();
         $complete = is_null($guru->jenis_kelamin) || is_null($guru->kontak) || is_null($guru->alamat) || is_null($guru->foto);
 
-        // dd($complete);
-        return view('pages.frontsite.guru.index', compact('complete'));
+        return view('pages.frontsite.guru.index', compact('guru', 'complete'));
     }
 
     /**

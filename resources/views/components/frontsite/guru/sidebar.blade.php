@@ -8,8 +8,13 @@
             <a href="{{ route('guru.profile.index') }}">
                 <div class="border-2 border-gray-300 rounded-md px-3 mb-5 py-3">
                     <div class="flex items-center gap-3">
-                        <img src="https://ui-avatars.com/api/?name={{ Auth::user()->name }}" alt=""
-                            class="rounded-full w-[41px] h-[41px] bg-cover">
+                        @if ($guru->foto == null)
+                            <img src="https://ui-avatars.com/api/?name={{ Auth::user()->name }}" alt=""
+                                class="rounded-full w-[41px] h-[41px] bg-cover">
+                        @else
+                            <img src="{{ asset('storage/' . $guru->foto) }}" alt=""
+                                class="rounded-full w-[41px] h-[41px] bg-cover">
+                        @endif
 
                         <div>
                             <h4 class="font-bold">{{ Auth::user()->name }}</h4>
@@ -29,16 +34,14 @@
                 <li class="relative">
                     <a href="{{ route('guru.mitra.index') }}"
                         class="flex h-12 cursor-pointer items-center truncate rounded-[5px] px-4 py-4 text-[0.875rem] font-medium text-gray-600 outline-none transition duration-300 ease-linear hover:bg-slate-200 hover:text-inherit hover:outline-none focus:bg-slate-50 focus:text-inherit focus:outline-none active:bg-slate-50 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10 {{ request()->is('guru/mitra') || request()->is('guru/mitra/*') ? 'bg-slate-300 font-bold' : '' }}"
-                        data-te-sidenav-link-
-                        ref>
+                        data-te-sidenav-link- ref>
                         <span>Mitra Terhubung</span>
                     </a>
                 </li>
                 <li class="relative">
                     <a href="{{ route('guru.monitoring.index') }}"
                         class="flex h-12 cursor-pointer items-center truncate rounded-[5px] px-4 py-4 text-[0.875rem] font-medium text-gray-600 outline-none transition duration-300 ease-linear hover:bg-slate-200 hover:text-inherit hover:outline-none focus:bg-slate-50 focus:text-inherit focus:outline-none active:bg-slate-50 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10 {{ request()->is('guru/monitoring') || request()->is('guru/monitoring/*') ? 'bg-slate-300 font-bold' : '' }}"
-                        data-te-sidenav-link-
-                        ref>
+                        data-te-sidenav-link- ref>
                         <span>Monitoring</span>
                     </a>
                 </li>
@@ -65,12 +68,13 @@
                         </li>
                         <li class="relative">
                             <a class="flex h-6 cursor-pointer items-center truncate rounded-[5px] py-4 px-8 text-[0.78rem] text-gray-600 outline-none transition duration-300 ease-linear hover:bg-slate-200 hover:text-inherit hover:outline-none focus:bg-slate-50 focus:text-inherit focus:outline-none active:bg-slate-50 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10 {{ request()->is('guru/aktivitas_siswa') || request()->is('guru/aktivitas_siswa/*') ? 'bg-slate-300 font-bold' : '' }}"
-                                href="{{ route('guru.siswa.aktivitas') }}" data-te-sidenav-link-ref>Jurnal & Presensi</a>
+                                href="{{ route('guru.siswa.aktivitas') }}" data-te-sidenav-link-ref>Jurnal &
+                                Presensi</a>
                         </li>
                         <li class="relative">
                             <a class="flex h-6 cursor-pointer items-center truncate rounded-[5px] py-4 px-8 text-[0.78rem] text-gray-600 outline-none transition duration-300 ease-linear hover:bg-slate-200 hover:text-inherit hover:outline-none focus:bg-slate-50 focus:text-inherit focus:outline-none active:bg-slate-50 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10 {{ request()->is('guru/laporan') || request()->is('guru/laporan/*') ? 'bg-slate-300 font-bold' : '' }}"
                                 href="{{ route('guru.siswa.laporan') }}" data-te-sidenav-link-ref>Laporan Akhir
-                               </a>
+                            </a>
                         </li>
                         <li class="relative">
                             <a class="flex h-6 cursor-pointer items-center truncate rounded-[5px] py-4 px-8 text-[0.78rem] text-gray-600 outline-none transition duration-300 ease-linear hover:bg-slate-200 hover:text-inherit hover:outline-none focus:bg-slate-50 focus:text-inherit focus:outline-none active:bg-slate-50 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10 {{ request()->is('guru/nilai') || request()->is('guru/nilai/*') ? 'bg-slate-300 font-bold' : '' }}"
