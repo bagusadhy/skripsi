@@ -1,6 +1,6 @@
 @extends('layouts.guru')
 
-@section('title', 'Home')
+@section('title', 'Profil')
 
 @section('content')
     <main class="basis-10/12 bg-white min-h-screen px-10 py-5  overflow-x-hidden">
@@ -33,7 +33,7 @@
             <div class="px-2 py-4 md:py-7">
                 <div class="flex items-center justify-between">
                     <p tabindex="0"
-                        class="focus:outline-none text-base sm:text-lg md:text-xl lg:text-2xl font-bold leading-normal text-gray-800">
+                        class="focus:outline-none text-xl lg:text-2xl font-bold leading-normal text-gray-800">
                         Profil</p>
                     <hr class="bg-black">
                 </div>
