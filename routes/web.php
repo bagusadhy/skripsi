@@ -24,6 +24,13 @@ use App\Http\Controllers\Backsite\AktivitasSiswaController;
 use App\Http\Controllers\Backsite\PengajuanMitraController;
 use App\Http\Controllers\Backsite\DokumenSiswaController;
 
+// guru controller
+use App\Http\Controllers\Frontsite\Guru\ProfileGuruController;
+use App\Http\Controllers\Frontsite\Guru\DashboardController as DashboardGuruController;
+use App\Http\Controllers\Frontsite\Guru\MitraTerhubungController;
+use App\Http\Controllers\Frontsite\Guru\MonitoringController as MonitoringGuruController;
+use App\Http\Controllers\Frontsite\Guru\SiswaController as SiswaBimbinganController;
+
 // siswa controller
 use App\Http\Controllers\Frontsite\Siswa\DashboardController as DashboardSiswaController;
 
@@ -77,17 +84,36 @@ Route::prefix('backsite')->name('backsite.')->middleware(['auth:sanctum', 'verif
     Route::resource('monitoring', MonitoringController::class);
     Route::resource('pengajuan_mitra', PengajuanMitraController::class);
     Route::resource('pendaftar', PendaftarPklController::class);
-    Route::resource('peserta', PesertaPklController::class);
-    Route::resource('dokumen', DokumenSiswaController::class);
-    Route::resource('aktivitas', AktivitasSiswaController::class);
+    Route::resource('peserta', PesertaPklController::class)->parameters(['peserta' => 'peserta']);
+    Route::resource('dokumen', DokumenSiswaController::class)->parameters(['dokumen' => 'dokumen']);
+    Route::resource('aktivitas', AktivitasSiswaController::class)->parameters(['aktivitas' => 'aktivitas']);
     Route::resource('laporan', LaporanController::class);
     Route::resource('nilai', NilaiController::class);
     Route::resource('hasil_survey', HasilSurveyController::class);
 });
-// Backsite controller
+
+// guru controller
+Route::prefix('guru')->name('guru.')->middleware(['auth:sanctum', 'verified'])->group(function () {
+
+    Route::get('siswa/aktivitas', [SiswaBimbinganController::class, 'aktivitas'])->name('siswa.aktivitas');
+    Route::get('siswa/laporan', [SiswaBimbinganController::class, 'laporan'])->name('siswa.laporan');
+    Route::get('siswa/nilai', [SiswaBimbinganController::class, 'nilai'])->name('siswa.nilai');
+
+
+    Route::resource('profile', ProfileGuruController::class);
+    Route::resource('dashboard', DashboardGuruController::class);
+    Route::resource('mitra', MitraTerhubungController::class);
+    Route::resource('monitoring', MonitoringGuruController::class);
+    Route::resource('siswa', SiswaBimbinganController::class);
+});
+
+
+// siswa controller
 Route::prefix('siswa')->name('siswa.')->middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::resource('dashboard', DashboardSiswaController::class);
 });
+
+
 
 
 
@@ -97,12 +123,12 @@ Route::prefix('siswa')->name('siswa.')->middleware(['auth:sanctum', 'verified'])
 //     return view('pages.frontsite.landing.index');
 // });
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified'
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-});
+// Route::middleware([
+//     'auth:sanctum',
+//     config('jetstream.auth_session'),
+//     'verified'
+// ])->group(function () {
+//     Route::get('/dashboard', function () {
+//         return view('dashboard');
+//     })->name('dashboard');
+// });

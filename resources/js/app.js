@@ -14,6 +14,7 @@ import {
     Sidenav,
     Offcanvas,
     Chart,
+    Alert,
 } from "tw-elements";
 initTE({
     Datepicker,
@@ -25,6 +26,7 @@ initTE({
     Sidenav,
     Offcanvas,
     Chart,
+    Alert,
 });
 
 window.Alpine = Alpine;
