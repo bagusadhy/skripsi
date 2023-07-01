@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontsite;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LandingController extends Controller
 {
@@ -12,7 +13,20 @@ class LandingController extends Controller
      */
     public function index()
     {
-        return view('pages.frontsite.landing.index');
+        $route = '';
+        if (Auth::check()) {
+            if (Auth::user()->role->id == '1') {
+                $route = 'backsite.dashboard.index';
+            } else if (Auth::user()->role->id == '2') {
+                $route = 'guru.dashboard.index';
+            } else if (Auth::user()->role->id == '3') {
+                $route = 'mitra.dashboard.index';
+            } else if (Auth::user()->role->id == '4') {
+                $route = 'siswa.dashboard.index';
+            }
+        }
+
+        return view('pages.frontsite.landing.index', compact('route'));
     }
 
     /**
