@@ -5,6 +5,13 @@ namespace App\Http\Controllers\Frontsite\Guru;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use App\Models\MasterData\Guru;
+use App\Models\Kegiatan\Bimbingan;
+use App\Models\Kegiatan\Monitoring;
+use Illuminate\Support\Facades\File;
+
+use App\Http\Requests\Monitoring\StoreMonitoringRequest;
+
 class MonitoringController extends Controller
 {
     /**
@@ -12,7 +19,12 @@ class MonitoringController extends Controller
      */
     public function index()
     {
-        //
+
+        $guru = Guru::where('user_id', auth()->user()->id)->first();
+
+        $mitra = Bimbingan::where('guru_id', $guru->id)->with('mitra')->get();
+        $monitoring = Monitoring::where('guru_id', $guru->id)->with('mitra')->get();
+        return view('pages.frontsite.guru.monitoring', compact('guru', 'mitra', 'monitoring'));
     }
 
     /**
@@ -26,17 +38,35 @@ class MonitoringController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreMonitoringRequest $request)
     {
-        //
+        $data = $request->all();
+
+        if ($request->hasFile('foto')) {
+
+            // add new photo path
+            $data['foto'] = $request->file('foto')->store('images/guru/monitoring', 'public');
+        }
+
+        $guru = Guru::where('user_id', auth()->user()->id)->first();
+        $data['guru_id'] = $guru->id;
+
+
+        Monitoring::create($data);
+        alert()->success('Berhasil', 'Data anda berhasil diupdate');
+        return back();
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Monitoring $monitoring)
     {
-        //
+        $guru = Guru::where('user_id', auth()->user()->id)->first();
+        $data = Monitoring::where('id', $monitoring->id)->with('mitra')->first();
+
+        // dd($data);
+        return view('pages.frontsite.guru.monitoring-show', compact('guru', 'data'));
     }
 
     /**
@@ -58,8 +88,14 @@ class MonitoringController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Monitoring $monitoring)
     {
-        //
+        $monitoring->delete();
+
+        if ($monitoring->foto && file_exists(storage_path('app/public/' . $monitoring->foto))) {
+            File::delete(storage_path('app/public/' . $monitoring->foto));
+        }
+        alert()->success('Berhasil', 'Data anda berhasil dihapus');
+        return back();
     }
 }

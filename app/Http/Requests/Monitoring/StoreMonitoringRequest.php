@@ -24,11 +24,11 @@ class StoreMonitoringRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'guru_id' => [
-                'required', 'integer',
-            ],
             'mitra_id' => [
                 'required', 'integer',
+            ],
+            'topik' => [
+                'required', 'string', 'max:255',
             ],
             'tujuan' => [
                 'required', 'string', 'max:255',

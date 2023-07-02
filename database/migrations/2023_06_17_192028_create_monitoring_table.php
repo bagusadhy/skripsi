@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('guru_id')->nullable()->index('fk_monitoring_to_guru');
             $table->foreignId('mitra_id')->nullable()->index('fk_monitoring_to_mitra');
+            $table->longText('topik');
             $table->longText('tujuan');
             $table->integer('peserta_pkl');
             $table->longText('deskripsi');
