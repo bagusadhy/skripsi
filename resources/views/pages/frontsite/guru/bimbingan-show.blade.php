@@ -52,7 +52,7 @@
                             <div class="w-32 md:w-44 flex justify-between"><span>Nama Perusahaan</span>
                                 <pre class="block">: </pre>
                             </div>
-                            <div>
+                            <div class="w-4/6 md:w-5/6">
                                 <p>{{ $mitra->nama }}</p>
                             </div>
                         </li>
@@ -60,7 +60,7 @@
                             <div class="w-32 md:w-44 flex justify-between"><span>Bidang Usaha</span>
                                 <pre class="block">: </pre>
                             </div>
-                            <div>
+                            <div class="w-4/6 md:w-5/6">
                                 <p>{{ $mitra->bidang_usaha->title }}</p>
                             </div>
                         </li>
@@ -68,7 +68,7 @@
                             <div class="w-32 md:w-44 flex justify-between"><span>Nama Pimpinan</span>
                                 <pre class="block">: </pre>
                             </div>
-                            <div>
+                            <div class="w-4/6 md:w-5/6">
                                 <p>{{ $mitra->nama_pimpinan }}</p>
                             </div>
                         </li>
@@ -76,7 +76,7 @@
                             <div class="w-32 md:w-44 flex justify-between"><span>Nama Pembimbing</span>
                                 <pre class="block">: </pre>
                             </div>
-                            <div>
+                            <div class="w-4/6 md:w-5/6">
                                 <p>{{ $mitra->nama_pembimbing }}</p>
                             </div>
                         </li>
@@ -84,7 +84,7 @@
                             <div class="w-32 md:w-44 flex justify-between"><span>Kontak</span>
                                 <pre class="block">: </pre>
                             </div>
-                            <div>
+                            <div class="w-4/6 md:w-5/6">
                                 <p>{{ $mitra->kontak }}</p>
                             </div>
                         </li>
@@ -92,7 +92,7 @@
                             <div class="w-32 md:w-44 flex justify-between"><span>Alamat</span>
                                 <pre class="block">: </pre>
                             </div>
-                            <div>
+                            <div class="w-4/6 md:w-5/6">
                                 <p>{{ $mitra->alamat }}</p>
                             </div>
                         </li>

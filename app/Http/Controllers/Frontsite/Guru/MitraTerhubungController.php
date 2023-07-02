@@ -48,7 +48,7 @@ class MitraTerhubungController extends Controller
         $mitra->with('bidang_usaha');
         $guru = Guru::where('user_id', auth()->user()->id)->first();
         $peserta = PesertaPkl::where('mitra_id', $mitra->id)->with('siswa')->get();
-        return view('pages.frontsite.guru.bimbingan-edit', compact('mitra', 'guru', 'peserta'));
+        return view('pages.frontsite.guru.bimbingan-show', compact('mitra', 'guru', 'peserta'));
     }
 
     /**
