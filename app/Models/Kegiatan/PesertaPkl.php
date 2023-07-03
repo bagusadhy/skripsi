@@ -4,6 +4,8 @@ namespace App\Models\Kegiatan;
 
 use App\Models\MasterData\Mitra;
 use App\Models\MasterData\PeriodePkl;
+use App\Models\MasterData\Guru;
+use App\Models\MasterData\Siswa;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -41,6 +43,10 @@ class PesertaPkl extends Model
     public function mitra()
     {
         return $this->belongsTo(Mitra::class, 'mitra_id', 'id');
+    }
+    public function guru()
+    {
+        return $this->belongsTo(Guru::class, 'guru_id', 'id');
     }
     public function siswa()
     {
