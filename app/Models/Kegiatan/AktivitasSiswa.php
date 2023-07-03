@@ -7,13 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class AktvitasSiswa extends Model
+class AktivitasSiswa extends Model
 {
     // use HasFactory;
     use SoftDeletes;
 
     // declare table name
-    public $table = 'aktvitas_siswa';
+    public $table = 'aktivitas_siswa';
 
 
     // this filed must type date with format yyyy-mm-dd hh:mm:ss

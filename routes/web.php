@@ -30,6 +30,7 @@ use App\Http\Controllers\Frontsite\Guru\DashboardController as DashboardGuruCont
 use App\Http\Controllers\Frontsite\Guru\MitraTerhubungController;
 use App\Http\Controllers\Frontsite\Guru\MonitoringController as MonitoringGuruController;
 use App\Http\Controllers\Frontsite\Guru\SiswaController as SiswaBimbinganController;
+use App\Http\Controllers\Frontsite\Guru\AktivitasController;
 
 // siswa controller
 use App\Http\Controllers\Frontsite\Siswa\DashboardController as DashboardSiswaController;
@@ -95,7 +96,7 @@ Route::prefix('backsite')->name('backsite.')->middleware(['auth:sanctum', 'verif
 // guru controller
 Route::prefix('guru')->name('guru.')->middleware(['auth:sanctum', 'verified'])->group(function () {
 
-    Route::get('siswa/aktivitas', [SiswaBimbinganController::class, 'aktivitas'])->name('siswa.aktivitas');
+    // Route::get('siswa/aktivitas', [SiswaBimbinganController::class, 'aktivitas'])->name('siswa.aktivitas');
     Route::get('siswa/laporan', [SiswaBimbinganController::class, 'laporan'])->name('siswa.laporan');
     Route::get('siswa/nilai', [SiswaBimbinganController::class, 'nilai'])->name('siswa.nilai');
 
@@ -105,6 +106,7 @@ Route::prefix('guru')->name('guru.')->middleware(['auth:sanctum', 'verified'])->
     Route::resource('mitra', MitraTerhubungController::class);
     Route::resource('monitoring', MonitoringGuruController::class);
     Route::resource('siswa', SiswaBimbinganController::class);
+    Route::resource('aktivitas', AktivitasController::class);
 });
 
 
