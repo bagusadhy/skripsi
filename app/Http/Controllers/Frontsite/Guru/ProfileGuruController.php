@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontsite\Guru;
 use Illuminate\Http\Request;
 use App\Models\MasterData\Guru;
 use App\Models\MasterData\Jurusan;
+use App\Models\User;
 
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -70,7 +71,7 @@ class ProfileGuruController extends Controller
 
             // delete old photo from storage
             if ($profile->foto != null) {
-                File::delete('storage/'.$profile->foto);
+                File::delete('storage/' . $profile->foto);
             }
 
             // add new photo path
@@ -79,6 +80,10 @@ class ProfileGuruController extends Controller
 
         unset($data['_token']);
         unset($data['_method']);
+
+
+        $user = new User;
+        $user->where('id', $profile->user_id)->update(['profile_photo_path' => $data['foto']]);
         $profile->update($data);
 
         alert()->success('Berhasil', 'Data anda berhasil diupdate');

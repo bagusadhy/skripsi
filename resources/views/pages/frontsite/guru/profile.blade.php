@@ -32,8 +32,7 @@
         <div class="sm:px-6 mb-10">
             <div class="px-2 py-4 md:py-7">
                 <div class="flex items-center justify-between">
-                    <p tabindex="0"
-                        class="focus:outline-none text-xl lg:text-2xl font-bold leading-normal text-gray-800">
+                    <p tabindex="0" class="focus:outline-none text-xl lg:text-2xl font-bold leading-normal text-gray-800">
                         Profil</p>
                     <hr class="bg-black">
                 </div>

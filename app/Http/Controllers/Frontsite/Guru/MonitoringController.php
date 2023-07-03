@@ -21,9 +21,9 @@ class MonitoringController extends Controller
     {
 
         $guru = Guru::where('user_id', auth()->user()->id)->first();
-
         $mitra = Bimbingan::where('guru_id', $guru->id)->with('mitra')->get();
         $monitoring = Monitoring::where('guru_id', $guru->id)->with('mitra')->get();
+
         return view('pages.frontsite.guru.monitoring', compact('guru', 'mitra', 'monitoring'));
     }
 
@@ -62,11 +62,9 @@ class MonitoringController extends Controller
      */
     public function show(Monitoring $monitoring)
     {
-        $guru = Guru::where('user_id', auth()->user()->id)->first();
         $data = Monitoring::where('id', $monitoring->id)->with('mitra')->first();
 
-        // dd($data);
-        return view('pages.frontsite.guru.monitoring-show', compact('guru', 'data'));
+        return view('pages.frontsite.guru.monitoring-show', compact('data'));
     }
 
     /**

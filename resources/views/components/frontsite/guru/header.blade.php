@@ -64,12 +64,12 @@
                             <a href="{{ route('guru.profile.index') }}">
                                 <div class="border-2 border-gray-300 rounded-md px-3 mb-5 py-3">
                                     <div class="flex items-center gap-3">
-                                        @if ($guru->foto == null)
+                                        @if (Auth::user()->profile_photo_path == null)
                                             <img src="https://ui-avatars.com/api/?name={{ Auth::user()->name }}"
                                                 alt="" class="rounded-full w-[41px] h-[41px] bg-cover">
                                         @else
-                                            <img src="{{ asset('storage/' . $guru->foto) }}" alt=""
-                                                class="rounded-full w-[41px] h-[41px] bg-cover">
+                                            <img src="{{ asset('storage/' . Auth::user()->profile_photo_path) }}"
+                                                alt="" class="rounded-full w-[41px] h-[41px] bg-cover">
                                         @endif
 
                                         <div>
