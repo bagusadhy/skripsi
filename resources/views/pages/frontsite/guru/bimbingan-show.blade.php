@@ -103,8 +103,8 @@
                     <h1 class="font-bold text-xl mb-3">Peserta PKL</h1>
                     <hr>
                     <div class="py-2">
-                        <ul class="list-disc">
-                            @foreach ($peserta as $dta)
+                        <ul class="list-decimal">
+                            @foreach ($peserta as $data)
                                 <li class="ml-4">{{ $data->siswa->nama }}</li>
                             @endforeach
                         </ul>
