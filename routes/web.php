@@ -55,7 +55,7 @@ use App\Http\Controllers\Auth\RegisterSiswaController;
 // landing page controller
 Route::resource('/', LandingController::class);
 
-Route::prefix('auth')->name('auth.')->group(function () {
+Route::prefix('auth')->name('auth.')->middleware(['guest'])->group(function () {
     Route::resource('register', RegisterController::class);
     Route::resource('register_siswa', RegisterSiswaController::class);
     Route::resource('register_guru', RegisterGuruController::class);
