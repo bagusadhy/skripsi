@@ -1,5 +1,6 @@
 {{-- library or package --}}
 <link rel="stylesheet" type="text/css" href="{{ url('https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css') }}">
+<link type="text/css" href="{{ url('https://gyrocode.github.io/jquery-datatables-checkboxes/1.2.12/css/dataTables.checkboxes.css') }}" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
 
