@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Kegiatan\Bimbingan;
 use App\Models\MasterData\Jurusan;
 use App\Models\Kegiatan\Monitoring;
+use App\Models\Kegiatan\PesertaPkl;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -57,5 +58,9 @@ class Guru extends Model
     public function monitoring()
     {
         return $this->hasMany(Monitoring::class, 'guru_id');
+    }
+    public function peserta()
+    {
+        return $this->hasMany(PesertaPkl::class, 'guru_id');
     }
 }
