@@ -5,6 +5,10 @@ namespace App\Http\Controllers\Frontsite\Guru;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use App\Models\Kegiatan\PesertaPkl;
+use App\Models\MasterData\Guru;
+use App\Models\MasterData\Siswa;
+
 class SiswaController extends Controller
 {
     /**
@@ -12,7 +16,10 @@ class SiswaController extends Controller
      */
     public function index()
     {
-        //
+        $guru = Guru::where('user_id', auth()->user()->id)->first();
+        $peserta = PesertaPkl::where('guru_id', $guru->id)->with('siswa', 'mitra')->get();
+
+        return view('pages.frontsite.guru.siswa', compact('peserta'));
     }
 
     /**
@@ -34,9 +41,11 @@ class SiswaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Siswa $siswa)
     {
-        //
+        $siswa->with('jurusan', 'kelas');
+
+        return view('pages.frontsite.guru.siswa-detail', compact('siswa'));
     }
 
     /**
@@ -63,7 +72,7 @@ class SiswaController extends Controller
         //
     }
 
-    public function aktivitas(){
-        
+    public function aktivitas()
+    {
     }
 }
