@@ -29,6 +29,7 @@ class Monitoring extends Model
     protected $fillable = [
         'guru_id',
         'mitra_id',
+        'topik',
         'tujuan',
         'peserta_pkl',
         'deskripsi',

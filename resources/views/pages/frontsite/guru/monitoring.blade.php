@@ -1,6 +1,6 @@
 @extends('layouts.guru')
 
-@section('title', 'Bimbingan')
+@section('title', 'Monitoring')
 
 @section('content')
     <main class="basis-10/12 bg-white min-h-screen px-10 py-5  overflow-x-hidden">
@@ -33,7 +33,7 @@
             <div class="px-2 py-4 md:py-7">
                 <div class="flex items-center justify-between">
                     <p tabindex="0" class="focus:outline-none text-xl lg:text-2xl font-bold leading-normal text-gray-800">
-                        Mitra Terhubung</p>
+                        Monitoring</p>
                     <hr class="bg-black">
                 </div>
             </div>
@@ -58,7 +58,8 @@
                     <div id="collapseOne" class="!visible hidden" data-te-collapse-item aria-labelledby="headingOne"
                         data-te-parent="#accordionExample">
                         <div class="px-5 py-4">
-                            <form action="{{ route('guru.monitoring.store') }}" method="POST"  enctype="multipart/form-data">
+                            <form action="{{ route('guru.monitoring.store') }}" method="POST"
+                                enctype="multipart/form-data">
                                 @csrf
 
                                 <div class="mb-3">
@@ -91,7 +92,7 @@
                                                 class="text-red-500">*</code></span>
                                         <input type="text" id="tanggal_pelaksanaan" name="tanggal_pelaksanaan"
                                             class="block w-full rounded-lg py-3 text-[#1E2B4F] font-medium placeholder:text-[#AFAEC3] placeholder:font-normal px-5 border border-[#d4d4d4] focus:outline-none focus:border-[#0D63F3]"
-                                            required />
+                                            value="{{ old('tanggal_pelaksanaan') }}" required />
                                         <span
                                             class="absolute top-8 right-[20px] bottom-1/2 translate-y-[58%] hover:cursor-pointer">
                                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -143,7 +144,7 @@
                                         <input type="number"
                                             class="w-full h-11 rounded-md border border-gray-300 px-5 py-3 focus:outline-none resize-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                                             name="peserta_pkl" id="peserta_pkl" required
-                                            value="{{ $guru->peserta_pkl }}"></input>
+                                            value="{{ old('peserta_pkl') }}"></input>
                                         @if ($errors->has('peserta_pkl'))
                                             <p style="font-style: bold; color: red;">{{ $errors->first('peserta_pkl') }}
                                             </p>
@@ -156,7 +157,7 @@
                                         <span class="font-medium">Deskripsi<code class="text-red-500">*</code></span>
                                     </label>
                                     <textarea class="w-full h-32 rounded-md border border-gray-300 px-5 py-3 focus:outline-none resize-none"
-                                        name="deskripsi" id="deskripsi" required></textarea>
+                                        name="deskripsi" id="deskripsi" required>{{ old('deskripsi') }}</textarea>
                                     @if ($errors->has('deskripsi'))
                                         <p style="font-style: bold; color: red;">{{ $errors->first('deskripsi') }}</p>
                                     @endif
