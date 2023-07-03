@@ -41,12 +41,12 @@
             <div class="bg-white py-4 md:py-7 px-4 rounded-lg">
                 <div class="overflow-x-auto overflow-y-hidden">
 
-                    <table id="monitoring-table">
+                    <table class="stripe" id="siswa-table">
                         <thead>
-                            <tr>
-                                <th>Nama Siswa</th>
-                                <th>Mitra</th>
-                                <th>Action</th>
+                            <tr class="">
+                                <th class="whitespace-nowrap">Nama Siswa</th>
+                                <th class="whitespace-nowrap">Mitra</th>
+                                <th class="whitespace-nowrap">Action</th>
                             </tr>
                         </thead>
                         <tbody class="overflow-x-scroll">
@@ -55,52 +55,14 @@
                                     <td class="whitespace-nowrap">{{ $data->siswa->nama }}</td>
                                     <td class="whitespace-nowrap">{{ $data->mitra->nama }}</td>
                                     <td class="whitespace-nowrap">
-                                        <div class="relative" data-te-dropdown-ref>
-                                            <button
-                                                class="flex items-center whitespace-nowrap rounded bg-blue-700 px-5 py-2 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] motion-reduce:transition-none dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
-                                                type="button" id="dropdownMenuButton1" data-te-dropdown-toggle-ref
-                                                aria-expanded="false" data-te-ripple-init data-te-ripple-color="light">
-                                                Action
-                                                <span class="ml-2 w-2">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                                                        fill="currentColor" class="h-5 w-5">
-                                                        <path fill-rule="evenodd"
-                                                            d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-                                                            clip-rule="evenodd" />
-                                                    </svg>
-                                                </span>
-                                            </button>
-                                            <ul class="absolute z-[1000] float-left m-0 hidden min-w-max list-none overflow-hidden rounded-lg border-none bg-white bg-clip-padding text-left text-base shadow-lg [&[data-te-dropdown-show]]:block"
-                                                aria-labelledby="dropdownMenuButton1" data-te-dropdown-menu-ref>
-                                                <li>
-                                                    <a class="block w-full whitespace-nowrap bg-transparent px-16 py-2 text-sm font-normal hover:bg-neutral-200"
-                                                        href="{{ route('guru.siswa.show', $data->siswa->id) }}"
-                                                        data-te-dropdown-item-ref>Detail</a>
-                                                </li>
-                                                <li>
-                                                    <a class="block w-full whitespace-nowrap bg-transparent px-16 py-2 text-sm font-normal hover:bg-neutral-200"
-                                                        href="{{ route('guru.siswa.destroy', $data->siswa->id) }}"
-                                                        data-te-dropdown-item-ref
-                                                        onclick="event.preventDefault(); $('#form-delete').attr('action', '{{ route('guru.siswa.destroy', $data->siswa->id) }}'); document.getElementById('form-delete').submit()">Hapus
-                                                        <form action="" id="form-delete" method="post"
-                                                            style="display: none">
-                                                            @csrf
-                                                            @method('delete')
-                                                        </form>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
+                                        <a class="block w-32 px-3 py-2  whitespace-nowrap text-center text-sm text-white rounded-md bg-blue-700"
+                                            href="{{ route('guru.siswa.show', $data->siswa->id) }}"
+                                            data-te-dropdown-item-ref>Detail Siswa</a>
                                     </td>
                                 </tr>
                             @empty
                             @endforelse
                         </tbody>
-                        <tfoot>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                        </tfoot>
                     </table>
                 </div>
             </div>
@@ -113,9 +75,8 @@
 @push('after-script')
     <script type="text/javascript">
         $(document).ready(function() {
-            var table = $('#monitoring-table').DataTable({
+            var table = $('#siswa-table').DataTable({
                 "autoWidth": true,
-                // "scrollX": true,
             });
 
         });

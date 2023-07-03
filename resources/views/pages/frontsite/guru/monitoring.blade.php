@@ -213,7 +213,7 @@
             <div class="bg-white py-4 md:py-7 px-4 rounded-lg">
                 <div class="overflow-x-auto">
 
-                    <table id="monitoring-table">
+                    <table class="stripe" id="monitoring-table">
                         <thead>
                             <tr>
                                 <th>Nama Mitra</th>
@@ -268,11 +268,6 @@
                             @empty
                             @endforelse
                         </tbody>
-                        <tfoot>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                        </tfoot>
                     </table>
                 </div>
             </div>
