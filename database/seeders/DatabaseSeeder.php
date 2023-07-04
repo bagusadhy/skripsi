@@ -25,6 +25,13 @@ class DatabaseSeeder extends Seeder
             JurusanSeeder::class,
             KelasSeeder::class,
             BidangUsahaSeeder::class,
+            PeriodeSeeder::class,
+            MitraSeeder::class,
+            GuruSeeder::class,
+            SiswaSeeder::class,
+            PesertaPklSeeder::class,
+            BimbinganSeeder::class,
+            AktivitasSiswaSeeder::class,
         ]);
     }
 }
