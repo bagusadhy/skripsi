@@ -25,7 +25,7 @@
                                     <!-- focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 -->
                                     <span class="sr-only">Open user menu</span>
                                     <div class="text-right mr-5 flex gap-3 items-center">
-                                        <div class="text-base font-medium text-[#1E2B4F]">
+                                        <div class="hidden md:block text-base font-medium text-[#1E2B4F]">
                                             Hi, {{ Auth::user()->name }}
                                         </div>
                                         <img class="h-10 w-10 rounded-full ring-1 ring-offset-4 ring-[#0D63F3]"
