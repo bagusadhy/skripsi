@@ -97,10 +97,10 @@ Route::prefix('backsite')->name('backsite.')->middleware(['auth:sanctum', 'verif
 Route::prefix('guru')->name('guru.')->middleware(['auth:sanctum', 'verified'])->group(function () {
 
     // Route::get('siswa/aktivitas', [SiswaBimbinganController::class, 'aktivitas'])->name('siswa.aktivitas');
-    Route::get('siswa/laporan', [SiswaBimbinganController::class, 'laporan'])->name('siswa.laporan');
-    Route::get('siswa/nilai', [SiswaBimbinganController::class, 'nilai'])->name('siswa.nilai');
-    Route::get('siswa/download_laporan/{siswa}', [SiswaBimbinganController::class, 'download_laporan'])->name('siswa.download_laporan');
-    Route::get('siswa/download_nilai/{siswa}', [SiswaBimbinganController::class, 'download_nilai'])->name('siswa.download_nilai');
+    Route::get('laporan', [SiswaBimbinganController::class, 'laporan'])->name('siswa.laporan');
+    Route::get('nilai', [SiswaBimbinganController::class, 'nilai'])->name('siswa.nilai');
+    Route::get('download_laporan/{siswa}', [SiswaBimbinganController::class, 'download_laporan'])->name('siswa.download_laporan');
+    Route::get('download_nilai/{siswa}', [SiswaBimbinganController::class, 'download_nilai'])->name('siswa.download_nilai');
 
 
     Route::resource('profile', ProfileGuruController::class);
