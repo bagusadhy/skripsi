@@ -82,7 +82,7 @@
             <div class="bg-white py-4 md:py-7 px-4 md:px-8 xl:px-10 shadow-lg rounded-lg">
                 <div class="overflow-x-auto">
 
-                    <table id="jurusan-table">
+                    <table class="stripe" id="jurusan-table">
                         <thead>
                             <tr>
                                 <th>Jurusan</th>
