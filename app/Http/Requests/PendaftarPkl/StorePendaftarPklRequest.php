@@ -24,9 +24,6 @@ class StorePendaftarPklRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'siswa_id' => [
-                'required', 'integer',
-            ],
             'mitra_id' => [
                 'required', 'integer',
             ],

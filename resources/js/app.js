@@ -15,6 +15,7 @@ import {
     Offcanvas,
     Chart,
     Alert,
+    Tab,
 } from "tw-elements";
 initTE({
     Datepicker,
@@ -27,6 +28,7 @@ initTE({
     Offcanvas,
     Chart,
     Alert,
+    Tab,
 });
 
 window.Alpine = Alpine;
