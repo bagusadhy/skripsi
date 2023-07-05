@@ -31,9 +31,7 @@ class UpdateSiswaRequest extends FormRequest
             'kelas_id' => [
                 'required', 'integer',
             ],
-            'nisn' => [
-                'required', 'string', Rule::unique('siswa')->ignore($this->siswa), 'max:50'
-            ],
+            'nisn' => 'required|string|max:50', Rule::unique('siswa')->ignore($this->siswa),
             'nama' => [
                 'required', 'string', 'max:255'
             ],
