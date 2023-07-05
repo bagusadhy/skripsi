@@ -4,10 +4,6 @@
     crossorigin='anonymous'></script>
 <script type="text/javascript" charset="utf8"
     src="{{ url('https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js') }}"></script>
-<script type="text/javascript" src="{{ url('https://gyrocode.github.io/jquery-datatables-checkboxes/1.2.12/js/dataTables.checkboxes.min.js') }}">
-</script>
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-
-
 
 @vite('resources/js/app.js')
