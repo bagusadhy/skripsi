@@ -18,7 +18,7 @@ class AktivitasController extends Controller
     public function index()
     {
         $guru = Guru::where('user_id', auth()->user()->id)->first();
-        $siswa_id = PesertaPkl::select('id')->where('guru_id', $guru->id)->get()->toArray();
+        $siswa_id = PesertaPkl::select('siswa_id')->where('guru_id', $guru->id)->get()->toArray();
         $aktivitas = AktivitasSiswa::leftJoin('siswa', 'siswa.id', '=', 'aktivitas_siswa.siswa_id')->whereIn('siswa_id', $siswa_id)->select('siswa.id', 'siswa.nama', AktivitasSiswa::raw('COUNT(presensi) as total_presensi'))->groupBy('siswa.id', 'siswa.nama')->get();
 
 
