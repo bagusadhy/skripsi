@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Kegiatan\PesertaPkl;
 use App\Models\Kegiatan\AktivitasSiswa;
 use App\Models\MasterData\Guru;
-
+use App\Models\MasterData\Siswa;
 
 class AktivitasController extends Controller
 {
@@ -18,12 +18,12 @@ class AktivitasController extends Controller
     public function index()
     {
         $guru = Guru::where('user_id', auth()->user()->id)->first();
-        $peserta = PesertaPkl::where('guru_id', $guru->id)->with('siswa')->get();
-
         $siswa_id = PesertaPkl::select('id')->where('guru_id', $guru->id)->get()->toArray();
+        $aktivitas = AktivitasSiswa::leftJoin('siswa', 'siswa.id', '=', 'aktivitas_siswa.siswa_id')->whereIn('siswa_id', $siswa_id)->select('siswa.id', 'siswa.nama', AktivitasSiswa::raw('COUNT(presensi) as total_presensi'))->groupBy('siswa.id', 'siswa.nama')->get();
 
-        $jurnal  = AktivitasSiswa::select(AktivitasSiswa::raw('COUNT(presensi) as total_presensi', 'COUNT(jurnal) as total_jurnal'))->whereIn('siswa_id', $siswa_id)->get();
-        dd($jurnal);
+
+        // dd($aktivitas);
+        return view('pages.frontsite.guru.aktivitas', compact('aktivitas'));
     }
 
     /**
@@ -45,9 +45,11 @@ class AktivitasController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Siswa $siswa)
     {
-        //
+        $aktivitas = AktivitasSiswa::where('siswa_id', $siswa->id)->orderBy('tanggal', 'desc')->paginate(2);
+
+        return view('pages.frontsite.guru.aktivitas-detail', compact('aktivitas'));
     }
 
     /**

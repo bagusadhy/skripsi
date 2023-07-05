@@ -106,7 +106,7 @@ Route::prefix('guru')->name('guru.')->middleware(['auth:sanctum', 'verified'])->
     Route::resource('mitra', MitraTerhubungController::class);
     Route::resource('monitoring', MonitoringGuruController::class);
     Route::resource('siswa', SiswaBimbinganController::class);
-    Route::resource('aktivitas', AktivitasController::class);
+    Route::resource('aktivitas', AktivitasController::class)->parameters(['aktivitas' => 'siswa']);
 });
 
 
