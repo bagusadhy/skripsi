@@ -33,6 +33,7 @@ use App\Http\Controllers\Frontsite\Guru\SiswaController as SiswaBimbinganControl
 use App\Http\Controllers\Frontsite\Guru\AktivitasController;
 
 // siswa controller
+use App\Http\Controllers\Frontsite\Siswa\ProfileController as ProfileSiswaController;
 use App\Http\Controllers\Frontsite\Siswa\DashboardController as DashboardSiswaController;
 use App\Http\Controllers\Frontsite\Siswa\MitraController as MitraSiswaController;
 use App\Http\Controllers\Frontsite\Siswa\DokumenController;
@@ -124,6 +125,7 @@ Route::prefix('siswa')->name('siswa.')->middleware(['auth:sanctum', 'verified'])
     Route::resource('mitra', MitraSiswaController::class);
     Route::resource('kegiatan', KegiatanController::class);
     Route::resource('dokumen', DokumenController::class);
+    Route::resource('profile', ProfileSiswaController::class);
     Route::resource('laporan', LaporanSiswaController::class);
     Route::resource('pengajuan', PengajuanSiswaController::class);
 
