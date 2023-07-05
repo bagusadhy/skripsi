@@ -77,9 +77,6 @@ class ProfileController extends Controller
             $data['foto'] = $request->file('foto')->store('images/siswa', 'public');
         }
 
-        // unset($data['_token']);
-        // unset($data['_method']);
-
 
         $user = new User;
         $user->where('id', $profile->user_id)->update(['profile_photo_path' => $data['foto']]);
