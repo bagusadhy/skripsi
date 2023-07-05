@@ -98,6 +98,7 @@ Route::prefix('guru')->name('guru.')->middleware(['auth:sanctum', 'verified'])->
 
     // Route::get('siswa/aktivitas', [SiswaBimbinganController::class, 'aktivitas'])->name('siswa.aktivitas');
     Route::get('siswa/laporan', [SiswaBimbinganController::class, 'laporan'])->name('siswa.laporan');
+    Route::get('siswa/download_laporan/{siswa}', [SiswaBimbinganController::class, 'download_laporan'])->name('siswa.download_laporan');
     Route::get('siswa/nilai', [SiswaBimbinganController::class, 'nilai'])->name('siswa.nilai');
 
 

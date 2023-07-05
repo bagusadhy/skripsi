@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('laporan', function (Blueprint $table) {
             $table->id();
              $table->foreignId('siswa_id')->nullable()->index('fk_laporan_to_siswa');
-            $table->longText('nilai');
+            $table->longText('laporan');
             // $table->timestamps();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->nullable()->useCurrentOnUpdate();

@@ -3,11 +3,14 @@
 namespace App\Http\Controllers\Frontsite\Guru;
 
 use App\Http\Controllers\Controller;
+use App\Models\Kegiatan\Laporan;
 use Illuminate\Http\Request;
 
 use App\Models\Kegiatan\PesertaPkl;
 use App\Models\MasterData\Guru;
 use App\Models\MasterData\Siswa;
+
+use ZipArchive;
 
 class SiswaController extends Controller
 {
@@ -72,7 +75,24 @@ class SiswaController extends Controller
         //
     }
 
-    public function aktivitas()
+    public function laporan()
     {
+        $guru = Guru::where('user_id', auth()->user()->id)->first();
+        $siswa_id = PesertaPkl::select('id')->where('guru_id', $guru->id)->get()->toArray();
+        $laporan = Laporan::select('siswa.nama', 'laporan.*')->leftJoin('siswa', 'siswa.id', '=', 'laporan.siswa_id')->whereIn('laporan.siswa_id', $siswa_id)->get();
+
+        return view('pages.frontsite.guru.laporan', compact('laporan'));
+    }
+
+    public function download_laporan(Siswa $siswa){
+        $data = Laporan::find($siswa->id);
+
+        // dd($laporan);
+        $file = public_path('storage/'.$data->laporan);
+        $headers = ['Content-Type: application/pdf'];
+        $name = 'Laporan-' . $siswa->nama . '.jpg';
+
+        return response()->download($file, $name, $headers);
+        // return Storage::download('file.jpg', $name, $headers);
     }
 }
