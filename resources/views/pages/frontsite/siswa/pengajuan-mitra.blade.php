@@ -55,11 +55,34 @@
             </ul>
 
             <!--Tabs content-->
-            <div class="mb-6">
+            <div class="mb-6 px">
                 {{-- pengajuan --}}
                 <div class="hidden opacity-100 transition-opacity duration-150 ease-linear data-[te-tab-active]:block"
                     id="tabs-home02" role="tabpanel" aria-labelledby="tabs-home-tab02" data-te-tab-active>
 
+                    <div class="mt-5 mb-10 px-10">
+                        <h2 class="font-bold">Alur Pengajuan Mitra</h2>
+
+                        <div class="mt-3 px-10 rounded bg-gray-100 py-5 text-sm">
+                            <ul class="list-decimal marker:font-bold marker:">
+                                <li class="mb-3">
+                                    <p class="ml-3">Masukan data lengkap mitra dan juga alasan pengajuan.</p>
+                                </li>
+                                <li class="mb-3">
+                                    <p class="ml-3">Cek status pengajuan pada tab status untuk melihat pengajuan mitra
+                                        diterima atau ditolak.</p>
+                                </li>
+                                <li class="mb-3">
+                                    <p class="ml-3">Jika pengajuan mitra ditolak, silahkan ajukan mitra yang lain atau
+                                        dapat mendaftar pada mitra yang telah ada.</p>
+                                </li>
+                                <li class="mb-3">
+                                    <p class="ml-3">Jika pengajuan mitra diterima, melakukan pendaftaran pada mitra di
+                                        menu pendaftaran</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                     <div class="lg:px-10">
                         <form action="{{ route('siswa.pengajuan.store') }}" method="POST">
                             @csrf
