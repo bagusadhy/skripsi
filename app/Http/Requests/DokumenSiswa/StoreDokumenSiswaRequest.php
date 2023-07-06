@@ -28,10 +28,10 @@ class StoreDokumenSiswaRequest extends FormRequest
                 'required', 'integer',
             ],
             'surat_pernyataan_siswa' => [
-                'required', 'mimes:application/pdf', 'max:2048',
+                'required', 'mimes:pdf', 'max:2048',
             ],
             'surat_izin_ortu' => [
-                'required', 'mimes:application/pdf', 'max:2048',
+                'required', 'mimes:pdf', 'max:2048',
             ],
         ];
     }

@@ -1,6 +1,6 @@
 @extends('layouts.siswa')
 
-@section('title', 'Mitra')
+@section('title', 'Pengajuan Mitra')
 
 @section('content')
     <main class="basis-10/12 bg-white min-h-fit px-10 py-5  overflow-x-hidden">
