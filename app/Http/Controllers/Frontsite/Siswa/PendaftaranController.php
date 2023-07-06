@@ -19,11 +19,10 @@ class PendaftaranController extends Controller
     {
 
         $siswa = Siswa::where('user_id', auth()->user()->id)->first();
+
         $pendaftaran = PendaftarPkl::select('mitra_id')->where('siswa_id', $siswa->id)->get()->toArray();
         $mitra = Mitra::whereNotIn('id', $pendaftaran)->with('bidang_usaha')->get();
         $mitra_terdaftar = PendaftarPkl::where('siswa_id', $siswa->id)->with('mitra', 'mitra.bidang_usaha')->get();
-
-        // dd($mitra_terdaftar);
 
         return view('pages.frontsite.siswa.mitra', compact('mitra', 'mitra_terdaftar'));
     }

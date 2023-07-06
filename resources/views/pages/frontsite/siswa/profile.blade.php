@@ -203,22 +203,6 @@
                         @endif
                     </div>
                     <div class="mb-3 w-full">
-                        <label for="jenis_kelamin" class="block">
-                            <span class="font-medium">Jenis Kelamin<code class="text-red-500">*</code></span>
-                        </label>
-                        <select data-te-select-init data-te-select-placeholder="Pilih Jenis_kelamin"
-                            name="jenis_kelamin" required>
-                            <option hidden selected></option>
-                            <option value="1" {{ $siswa->jenis_kelamin == '1' ? 'selected' : '' }}>Laki-laki</option>
-                            <option value="2" {{ $siswa->jenis_kelamin == '2' ? 'selected' : '' }}>Perempuan</option>
-                        </select>
-                        @if ($errors->has('jenis_kelamin'))
-                            <p style="font-style: bold; color: red;">{{ $errors->first('jenis_kelamin') }}</p>
-                        @endif
-                    </div>
-                </div>
-                <div class="flex justify-between flex-col lg:flex-row lg:gap-10 lg:mb-3">
-                    <div class="mb-3 w-full">
                         <label for="kontak" class="block">
                             <span class="font-medium">Kontak<code class="text-red-500">*</code></span>
                         </label>
@@ -227,6 +211,23 @@
                             name="kontak" id="kontak" required value="{{ $siswa->kontak }}"></input>
                         @if ($errors->has('kontak'))
                             <p style="font-style: bold; color: red;">{{ $errors->first('kontak') }}</p>
+                        @endif
+                    </div>
+
+                </div>
+                <div class="flex justify-between flex-col lg:flex-row lg:gap-10 lg:mb-3">
+                    <div class="mb-3 w-full">
+                        <label for="jenis_kelamin" class="block">
+                            <span class="font-medium">Jenis Kelamin<code class="text-red-500">*</code></span>
+                        </label>
+                        <select data-te-select-init data-te-select-placeholder="Pilih Jenis_kelamin" name="jenis_kelamin"
+                            required>
+                            <option hidden selected></option>
+                            <option value="1" {{ $siswa->jenis_kelamin == '1' ? 'selected' : '' }}>Laki-laki</option>
+                            <option value="2" {{ $siswa->jenis_kelamin == '2' ? 'selected' : '' }}>Perempuan</option>
+                        </select>
+                        @if ($errors->has('jenis_kelamin'))
+                            <p style="font-style: bold; color: red;">{{ $errors->first('jenis_kelamin') }}</p>
                         @endif
                     </div>
                 </div>
