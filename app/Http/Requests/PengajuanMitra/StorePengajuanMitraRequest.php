@@ -31,16 +31,16 @@ class StorePengajuanMitraRequest extends FormRequest
                 'required', 'integer',
             ],
             'nama' => [
-                'required', 'string', 'max:255',
+                'required', 'string', 'max:255', 'unique:pengajuan_mitra', 'unique:mitra',
             ],
             'email' => [
-                'required', 'string', 'email', 'max:255',
+                'required', 'string', 'email', 'max:255', 'unique:users',
             ],
             'alamat' => [
                 'required', 'string', 'max:255',
             ],
             'kontak' => [
-                'required', 'string', 'max:50',
+                'required', 'string', 'max:50', 'unique:pengajuan_mitra',
             ],
             'alasan' => [
                 'required', 'string', 'max:1000',

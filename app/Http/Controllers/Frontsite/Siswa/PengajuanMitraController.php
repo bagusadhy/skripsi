@@ -5,6 +5,12 @@ namespace App\Http\Controllers\Frontsite\Siswa;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use App\Models\Kegiatan\PengajuanMitra;
+use App\Models\MasterData\BidangUsaha;
+use App\Models\MasterData\Siswa;
+
+use App\Http\Requests\PengajuanMitra\StorePengajuanMitraRequest;
+
 class PengajuanMitraController extends Controller
 {
     /**
@@ -12,7 +18,11 @@ class PengajuanMitraController extends Controller
      */
     public function index()
     {
-        //
+        $bidang = BidangUsaha::all();
+        $siswa = Siswa::where('user_id', auth()->user()->id)->first();
+
+        $pengajuan = PengajuanMitra::where('siswa_id', $siswa->id)->get();
+        return view('pages.frontsite.siswa.pengajuan-mitra', compact('bidang', 'siswa', 'pengajuan'));
     }
 
     /**
@@ -26,9 +36,14 @@ class PengajuanMitraController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StorePengajuanMitraRequest $request)
     {
-        //
+        $data = $request->all();
+
+        PengajuanMitra::create($data);
+
+        alert()->success('Berhasil', 'Pengajuan berhasil');
+        return back();
     }
 
     /**
