@@ -24,11 +24,8 @@ class StoreLaporanRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'siswa_id' => [
-                'required', 'integer',
-            ],
             'laporan' => [
-                'required', 'mimes:application/pdf', 'max:10000',
+                'required', 'mimes:pdf', 'max:10000',
             ],
         ];
     }

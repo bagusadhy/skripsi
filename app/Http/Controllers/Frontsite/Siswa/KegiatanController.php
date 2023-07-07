@@ -5,6 +5,11 @@ namespace App\Http\Controllers\Frontsite\Siswa;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use App\Models\Kegiatan\PesertaPkl;
+use App\Models\MasterData\Siswa;
+use App\Models\Kegiatan\AktivitasSiswa;
+use Illuminate\Support\Arr;
+
 class KegiatanController extends Controller
 {
     /**
@@ -12,7 +17,13 @@ class KegiatanController extends Controller
      */
     public function index()
     {
-        //
+        $siswa = Siswa::where('user_id', auth()->user()->id)->first();
+        $peserta = PesertaPkl::where('siswa_id', $siswa->id)->with('mitra')->first();
+        $aktivitas = AktivitasSiswa::where('siswa_id', $siswa->id)->orderBy('tanggal', 'DESC')->paginate(2);
+
+        $access_laporan = AktivitasSiswa::where('siswa_id', $siswa->id)->count();
+
+        return view('pages.frontsite.siswa.kegiatan', compact('peserta', 'aktivitas', 'access_laporan'));
     }
 
     /**
@@ -20,7 +31,13 @@ class KegiatanController extends Controller
      */
     public function create()
     {
-        //
+        $siswa = Siswa::where('user_id', auth()->user()->id)->first();
+        $date = AktivitasSiswa::select('tanggal')->where('siswa_id', $siswa->id)->get()->toArray();
+        $disable_date = json_encode(Arr::flatten($date));
+
+        // dd($disable_date);
+
+        return view('pages.frontsite.siswa.logbook', compact('disable_date'));
     }
 
     /**
