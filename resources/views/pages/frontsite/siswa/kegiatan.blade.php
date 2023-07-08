@@ -63,7 +63,7 @@
                     <hr>
                     <p class="mb-3 mt-3">Laporan akhir dapat diupload setelah semua presensi dan jurnal harian telah terisi
                     </p>
-                    @if ($access_laporan < 4)
+                    @if (!$access_laporan)
                         <div
                             class="flex justify-center items-center w-full py-3 bg-gray-500 cursor-not-allowed text-white rounded text-center">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -134,8 +134,6 @@
 
                                         @default
                                     @endswitch
-                                    <a data-fancybox="gallery" data-src="{{ asset('storage/' . $data->foto) }}"
-                                        class="text-blue-500 cursor-pointer text-sm font-bold">Bukti Kehadiran</a>
                                 </div>
                                 <p class="flex gap-3 items-center text-justify">
                                     {{ $data->jurnal }}
@@ -154,17 +152,3 @@
     </div>
     </section>
 @endsection
-
-@push('after-style')
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
-@endpush
-
-@push('after-script')
-    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
-    <script>
-        // fancybox
-        Fancybox.bind('[data-fancybox="gallery"]', {
-            infinite: false
-        });
-    </script>
-@endpush

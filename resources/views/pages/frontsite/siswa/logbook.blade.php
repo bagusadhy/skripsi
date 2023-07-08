@@ -49,14 +49,14 @@
                 </div>
             </div>
 
-            <form action="" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('siswa.kegiatan.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div>
                     <label class="relative block mb-5">
                         <span class="font-medium">Tanggal Pelaksanaan<code class="text-red-500">*</code></span>
-                        <input type="text" id="tanggal_pelaksanaan" name="tanggal_pelaksanaan"
+                        <input type="text" id="tanggal" name="tanggal"
                             class="block w-full rounded-lg py-3 text-[#1E2B4F] font-medium placeholder:text-[#AFAEC3] placeholder:font-normal px-5 border border-[#d4d4d4] focus:outline-none focus:border-[#0D63F3]"
-                            value="{{ old('tanggal_pelaksanaan') }}" placeholder="dd mm yyyy" required />
+                            value="{{ old('tanggal') }}" placeholder="dd mm yyyy" required />
                         <span class="absolute top-8 right-[20px] bottom-1/2 translate-y-[58%] hover:cursor-pointer">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -72,17 +72,18 @@
                             </svg>
                         </span>
                     </label>
-                    @if ($errors->has('tanggal_pelaksanaan'))
+                    @if ($errors->has('tanggal'))
                         <p style="font-style: bold; color: red;">
-                            {{ $errors->first('tanggal_pelaksanaan') }}
+                            {{ $errors->first('tanggal') }}
                         </p>
                     @endif
                 </div>
-                <div class="mb-3 w-full">
+                <div class="mb-5 w-full">
                     <label for="presensi" class="block">
                         <span class="font-medium">Presensi<code class="text-red-500">*</code></span>
                     </label>
-                    <select data-te-select-init data-te-select-placeholder="Pilih Presensi" name="presensi" required>
+                    <select data-te-select-init data-te-select-placeholder="Pilih Presensi" name="presensi" id="presensi"
+                        required>
                         <option hidden selected></option>
                         <option value="1">Hadir</option>
                         <option value="2">Izin</option>
@@ -92,12 +93,17 @@
                         <p style="font-style: bold; color: red;">{{ $errors->first('presensi') }}</p>
                     @endif
                 </div>
-                <label for="" class="block mb-5">
-                    <span class="font-medium">Jurnal<code class="text-red-500">*</code></span>
-                    <textarea name="" id=""
-                        class="w-full h-44 border-2 border-gray-200 rounded-md resize-none p-4 focus:outline-none" name="jurnal"
-                        placeholder="Deskripsi Kegiatan"></textarea>
-                </label>
+                <div>
+                    <label for="" class="block mb-5">
+                        <span class="font-medium">Jurnal<code class="text-red-500">*</code></span>
+                        <textarea id=""
+                            class="w-full h-44 border-2 border-gray-200 rounded-md resize-none p-4 focus:outline-none" name="jurnal"
+                            placeholder="Deskripsi Kegiatan" required></textarea>
+                    </label>
+                    @if ($errors->has('jurnal'))
+                        <p style="font-style: bold; color: red;">{{ $errors->first('jurnal') }}</p>
+                    @endif
+                </div>
                 <div class="flex justify-center">
                     <button type="submit" class="w-full py-3 rounded-md bg-primary text-white font-semibold">
                         Simpan Logbook
@@ -116,7 +122,7 @@
     <script type="text/javascript">
         $(document).ready(function() {
 
-            const tanggal = flatpickr('#tanggal_pelaksanaan', {
+            const tanggal = flatpickr('#tanggal', {
                 altInput: true,
                 altFormat: 'd F Y',
                 dateFormat: 'Y-m-d',

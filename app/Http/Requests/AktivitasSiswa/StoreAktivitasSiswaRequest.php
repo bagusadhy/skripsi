@@ -24,16 +24,13 @@ class StoreAktivitasSiswaRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'siswa_id' => [
-                'required', 'integer',
-            ],
             'tanggal' => [
                 'required', 'date',
             ],
             'jurnal' => [
                 'required', 'string',
             ],
-            'status' => [
+            'presensi' => [
                 'required', 'integer', 'in:1,2,3'
             ],
         ];
