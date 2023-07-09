@@ -5,6 +5,12 @@ namespace App\Http\Controllers\Frontsite\Mitra;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use App\Models\Kegiatan\PendaftarPkl;
+use App\Models\MasterData\Mitra;
+use App\Models\Kegiatan\Bimbingan;
+use App\Models\Kegiatan\PesertaPkl;
+use App\Models\MasterData\PeriodePkl;
+
 class PendaftarController extends Controller
 {
     /**
@@ -12,7 +18,14 @@ class PendaftarController extends Controller
      */
     public function index()
     {
-        //
+        $mitra = Mitra::where('user_id', auth()->user()->id)->first();
+        $pendaftar = PendaftarPkl::where('mitra_id', $mitra->id)->whereIn('status', ['0', '3'])->with('siswa')->get();
+        $guru = Bimbingan::where('mitra_id', $mitra->id)->first();
+        // dd($guru->guru_id);
+        config(['sweetalert.confirm_delete_confirm_button_text' => 'Tolak']);
+        confirmDelete('Tolak Pendaftar', 'Yakin Menolak Pendaftar?');
+
+        return view('pages.frontsite.mitra.pendaftar', compact('pendaftar'));
     }
 
     /**
@@ -50,9 +63,31 @@ class PendaftarController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, PendaftarPkl $pendaftar)
     {
-        //
+        $data = $request->all();
+
+        $pendaftar->update($data);
+
+        if ($data['status'] == '1') {
+            $mitra = Mitra::where('user_id', auth()->user()->id)->first();
+            $guru = Bimbingan::where('mitra_id', $mitra->id)->first();
+            $periode = PeriodePkl::where('status', '1')->first();
+
+            $peserta = [
+                'siswa_id' => $data['siswa_id'],
+                'mitra_id' => $mitra->id,
+                'guru_id' => $guru->guru_id,
+                'periode_id' => $periode->id
+            ];
+
+            PesertaPkl::create($peserta);
+            alert()->success('Berhasil', 'Pendaftaran Diterima');
+        } else {
+            alert()->success('Berhasil', 'Pendaftaran Ditolak');
+        }
+
+        return back();
     }
 
     /**

@@ -30,6 +30,7 @@ class PesertaPkl extends Model
     protected $fillable = [
         'siswa_id',
         'mitra_id',
+        'guru_id',
         'periode_id',
         'created_at',
         'updated_at',
