@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('dokumen_siswa', function (Blueprint $table) {
             $table->id();
             $table->foreignId('siswa_id')->nullable()->index('fk_dokumen_siswa_to_siswa');
-            $table->longText('surat_pernyataan_siswa');
-            $table->longText('surat_izin_ortu');
+            $table->longText('surat_pernyataan_siswa')->nullable();
+            $table->longText('surat_izin_ortu')->nullable();
             // $table->timestamps();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->nullable()->useCurrentOnUpdate();
