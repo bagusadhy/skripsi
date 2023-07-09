@@ -115,6 +115,18 @@
                                         <span>Kegiatan PKL</span>
                                     </a>
                                 </li>
+                                <li class="relative mt-5">
+                                    <a href="{{ route('logout') }}"
+                                        class="flex justify-center h-12 cursor-pointer items-center truncate rounded-[5px] px-4 py-4 text-[0.875rem] font-medium text-white bg-red-600 outline-none transition duration-300 ease-linear"
+                                        data-te-sidenav-link-ref
+                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit()">
+                                        <span>Keluar</span>
+                                        <form action="{{ route('logout') }}" id="logout-form" method="POST"
+                                            style="display: none;">
+                                            @csrf
+                                        </form>
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                     </div>
