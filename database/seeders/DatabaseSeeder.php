@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
             JurusanSeeder::class,
             KelasSeeder::class,
             BidangUsahaSeeder::class,
+            SurveySeeder::class,
             PeriodeSeeder::class,
             MitraSeeder::class,
             GuruSeeder::class,

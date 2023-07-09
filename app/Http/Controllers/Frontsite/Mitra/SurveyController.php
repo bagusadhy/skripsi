@@ -5,6 +5,12 @@ namespace App\Http\Controllers\Frontsite\Mitra;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use App\Models\MasterData\Mitra;
+use App\Models\Kegiatan\Saran;
+use App\Models\MasterData\Survey;
+use App\Models\Kegiatan\HasilSurvey;
+
+
 class SurveyController extends Controller
 {
     /**
@@ -12,7 +18,8 @@ class SurveyController extends Controller
      */
     public function index()
     {
-        //
+        $survey = Survey::all();
+        return view('pages.frontsite.mitra.survey', compact('survey'));
     }
 
     /**
@@ -28,7 +35,34 @@ class SurveyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $mitra = Mitra::where('user_id', auth()->user()->id)->first();
+        $isExist = HasilSurvey::where('mitra_id', $mitra->id)->count();
+
+        if ($isExist) {
+            alert()->warning('Peringatan', 'Anda Telah Mengisi Survey');
+            return back();
+        }
+        $survey = $request->all();
+
+        foreach ($survey['survey'] as $key => $value) {
+            $data = [
+                'survey_id' => $key,
+                'mitra_id' => $mitra->id,
+                'skala' => $value
+            ];
+
+            HasilSurvey::create($data);
+        }
+
+        $saran = [
+            'mitra_id' => $mitra->id,
+            'saran' => $survey['kritik']
+        ];
+
+        Saran::create($saran);
+
+        alert()->success('Berhasil', 'Survey Berhasil Disimpan');
+        return back();
     }
 
     /**
