@@ -5,6 +5,10 @@ namespace App\Http\Controllers\Frontsite\Mitra;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use App\Models\MasterData\Mitra;
+use App\Models\Kegiatan\PesertaPkl;
+use App\Models\MasterData\Siswa;
+
 class SiswaController extends Controller
 {
     /**
@@ -12,7 +16,10 @@ class SiswaController extends Controller
      */
     public function index()
     {
-        //
+        $mitra = Mitra::where('user_id', auth()->user()->id)->first();
+        $peserta = PesertaPkl::where('mitra_id', $mitra->id)->with('siswa')->get();
+
+        return view('pages.frontsite.mitra.siswa', compact('peserta'));
     }
 
     /**
@@ -34,9 +41,11 @@ class SiswaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Siswa $siswa)
     {
-        //
+        $siswa->with('jurusan', 'kelas');
+
+        return view('pages.frontsite.mitra.siswa-detail', compact('siswa'));
     }
 
     /**
