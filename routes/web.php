@@ -70,7 +70,7 @@ Route::prefix('auth')->name('auth.')->middleware(['guest'])->group(function () {
 });
 
 // Backsite controller
-Route::prefix('backsite')->name('backsite.')->middleware(['auth:sanctum', 'verified'])->group(function () {
+Route::prefix('backsite')->name('backsite.')->middleware(['auth:sanctum', 'verified', config('jetstream.auth_session')])->group(function () {
 
     Route::put('periode/activated/{periode}', [PeriodePklController::class, 'activated'])->name('periode.activated');
     Route::put('periode/disactivated/{periode}', [PeriodePklController::class, 'disactivated'])->name('periode.disactivated');
@@ -100,7 +100,7 @@ Route::prefix('backsite')->name('backsite.')->middleware(['auth:sanctum', 'verif
 });
 
 // guru controller
-Route::prefix('guru')->name('guru.')->middleware(['auth:sanctum', 'verified'])->group(function () {
+Route::prefix('guru')->name('guru.')->middleware(['auth:sanctum', 'verified', config('jetstream.auth_session')])->group(function () {
 
     // Route::get('siswa/aktivitas', [SiswaBimbinganController::class, 'aktivitas'])->name('siswa.aktivitas');
     Route::get('laporan', [SiswaBimbinganController::class, 'laporan'])->name('siswa.laporan');
@@ -119,7 +119,7 @@ Route::prefix('guru')->name('guru.')->middleware(['auth:sanctum', 'verified'])->
 
 
 // siswa controller
-Route::prefix('siswa')->name('siswa.')->middleware(['auth:sanctum', 'verified'])->group(function () {
+Route::prefix('siswa')->name('siswa.')->middleware(['auth:sanctum', 'verified', config('jetstream.auth_session')])->group(function () {
 
     Route::resource('dashboard', DashboardSiswaController::class);
     Route::resource('pendaftaran', PendaftaranController::class);
@@ -128,7 +128,6 @@ Route::prefix('siswa')->name('siswa.')->middleware(['auth:sanctum', 'verified'])
     Route::resource('profile', ProfileSiswaController::class);
     Route::resource('laporan', LaporanSiswaController::class);
     Route::resource('pengajuan', PengajuanSiswaController::class);
-
 });
 
 

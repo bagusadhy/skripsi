@@ -88,6 +88,7 @@
                         <option value="1">Hadir</option>
                         <option value="2">Izin</option>
                         <option value="3">Sakit</option>
+                        <option value="4">Libur</option>
                     </select>
                     @if ($errors->has('presensi'))
                         <p style="font-style: bold; color: red;">{{ $errors->first('presensi') }}</p>
@@ -96,9 +97,8 @@
                 <div>
                     <label for="" class="block mb-5">
                         <span class="font-medium">Jurnal<code class="text-red-500">*</code></span>
-                        <textarea id=""
-                            class="w-full h-44 border-2 border-gray-200 rounded-md resize-none p-4 focus:outline-none" name="jurnal"
-                            placeholder="Deskripsi Kegiatan" required></textarea>
+                        <textarea id="" class="w-full h-44 border-2 border-gray-200 rounded-md resize-none p-4 focus:outline-none"
+                            name="jurnal" placeholder="Deskripsi Kegiatan" required></textarea>
                     </label>
                     @if ($errors->has('jurnal'))
                         <p style="font-style: bold; color: red;">{{ $errors->first('jurnal') }}</p>

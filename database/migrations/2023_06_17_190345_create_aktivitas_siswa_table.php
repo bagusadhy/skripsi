@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
              $table->foreignId('siswa_id')->nullable()->index('fk_aktivitas_siswa_to_siswa');
             $table->date('tanggal');
-            $table->enum('presensi', [1, 2, 3]);
+            $table->enum('presensi', [1, 2, 3, 4]);
             $table->longText('jurnal');
             // $table->timestamps();
             $table->timestamp('created_at')->useCurrent();

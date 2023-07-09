@@ -31,7 +31,7 @@ class StoreAktivitasSiswaRequest extends FormRequest
                 'required', 'string',
             ],
             'presensi' => [
-                'required', 'integer', 'in:1,2,3'
+                'required', 'integer', 'in:1,2,3,4'
             ],
         ];
     }
