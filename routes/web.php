@@ -49,6 +49,7 @@ use App\Http\Controllers\Frontsite\Mitra\PendaftarController;
 use App\Http\Controllers\Frontsite\Mitra\ProfileController;
 use App\Http\Controllers\Frontsite\Mitra\SiswaController as SiswaBimbinganMitraController;
 use App\Http\Controllers\Frontsite\Mitra\SurveyController as SurveyMitraController;
+use App\Http\Controllers\Frontsite\Mitra\AktivitasController as AktivitasMitraController;;
 
 // auth controller
 use App\Http\Controllers\Auth\RegisterController;
@@ -127,15 +128,16 @@ Route::prefix('guru')->name('guru.')->middleware(['auth:sanctum', 'verified', co
 
 Route::prefix('mitra')->name('mitra.')->middleware(['auth:sanctum', 'verified', config('jetstream.auth_session')])->group(function () {
 
+    Route::get('laporan/download/{siswa}', [MitraLaporanController::class, 'download'])->name('laporan.download');
 
     Route::resource('dashboard', DashboardMitraController::class);
     Route::resource('profile', ProfileController::class);
     Route::resource('pendaftar', PendaftarController::class);
     Route::resource('survey', SurveyMitraController::class);
     Route::resource('siswa', SiswaBimbinganMitraController::class);
-    Route::resource('aktivitas', AktivitasController::class)->parameters(['aktivitas' => 'siswa']);
+    Route::resource('aktivitas', AktivitasMitraController::class)->parameters(['aktivitas' => 'siswa']);
     Route::resource('laporan', MitraLaporanController::class);
-    Route::resource('nilai', MitraNilaiController::class);
+    Route::resource('nilai', MitraNilaiController::class)->parameters(['nilai' => 'siswa']);
 });
 
 // siswa controller
