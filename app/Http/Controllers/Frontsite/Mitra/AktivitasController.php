@@ -5,6 +5,11 @@ namespace App\Http\Controllers\Frontsite\Mitra;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use App\Models\Kegiatan\AktivitasSiswa;
+use App\Models\Kegiatan\PesertaPkl;
+use App\Models\MasterData\Mitra;
+use App\Models\MasterData\Siswa;
+
 class AktivitasController extends Controller
 {
     /**
@@ -12,7 +17,11 @@ class AktivitasController extends Controller
      */
     public function index()
     {
-        //
+        $mitra = Mitra::where('user_id', auth()->user()->id)->first();
+        $siswa_id = PesertaPkl::select('siswa_id')->where('mitra_id', $mitra->id)->get()->toArray();
+        $aktivitas = AktivitasSiswa::leftJoin('siswa', 'siswa.id', '=', 'aktivitas_siswa.siswa_id')->whereIn('siswa_id', $siswa_id)->select('siswa.id', 'siswa.nama', AktivitasSiswa::raw('COUNT(presensi) as total_presensi'))->groupBy('siswa.id', 'siswa.nama')->get();
+
+        return view('pages.frontsite.mitra.aktivitas', compact('aktivitas'));
     }
 
     /**
@@ -34,9 +43,11 @@ class AktivitasController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Siswa $siswa)
     {
-        //
+        $aktivitas = AktivitasSiswa::where('siswa_id', $siswa->id)->orderBy('tanggal', 'desc')->paginate(2);
+
+        return view('pages.frontsite.mitra.aktivitas-detail', compact('aktivitas'));
     }
 
     /**
