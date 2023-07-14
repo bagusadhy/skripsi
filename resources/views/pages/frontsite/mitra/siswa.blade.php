@@ -53,7 +53,7 @@
                                 <tr data-entry-id="{{ $data->siswa->id }}" class="hover:bg-neutral-200 outline-2">
                                     <td class="whitespace-nowrap">{{ $data->siswa->nama }}</td>
                                     <td class="whitespace-nowrap">
-                                        <a class="block w-32 px-3 py-2  whitespace-nowrap text-center text-sm text-white rounded-md bg-blue-700"
+                                        <a class="block w-32 px-3 py-2  whitespace-nowrap text-center text-xs font-medium uppercase leading-normal text-white rounded bg-blue-700"
                                             href="{{ route('mitra.siswa.show', $data->siswa->id) }}"
                                             data-te-dropdown-item-ref>Detail Siswa</a>
                                     </td>

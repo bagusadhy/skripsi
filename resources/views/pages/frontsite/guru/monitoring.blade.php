@@ -249,18 +249,6 @@
                                                         href="{{ route('guru.monitoring.show', $data->id) }}"
                                                         data-te-dropdown-item-ref>Detail</a>
                                                 </li>
-                                                <li>
-                                                    <a class="block w-full whitespace-nowrap bg-transparent px-16 py-2 text-sm font-normal hover:bg-neutral-200"
-                                                        href="{{ route('guru.monitoring.destroy', $data->id) }}"
-                                                        data-te-dropdown-item-ref
-                                                        onclick="event.preventDefault(); $('#form-delete').attr('action', '{{ route('guru.monitoring.destroy', $data->id) }}'); document.getElementById('form-delete').submit()">Hapus
-                                                        <form action="" id="form-delete" method="post"
-                                                            style="display: none">
-                                                            @csrf
-                                                            @method('delete')
-                                                        </form>
-                                                    </a>
-                                                </li>
                                             </ul>
                                         </div>
                                     </td>
