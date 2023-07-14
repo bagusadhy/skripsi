@@ -29,7 +29,7 @@ class MonitoringController extends Controller
      */
     public function create()
     {
-       return abort(404);
+        return abort(404);
     }
 
     /**

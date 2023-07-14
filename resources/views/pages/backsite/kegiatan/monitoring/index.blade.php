@@ -3,7 +3,7 @@
 @section('title', 'Monitoring')
 
 @section('content')
-    <main class="basis-10/12 bg-white min-h-screen px-10 py-5  overflow-x-hidden">
+    <main class="basis-10/12 bg-white min-h-screen py-5 overflow-x-hidden">
 
         @if ($errors->any())
             <div class="mb-3 hidden w-full items-center rounded-lg bg-danger-100 px-6 py-5 text-base text-warning-800 data-[te-alert-show]:inline-flex"
@@ -38,10 +38,10 @@
                 </div>
             </div>
 
-            <div class="bg-white py-4 md:py-7 px-4 md:px-8 xl:px-10 shadow-lg rounded-lg">
+            <div class="bg-white py-4 md:py-7 px-4 shadow-md rounded-lg">
                 <div class="overflow-x-auto">
 
-                    <table id="monitoring-table">
+                    <table id="monitoring-table" class="stripe w-full">
                         <thead>
                             <tr>
                                 <th class="whitespace-nowrap">Guru</th>
@@ -49,7 +49,7 @@
                                 <th class="whitespace-nowrap">Tanggal Pelaksanaan</th>
                                 <th class="whitespace-nowrap">Tujuan</th>
                                 <th class="whitespace-nowrap">Jumlah Peserta</th>
-                                <th class="whitespace-nowrap">Deskripsi</th>
+                                <th class="whitespace-nowrap" style="width: 300px;">Deskripsi</th>
                                 <th class="whitespace-nowrap">Foto Kegiatan</th>
                             </tr>
                         </thead>
@@ -61,20 +61,13 @@
                                     <td class="whitespace-nowrap">{{ $data->tanggal_pelaksanaan }}</td>
                                     <td class="whitespace-nowrap">{{ $data->tujuan }}</td>
                                     <td class="whitespace-nowrap">{{ $data->peserta_pkl }}</td>
-                                    <td class="whitespace-nowrap">{{ $data->deskripsi }}</td>
-                                    <td class="whitespace-nowrap">{{ $data->foto }}</td>
+                                    <td class="">{{ $data->deskripsi }}</td>
+                                    <td class="whitespace-nowrap"><a data-fancybox="gallery"
+                                            data-src="{{ asset('storage/' . $data->foto) }}"
+                                            class="text-blue-500 cursor-pointer">Lihat foto dokumentasi</a></td>
                                 </tr>
                             @endforeach
                         </tbody>
-                        <tfoot>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                        </tfoot>
                     </table>
                 </div>
             </div>
@@ -83,32 +76,22 @@
     </div>
     </section>
 @endsection
+@push('after-style')
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
+@endpush
 
 @push('after-script')
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
+            // fancybox
+            Fancybox.bind('[data-fancybox="gallery"]', {
+                infinite: false
+            });
 
             var table = $('#monitoring-table').DataTable({
-                "autoWidth": true,
-                // "scrollX": true,
+                "scrollX": true,
             });
-
-            $('#monitoring-table tfoot th').each(function(i) {
-                var title = $('#monitoring-table thead th').eq($(this).index()).text();
-                $(this).html(
-                    '<input type="text" class="rounded-lg border border-gray-400 placeholder:font-normal focus:font-normal mt-3" placeholder="Search ' +
-                    title +
-                    '" data-index="' + i + '" style="width:100%;"/>');
-            });
-
-            // Filter event handler
-            $(table.table().container()).on('keyup', 'tfoot input', function() {
-                table
-                    .column($(this).data('index'))
-                    .search(this.value)
-                    .draw();
-            });
-
         });
     </script>
 @endpush
