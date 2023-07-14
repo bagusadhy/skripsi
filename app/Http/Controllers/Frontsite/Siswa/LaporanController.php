@@ -6,10 +6,14 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Http\Requests\Laporan\StoreLaporanRequest;
+use App\Models\Kegiatan\AktivitasSiswa;
 use App\Models\Kegiatan\Laporan;
+use App\Models\MasterData\PeriodePkl;
 use App\Models\MasterData\Siswa;
 
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\File;
+use Carbon\Carbon;
 
 class LaporanController extends Controller
 {
@@ -25,6 +29,23 @@ class LaporanController extends Controller
 
         if ($laporan != null) {
             $filename = Str::of($laporan->laporan)->basename();
+        }
+
+
+        // to check access to this route
+        $siswa = Siswa::where('user_id', auth()->user()->id)->first();
+        $total_aktivitas = AktivitasSiswa::where('siswa_id', $siswa->id)->count();
+
+        $periode = PeriodePkl::first();
+        $tanggal_mulai = Carbon::parse($periode->tanggal_dimulai);
+        $tanggal_berakhir =  Carbon::parse($periode->tanggal_berakhir);
+
+        $total_hari = $tanggal_mulai->diffInDaysFiltered(function (Carbon $date) {
+            return $date->isWeekday();
+        }, $tanggal_berakhir);
+
+        if ($total_aktivitas < $total_hari) {
+            return back();
         }
 
         return view('pages.frontsite.siswa.laporan', compact('filename'));
@@ -44,13 +65,15 @@ class LaporanController extends Controller
     public function store(StoreLaporanRequest $request)
     {
         $siswa = Siswa::where('user_id', auth()->user()->id)->first();
-        $isExist = Laporan::where('siswa_id', $siswa->id)->count('id');
+        $isExist = Laporan::where('siswa_id', $siswa->id)->first();
 
 
         $data = $request->all();
         $data['siswa_id'] = $siswa->id;
 
-        if ($isExist) {
+
+        if ($isExist->count()) {
+            File::delete(public_path($isExist->laporan));
             Laporan::where('siswa_id', $siswa->id)->forceDelete();
         }
         if ($request->hasFile('laporan')) {
