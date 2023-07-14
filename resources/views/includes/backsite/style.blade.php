@@ -10,7 +10,7 @@
 
 <style>
     .dataTables_wrapper {
-        padding: .1rem !important;
+        padding: 1rem !important;
     }
 
     .dataTables_length select {
@@ -39,5 +39,9 @@
     .dataTables_wrapper .dataTables_paginate .paginate_button.current {
         background: none !important;
         border: none !important;
+    }
+
+    .dataTables_paginate, .dataTables_info{
+        margin-top: 2rem !important;
     }
 </style>

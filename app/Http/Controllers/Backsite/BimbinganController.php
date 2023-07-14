@@ -29,7 +29,6 @@ class BimbinganController extends Controller
         $bimbingan = $data_bimbingan->groupBy('guru_id');
         $keys = $bimbingan->keys();
 
-        // dd($bimbingan);
 
         $total = Bimbingan::select('guru_id')->groupBy('guru_id')->orderBy('guru_id', 'desc')->count();
         return view('pages.backsite.kegiatan.bimbingan.index', compact('bimbingan', 'guru', 'mitra', 'total', 'keys'));
@@ -49,7 +48,6 @@ class BimbinganController extends Controller
      */
     public function store(StoreBimbinganRequest $request)
     {
-        // dd($request->all());
         $mitra = $request->mitra_id;
         foreach ($mitra as $list_mitra) {
             $data = [
@@ -80,7 +78,6 @@ class BimbinganController extends Controller
         $mitra = Mitra::leftJoin('bimbingan', 'mitra.id', '=', 'bimbingan.mitra_id')->whereNull('bimbingan.mitra_id')->select('mitra.*')->get();
         $mitra_bimbingan = Bimbingan::select('mitra.id', 'mitra.nama')->where('guru_id', $guru_id)->join('mitra', 'mitra.id', '=', 'bimbingan.mitra_id')->get();
 
-        // dd($mitra_bimbingan);
         return view('pages.backsite.kegiatan.bimbingan.edit', compact('mitra', 'mitra_bimbingan', 'guru_id'));
     }
 
