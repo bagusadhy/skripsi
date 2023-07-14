@@ -30,6 +30,17 @@
 
         <!-- component -->
         <div class="mb-10">
+             <div class="py-4 md:py-7">
+                <div tabindex="0"
+                    class="focus:outline-none text-base sm:text-lg md:text-xl lg:text-2xl font-bold leading-normal text-gray-800">
+                    <a href="{{ route('guru.aktivitas.index') }}" class="flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
             <div class="px-2 py-4 md:py-7">
                 <div class="flex items-center justify-between">
                     <p tabindex="0" class="focus:outline-none text-xl lg:text-2xl font-bold leading-normal text-gray-800">
@@ -37,39 +48,6 @@
                     <hr class="bg-black">
                 </div>
             </div>
-
-            {{-- @foreach ($aktivitas as $data)
-                <div
-                    class="rounded-lg border-2 border-gray-100 w-full mt-5 py-10 flex flex-col md:flex-row gap-12 justify-between px-10 items-center shadow-md">
-                    <div class="flex items-center flex-col justify-center w-full">
-                        <div class="mx-auto md:text-left">
-                            <div class="flex justify-between">
-                                <h4 class="font-bold mb-3">{{ date('D, d M Y', strtotime($data->tanggal)) }}</h4>
-                                <a data-fancybox="gallery" data-src="{{ asset('storage/' . $data->foto) }}"
-                                    class="text-blue-500 cursor-pointer">Bukti Kehadiran</a>
-                            </div>
-                            @switch($data->presensi)
-                                @case('1')
-                                    <p class="text-sm text-green-500 font-bold">Hadir</p>
-                                @break
-
-                                @case('2')
-                                    <p class="text-sm text-yellow-500 font-bold">Izin</p>
-                                @break
-
-                                @case('3')
-                                    <p class="text-sm text-red-500 font-bold">Tidak Hadir</p>
-                                @break
-
-                                @default
-                            @endswitch
-                            <p class="flex gap-3 items-center text-justify">
-                                {{ $data->jurnal }}
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            @endforeach --}}
 
             @foreach ($aktivitas as $data)
                 <div id="accordionExample">
@@ -109,8 +87,6 @@
 
                                     @default
                                 @endswitch
-                                <a data-fancybox="gallery" data-src="{{ asset('storage/' . $data->foto) }}"
-                                    class="text-blue-500 cursor-pointer text-sm font-bold">Bukti Kehadiran</a>
                             </div>
                             <p class="flex gap-3 items-center text-justify">
                                 {{ $data->jurnal }}
@@ -128,17 +104,3 @@
     </div>
     </section>
 @endsection
-
-@push('after-style')
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
-@endpush
-
-@push('after-script')
-    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
-    <script>
-        // fancybox
-        Fancybox.bind('[data-fancybox="gallery"]', {
-            infinite: false
-        });
-    </script>
-@endpush
