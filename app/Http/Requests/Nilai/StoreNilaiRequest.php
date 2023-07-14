@@ -25,10 +25,10 @@ class StoreNilaiRequest extends FormRequest
     {
         return [
             'siswa_id' => [
-                'required', 'integer',
+                'required', 'integer', 'unique:nilai',
             ],
             'nilai' => [
-                'required', 'mimes:application/pdf', 'max:10000',
+                'required', 'mimes:pdf', 'max:10000',
             ],
         ];
     }
