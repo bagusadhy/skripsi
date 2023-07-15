@@ -43,9 +43,10 @@ class MonitoringController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Monitoring $monitoring)
     {
-        return abort(404);
+        $monitoring->with('guru', 'mitra');
+        return view('pages.backsite.kegiatan.monitoring.show', compact('monitoring'));
     }
 
     /**
