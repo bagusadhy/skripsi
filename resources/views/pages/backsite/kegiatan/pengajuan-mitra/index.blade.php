@@ -3,7 +3,7 @@
 @section('title', 'Pengajuan')
 
 @section('content')
-    <main class="basis-10/12 bg-white min-h-screen px-10 py-5  overflow-x-hidden">
+    <main class="basis-10/12 bg-white min-h-screen py-5 overflow-x-hidden">
 
         @if ($errors->any())
             <div class="mb-3 hidden w-full items-center rounded-lg bg-danger-100 px-6 py-5 text-base text-warning-800 data-[te-alert-show]:inline-flex"
@@ -38,19 +38,15 @@
                 </div>
             </div>
 
-            <div class="bg-white py-4 md:py-7 px-4 md:px-8 xl:px-10 shadow-lg rounded-lg">
-                <div class="overflow-x-auto">
+            <div class="bg-white py-4 md:py-7 px-4 md:px-8 xl:px-10 shadow-md rounded-lg">
+                <div class="overflow-x-auto]">
 
-                    <table id="pengajuan-table">
+                    <table id="pengajuan-table" class="stripe">
                         <thead>
                             <tr>
                                 <th class="whitespace-nowrap">Siswa</th>
                                 <th class="whitespace-nowrap">Nama Perusahaan</th>
-                                <th class="whitespace-nowrap">Bidang Usaha</th>
-                                <th class="whitespace-nowrap">Email</th>
-                                <th class="whitespace-nowrap">Kontak</th>
-                                <th class="whitespace-nowrap">Alamat</th>
-                                <th class="whitespace-nowrap">Alasan</th>
+                                <th class="whitespace-nowrap">Status</th>
                                 <th class="whitespace-nowrap">Action</th>
                             </tr>
                         </thead>
@@ -59,11 +55,29 @@
                                 <tr>
                                     <td class="whitespace-nowrap">{{ $data->siswa->nama }}</td>
                                     <td class="whitespace-nowrap">{{ $data->nama }}</td>
-                                    <td class="whitespace-nowrap">{{ $data->bidang_usaha->title }}</td>
-                                    <td class="whitespace-nowrap">{{ $data->email }}</td>
-                                    <td class="whitespace-nowrap">{{ $data->kontak }}</td>
-                                    <td class="whitespace-nowrap">{{ $data->alamat }}</td>
-                                    <td class="whitespace-nowrap">{{ $data->alasan }}</td>
+                                    <td class="whitespace-nowrap">
+                                        @switch($data->status)
+                                            @case('2')
+                                                <p
+                                                    class="uppercase inline-block whitespace-nowrap rounded-[0.27rem] bg-green-500 px-[0.65em] pb-[0.25em] pt-[0.35em] text-center align-baseline text-xs font-medium leading-normal text-white">
+                                                    Diterima
+                                                </p>
+                                            @break
+
+                                            @case('3')
+                                                <p
+                                                    class="uppercase inline-block whitespace-nowrap rounded-[0.27rem] bg-red-500 px-[0.65em] pb-[0.25em] pt-[0.35em] text-center align-baseline text-xs font-medium leading-normal text-white">
+                                                    Ditolak
+                                                </p>
+                                            @break
+
+                                            @default
+                                                <p
+                                                    class="uppercase inline-block whitespace-nowrap rounded-[0.27rem] bg-blue-500 px-[0.65em] pb-[0.25em] pt-[0.35em] text-center align-baseline text-xs font-medium leading-normal text-white">
+                                                    Diajukan
+                                                </p>
+                                        @endswitch
+                                    </td>
                                     <td class="whitespace-nowrap">
                                         <div class="relative" data-te-dropdown-ref>
                                             <button
@@ -84,25 +98,8 @@
                                                 aria-labelledby="dropdownMenuButton1" data-te-dropdown-menu-ref>
                                                 <li>
                                                     <a class="block w-full whitespace-nowrap bg-transparent px-16 py-2 text-sm font-normal hover:bg-neutral-200"
-                                                        href="{{ route('backsite.pengajuan_mitra.terima', $data->id) }}"
-                                                        data-te-dropdown-item-ref
-                                                        onclick="event.preventDefault(); $('#form-terima').attr('action', '{{ route('backsite.pengajuan_mitra.terima', $data->id) }}'); document.getElementById('form-terima').submit()">Terima
-                                                        <form action="" id="form-terima" method="post"
-                                                            style="display: none">
-                                                            @csrf
-                                                        </form>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a class="block w-full whitespace-nowrap bg-transparent px-16 py-2 text-sm font-normal hover:bg-neutral-200"
-                                                        href="{{ route('backsite.pengajuan_mitra.update', $data->id) }}"
-                                                        data-te-dropdown-item-ref
-                                                        onclick="event.preventDefault(); $('#form-tolak').attr('action', '{{ route('backsite.pengajuan_mitra.update', $data->id) }}'); document.getElementById('form-tolak').submit()">Tolak
-                                                        <form action="" id="form-tolak" method="post"
-                                                            style="display: none">
-                                                            @csrf
-                                                            @method('PUT')
-                                                        </form>
+                                                        href="{{ route('backsite.pengajuan_mitra.show', $data->id) }}"
+                                                        data-te-dropdown-item-ref>Detail Pengajuan
                                                     </a>
                                                 </li>
                                             </ul>
@@ -111,16 +108,6 @@
                                 </tr>
                             @endforeach
                         </tbody>
-                        <tfoot>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                        </tfoot>
                     </table>
                 </div>
             </div>
@@ -137,22 +124,6 @@
             var table = $('#pengajuan-table').DataTable({
                 "autoWidth": true,
                 // "scrollX": true,
-            });
-
-            $('#pengajuan-table tfoot th').each(function(i) {
-                var title = $('#pengajuan-table thead th').eq($(this).index()).text();
-                $(this).html(
-                    '<input type="text" class="rounded-lg border border-gray-400 placeholder:font-normal focus:font-normal mt-3" placeholder="Search ' +
-                    title +
-                    '" data-index="' + i + '" style="width:100%;"/>');
-            });
-
-            // Filter event handler
-            $(table.table().container()).on('keyup', 'tfoot input', function() {
-                table
-                    .column($(this).data('index'))
-                    .search(this.value)
-                    .draw();
             });
 
         });

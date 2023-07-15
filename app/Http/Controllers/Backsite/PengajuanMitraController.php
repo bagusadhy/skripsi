@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Backsite;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 use App\Models\Kegiatan\PengajuanMitra;
 use App\Models\User;
@@ -39,15 +41,52 @@ class PengajuanMitraController extends Controller
      */
     public function store(Request $request)
     {
-        return abort(404);
+        $data = PengajuanMitra::where('id', $request->id_pengajuan)->first();
+
+        try {
+            DB::transaction(function () use ($data) {
+                $user = [
+                    'name' => $data->nama,
+                    'email' => $data->email,
+                    'password' => Hash::make($data->email),
+                    'role_id' => '3'
+                ];
+
+                $user = User::create($user);
+
+                $mitra = [
+                    'user_id' => $user->id,
+                    'nama' => $data->nama,
+                    'bidang_usaha_id' => $data->bidang_usaha_id,
+                    'kontak' => $data->kontak,
+                    'alamat' => $data->alamat,
+                ];
+
+                $mitra = Mitra::create($mitra);
+
+                $status_pengajuan = [
+                    'status' => 2,
+                ];
+
+                PengajuanMitra::where('id', $data->id)->update($status_pengajuan);
+            });
+        } catch (\Throwable $th) {
+            return back()->with('error', 'Terjadi kesalahan');
+        }
+
+        alert()->success('Berhasil', 'Pengajuan mitra diterima');
+        return redirect()->route('backsite.pengajuan_mitra.index');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(PengajuanMitra $pengajuan)
     {
-        return abort(404);
+        $pengajuan->with('siswa', 'bidang_usaha');
+
+        confirmDelete();
+        return view('pages.backsite.kegiatan.pengajuan-mitra.show', compact('pengajuan'));
     }
 
     /**
@@ -69,7 +108,7 @@ class PengajuanMitraController extends Controller
         $pengajuan->update($data);
 
         alert()->success('Berhasil', 'Pengajuan mitra telah ditolak');
-        return back();
+        return redirect()->route('backsite.pengajuan_mitra.index');
     }
 
     /**
