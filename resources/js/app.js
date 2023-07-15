@@ -17,6 +17,7 @@ import {
     Alert,
     Tab,
     Stepper,
+    Modal,
 } from "tw-elements";
 initTE({
     Datepicker,
@@ -31,6 +32,7 @@ initTE({
     Alert,
     Tab,
     Stepper,
+    Modal,
 });
 
 window.Alpine = Alpine;
