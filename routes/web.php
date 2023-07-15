@@ -98,7 +98,7 @@ Route::prefix('backsite')->name('backsite.')->middleware(['auth:sanctum', 'verif
     Route::resource('mitra', MitraController::class);
     Route::resource('bimbingan', BimbinganController::class);
     Route::resource('monitoring', MonitoringController::class);
-    Route::resource('pengajuan_mitra', PengajuanMitraController::class);
+    Route::resource('pengajuan_mitra', PengajuanMitraController::class)->parameters(['pengajuan_mitra' => 'pengajuan']);
     Route::resource('pendaftar', PendaftarPklController::class);
     Route::resource('peserta', PesertaPklController::class)->parameters(['peserta' => 'peserta']);
     Route::resource('dokumen', DokumenSiswaController::class)->parameters(['dokumen' => 'dokumen']);
