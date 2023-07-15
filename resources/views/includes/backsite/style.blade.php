@@ -41,7 +41,8 @@
         border: none !important;
     }
 
-    .dataTables_paginate, .dataTables_info{
+    .dataTables_paginate,
+    .dataTables_info {
         margin-top: 2rem !important;
     }
 </style>

@@ -104,7 +104,7 @@
             <div class="bg-white py-4 md:py-7 px-4  shadow-md rounded-lg">
                 <div class="overflow-x-auto">
 
-                    <table id="bimbingan-table" class="stripe">
+                    <table id="bimbingan-table" class="stripe" class="w-full">
                         <thead>
                             <tr>
                                 <th class="whitespace-nowrap">Guru</th>
@@ -117,7 +117,7 @@
                         <tbody class="overflow-x-scroll">
                             @for ($i = 0; $i < count($bimbingan); $i++)
 
-                                <tr class="hover:bg-neutral-200 outline-2" data-entry-id="">
+                                <tr class="" data-entry-id="">
                                     <td class="whitespace-nowrap">{{ $bimbingan[$keys[$i]][0]->guru->nama }}</td>
 
                                     @for ($j = 0; $j < count($bimbingan[$keys[$i]]); $j++)
@@ -189,10 +189,7 @@
     <script type="text/javascript">
         $(document).ready(function() {
 
-            var table = $('#bimbingan-table').DataTable({
-                "autoWidth": true,
-                // "scrollX": true,
-            });
+            var table = $('#bimbingan-table').DataTable({});
 
         });
     </script>
