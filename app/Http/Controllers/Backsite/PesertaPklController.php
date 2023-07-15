@@ -20,6 +20,7 @@ class PesertaPklController extends Controller
     public function index()
     {
         $peserta = PesertaPkl::with('siswa', 'mitra', 'periode_pkl')->get();
+
         return view('pages.backsite.kegiatan.peserta-pkl.index', compact('peserta'));
     }
 
