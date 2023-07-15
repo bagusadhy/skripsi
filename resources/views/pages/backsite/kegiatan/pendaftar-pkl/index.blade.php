@@ -41,7 +41,7 @@
             <div class="bg-white py-4 md:py-7 px-4 md:px-8 xl:px-10 shadow-md rounded-lg">
                 <div class="overflow-x-auto">
 
-                    <table id="pendaftar-table">
+                    <table id="pendaftar-table" class="stripe">
                         <thead>
                             <tr>
                                 <th class="whitespace-nowrap">Siswa</th>
