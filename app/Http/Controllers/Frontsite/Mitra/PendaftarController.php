@@ -21,9 +21,8 @@ class PendaftarController extends Controller
         $mitra = Mitra::where('user_id', auth()->user()->id)->first();
         $pendaftar = PendaftarPkl::where('mitra_id', $mitra->id)->whereIn('status', ['0', '3'])->with('siswa')->get();
         $guru = Bimbingan::where('mitra_id', $mitra->id)->first();
-        // dd($guru->guru_id);
-        config(['sweetalert.confirm_delete_confirm_button_text' => 'Tolak']);
-        confirmDelete('Tolak Pendaftar', 'Yakin Menolak Pendaftar?');
+
+        confirmDelete();
 
         return view('pages.frontsite.mitra.pendaftar', compact('pendaftar'));
     }

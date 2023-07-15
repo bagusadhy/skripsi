@@ -3,7 +3,7 @@
 @section('title', 'Pendaftar')
 
 @section('content')
-    <main class="basis-10/12 bg-white min-h-screen px-10 py-5  overflow-x-hidden">
+    <main class="basis-10/12 bg-white min-h-screen py-5 overflow-x-hidden">
 
         @if ($errors->any())
             <div class="mb-3 hidden w-full items-center rounded-lg bg-danger-100 px-6 py-5 text-base text-warning-800 data-[te-alert-show]:inline-flex"
@@ -38,7 +38,7 @@
                 </div>
             </div>
 
-            <div class="bg-white py-4 md:py-7 px-4 md:px-8 xl:px-10 shadow-lg rounded-lg">
+            <div class="bg-white py-4 md:py-7 px-4 md:px-8 xl:px-10 shadow-md rounded-lg">
                 <div class="overflow-x-auto">
 
                     <table id="pendaftar-table">
@@ -54,15 +54,39 @@
                                 <tr>
                                     <td class="whitespace-nowrap">{{ $data->siswa->nama }}</td>
                                     <td class="whitespace-nowrap">{{ $data->mitra->nama }}</td>
-                                    <td class="whitespace-nowrap">{{ $data->status }}</td>
+                                    <td class="whitespace-nowrap">
+                                        @switch($data->status)
+                                            @case('1')
+                                                <p
+                                                    class="uppercase inline-block whitespace-nowrap rounded-[0.27rem] bg-red-500 px-[0.65em] pb-[0.25em] pt-[0.35em] text-center align-baseline text-xs font-medium leading-normal text-white">
+                                                    Ditolak
+                                                </p>
+                                            @break
+
+                                            @case('2')
+                                                <p
+                                                    class="uppercase inline-block whitespace-nowrap rounded-[0.27rem] bg-green-500 px-[0.65em] pb-[0.25em] pt-[0.35em] text-center align-baseline text-xs font-medium leading-normal text-white">
+                                                    Diterima
+                                                </p>
+                                            @break
+
+                                            @case('3')
+                                                <p
+                                                    class="uppercase inline-block whitespace-nowrap rounded-[0.27rem] bg-blue-500 px-[0.65em] pb-[0.25em] pt-[0.35em] text-center align-baseline text-xs font-medium leading-normal text-white">
+                                                    Aktif
+                                                </p>
+                                            @break
+
+                                            @default
+                                                <p
+                                                    class="uppercase inline-block whitespace-nowrap rounded-[0.27rem] bg-blue-500 px-[0.65em] pb-[0.25em] pt-[0.35em] text-center align-baseline text-xs font-medium leading-normal text-white">
+                                                    Daftar
+                                                </p>
+                                        @endswitch
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
-                        <tfoot>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                        </tfoot>
                     </table>
                 </div>
             </div>
@@ -79,22 +103,6 @@
             var table = $('#pendaftar-table').DataTable({
                 "autoWidth": true,
                 // "scrollX": true,
-            });
-
-            $('#pendaftar-table tfoot th').each(function(i) {
-                var title = $('#pendaftar-table thead th').eq($(this).index()).text();
-                $(this).html(
-                    '<input type="text" class="rounded-lg border border-gray-400 placeholder:font-normal focus:font-normal mt-3" placeholder="Search ' +
-                    title +
-                    '" data-index="' + i + '" style="width:100%;"/>');
-            });
-
-            // Filter event handler
-            $(table.table().container()).on('keyup', 'tfoot input', function() {
-                table
-                    .column($(this).data('index'))
-                    .search(this.value)
-                    .draw();
             });
 
         });
