@@ -3,6 +3,7 @@
 namespace App\Models\Kegiatan;
 
 use App\Models\MasterData\BidangUsaha;
+use App\Models\MasterData\Siswa;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
