@@ -45,6 +45,8 @@
                         <thead>
                             <tr>
                                 <th class="whitespace-nowrap">Siswa</th>
+                                <th class="whitespace-nowrap">Kelas</th>
+                                <th class="whitespace-nowrap">Jurusan</th>
                                 <th class="whitespace-nowrap">Mitra</th>
                                 <th class="whitespace-nowrap">Periode</th>
                             </tr>
@@ -53,6 +55,8 @@
                             @foreach ($peserta as $data)
                                 <tr>
                                     <td class="whitespace-nowrap">{{ $data->siswa->nama }}</td>
+                                    <td class="whitespace-nowrap">{{ $data->siswa->kelas->kelas }}</td>
+                                    <td class="whitespace-nowrap">{{ $data->siswa->jurusan->jurusan }}</td>
                                     <td class="whitespace-nowrap">{{ $data->mitra->nama }}</td>
                                     <td class="whitespace-nowrap">
                                         {{ date('M Y', strtotime($data->periode_pkl->tanggal_dimulai)) . ' - ' . date('d M Y', strtotime($data->periode_pkl->tanggal_berakhir)) }}
