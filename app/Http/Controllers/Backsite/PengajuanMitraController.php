@@ -25,7 +25,6 @@ class PengajuanMitraController extends Controller
     {
         $pengajuan = PengajuanMitra::with('siswa','siswa.kelas', 'bidang_usaha')->get();
 
-        // dd($pengajuan);
         return view('pages.backsite.kegiatan.pengajuan-mitra.index', compact('pengajuan'));
     }
 
