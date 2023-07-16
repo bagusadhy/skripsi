@@ -19,7 +19,7 @@ class PendaftarPklController extends Controller
      */
     public function index()
     {
-        $pendaftar = PendaftarPkl::with('siswa', 'mitra')->get();
+        $pendaftar = PendaftarPkl::with('siswa', 'siswa.kelas', 'siswa.jurusan', 'mitra')->get();
         return view('pages.backsite.kegiatan.pendaftar-pkl.index', compact('pendaftar'));
     }
 
