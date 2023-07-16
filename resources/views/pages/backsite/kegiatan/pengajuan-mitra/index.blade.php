@@ -45,6 +45,7 @@
                         <thead>
                             <tr>
                                 <th class="whitespace-nowrap">Siswa</th>
+                                <th class="whitespace-nowrap">Kelas</th>
                                 <th class="whitespace-nowrap">Nama Perusahaan</th>
                                 <th class="whitespace-nowrap">Status</th>
                                 <th class="whitespace-nowrap">Action</th>
@@ -54,6 +55,7 @@
                             @foreach ($pengajuan as $data)
                                 <tr>
                                     <td class="whitespace-nowrap">{{ $data->siswa->nama }}</td>
+                                    <td class="whitespace-nowrap">{{ $data->siswa->kelas->kelas }}</td>
                                     <td class="whitespace-nowrap">{{ $data->nama }}</td>
                                     <td class="whitespace-nowrap">
                                         @switch($data->status)
