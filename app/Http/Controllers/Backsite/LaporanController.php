@@ -19,7 +19,7 @@ class LaporanController extends Controller
      */
     public function index()
     {
-        $laporan = Laporan::with('siswa')->get();
+        $laporan = Laporan::with('siswa', 'siswa.kelas', 'siswa.jurusan')->get();
         return view('pages.backsite.kegiatan.laporan.index', compact('laporan'));
     }
 
