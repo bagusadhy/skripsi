@@ -21,8 +21,7 @@ class SurveyController extends Controller
     {
         $data = Survey::orderBy('id', 'ASC')->get();
 
-        // dd($data);
-
+        confirmDelete();
         return view('pages.backsite.master-data.survey.index', compact('data'));
     }
 
