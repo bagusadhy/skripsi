@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Backsite;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use App\Models\Kegiatan\AktivitasSiswa;
+use App\Models\MasterData\Siswa;
+
 class AktivitasSiswaController extends Controller
 {
     public function __construct()
@@ -17,7 +20,9 @@ class AktivitasSiswaController extends Controller
      */
     public function index()
     {
-        return view('pages.backsite.kegiatan.aktivitas-siswa.index');
+        $aktivitas = AktivitasSiswa::select('siswa_id', AktivitasSiswa::raw('COUNT(presensi) as total_presensi'))->with('siswa', 'siswa.kelas', 'siswa.jurusan')->groupBy('siswa_id')->get();
+
+        return view('pages.backsite.kegiatan.aktivitas-siswa.index', compact('aktivitas'));
     }
 
 
@@ -42,7 +47,8 @@ class AktivitasSiswaController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $aktivitas = AktivitasSiswa::where('siswa_id', $id)->paginate(5);
+        return view('pages.backsite.kegiatan.aktivitas-siswa.show', compact('aktivitas'));
     }
 
     /**
