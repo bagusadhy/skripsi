@@ -32,6 +32,7 @@ class SiswaController extends Controller
         $kelas = Kelas::orderBy('id', 'ASC')->get();
         $data = Siswa::with('jurusan', 'kelas')->get();
 
+        confirmDelete();
         return view('pages.backsite.master-data.siswa.index', compact('data', 'jurusan', 'kelas'));
     }
 
@@ -127,7 +128,7 @@ class SiswaController extends Controller
     {
         DB::transaction(function () use ($siswa) {
             User::where('id', $siswa->user_id)->forceDelete();
-            $siswa->forceDelete();
+            $siswa->delete();
         });
 
         alert()->success('Berhasil', 'Data Siswa Berhasil Dihapus');

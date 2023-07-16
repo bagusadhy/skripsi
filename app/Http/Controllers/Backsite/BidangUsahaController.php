@@ -21,6 +21,8 @@ class BidangUsahaController extends Controller
     public function index()
     {
         $data = BidangUsaha::orderBy('id', 'ASC')->get();
+
+        confirmDelete();
         return view('pages.backsite.master-data.bidang-usaha.index', compact('data'));
     }
 
@@ -78,7 +80,7 @@ class BidangUsahaController extends Controller
      */
     public function destroy(BidangUsaha $bidangUsaha)
     {
-        $bidangUsaha->forceDelete();
+        $bidangUsaha->delete();
 
         alert()->success('Success Message', 'Berhasil Menghapus Data');
         return back();

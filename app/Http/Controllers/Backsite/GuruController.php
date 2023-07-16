@@ -27,6 +27,8 @@ class GuruController extends Controller
     {
         $jurusan = Jurusan::orderBy('id', 'ASC')->get();
         $data = Guru::with('user', 'jurusan')->get();
+
+        confirmDelete();
         return view('pages.backsite.master-data.guru.index', compact('data', 'jurusan'));
     }
 
@@ -46,7 +48,7 @@ class GuruController extends Controller
     {
 
         try {
-            DB::transaction(function () use ($request){
+            DB::transaction(function () use ($request) {
                 $user_data = [
                     'name' => $request->nama,
                     'email' => $request->email,
@@ -109,7 +111,7 @@ class GuruController extends Controller
     {
         DB::transaction(function () use ($guru) {
             User::where('id', $guru->user_id)->forceDelete();
-            $guru->forceDelete();
+            $guru->delete();
         });
 
         alert()->success('Berhasil', 'Data Guru Berhasil Dihapus');

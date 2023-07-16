@@ -21,6 +21,8 @@ class JurusanController extends Controller
     public function index()
     {
         $data = Jurusan::orderBy('id', 'ASC')->get();
+
+        confirmDelete();
         return view('pages.backsite.master-data.jurusan.index', compact('data'));
     }
 
@@ -78,7 +80,7 @@ class JurusanController extends Controller
      */
     public function destroy(Jurusan $jurusan)
     {
-        $jurusan->forceDelete();
+        $jurusan->delete();
 
         alert()->success('Berhasil', 'Data berhasil dihapus');
         return back();

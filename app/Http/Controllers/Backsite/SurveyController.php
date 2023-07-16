@@ -79,7 +79,7 @@ class SurveyController extends Controller
      */
     public function destroy(Survey $survey)
     {
-        $survey->forceDelete();
+        $survey->delete();
 
         alert()->success('Success Message', 'Berhasil Menghapus Data');
         return back();

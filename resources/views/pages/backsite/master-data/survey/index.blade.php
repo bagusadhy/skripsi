@@ -117,16 +117,14 @@
                                                         data-te-dropdown-item-ref>Edit</a>
                                                 </li>
                                                 <li>
-                                                    <a class="block w-full whitespace-nowrap bg-transparent px-16 py-2 text-sm font-normal hover:bg-neutral-200"
-                                                        href=""
-                                                        data-te-dropdown-item-ref
-                                                        id="delete">Hapus
-                                                        <form action="{{ route('backsite.survey.destroy', $survey->id) }}" id="form-delete" method="post"
-                                                            style="display: none">
-                                                            @csrf
-                                                            @method('delete')
-                                                        </form>
-                                                    </a>
+                                                    <form action="{{ route('backsite.survey.destroy', $survey->id) }}"
+                                                        id="form-delete" method="post" data-te-dropdown-item-ref>
+                                                        @csrf
+                                                        @method('delete')
+                                                        <button type="submit"
+                                                            class="delete-confirm block w-full whitespace-nowrap bg-transparent px-16 py-2 text-sm font-normal hover:bg-neutral-200"
+                                                            >Hapus</button>
+                                                    </form>
                                                 </li>
                                             </ul>
                                         </div>
@@ -151,8 +149,9 @@
 
             var table = $('#survey-table').DataTable();
 
-            $('#delete').on('click', function() {
+            $('.delete-confirm').on('click', function() {
                 event.preventDefault();
+                let form = $(this).closest('form');
                 Swal.fire({
                     title: 'Apakah Yakin?',
                     text: "Hapus Survey!",
@@ -163,7 +162,7 @@
                     icon: 'warning'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        $('#form-delete').submit()
+                        form.submit()
                     } else if (result.isDenied) {
                         Swal.fire('Changes are not saved', '', 'info')
                     }

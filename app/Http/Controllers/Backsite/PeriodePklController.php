@@ -81,7 +81,7 @@ class PeriodePklController extends Controller
      */
     public function destroy(PeriodePkl $periode)
     {
-        $periode->forceDelete();
+        $periode->delete();
 
         alert()->success('Success Message', 'Berhasil Menghapus Data');
         return back();

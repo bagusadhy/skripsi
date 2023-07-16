@@ -184,10 +184,6 @@
                                                                 style="display: none">
                                                                 @csrf
                                                                 @method('PUT')
-                                                                <input type="hidden" name="tanggal_dimulai"
-                                                                    value="{{ $periode->tanggal_dimulai }}">
-                                                                <input type="hidden" name="tanggal_berakhir"
-                                                                    value="{{ $periode->tanggal_berakhir }}">
                                                             </form>
                                                         </a>
                                                     @else
@@ -199,26 +195,19 @@
                                                                 style="display: none">
                                                                 @csrf
                                                                 @method('PUT')
-                                                                <input type="hidden" name="tanggal_dimulai"
-                                                                    value="{{ $periode->tanggal_dimulai }}">
-                                                                <input type="hidden" name="tanggal_berakhir"
-                                                                    value="{{ $periode->tanggal_berakhir }}">
                                                             </form>
                                                         </a>
                                                     @endif
                                                 </li>
                                                 <li>
-                                                    <a class="block w-full whitespace-nowrap bg-transparent px-16 py-2 text-sm font-normal hover:bg-neutral-200"
-                                                        href=""
-                                                        data-te-dropdown-item-ref
-                                                        id="delete"
-                                                        >Hapus
-                                                        <form action="{{ route('backsite.periode.destroy', $periode->id) }}" id="form-delete" method="post"
-                                                            style="display: none">
-                                                            @csrf
-                                                            @method('delete')
-                                                        </form>
-                                                    </a>
+                                                     <form action="{{ route('backsite.periode.destroy', $periode->id) }}"
+                                                        id="form-delete" method="post" data-te-dropdown-item-ref>
+                                                        @csrf
+                                                        @method('delete')
+                                                        <button type="submit"
+                                                            class="delete-confirm block w-full whitespace-nowrap bg-transparent px-16 py-2 text-sm text-left font-normal hover:bg-neutral-200"
+                                                            >Hapus</button>
+                                                    </form>
                                                 </li>
                                             </ul>
                                         </div>
@@ -242,19 +231,20 @@
 
             var table = $('#periode-table').DataTable();
 
-            $('#delete').on('click', function() {
+            $('.delete-confirm').on('click', function() {
                 event.preventDefault();
+                let form = $(this).closest('form');
                 Swal.fire({
                     title: 'Apakah Yakin?',
                     text: "Hapus Periode!",
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
-                    confirmButtonText: 'Tolak',
+                    confirmButtonText: 'Hapus',
                     icon: 'warning'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        $('#form-delete').submit()
+                        form.submit()
                     } else if (result.isDenied) {
                         Swal.fire('Changes are not saved', '', 'info')
                     }

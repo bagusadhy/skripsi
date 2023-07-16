@@ -117,17 +117,14 @@
                                                         data-te-dropdown-item-ref>Edit</a>
                                                 </li>
                                                 <li>
-                                                    <a class="block w-full whitespace-nowrap bg-transparent px-16 py-2 text-sm font-normal hover:bg-neutral-200"
-                                                        href="{{ route('backsite.jurusan.destroy', $jurusan->id) }}"
-                                                        data-te-dropdown-item-ref
-                                                        onclick="event.preventDefault(); $('#form-delete').attr('action', '{{ route('backsite.jurusan.destroy', $jurusan->id) }}'); document.getElementById('form-delete').submit()">Hapus
-                                                        <form action="" id="form-delete" method="post"
-                                                            style="display: none">
-                                                            @csrf
-                                                            @method('delete')
-                                                        </form>
-                                                    </a>
-                                                </li>
+                                                   <form action="{{ route('backsite.jurusan.destroy', $jurusan->id) }}"
+                                                        id="form-delete" method="post" data-te-dropdown-item-ref>
+                                                        @csrf
+                                                        @method('delete')
+                                                        <button type="submit"
+                                                            class="delete-confirm block w-full whitespace-nowrap bg-transparent px-16 py-2 text-sm text-left font-normal hover:bg-neutral-200"
+                                                            >Hapus</button>
+                                                    </form>
                                             </ul>
                                         </div>
                                     </td>
@@ -149,6 +146,26 @@
         $(document).ready(function() {
 
             var table = $('#jurusan-table').DataTable();
+
+             $('.delete-confirm').on('click', function() {
+                event.preventDefault();
+                let form = $(this).closest('form');
+                Swal.fire({
+                    title: 'Apakah Yakin?',
+                    text: "Hapus Jurusan!",
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Hapus',
+                    icon: 'warning'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit()
+                    } else if (result.isDenied) {
+                        Swal.fire('Changes are not saved', '', 'info')
+                    }
+                });
+            });
 
         });
     </script>

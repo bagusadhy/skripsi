@@ -20,6 +20,8 @@ class KelasController extends Controller
     public function index()
     {
         $data = Kelas::orderBy('id', 'ASC')->get();
+
+        confirmDelete();
         return view('pages.backsite.master-data.kelas.index', compact('data'));
     }
 

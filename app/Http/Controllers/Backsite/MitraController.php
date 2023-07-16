@@ -26,6 +26,8 @@ class MitraController extends Controller
     {
         $bidang_usaha = BidangUsaha::orderBy('id', 'ASC')->get();
         $data = Mitra::with('user', 'bidang_usaha')->get();
+
+        confirmDelete();
         return view('pages.backsite.master-data.mitra.index', compact('data', 'bidang_usaha'));
     }
 
@@ -102,7 +104,7 @@ class MitraController extends Controller
     {
         DB::transaction(function () use ($mitra) {
             User::where('id', $mitra->user_id)->forceDelete();
-            $mitra->forceDelete();
+            $mitra->delete();
         });
 
         alert()->success('Berhasil', 'Data Mitra Berhasil Dihapus');

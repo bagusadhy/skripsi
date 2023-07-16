@@ -117,16 +117,14 @@
                                                         data-te-dropdown-item-ref>Edit</a>
                                                 </li>
                                                 <li>
-                                                    <a class="block w-full whitespace-nowrap bg-transparent px-16 py-2 text-sm font-normal hover:bg-neutral-200"
-                                                        href="{{ route('backsite.bidang_usaha.destroy', $bidang->id) }}"
-                                                        data-te-dropdown-item-ref
-                                                        onclick="event.preventDefault(); $('#form-delete').attr('action', '{{ route('backsite.bidang_usaha.destroy', $bidang->id) }}'); document.getElementById('form-delete').submit()">Hapus
-                                                        <form action="" id="form-delete" method="post"
-                                                            style="display: none">
-                                                            @csrf
-                                                            @method('delete')
-                                                        </form>
-                                                    </a>
+                                                    <form action="{{ route('backsite.bidang_usaha.destroy', $bidang->id) }}"
+                                                        id="form-delete" method="post" data-te-dropdown-item-ref>
+                                                        @csrf
+                                                        @method('delete')
+                                                        <button type="submit"
+                                                            class="delete-confirm block w-full whitespace-nowrap bg-transparent px-16 py-2 text-sm text-left font-normal hover:bg-neutral-200"
+                                                            >Hapus</button>
+                                                    </form>
                                                 </li>
                                             </ul>
                                         </div>
@@ -152,21 +150,24 @@
 
             var table = $('#bidang-table').DataTable();
 
-            $('#bidang-table tfoot th').each(function(i) {
-                var title = $('#bidang-table thead th').eq($(this).index()).text();
-                $(this).html(
-                    '<input type="text" class="rounded-lg border border-gray-400 placeholder:font-normal focus:font-normal" placeholder="Search ' +
-                    title +
-                    '" data-index="' + i + '" style="width:100%;"/>');
-            });
-
-
-            // Filter event handler
-            $(table.table().container()).on('keyup', 'tfoot input', function() {
-                table
-                    .column($(this).data('index'))
-                    .search(this.value)
-                    .draw();
+            $('.delete-confirm').on('click', function() {
+                event.preventDefault();
+                let form = $(this).closest('form');
+                Swal.fire({
+                    title: 'Apakah Yakin?',
+                    text: "Hapus Bidang Usaha!",
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Hapus',
+                    icon: 'warning'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit()
+                    } else if (result.isDenied) {
+                        Swal.fire('Changes are not saved', '', 'info')
+                    }
+                });
             });
         });
     </script>
