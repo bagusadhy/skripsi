@@ -1,6 +1,6 @@
 @extends('layouts.mitra')
 
-@section('title', 'Siswa')
+@section('title', 'Aktivitas')
 
 @section('content')
     <main class="basis-10/12 bg-white min-h-fit px-10 py-5  overflow-x-hidden">
