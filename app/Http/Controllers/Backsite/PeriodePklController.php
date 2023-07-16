@@ -22,6 +22,8 @@ class PeriodePklController extends Controller
     public function index()
     {
         $data = PeriodePkl::orderBy('id', 'ASC')->get();
+
+        confirmDelete();
         return view('pages.backsite.master-data.periode-pkl.index', compact('data'));
     }
 
