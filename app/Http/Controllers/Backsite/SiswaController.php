@@ -14,6 +14,7 @@ use App\Http\Requests\Siswa\StoreSiswaRequest;
 use App\Http\Requests\Siswa\UpdateSiswaRequest;
 
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 class SiswaController extends Controller
 {
@@ -29,11 +30,8 @@ class SiswaController extends Controller
     {
         $jurusan = Jurusan::orderBy('id', 'ASC')->get();
         $kelas = Kelas::orderBy('id', 'ASC')->get();
-        $data = Siswa::join('users', 'siswa.user_id', '=', 'users.id')
-            ->join('jurusan', 'siswa.jurusan_id', '=', 'jurusan.id')
-            ->join('kelas', 'siswa.kelas_id', '=', 'kelas.id')
-            ->select('siswa.*', 'users.name', 'users.email', 'jurusan.jurusan', 'kelas.kelas')
-            ->get();
+        $data = Siswa::with('jurusan', 'kelas')->get();
+
         return view('pages.backsite.master-data.siswa.index', compact('data', 'jurusan', 'kelas'));
     }
 
@@ -51,30 +49,38 @@ class SiswaController extends Controller
      */
     public function store(StoreSiswaRequest $request)
     {
-        $user_data = [
-            'name' => $request->nama,
-            'email' => $request->email,
-            'password' => Hash::make($request->email),
-            'role_id' => 4
-        ];
+        try {
+            DB::transaction(function () use ($request) {
+                $user_data = [
+                    'name' => $request->nama,
+                    'email' => $request->email,
+                    'password' => Hash::make($request->email),
+                    'role_id' => 4
+                ];
 
-        $user = User::create($user_data);
+                $user = User::create($user_data);
 
-        $siswa = [
-            'user_id' => $user->id,
-            'jurusan_id' => $request->jurusan_id,
-            'kelas_id' => $request->kelas_id,
-            'nisn' => $request->nisn,
-            'nama' => $request->nama,
-            'jenis_kelamin' => $request->jenis_kelamin,
-            'tempat_lahir' => $request->tempat_lahir,
-            'tanggal_lahir' => $request->tanggal_lahir,
-            'agama' => $request->agama,
-            'kontak' => $request->kontak,
-            'alamat' => $request->alamat,
-        ];
+                $siswa = [
+                    'user_id' => $user->id,
+                    'jurusan_id' => $request->jurusan_id,
+                    'kelas_id' => $request->kelas_id,
+                    'nisn' => $request->nisn,
+                    'nama' => $request->nama,
+                    'jenis_kelamin' => $request->jenis_kelamin,
+                    'tempat_lahir' => $request->tempat_lahir,
+                    'tanggal_lahir' => $request->tanggal_lahir,
+                    'agama' => $request->agama,
+                    'kontak' => $request->kontak,
+                    'alamat' => $request->alamat,
+                ];
 
-        Siswa::create($siswa);
+                Siswa::create($siswa);
+            });
+
+        } catch (\Throwable $th) {
+            alert()->error('Gagal', 'Data Siswa Gagal Ditambahkan');
+            return redirect(route('backsite.siswa.index'));
+        }
 
         alert()->success('Berhasil', 'Data Siswa Berhasil Ditambahkan');
         return redirect(route('backsite.siswa.index'));
@@ -85,7 +91,9 @@ class SiswaController extends Controller
      */
     public function show(Siswa $siswa)
     {
-        return abort(404);
+       $siswa->with('jurusan', 'kelas');
+
+        return view('pages.backsite.master-data.siswa.show', compact('siswa'));
     }
 
     /**
@@ -95,12 +103,8 @@ class SiswaController extends Controller
     {
         $jurusan = Jurusan::orderBy('id', 'ASC')->get();
         $kelas = Kelas::orderBy('id', 'ASC')->get();
-        $data = $siswa->join('jurusan', 'siswa.jurusan_id', '=', 'jurusan.id')
-            ->join('kelas', 'siswa.kelas_id', '=', 'kelas.id')
-            ->select('siswa.*', 'jurusan.id as id_jurusan', 'jurusan.jurusan', 'kelas.id as id_kelas', 'kelas.kelas')->where('siswa.id', $siswa->id)
-            ->get();
+        $data = $siswa->with('kelas', 'jurusan')->where('id', $siswa->id)->first();
 
-        // dd($data[0]->id);
         return view('pages.backsite.master-data.siswa.edit', compact('data', 'jurusan', 'kelas'));
     }
 
@@ -121,8 +125,10 @@ class SiswaController extends Controller
      */
     public function destroy(Siswa $siswa)
     {
-        User::where('id', $siswa->user_id)->forceDelete();
-        $siswa->forceDelete();
+        DB::transaction(function () use ($siswa) {
+            User::where('id', $siswa->user_id)->forceDelete();
+            $siswa->forceDelete();
+        });
 
         alert()->success('Berhasil', 'Data Siswa Berhasil Dihapus');
         return redirect(route('backsite.siswa.index'));

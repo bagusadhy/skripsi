@@ -44,7 +44,7 @@
 
 
             <div class="px-5 py-4 mb-10">
-                <form action="{{ route('backsite.siswa.update', $data[0]->id) }}" method="POST">
+                <form action="{{ route('backsite.siswa.update', $data->id) }}" method="POST">
                     @csrf
                     @method('PUT')
 
@@ -54,7 +54,7 @@
                         </label>
                         <input type="text"
                             class="w-full h-11 rounded-md border border-gray-300 px-5 py-3 focus:outline-none resize-none"
-                            name="nama" id="nama" required value="{{ $data[0]->nama }}"></input>
+                            name="nama" id="nama" required value="{{ $data->nama }}"></input>
                         @if ($errors->has('nama'))
                             <p style="font-style: bold; color: red;">{{ $errors->first('nama') }}</p>
                         @endif
@@ -65,7 +65,7 @@
                         </label>
                         <input type="number"
                             class="w-full h-11 rounded-md border border-gray-300 px-5 py-3 focus:outline-none resize-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-                            name="nisn" id="nisn" required value="{{ $data[0]->nisn }}"></input>
+                            name="nisn" id="nisn" required value="{{ $data->nisn }}"></input>
                         @if ($errors->has('nisn'))
                             <p style="font-style: bold; color: red;">{{ $errors->first('nisn') }}</p>
                         @endif
@@ -78,7 +78,7 @@
                         <select data-te-select-init data-te-select-placeholder="Pilih Jurusan" name="jurusan_id" required>
                             @foreach ($jurusan as $items)
                                 <option value="{{ $items->id }}"
-                                    {{ $data[0]->id_jurusan == $items->id ? 'selected' : '' }}>{{ $items->jurusan }}
+                                    {{ $data->id_jurusan == $items->id ? 'selected' : '' }}>{{ $items->jurusan }}
                                 </option>
                             @endforeach
                         </select>
@@ -93,7 +93,7 @@
                         <select data-te-select-init data-te-select-placeholder="Pilih Kelas" name="kelas_id" required>
                             @foreach ($kelas as $items)
                                 <option value="{{ $items->id }}"
-                                    {{ $data[0]->id_kelas == $items->id ? 'selected' : '' }}>{{ $items->kelas }}</option>
+                                    {{ $data->id_kelas == $items->id ? 'selected' : '' }}>{{ $items->kelas }}</option>
                             @endforeach
                         </select>
                         @if ($errors->has('kelas'))
@@ -107,9 +107,9 @@
                         </label>
                         <select data-te-select-init data-te-select-placeholder="Pilih Jenis Kelamin" name="jenis_kelamin"
                             required>
-                            <option value="1" {{ $data[0]->jenis_kelamin == '1' ? 'selected' : '' }}>Laki-laki
+                            <option value="1" {{ $data->jenis_kelamin == '1' ? 'selected' : '' }}>Laki-laki
                             </option>
-                            <option value="2" {{ $data[0]->jenis_kelamin == '2' ? 'selected' : '' }}>Perempuan
+                            <option value="2" {{ $data->jenis_kelamin == '2' ? 'selected' : '' }}>Perempuan
                             </option>
                         </select>
                         @if ($errors->has('nama'))
@@ -123,7 +123,7 @@
                         </label>
                         <input type="text"
                             class="w-full h-11 rounded-md border border-gray-300 px-5 py-3 focus:outline-none resize-none"
-                            name="tempat_lahir" id="tempat_lahir" required value="{{ $data[0]->tempat_lahir }}"></input>
+                            name="tempat_lahir" id="tempat_lahir" required value="{{ $data->tempat_lahir }}"></input>
                         @if ($errors->has('tempat_lahir'))
                             <p style="font-style: bold; color: red;">{{ $errors->first('tempat_lahir') }}</p>
                         @endif
@@ -133,7 +133,7 @@
                             <span class="font-medium">Tanggal Lahir<code class="text-red-500">*</code></span>
                             <input type="text" id="tanggal_lahir" name="tanggal_lahir"
                                 class="w-full h-11 rounded-md border border-gray-300 px-5 py-3 focus:outline-none resize-none"
-                                required value="{{ $data[0]->tanggal_lahir }}" />
+                                required value="{{ $data->tanggal_lahir }}" />
                             <span class="absolute top-8 right-[20px] bottom-1/2 translate-y-[58%] hover:cursor-pointer">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -161,7 +161,7 @@
                         </label>
                         <input type="text"
                             class="w-full h-11 rounded-md border border-gray-300 px-5 py-3 focus:outline-none resize-none"
-                            name="agama" id="agama" required value="{{ $data[0]->agama }}"></input>
+                            name="agama" id="agama" required value="{{ $data->agama }}"></input>
                         @if ($errors->has('agama'))
                             <p style="font-style: bold; color: red;">{{ $errors->first('agama') }}</p>
                         @endif
@@ -173,7 +173,7 @@
                         </label>
                         <input type="number"
                             class="w-full h-11 rounded-md border border-gray-300 px-5 py-3 focus:outline-none resize-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-                            name="kontak" id="kontak" required value="{{ $data[0]->kontak }}"></input>
+                            name="kontak" id="kontak" required value="{{ $data->kontak }}"></input>
                         @if ($errors->has('kontak'))
                             <p style="font-style: bold; color: red;">{{ $errors->first('kontak') }}</p>
                         @endif
@@ -185,7 +185,7 @@
                         </label>
                         <textarea type="text"
                             class="w-full h-20 rounded-md border border-gray-300 px-5 py-3 focus:outline-none resize-none" name="alamat"
-                            id="alamat" required>{{ $data[0]->alamat }}</textarea>
+                            id="alamat" required>{{ $data->alamat }}</textarea>
                         @if ($errors->has('alamat'))
                             <p style="font-style: bold; color: red;">{{ $errors->first('alamat') }}</p>
                         @endif

@@ -3,7 +3,7 @@
 @section('title', 'Siswa')
 
 @section('content')
-    <main class="basis-10/12 bg-white min-h-screen px-10 py-5  overflow-x-hidden">
+    <main class="basis-10/12 bg-white min-h-screen py-5 overflow-x-hidden">
 
         @if ($errors->any())
             <div class="mb-3 hidden w-full items-center rounded-lg bg-danger-100 px-6 py-5 text-base text-warning-800 data-[te-alert-show]:inline-flex"
@@ -38,7 +38,7 @@
                 </div>
             </div>
 
-            <div id="accordionExample" class="shadow-lg mb-3 rounded-lg">
+            <div id="accordionExample" class="shadow-md mb-3 rounded-lg">
                 <div class="rounded-lg border border-neutral-200 bg-white px">
                     <h2 class="mb-0" id="headingOne">
                         <button
@@ -224,23 +224,16 @@
                 </div>
             </div>
 
-            <div class="bg-white py-4 md:py-7 px-4 md:px-8 xl:px-10 shadow-lg rounded-lg">
+            <div class="bg-white py-4 md:py-7 px-4 shadow-md rounded-lg">
                 <div class="overflow-x-auto">
 
-                    <table id="siswa-table">
+                    <table id="siswa-table" class="stripe">
                         <thead>
                             <tr>
                                 <th>Nama Lengkap</th>
                                 <th>NISN</th>
-                                <th>Email</th>
-                                <th>Jurusan</th>
                                 <th>Kelas</th>
-                                <th>Jenis Kelamin</th>
-                                <th>Tempat Lahir</th>
-                                <th>Tanggal Lahir</th>
-                                <th>Agama</th>
-                                <th>Kontak</th>
-                                <th>Alamat</th>
+                                <th>Jurusan</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -249,19 +242,8 @@
                                 <tr data-entry-id="{{ $siswa->id }}" class="hover:bg-neutral-200 outline-2">
                                     <td class="whitespace-nowrap">{{ $siswa->nama }}</td>
                                     <td class="whitespace-nowrap">{{ $siswa->nisn }}</td>
-                                    <td class="whitespace-nowrap">{{ $siswa->email }}</td>
-                                    <td class="whitespace-nowrap">{{ $siswa->jurusan }}</td>
-                                    <td class="whitespace-nowrap">{{ $siswa->kelas }}</td>
-                                    @if ($siswa->jenis_kelamin == '1')
-                                        <td class="whitespace-nowrap">Laki-laki</td>
-                                    @else
-                                        <td class="whitespace-nowrap">Perempuan</td>
-                                    @endif
-                                    <td class="whitespace-nowrap">{{ $siswa->tempat_lahir }}</td>
-                                    <td class="whitespace-nowrap">{{ $siswa->tanggal_lahir }}</td>
-                                    <td class="whitespace-nowrap">{{ $siswa->agama }}</td>
-                                    <td class="whitespace-nowrap">{{ $siswa->kontak }}</td>
-                                    <td class="whitespace-nowrap">{{ $siswa->alamat }}</td>
+                                    <td class="whitespace-nowrap">{{ $siswa->kelas->kelas }}</td>
+                                    <td class="whitespace-nowrap">{{ $siswa->jurusan->jurusan }}</td>
                                     <td class="whitespace-nowrap">
                                         <div class="relative" data-te-dropdown-ref>
                                             <button
@@ -280,6 +262,11 @@
                                             </button>
                                             <ul class="absolute z-[1000] float-left m-0 hidden min-w-max list-none overflow-hidden rounded-lg border-none bg-white bg-clip-padding text-left text-base shadow-lg [&[data-te-dropdown-show]]:block"
                                                 aria-labelledby="dropdownMenuButton1" data-te-dropdown-menu-ref>
+                                                <li>
+                                                    <a class="block w-full whitespace-nowrap bg-transparent px-16 py-2 text-sm font-normal hover:bg-neutral-200"
+                                                        href="{{ route('backsite.siswa.show', $siswa->id) }}"
+                                                        data-te-dropdown-item-ref>Detail</a>
+                                                </li>
                                                 <li>
                                                     <a class="block w-full whitespace-nowrap bg-transparent px-16 py-2 text-sm font-normal hover:bg-neutral-200"
                                                         href="{{ route('backsite.siswa.edit', $siswa->id) }}"
@@ -304,20 +291,6 @@
                             @empty
                             @endforelse
                         </tbody>
-                        <tfoot>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                        </tfoot>
                     </table>
                 </div>
             </div>
@@ -343,22 +316,6 @@
             var table = $('#siswa-table').DataTable({
                 "autoWidth": true,
                 // "scrollX": true,
-            });
-
-            $('#siswa-table tfoot th').each(function(i) {
-                var title = $('#siswa-table thead th').eq($(this).index()).text();
-                $(this).html(
-                    '<input type="text" class="rounded-lg border border-gray-400 placeholder:font-normal focus:font-normal mt-3" placeholder="Search ' +
-                    title +
-                    '" data-index="' + i + '" style="width:100%;"/>');
-            });
-
-            // Filter event handler
-            $(table.table().container()).on('keyup', 'tfoot input', function() {
-                table
-                    .column($(this).data('index'))
-                    .search(this.value)
-                    .draw();
             });
 
         });
