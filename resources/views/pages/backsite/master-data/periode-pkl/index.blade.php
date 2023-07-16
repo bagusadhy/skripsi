@@ -121,10 +121,10 @@
                 </div>
             </div>
 
-            <div class="bg-white py-4 md:py-7 px-4 md:px-8 xl:px-10 shadow-md rounded-lg">
+            <div class="bg-white py-4 md:py-7 px-4 shadow-md rounded-lg">
                 <div class="overflow-x-auto">
 
-                    <table id="periode-table">
+                    <table id="periode-table" class="stripe">
                         <thead>
                             <tr>
                                 <th>Tanggal mulai</th>

@@ -3,7 +3,7 @@
 @section('title', 'Bidang Usaha')
 
 @section('content')
-    <main class="basis-10/12 bg-white min-h-screen px-10 py-5 ">
+    <main class="basis-10/12 bg-white min-h-screen py-5 ">
 
         @if ($errors->any())
             <div class="mb-3 hidden w-full items-center rounded-lg bg-danger-100 px-6 py-5 text-base text-warning-800 data-[te-alert-show]:inline-flex"
@@ -38,7 +38,7 @@
                 </div>
             </div>
 
-            <div id="accordionExample" class="shadow-lg mb-3 rounded-lg">
+            <div id="accordionExample" class="shadow-md mb-3 rounded-lg">
                 <div class="rounded-lg border border-neutral-200 bg-white px">
                     <h2 class="mb-0" id="headingOne">
                         <button
@@ -79,10 +79,10 @@
                 </div>
             </div>
 
-            <div class="bg-white py-4 md:py-7 px-4 md:px-8 xl:px-10 shadow-lg rounded-lg">
+            <div class="bg-white py-4 md:py-7 px-4 shadow-md rounded-lg">
                 <div class="overflow-x-auto">
 
-                    <table id="bidang-table">
+                    <table id="bidang-table" class="stripe">
                         <thead>
                             <tr>
                                 <th>Bidang Usaha</th>
@@ -135,13 +135,7 @@
                             @empty
                                 {{-- <td></td> --}}
                             @endforelse
-                            <td></td>
-                            <td></td>
                         </tbody>
-                        <tfoot>
-                            <th></th>
-                            <th></th>
-                        </tfoot>
                     </table>
                 </div>
             </div>
