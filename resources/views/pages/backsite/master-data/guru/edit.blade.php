@@ -44,7 +44,7 @@
 
 
             <div class="px-5 py-4 mb-10">
-                <form action="{{ route('backsite.guru.update', $data[0]->id) }}" method="POST">
+                <form action="{{ route('backsite.guru.update', $data->id) }}" method="POST">
                     @csrf
                     @method('PUT')
 
@@ -54,7 +54,7 @@
                         </label>
                         <input type="text"
                             class="w-full h-11 rounded-md border border-gray-300 px-5 py-3 focus:outline-none resize-none"
-                            name="nama" id="nama" required value="{{ $data[0]->nama }}"></input>
+                            name="nama" id="nama" required value="{{ $data->nama }}"></input>
                         @if ($errors->has('nama'))
                             <p style="font-style: bold; color: red;">{{ $errors->first('nama') }}</p>
                         @endif
@@ -65,7 +65,7 @@
                         </label>
                         <input type="number"
                             class="w-full h-11 rounded-md border border-gray-300 px-5 py-3 focus:outline-none resize-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-                            name="nip" id="nip" required value="{{ $data[0]->nip }}"></input>
+                            name="nip" id="nip" required value="{{ $data->nip }}"></input>
                         @if ($errors->has('nip'))
                             <p style="font-style: bold; color: red;">{{ $errors->first('nip') }}</p>
                         @endif
@@ -75,10 +75,10 @@
                             <span class="font-medium">Jurusan<code class="text-red-500">*</code></span>
                         </label>
                         <select data-te-select-init data-te-select-placeholder="Pilih Jurusan" name="jurusan_id" required>
-                            <option disabled selected></option>
+                            <option hidden selected></option>
                             @foreach ($jurusan as $items)
                                 <option value="{{ $items->id }}"
-                                    {{ $data[0]->id_jurusan == $items->id ? 'selected' : '' }}>{{ $items->jurusan }}
+                                    {{ $data->jurusan->id == $items->id ? 'selected' : '' }}>{{ $items->jurusan }}
                                 </option>
                             @endforeach
                         </select>
@@ -93,9 +93,9 @@
                         <select data-te-select-init data-te-select-placeholder="Pilih Jenis Kelamin" name="jenis_kelamin"
                             required>
                             <option disabled selected></option>
-                            <option value="1" {{ $data[0]->jenis_kelamin == '1' ? 'selected' : '' }}>Laki-laki
+                            <option value="1" {{ $data->jenis_kelamin == '1' ? 'selected' : '' }}>Laki-laki
                             </option>
-                            <option value="2" {{ $data[0]->jenis_kelamin == '2' ? 'selected' : '' }}>Perempuan
+                            <option value="2" {{ $data->jenis_kelamin == '2' ? 'selected' : '' }}>Perempuan
                             </option>
                         </select>
                         @if ($errors->has('jenis_kelamin'))
@@ -109,7 +109,7 @@
                         </label>
                         <input type="number"
                             class="w-full h-11 rounded-md border border-gray-300 px-5 py-3 focus:outline-none resize-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-                            name="kontak" id="kontak" required value="{{ $data[0]->kontak }}"></input>
+                            name="kontak" id="kontak" required value="{{ $data->kontak }}"></input>
                         @if ($errors->has('kontak'))
                             <p style="font-style: bold; color: red;">{{ $errors->first('kontak') }}</p>
                         @endif
@@ -120,7 +120,7 @@
                                 <code class="text-red-500">*</code></span>
                         </label>
                         <textarea type="text" class="w-full h-20 rounded-md border border-gray-300 px-5 py-3 focus:outline-none resize-none"
-                            name="alamat" id="alamat" required>{{ $data[0]->alamat }}</textarea>
+                            name="alamat" id="alamat" required>{{ $data->alamat }}</textarea>
                         @if ($errors->has('alamat'))
                             <p style="font-style: bold; color: red;">{{ $errors->first('alamat') }}</p>
                         @endif

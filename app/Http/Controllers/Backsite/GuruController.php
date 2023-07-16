@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\Guru\StoreGuruRequest;
 use App\Http\Requests\Guru\UpdateGuruRequest;
 
+use Illuminate\Support\Facades\DB;
+
 class GuruController extends Controller
 {
     public function __construct()
@@ -24,10 +26,7 @@ class GuruController extends Controller
     public function index()
     {
         $jurusan = Jurusan::orderBy('id', 'ASC')->get();
-        $data = Guru::join('users', 'guru.user_id', '=', 'users.id')
-            ->join('jurusan', 'guru.jurusan_id', '=', 'jurusan.id')
-            ->select('guru.*', 'users.name', 'users.email', 'jurusan.jurusan')
-            ->get();
+        $data = Guru::with('user', 'jurusan')->get();
         return view('pages.backsite.master-data.guru.index', compact('data', 'jurusan'));
     }
 
@@ -45,20 +44,28 @@ class GuruController extends Controller
      */
     public function store(StoreGuruRequest $request)
     {
-        $user_data = [
-            'name' => $request->nama,
-            'email' => $request->email,
-            'password' => Hash::make($request->email),
-            'role_id' => 2
-        ];
 
-        $user = User::create($user_data);
+        try {
+            DB::transaction(function () use ($request){
+                $user_data = [
+                    'name' => $request->nama,
+                    'email' => $request->email,
+                    'password' => Hash::make($request->email),
+                    'role_id' => 2
+                ];
 
-        $guru = $request->all();
-        $guru['user_id'] = $user->id;
-        unset($guru['email']);
+                $user = User::create($user_data);
 
-        Guru::create($guru);
+                $guru = $request->all();
+                $guru['user_id'] = $user->id;
+                unset($guru['email']);
+
+                Guru::create($guru);
+            });
+        } catch (\Throwable $th) {
+            alert()->error('Gagal', 'Data Guru Gagal Ditambahkan');
+            return redirect(route('backsite.guru.index'));
+        }
 
         alert()->success('Berhasil', 'Data Guru Berhasil Ditambahkan');
         return redirect(route('backsite.guru.index'));
@@ -78,11 +85,7 @@ class GuruController extends Controller
     public function edit(Guru $guru)
     {
         $jurusan = Jurusan::orderBy('id', 'ASC')->get();
-        $data = Guru::join('jurusan', 'guru.jurusan_id', '=', 'jurusan.id')
-            ->select('guru.*', 'jurusan.id as id_jurusan', 'jurusan.jurusan')
-            ->get();
-
-
+        $data = Guru::with('user', 'jurusan')->where('id', $guru->id)->first();
 
         return view('pages.backsite.master-data.guru.edit', compact('data', 'jurusan'));
     }
@@ -104,8 +107,10 @@ class GuruController extends Controller
      */
     public function destroy(Guru $guru)
     {
-        User::where('id', $guru->user_id)->forceDelete();
-        $guru->forceDelete();
+        DB::transaction(function () use ($guru) {
+            User::where('id', $guru->user_id)->forceDelete();
+            $guru->forceDelete();
+        });
 
         alert()->success('Berhasil', 'Data Guru Berhasil Dihapus');
         return redirect(route('backsite.guru.index'));
