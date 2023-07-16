@@ -3,7 +3,7 @@
 @section('title', 'Mitra')
 
 @section('content')
-    <main class="basis-10/12 bg-white min-h-screen px-10 py-5  overflow-x-hidden">
+    <main class="basis-10/12 bg-white min-h-screen py-5 overflow-x-hidden">
 
         @if ($errors->any())
             <div class="mb-3 hidden w-full items-center rounded-lg bg-danger-100 px-6 py-5 text-base text-warning-800 data-[te-alert-show]:inline-flex"
@@ -38,7 +38,7 @@
                 </div>
             </div>
 
-            <div id="accordionExample" class="shadow-lg mb-3 rounded-lg">
+            <div id="accordionExample" class="shadow-md mb-3 rounded-lg">
                 <div class="rounded-lg border border-neutral-200 bg-white px">
                     <h2 class="mb-0" id="headingOne">
                         <button
@@ -157,28 +157,30 @@
                 </div>
             </div>
 
-            <div class="bg-white py-4 md:py-7 px-4 md:px-8 xl:px-10 shadow-lg rounded-lg">
+            <div class="bg-white py-4 md:py-7 px-4 shadow-md rounded-lg">
                 <div class="overflow-x-auto">
 
-                    <table id="mitra-table">
+                    <table id="mitra-table" class="stripe">
                         <thead>
                             <tr>
-                                <th>Nama Perusahaan</th>
-                                <th>Bidang Usaha</th>
-                                <th>Nama Pimpinan</th>
-                                <th>Nama Pembimbing</th>
-                                <th>Kontak</th>
-                                <th>Alamat</th>
-                                <th>Action</th>
+                                <th class="whitespace-nowrap">Nama Perusahaan</th>
+                                <th class="whitespace-nowrap">Bidang Usaha</th>
+                                <th class="whitespace-nowrap">Nama Pimpinan</th>
+                                <th class="whitespace-nowrap">Nama Pembimbing</th>
+                                <th class="whitespace-nowrap">Email</th>
+                                <th class="whitespace-nowrap">Kontak</th>
+                                <th class="whitespace-nowrap">Alamat</th>
+                                <th class="whitespace-nowrap">Action</th>
                             </tr>
                         </thead>
                         <tbody class="overflow-x-scroll">
                             @forelse ($data as $mitra)
                                 <tr data-entry-id="{{ $mitra->id }}" class="hover:bg-neutral-200 outline-2">
                                     <td class="whitespace-nowrap">{{ $mitra->nama }}</td>
-                                    <td class="whitespace-nowrap">{{ $mitra->bidang_usaha }}</td>
+                                    <td class="whitespace-nowrap">{{ $mitra->bidang_usaha->title }}</td>
                                     <td class="whitespace-nowrap">{{ $mitra->nama_pimpinan }}</td>
                                     <td class="whitespace-nowrap">{{ $mitra->nama_pembimbing }}</td>
+                                    <td class="whitespace-nowrap">{{ $mitra->user->email }}</td>
                                     <td class="whitespace-nowrap">{{ $mitra->kontak }}</td>
                                     <td class="whitespace-nowrap">{{ $mitra->alamat }}</td>
                                     <td class="whitespace-nowrap">
@@ -223,15 +225,6 @@
                             @empty
                             @endforelse
                         </tbody>
-                        <tfoot>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                        </tfoot>
                     </table>
                 </div>
             </div>
@@ -248,22 +241,6 @@
             var table = $('#mitra-table').DataTable({
                 "autoWidth": true,
                 // "scrollX": true,
-            });
-
-            $('#mitra-table tfoot th').each(function(i) {
-                var title = $('#mitra-table thead th').eq($(this).index()).text();
-                $(this).html(
-                    '<input type="text" class="rounded-lg border border-gray-400 placeholder:font-normal focus:font-normal mt-3" placeholder="Search ' +
-                    title +
-                    '" data-index="' + i + '" style="width:100%;"/>');
-            });
-
-            // Filter event handler
-            $(table.table().container()).on('keyup', 'tfoot input', function() {
-                table
-                    .column($(this).data('index'))
-                    .search(this.value)
-                    .draw();
             });
 
         });

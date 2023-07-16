@@ -44,7 +44,7 @@
 
 
             <div class="px-5 py-4 mb-10">
-                <form action="{{ route('backsite.mitra.update', $data[0]->id) }}" method="POST">
+                <form action="{{ route('backsite.mitra.update', $data->id) }}" method="POST">
                     @csrf
                     @method('PUT')
 
@@ -54,7 +54,7 @@
                         </label>
                         <input type="text"
                             class="w-full h-11 rounded-md border border-gray-300 px-5 py-3 focus:outline-none resize-none"
-                            name="nama" id="nama" required value="{{ $data[0]->nama }}"></input>
+                            name="nama" id="nama" required value="{{ $data->nama }}"></input>
                         @if ($errors->has('nama'))
                             <p style="font-style: bold; color: red;">{{ $errors->first('nama') }}</p>
                         @endif
@@ -65,7 +65,7 @@
                         </label>
                         <input type="text"
                             class="w-full h-11 rounded-md border border-gray-300 px-5 py-3 focus:outline-none resize-none"
-                            name="nama_pimpinan" id="nama_pimpinan" required value="{{ $data[0]->nama_pimpinan }}"></input>
+                            name="nama_pimpinan" id="nama_pimpinan" required value="{{ $data->nama_pimpinan }}"></input>
                         @if ($errors->has('nama_pimpinan'))
                             <p style="font-style: bold; color: red;">{{ $errors->first('nama_pimpinan') }}</p>
                         @endif
@@ -77,7 +77,7 @@
                         <input type="text"
                             class="w-full h-11 rounded-md border border-gray-300 px-5 py-3 focus:outline-none resize-none"
                             name="nama_pembimbing" id="nama_pembimbing" required
-                            value="{{ $data[0]->nama_pembimbing }}"></input>
+                            value="{{ $data->nama_pembimbing }}"></input>
                         @if ($errors->has('nama_pembimbing'))
                             <p style="font-style: bold; color: red;">{{ $errors->first('nama_pembimbing') }}</p>
                         @endif
@@ -90,7 +90,7 @@
                         <select data-te-select-init data-te-select-placeholder="Pilih Bidang Usaha" name="bidang_usaha_id"
                             required>
                             @foreach ($bidang_usaha as $items)
-                                <option value="{{ $items->id }}" {{ $data[0]->id_bidang_usaha == $items->id ? "selected" : "" }}>{{ $items->title }}</option>
+                                <option value="{{ $items->id }}" {{ $data->id_bidang_usaha == $items->id ? "selected" : "" }}>{{ $items->title }}</option>
                             @endforeach
                         </select>
                         @if ($errors->has('bidang_usaha'))
@@ -104,7 +104,7 @@
                         </label>
                         <input type="number"
                             class="w-full h-11 rounded-md border border-gray-300 px-5 py-3 focus:outline-none resize-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-                            name="kontak" id="kontak" required value="{{ $data[0]->kontak }}"></input>
+                            name="kontak" id="kontak" required value="{{ $data->kontak }}"></input>
                         @if ($errors->has('kontak'))
                             <p style="font-style: bold; color: red;">{{ $errors->first('kontak') }}</p>
                         @endif
@@ -116,7 +116,7 @@
                         </label>
                         <textarea type="text"
                             class="w-full h-20 rounded-md border border-gray-300 px-5 py-3 focus:outline-none resize-none" name="alamat"
-                            id="alamat" required value="">{{ $data[0]->alamat }}</textarea>
+                            id="alamat" required value="">{{ $data->alamat }}</textarea>
                         @if ($errors->has('alamat'))
                             <p style="font-style: bold; color: red;">{{ $errors->first('alamat') }}</p>
                         @endif

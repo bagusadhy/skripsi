@@ -8,6 +8,7 @@ use App\Models\MasterData\Mitra;
 use App\Models\MasterData\BidangUsaha;
 
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 use App\Http\Requests\Mitra\StoreMitraRequest;
 use App\Http\Requests\Mitra\UpdateMitraRequest;
@@ -24,10 +25,7 @@ class MitraController extends Controller
     public function index()
     {
         $bidang_usaha = BidangUsaha::orderBy('id', 'ASC')->get();
-        $data = Mitra::join('users', 'mitra.user_id', '=', 'users.id')
-        ->join('bidang_usaha', 'mitra.bidang_usaha_id', '=', 'bidang_usaha.id')
-        ->select('mitra.*', 'users.name', 'users.email', 'bidang_usaha.title as bidang_usaha')
-        ->get();
+        $data = Mitra::with('user', 'bidang_usaha')->get();
         return view('pages.backsite.master-data.mitra.index', compact('data', 'bidang_usaha'));
     }
 
@@ -45,21 +43,22 @@ class MitraController extends Controller
      */
     public function store(StoreMitraRequest $request)
     {
-        // dd($request->all());
-        $user_data = [
-            'name' => $request->nama,
-            'email' => $request->email,
-            'password' => Hash::make($request->email),
-            'role_id' => 2
-        ];
+        DB::transaction(function () use ($request) {
+            $user_data = [
+                'name' => $request->nama,
+                'email' => $request->email,
+                'password' => Hash::make($request->email),
+                'role_id' => 2
+            ];
 
-        $user = User::create($user_data);
+            $user = User::create($user_data);
 
-        $mitra = $request->all();
-        $mitra['user_id'] = $user->id;
-        unset($mitra['email']);
+            $mitra = $request->all();
+            $mitra['user_id'] = $user->id;
+            unset($mitra['email']);
 
-        Mitra::create($mitra);
+            Mitra::create($mitra);
+        });
 
         alert()->success('Berhasil', 'Data Mitra Berhasil Ditambahkan');
         return redirect(route('backsite.mitra.index'));
@@ -79,11 +78,7 @@ class MitraController extends Controller
     public function edit(Mitra $mitra)
     {
         $bidang_usaha = BidangUsaha::orderBy('id', 'ASC')->get();
-        $data = Mitra::join('bidang_usaha', 'mitra.bidang_usaha_id', '=', 'bidang_usaha.id')
-        ->select('mitra.*', 'bidang_usaha.id as id_bidang_usaha', 'bidang_usaha.title')
-        ->get();
-
-
+        $data = Mitra::with('user', 'bidang_usaha')->where('id', $mitra->id)->first();
 
         return view('pages.backsite.master-data.mitra.edit', compact('data', 'bidang_usaha'));
     }
@@ -105,8 +100,10 @@ class MitraController extends Controller
      */
     public function destroy(Mitra $mitra)
     {
-        User::where('id', $mitra->user_id)->forceDelete();
-        $mitra->forceDelete();
+        DB::transaction(function () use ($mitra) {
+            User::where('id', $mitra->user_id)->forceDelete();
+            $mitra->forceDelete();
+        });
 
         alert()->success('Berhasil', 'Data Mitra Berhasil Dihapus');
         return redirect(route('backsite.mitra.index'));
