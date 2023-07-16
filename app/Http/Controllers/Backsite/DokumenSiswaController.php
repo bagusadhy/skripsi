@@ -19,7 +19,7 @@ class DokumenSiswaController extends Controller
      */
     public function index()
     {
-        $dokumen = DokumenSiswa::with('siswa')->get();
+        $dokumen = DokumenSiswa::with('siswa', 'siswa.kelas', 'siswa.jurusan')->get();
         return view('pages.backsite.kegiatan.dokumen-siswa.index', compact('dokumen'));
     }
 
