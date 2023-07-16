@@ -3,7 +3,7 @@
 @section('title', 'Nilai')
 
 @section('content')
-    <main class="basis-10/12 bg-white min-h-screen px-10 py-5  overflow-x-hidden">
+    <main class="basis-10/12 bg-white min-h-screen py-5 overflow-x-hidden">
 
         @if ($errors->any())
             <div class="mb-3 hidden w-full items-center rounded-lg bg-danger-100 px-6 py-5 text-base text-warning-800 data-[te-alert-show]:inline-flex"
@@ -38,13 +38,15 @@
                 </div>
             </div>
 
-            <div class="bg-white py-4 md:py-7 px-4 md:px-8 xl:px-10 shadow-lg rounded-lg">
+            <div class="bg-white py-4 md:py-7 px-4 md:px-8 xl:px-10 shadow-md rounded-lg">
                 <div class="overflow-x-auto">
 
                     <table id="nilai-table">
                         <thead>
                             <tr>
                                 <th class="whitespace-nowrap">Siswa</th>
+                                <th class="whitespace-nowrap">Kelas</th>
+                                <th class="whitespace-nowrap">Jurusan</th>
                                 <th class="whitespace-nowrap">Nilai</th>
                             </tr>
                         </thead>
@@ -52,14 +54,14 @@
                             @foreach ($nilai as $data)
                                 <tr>
                                     <td class="whitespace-nowrap">{{ $data->siswa->nama }}</td>
-                                    <td class="whitespace-nowrap">{{ $data->nilai }}</td>
+                                    <td class="whitespace-nowrap">{{ $data->siswa->kelas->kelas }}</td>
+                                    <td class="whitespace-nowrap">{{ $data->siswa->jurusan->jurusan }}</td>
+                                    <td class="whitespace-nowrap">
+                                        <a href="{{ url($data->nilai) }}" class="text-blue-500 cursor-pointer">Lihat Nilai</a>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
-                        <tfoot>
-                            <th></th>
-                            <th></th>
-                        </tfoot>
                     </table>
                 </div>
             </div>
@@ -77,23 +79,6 @@
                 "autoWidth": true,
                 // "scrollX": true,
             });
-
-            $('#nilai-table tfoot th').each(function(i) {
-                var title = $('#nilai-table thead th').eq($(this).index()).text();
-                $(this).html(
-                    '<input type="text" class="rounded-lg border border-gray-400 placeholder:font-normal focus:font-normal mt-3" placeholder="Search ' +
-                    title +
-                    '" data-index="' + i + '" style="width:100%;"/>');
-            });
-
-            // Filter event handler
-            $(table.table().container()).on('keyup', 'tfoot input', function() {
-                table
-                    .column($(this).data('index'))
-                    .search(this.value)
-                    .draw();
-            });
-
         });
     </script>
 @endpush

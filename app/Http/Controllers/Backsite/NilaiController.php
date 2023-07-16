@@ -19,7 +19,7 @@ class NilaiController extends Controller
      */
     public function index()
     {
-        $nilai = Nilai::with('siswa')->get();
+        $nilai = Nilai::with('siswa', 'siswa.kelas', 'siswa.jurusan')->get();
         return view('pages.backsite.kegiatan.nilai.index', compact('nilai'));
     }
 
