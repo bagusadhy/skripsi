@@ -17,18 +17,21 @@ class PesertaPklSeeder extends Seeder
             [
                 'siswa_id' => 1,
                 'mitra_id' => 1,
+                'lowongan_id' => 1,
                 'guru_id' => 1,
                 'periode_id' => 1,
             ],
             [
                 'siswa_id' => 2,
                 'mitra_id' => 1,
+                'lowongan_id' => 1,
                 'guru_id' => 1,
                 'periode_id' => 1,
             ],
             [
                 'siswa_id' => 3,
                 'mitra_id' => 1,
+                'lowongan_id' => 1,
                 'guru_id' => 1,
                 'periode_id' => 1,
             ],
