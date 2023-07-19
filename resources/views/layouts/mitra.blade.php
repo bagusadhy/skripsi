@@ -2,9 +2,9 @@
 <html lang="en" class="scroll-smooth">
 
 <head>
+    @include('includes.frontsite.meta')
     <title>@yield('title') | PKL SMKN 2 Malang</title>
 
-    @include('includes.frontsite.meta')
     @stack('before-style')
     @include('includes.frontsite.style')
     @stack('after-style')
