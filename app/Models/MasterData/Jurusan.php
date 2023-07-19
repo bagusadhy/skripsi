@@ -4,11 +4,12 @@ namespace App\Models\MasterData;
 
 use App\Models\MasterData\Siswa;
 use App\Models\MasterData\Guru;
+use App\Models\MasterData\Template;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Jurusan extends Model
+class   Jurusan extends Model
 {
     // use HasFactory;
     use SoftDeletes;
@@ -40,5 +41,9 @@ class Jurusan extends Model
     public function guru()
     {
         return $this->hasMany(Guru::class, 'jurusan_id');
+    }
+    public function template()
+    {
+        return $this->hasOne(Template::class, 'jurusan_id');
     }
 }
