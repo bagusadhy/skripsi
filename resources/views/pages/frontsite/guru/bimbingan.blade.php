@@ -38,7 +38,7 @@
                 </div>
             </div>
 
-            @foreach ($bimbingan as $data)
+            @forelse ($bimbingan as $data)
                 <div
                     class="rounded-lg border-2 border-gray-100 w-full mt-5 py-10 flex flex-col md:flex-row gap-12 justify-between px-5 items-center shadow-md">
                     <div class="flex items-center gap-5 flex-col lg:flex-row justify-center w-5/6">
@@ -51,9 +51,9 @@
                                 <img src="{{ asset('storage/' . $data->mitra->foto) }}" alt="" class="w-14">
                             </div>
                         @endif
-                        <div class="text-center md:text-left">
+                        <div class="text-left">
                             <h4 class="font-bold mb-3">{{ $data->mitra->nama }}</h4>
-                            <p class="flex gap-3 items-center text-justify">
+                            <p class="flex gap-3 items-start text-left">
                                 <span>
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                         stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -68,13 +68,16 @@
                         </div>
                     </div>
 
-                    <div class="w-2/6 lg:w-1/6 flex justify-end">
+                    <div class="w-3/6 lg:w-1/6 flex justify-end">
                         <a href="{{ route('guru.mitra.show', $data->mitra->id) }}"
-                            class="text-white px-3 py-3 block w-full md:w-fit text-center text-sm font-medium bg-primary hover:bg-primaryhover rounded">Detail
-                            Mitra</a>
+                            class="text-white px-3 py-3 block w-full text-center text-sm font-medium bg-primary hover:bg-primaryhover rounded">Detail Mitra</a>
                     </div>
                 </div>
-            @endforeach
+            @empty
+                <div class="flex justify-center items-center">
+                    <p>Belum ada mitra bimbingan</p>
+                </div>
+            @endforelse
         </div>
     </main>
     </div>
