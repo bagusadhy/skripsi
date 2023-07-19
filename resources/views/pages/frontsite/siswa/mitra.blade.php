@@ -44,7 +44,7 @@
                     <a href="#tabs-home02"
                         class="my-2 block border-x-0 border-b-2 border-t-0 border-transparent px-7 pb-3.5 pt-4 text-xs font-bold uppercase leading-tight text-neutral-500 hover:isolate hover:border-transparent hover:bg-neutral-100 focus:isolate focus:border-transparent data-[te-nav-active]:border-primary data-[te-nav-active]:text-primary dark:text-neutral-400 dark:hover:bg-transparent dark:data-[te-nav-active]:border-primary-400 dark:data-[te-nav-active]:text-primary-400"
                         data-te-toggle="pill" data-te-target="#tabs-home02" data-te-nav-active role="tab"
-                        aria-controls="tabs-home02" aria-selected="true">Daftar Mitra</a>
+                        aria-controls="tabs-home02" aria-selected="true">Lowongan</a>
                 </li>
                 <li role="presentation" class="flex-grow basis-0 text-center">
                     <a href="#tabs-profile02"
@@ -59,62 +59,30 @@
                 {{-- daftar mitra --}}
                 <div class="hidden opacity-100 transition-opacity duration-150 ease-linear data-[te-tab-active]:block"
                     id="tabs-home02" role="tabpanel" aria-labelledby="tabs-home-tab02" data-te-tab-active>
-                    @foreach ($mitra as $data)
-                        <div
-                            class="rounded-lg border-2 border-gray-100 w-full mt-5 py-10 flex flex-col md:flex-row gap-12 justify-between px-5 items-center shadow-md">
-                            <div class="flex items-center gap-5 flex-col lg:flex-row justify-center w-5/6">
-                                @if ($data->foto == null)
-                                    <div class="hidden lg:flex justify-center w-32">
-                                        <img src="{{ asset('assets/frontsite/building-3.jpg') }}" alt=""
-                                            class="w-14">
-                                    </div>
-                                @else
-                                    <div class="hidden lg:flex justify-center w-32">
-                                        <img src="{{ asset('storage/' . $data->foto) }}" alt="" class="w-14">
-                                    </div>
-                                @endif
-                                <div class="text-center md:text-left">
-                                    <h4 class="font-bold">{{ $data->nama }}</h4>
-                                    <p class="text-xs font-bold text-blue-700 mb-3">{{ $data->bidang_usaha->title }}</p>
-                                    <p class="flex gap-3 items-center text-justify">
-                                        <span>
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
-                                            </svg>
-                                        </span>
-                                        {{ $data->alamat }}
-                                    </p>
-                                </div>
-                            </div>
 
-                            <div class="w-2/6 lg:w-1/6 flex justify-end">
-                                {{-- <a href="{{ route('siswa.pendaftaran.store') }}"
-                                    class="text-white px-10 py-3 block w-full md:w-fit text-center text-sm font-medium bg-primary hover:bg-primaryhover rounded"
-                                    onclick="event.preventDefault(); document.getElementById('form-daftar-{{ $data->id }}').submit()">Daftar
+                    <div class="mb-3">
+                        <div class="relative mb-4 flex w-full flex-wrap items-stretch">
+                            <input type="search"
+                                class="relative m-0 -mr-0.5 block w-[1px] min-w-0 flex-auto rounded-l border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-3 text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary"
+                                placeholder="Cari Lowongan" aria-label="Search" aria-describedby="button-addon1" />
 
-                                </a> --}}
-                                <form action="{{ route('siswa.pendaftaran.store') }}" method="POST">
-                                    @csrf
-                                    <input type="hidden" name="mitra_id" value="{{ $data->id }}">
-                                    <button
-                                        class="text-white px-10 py-3 block w-full md:w-fit text-center text-sm font-medium bg-primary hover:bg-primaryhover rounded">Daftar</button>
-                                </form>
-                            </div>
+                            <!--Search button-->
+                            <button
+                                class="relative z-[2] flex items-center rounded-r bg-primary px-6 py-2.5 text-xs font-medium uppercase leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-primary-700 hover:shadow-lg focus:bg-primary-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-primary-800 active:shadow-lg"
+                                type="button" id="button-addon1" data-te-ripple-init data-te-ripple-color="light">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                                    class="h-5 w-5">
+                                    <path fill-rule="evenodd"
+                                        d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </button>
                         </div>
-                    @endforeach
-                </div>
-
-                {{-- mitra terdaftar --}}
-                <div class="hidden opacity-0 transition-opacity duration-150 ease-linear data-[te-tab-active]:block"
-                    id="tabs-profile02" role="tabpanel" aria-labelledby="tabs-profile-tab02">
-                    @foreach ($mitra_terdaftar as $data)
+                    </div>
+                    @forelse ($lowongan as $data)
                         <div
                             class="rounded-lg border-2 border-gray-100 w-full mt-5 py-10 flex flex-col md:flex-row gap-12 justify-between px-5 items-center shadow-md">
-                            <div class="flex items-center gap-5 flex-col lg:flex-row justify-center w-5/6">
+                            <div class="flex items-center gap-5 flex-col lg:flex-row justify-center w-5/6 md:px-10">
                                 @if ($data->mitra->foto == null)
                                     <div class="hidden lg:flex justify-center w-32">
                                         <img src="{{ asset('assets/frontsite/building-3.jpg') }}" alt=""
@@ -126,11 +94,10 @@
                                             class="w-14">
                                     </div>
                                 @endif
-                                <div class="text-center md:text-left">
-                                    <h4 class="font-bold">{{ $data->mitra->nama }}</h4>
-                                    <p class="text-xs font-bold text-blue-700 mb-3">{{ $data->mitra->bidang_usaha->title }}
-                                    </p>
-                                    <p class="flex gap-3 items-center text-justify">
+                                <div class="text-left">
+                                    <h4 class="font-bold">{{ $data->nama }}</h4>
+                                    <p class="text-xs font-bold text-blue-700 mb-3">{{ $data->mitra->nama }}</p>
+                                    <p class="flex gap-3 items-start">
                                         <span>
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                                 stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -145,35 +112,114 @@
                                 </div>
                             </div>
 
-                            <div class="w-2/6 lg:w-1/6 flex justify-end">
+                            @if ($peserta == null)
+                                <div class="w-2/6 lg:w-1/6 flex justify-center">
+                                    <form action="{{ route('siswa.pendaftaran.store') }}" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="lowongan_id" value="{{ $data->id }}">
+                                        <input type="hidden" name="mitra_id" value="{{ $data->mitra->id }}">
+                                        <button type="submit"
+                                            class="text-white px-10 py-3 block w-full md:w-fit text-center text-sm font-medium bg-primary hover:bg-primaryhover rounded">Daftar</button>
+                                    </form>
+                                </div>
+                            @else
+                                <div class="w-2/6 lg:w-1/6 flex justify-center">
+                                    <div
+                                        class="text-white px-10 py-3 block md:w-fit text-center text-sm font-medium bg-gray-400 cursor-not-allowed rounded">
+                                        Daftar
+                                    </div>
+                                </div>
+                            @endif
+                        </div>
+                    @empty
+                        <div class="flex justify-center items-center">
+                            <p>Belum ada data mitra</p>
+                        </div>
+                    @endforelse
+                </div>
+
+                {{-- lowongan terdaftar --}}
+                <div class="hidden opacity-0 transition-opacity duration-150 ease-linear data-[te-tab-active]:block"
+                    id="tabs-profile02" role="tabpanel" aria-labelledby="tabs-profile-tab02">
+                    @forelse ($lowongan_terdaftar as $data)
+                        <div
+                            class="rounded-lg border-2 border-gray-100 w-full mt-5 py-10 flex flex-col md:flex-row gap-12 justify-between px-5 items-center shadow-md">
+                            <div class="flex items-center gap-5 flex-col lg:flex-row justify-center w-5/6 md:px-10">
+                                @if ($data->mitra->foto == null)
+                                    <div class="hidden lg:flex justify-center w-32">
+                                        <img src="{{ asset('assets/frontsite/building-3.jpg') }}" alt=""
+                                            class="w-14">
+                                    </div>
+                                @else
+                                    <div class="hidden lg:flex justify-center w-32">
+                                        <img src="{{ asset('storage/' . $data->mitra->foto) }}" alt=""
+                                            class="w-14">
+                                    </div>
+                                @endif
+                                <div class="text-left">
+                                    <h4 class="font-bold">{{ $data->lowongan->nama }}</h4>
+                                    <p class="text-xs font-bold text-blue-700 mb-3">{{ $data->mitra->nama }}
+                                    </p>
+                                    <p class="flex gap-3 items-start text-left">
+                                        <span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+                                            </svg>
+                                        </span>
+                                        {{ $data->mitra->alamat }}
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="w-2/6 lg:w-1/6 flex justify-center">
                                 @switch($data->status)
                                     @case('0')
-                                        <p class="text-sm font-bold text-green-300">Terdaftar</p>
+                                        <p
+                                            class="py-3 block w-full md:w-fit text-sm text-center font-medium rounded text-green-500">
+                                            Terdaftar</p>
                                     @break
 
                                     @case('1')
-                                        <p class="text-sm font-bold text-green-300">Diterima</p>
+                                        <p class="py-3 block w-full md:w-fit text-sm text-center font-medium rounded text-red-500">
+                                            Ditolak</p>
                                     @break
 
                                     @case('2')
-                                        <p class="text-sm font-bold text-red-300">Ditolak</p>
+                                        <div class="w-full lg:w-1/6 flex sm:justify-center md:justify-end">
+                                            <form action="{{ route('siswa.pendaftaran.update', $data->id) }}" method="POST">
+                                                @csrf
+                                                @method('PUT')
+                                                <button
+                                                    class="text-white px-10 py-3 block w-fit text-center text-sm font-medium bg-primary hover:bg-primaryhover rounded">Terima</button>
+                                            </form>
+                                        </div>
                                     @break
 
                                     @case('3')
-                                        <p class="text-sm font-bold text-blue-300">Aktif</p>
+                                        <p
+                                            class="py-3 block w-full md:w-fit text-sm text-center font-medium rounded text-blue-500">
+                                            Aktif</p>
                                     @break
 
                                     @default
                                 @endswitch
                             </div>
                         </div>
-                    @endforeach
+                        @empty
+                            <div class="flex justify-center items-center">
+                                <p>Belum ada data pendaftaran</p>
+                            </div>
+                        @endforelse
+                    </div>
                 </div>
+
+
             </div>
-
-
+        </main>
         </div>
-    </main>
-    </div>
-    </section>
-@endsection
+        </section>
+    @endsection
