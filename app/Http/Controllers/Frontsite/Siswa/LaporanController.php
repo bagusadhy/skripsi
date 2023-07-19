@@ -10,6 +10,7 @@ use App\Models\Kegiatan\AktivitasSiswa;
 use App\Models\Kegiatan\Laporan;
 use App\Models\MasterData\PeriodePkl;
 use App\Models\MasterData\Siswa;
+use App\Models\MasterData\Template;
 
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
@@ -26,10 +27,11 @@ class LaporanController extends Controller
         $laporan = Laporan::where('siswa_id', $siswa->id)->first();
 
         $filename = null;
-
         if ($laporan != null) {
             $filename = Str::of($laporan->laporan)->basename();
         }
+
+        $template = Template::where('jurusan_id', $siswa->jurusan_id)->first();
 
 
         // to check access to this route
@@ -48,7 +50,7 @@ class LaporanController extends Controller
             return back();
         }
 
-        return view('pages.frontsite.siswa.laporan', compact('filename'));
+        return view('pages.frontsite.siswa.laporan', compact('filename', 'template'));
     }
 
     /**
