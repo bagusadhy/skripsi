@@ -23,6 +23,7 @@ use App\Http\Controllers\Backsite\PendaftarPklController;
 use App\Http\Controllers\Backsite\AktivitasSiswaController;
 use App\Http\Controllers\Backsite\PengajuanMitraController;
 use App\Http\Controllers\Backsite\DokumenSiswaController;
+use App\Http\Controllers\Backsite\TemplateController;
 
 // guru controller
 use App\Http\Controllers\Frontsite\Guru\ProfileGuruController;
@@ -50,7 +51,7 @@ use App\Http\Controllers\Frontsite\Mitra\ProfileController;
 use App\Http\Controllers\Frontsite\Mitra\SiswaController as SiswaBimbinganMitraController;
 use App\Http\Controllers\Frontsite\Mitra\SurveyController as SurveyMitraController;
 use App\Http\Controllers\Frontsite\Mitra\AktivitasController as AktivitasMitraController;;
-
+use App\Http\Controllers\Frontsite\Mitra\LowonganController;
 // auth controller
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\RegisterGuruController;
@@ -93,6 +94,7 @@ Route::prefix('backsite')->name('backsite.')->middleware(['auth:sanctum', 'verif
     Route::resource('bidang_usaha', BidangUsahaController::class);
     Route::resource('jurusan', JurusanController::class);
     Route::resource('kelas', KelasController::class)->parameters(['kelas' => 'kelas']);
+    Route::resource('template', TemplateController::class);
     Route::resource('siswa', SiswaController::class);
     Route::resource('guru', GuruController::class);
     Route::resource('mitra', MitraController::class);
@@ -129,9 +131,11 @@ Route::prefix('guru')->name('guru.')->middleware(['auth:sanctum', 'verified', co
 Route::prefix('mitra')->name('mitra.')->middleware(['auth:sanctum', 'verified', config('jetstream.auth_session')])->group(function () {
 
     Route::get('laporan/download/{siswa}', [MitraLaporanController::class, 'download'])->name('laporan.download');
+    Route::get('nilai/download_template', [MitraNilaiController::class, 'download_template'])->name('nilai.download_template');
 
     Route::resource('dashboard', DashboardMitraController::class);
     Route::resource('profile', ProfileController::class);
+    Route::resource('lowongan', LowonganController::class);
     Route::resource('pendaftar', PendaftarController::class);
     Route::resource('survey', SurveyMitraController::class);
     Route::resource('siswa', SiswaBimbinganMitraController::class);
