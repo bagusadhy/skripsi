@@ -4,9 +4,12 @@
 <head>
     <title>@yield('title') | PKL SMKN 2 Malang</title>
 
+    @include('includes.frontsite.meta')
     @stack('before-style')
     @include('includes.frontsite.style')
     @stack('after-style')
+
+</head>
 
 <body class=" bg-[#F9F9F9] overflow-x-hidden">
 

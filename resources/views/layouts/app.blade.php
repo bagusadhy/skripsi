@@ -2,11 +2,14 @@
 <html lang="en" class="scroll-smooth">
 
 <head>
+    @include('includes.backsite.meta')
     <title>@yield('title') | PKL SMKN 2 Malang</title>
 
     @stack('before-style')
     @include('includes.backsite.style')
     @stack('after-style')
+
+</head>
 
 <body class=" bg-[#F9F9F9] overflow-x-hidden">
 
