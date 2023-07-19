@@ -38,7 +38,7 @@
                 </div>
             </div>
 
-            @foreach ($pendaftar as $data)
+            @forelse ($pendaftar as $data)
                 <div
                     class="rounded-lg border-2 border-gray-100 w-full mt-5 py-10 flex flex-col md:flex-row gap-12 justify-between px-5 items-center shadow-md">
                     <div class="flex items-center gap-5 flex-col lg:flex-row justify-start w-4/6">
@@ -51,47 +51,64 @@
                                 <img src="{{ asset('storage/' . $data->siswa->foto) }}" alt="" class="w-14">
                             </div>
                         @endif
-                        <div class="text-center md:text-left">
-                            <h4 class="font-bold mb-3">{{ $data->siswa->nama }}</h4>
-                            <p class="flex gap-3 items-center text-justify">
-                                <span class="block scale-75">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                        stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
-                                    </svg>
-                                </span>
-                                {{ $data->siswa->kontak }}
-                            </p>
+                        <div class="text-left">
+                            <h4 class="font-bold">{{ $data->siswa->nama . ' - ' . $data->siswa->jurusan->jurusan }}</h4>
+                            <p class="text-xs font-bold text-blue-700   ">{{ $data->lowongan->nama }}</p>
                         </div>
                     </div>
 
-                    <div class="w-3/6 flex gap-5 justify-end">
-                        <a href=""
-                            class="text-white px-3 py-3 block w-full md:w-fit text-center text-sm font-medium bg-primary hover:bg-primaryhover rounded"
-                            onclick="event.preventDefault(); document.getElementById('form-terima').submit()">
-                            Terima
-                            <form action="{{ route('mitra.pendaftar.update', $data->id) }}" method="POST" id="form-terima">
-                                @csrf
-                                @method('PUT')
-                                <input type="hidden" name="status" value="1">
-                                <input type="hidden" name="siswa_id" value="{{ $data->siswa->id }}">
-                            </form>
-                        </a>
-                        <a href=""
-                            class="text-white px-3 py-3 block w-full md:w-fit text-center text-sm font-medium bg-red-700 hover:bg-red-800 rounded"
-                            id="tolak">
-                            Tolak
-                            <form action="{{ route('mitra.pendaftar.update', $data->id) }}" method="POST" id="form-tolak">
-                                @csrf
-                                @method('PUT')
-                                <input type="hidden" name="status" value="2">
-                                <input type="hidden" name="siswa_id" value="{{ $data->siswa->id }}">
-                            </form>
-                        </a>
-                    </div>
+                    @if ($data->status == '0')
+                        <div class="w-3/6 flex gap-5 justify-end">
+                            <a href=""
+                                class="text-white px-3 py-3 block w-full md:w-fit text-center text-sm font-medium bg-primary hover:bg-primaryhover rounded"
+                                onclick="event.preventDefault(); document.getElementById('form-terima').submit()">
+                                Terima
+                                <form action="{{ route('mitra.pendaftar.update', $data->id) }}" method="POST"
+                                    id="form-terima">
+                                    @csrf
+                                    @method('PUT')
+                                    <input type="hidden" name="status" value="1">
+                                    <input type="hidden" name="siswa_id" value="{{ $data->siswa->id }}">
+                                </form>
+                            </a>
+                            <a href=""
+                                class="text-white px-3 py-3 block w-full md:w-fit text-center text-sm font-medium bg-red-700 hover:bg-red-800 rounded"
+                                id="tolak">
+                                Tolak
+                                <form action="{{ route('mitra.pendaftar.update', $data->id) }}" method="POST"
+                                    id="form-tolak">
+                                    @csrf
+                                    @method('PUT')
+                                    <input type="hidden" name="status" value="2">
+                                    <input type="hidden" name="siswa_id" value="{{ $data->siswa->id }}">
+                                </form>
+                            </a>
+                        </div>
+                    @else
+                        <div class="w-2/6 lg:w-1/6 flex justify-center">
+                           @switch($data->status)
+                               @case('1')
+                                    <p class="py-3 block w-full md:w-fit text-sm text-center font-medium rounded text-red-500">Ditolak</p>
+                                   @break
+                               @case('2')
+                                    <p class="py-3 block w-full md:w-fit text-sm text-center font-medium rounded text-blue-500">Diterima</p>
+                                   @break
+                               @case('3')
+                                    <p class="py-3 block w-full md:w-fit text-sm text-center font-medium rounded text-green-500">Aktif</p>
+                                   @break
+
+                               @default
+
+                           @endswitch
+                        </div>
+                    @endif
                 </div>
-            @endforeach
+
+            @empty
+                <div class="flex justify-center items-center">
+                    <p>Belum ada pendaftar</p>
+                </div>
+            @endforelse
         </div>
     </main>
     </div>
