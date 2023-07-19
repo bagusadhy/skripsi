@@ -19,7 +19,7 @@ class PendaftarController extends Controller
     public function index()
     {
         $mitra = Mitra::where('user_id', auth()->user()->id)->first();
-        $pendaftar = PendaftarPkl::where('mitra_id', $mitra->id)->whereIn('status', ['0', '3'])->with('siswa')->get();
+        $pendaftar = PendaftarPkl::where('mitra_id', $mitra->id)->with('siswa', 'siswa.jurusan')->orderBy('status', 'ASC')->get();
         $guru = Bimbingan::where('mitra_id', $mitra->id)->first();
 
         confirmDelete();
@@ -69,18 +69,6 @@ class PendaftarController extends Controller
         $pendaftar->update($data);
 
         if ($data['status'] == '1') {
-            $mitra = Mitra::where('user_id', auth()->user()->id)->first();
-            $guru = Bimbingan::where('mitra_id', $mitra->id)->first();
-            $periode = PeriodePkl::where('status', '1')->first();
-
-            $peserta = [
-                'siswa_id' => $data['siswa_id'],
-                'mitra_id' => $mitra->id,
-                'guru_id' => $guru->guru_id,
-                'periode_id' => $periode->id
-            ];
-
-            PesertaPkl::create($peserta);
             alert()->success('Berhasil', 'Pendaftaran Diterima');
         } else {
             alert()->success('Berhasil', 'Pendaftaran Ditolak');
