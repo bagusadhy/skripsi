@@ -153,10 +153,10 @@
 
                 </div>
 
-                {{-- mitra terdaftar --}}
+                {{-- pengajuan mitra --}}
                 <div class="hidden opacity-0 transition-opacity duration-150 ease-linear data-[te-tab-active]:block"
                     id="tabs-profile02" role="tabpanel" aria-labelledby="tabs-profile-tab02">
-                    @foreach ($pengajuan as $data)
+                    @forelse ($pengajuan as $data)
                         <div
                             class="rounded-lg border-2 border-gray-100 w-full mt-5 py-10 flex flex-col md:flex-row gap-12 justify-between px-10 items-center shadow-md">
                             <div class="flex items-center gap-5 flex-col lg:flex-row w-5/6">
@@ -185,13 +185,17 @@
                                 @endswitch
                             </div>
                         </div>
-                    @endforeach
+                        @empty
+                            <div class="flex justify-center items-center">
+                                <p>Belum ada data pengajuan</p>
+                            </div>
+                        @endforelse
+                    </div>
                 </div>
+
+
             </div>
-
-
+        </main>
         </div>
-    </main>
-    </div>
-    </section>
-@endsection
+        </section>
+    @endsection
