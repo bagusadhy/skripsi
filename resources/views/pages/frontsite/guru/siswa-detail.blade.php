@@ -121,7 +121,7 @@
                                 <pre class="block">: </pre>
                             </div>
                             <div class="w-4/6 md:w-5/6">
-                                <p class="text-justify">{{ $siswa->alamat }}</p>
+                                <p class="">{{ $siswa->alamat }}</p>
                             </div>
                         </li>
                     </ul>
