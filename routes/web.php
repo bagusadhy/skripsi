@@ -24,6 +24,7 @@ use App\Http\Controllers\Backsite\AktivitasSiswaController;
 use App\Http\Controllers\Backsite\PengajuanMitraController;
 use App\Http\Controllers\Backsite\DokumenSiswaController;
 use App\Http\Controllers\Backsite\TemplateController;
+use App\Http\Controllers\Backsite\LowonganController as BacksiteLowonganController;
 
 // guru controller
 use App\Http\Controllers\Frontsite\Guru\ProfileGuruController;
@@ -52,6 +53,7 @@ use App\Http\Controllers\Frontsite\Mitra\SiswaController as SiswaBimbinganMitraC
 use App\Http\Controllers\Frontsite\Mitra\SurveyController as SurveyMitraController;
 use App\Http\Controllers\Frontsite\Mitra\AktivitasController as AktivitasMitraController;;
 use App\Http\Controllers\Frontsite\Mitra\LowonganController;
+
 // auth controller
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\RegisterGuruController;
@@ -108,12 +110,12 @@ Route::prefix('backsite')->name('backsite.')->middleware(['auth:sanctum', 'verif
     Route::resource('laporan', LaporanController::class);
     Route::resource('nilai', NilaiController::class);
     Route::resource('hasil_survey', HasilSurveyController::class);
+    Route::resource('lowongan', BacksiteLowonganController::class);
 });
 
 // guru controller
 Route::prefix('guru')->name('guru.')->middleware(['auth:sanctum', 'verified', config('jetstream.auth_session')])->group(function () {
 
-    // Route::get('siswa/aktivitas', [SiswaBimbinganController::class, 'aktivitas'])->name('siswa.aktivitas');
     Route::get('laporan', [SiswaBimbinganController::class, 'laporan'])->name('siswa.laporan');
     Route::get('nilai', [SiswaBimbinganController::class, 'nilai'])->name('siswa.nilai');
     Route::get('download_laporan/{siswa}', [SiswaBimbinganController::class, 'download_laporan'])->name('siswa.download_laporan');
