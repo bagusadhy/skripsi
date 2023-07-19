@@ -75,7 +75,7 @@
                             <p>{{ $data->title }}
                             </p>
                             <div class="flex justify-center items-center gap-10 mt-10">
-                                <span>Tidak Memuaskan</span>
+                                <span class="hidden md:block">Tidak Memuaskan</span>
                                 <label for="" class="flex flex-col justify-center items-center">
                                     <span>1</span>
                                     <input type="radio" name="survey[{{ $data->id }}]" value="1" class="w-5 h-5"
@@ -101,7 +101,7 @@
                                     <input type="radio" name="survey[{{ $data->id }}]" value="5" class="w-5 h-5"
                                         required>
                                 </label>
-                                <span>Sangat Memuaskan</span>
+                                <span class="hidden md:block">Sangat Memuaskan</span>
                             </div>
                         </div>
                     @endforeach
