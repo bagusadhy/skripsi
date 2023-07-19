@@ -27,6 +27,9 @@ class StorePendaftarPklRequest extends FormRequest
             'mitra_id' => [
                 'required', 'integer',
             ],
+            'lowongan_id' => [
+                'required', 'integer',
+            ],
         ];
     }
 }
