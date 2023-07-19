@@ -44,7 +44,7 @@
                     <div class="flex gap-3 items-center flex-shrink">
                         <p class="font-bold">Template Format Nilai PKL</p>
                     </div>
-                    <a href=""
+                    <a href="{{ route('mitra.nilai.download_template') }}"
                         class="block px-5 py-2 rounded text-center text-primary border border-primary text-sm font-bold hover:bg-primary hover:text-white">Download</a>
                 </div>
             </div>
