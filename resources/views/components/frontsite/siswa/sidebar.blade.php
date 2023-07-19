@@ -13,7 +13,7 @@
                                 class="rounded-full w-[41px] h-[41px] bg-cover">
                         @else
                             <img src="{{ asset('storage/' . Auth::user()->profile_photo_path) }}" alt=""
-                                class="rounded-full w-[41px] h-[41px] bg-cover">
+                                class="rounded-full border-2 border-black w-[41px] h-[41px] object-contain">
                         @endif
 
                         <div>
