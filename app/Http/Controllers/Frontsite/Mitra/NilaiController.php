@@ -5,14 +5,17 @@ namespace App\Http\Controllers\Frontsite\Mitra;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
+use ZipArchive;
 
 use App\Models\Kegiatan\Nilai;
 use App\Models\MasterData\Mitra;
 use App\Models\MasterData\Siswa;
 use App\Models\Kegiatan\PesertaPkl;
+use App\Models\MasterData\Template;
 
 use App\Http\Requests\Nilai\StoreNilaiRequest;
 use App\Http\Requests\Nilai\UpdateNilaiRequest;
+
 class NilaiController extends Controller
 {
     /**
@@ -24,8 +27,9 @@ class NilaiController extends Controller
         $siswa_id = PesertaPkl::select('siswa_id')->where('mitra_id', $mitra->id)->get()->toArray();
         $nilai = Nilai::select('siswa.nama', 'nilai.*')->leftJoin('siswa', 'siswa.id', '=', 'nilai.siswa_id')->whereIn('nilai.siswa_id', $siswa_id)->get();
 
-        // dd($nilai);
         $siswa = PesertaPkl::select('siswa_id')->where('mitra_id', $mitra->id)->with('siswa')->get();
+
+
         return view('pages.frontsite.mitra.nilai', compact('siswa', 'nilai'));
     }
 
@@ -101,5 +105,25 @@ class NilaiController extends Controller
 
         alert()->success('Berhasil', 'Nilai Berhasil Dihapus');
         return back();
+    }
+
+    public function download_template()
+    {
+        $zip = new ZipArchive;
+
+        $fileName = 'template_penilaian.zip';
+
+        if ($zip->open(public_path($fileName), ZipArchive::CREATE) === TRUE) {
+            $files = File::files(public_path('files/template/penilaian'));
+
+            foreach ($files as $key => $value) {
+                $relativeNameInZipFile = basename($value);
+                $zip->addFile($value, $relativeNameInZipFile);
+            }
+
+            $zip->close();
+        }
+
+        return response()->download(public_path($fileName));
     }
 }
