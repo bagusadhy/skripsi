@@ -8,6 +8,7 @@ use App\Models\Kegiatan\Bimbingan;
 use App\Models\Kegiatan\Monitoring;
 use App\Models\Kegiatan\PesertaPkl;
 use App\Models\Kegiatan\HasilSurvey;
+use App\Models\Kegiatan\Lowongan;
 use App\Models\Kegiatan\PendaftarPkl;
 use App\Models\MasterData\BidangUsaha;
 use Illuminate\Database\Eloquent\Model;
@@ -69,6 +70,10 @@ class Mitra extends Model
     public function peserta_pkl()
     {
         return $this->hasMany(PesertaPkl::class, 'mitra_id');
+    }
+    public function lowongan()
+    {
+        return $this->hasMany(Lowongan::class, 'mitra_id');
     }
     public function hasil_survey()
     {

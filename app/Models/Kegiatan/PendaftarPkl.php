@@ -28,6 +28,7 @@ class PendaftarPkl extends Model
     protected $fillable = [
         'siswa_id',
         'mitra_id',
+        'lowongan_id',
         'status',
         'created_at',
         'updated_at',
@@ -41,5 +42,9 @@ class PendaftarPkl extends Model
     public function siswa()
     {
         return $this->belongsTo(Siswa::class, 'siswa_id', 'id');
+    }
+    public function lowongan()
+    {
+        return $this->belongsTo(Lowongan::class, 'lowongan_id', 'id');
     }
 }

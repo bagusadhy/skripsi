@@ -16,6 +16,9 @@ return new class extends Migration
             $table->foreign('siswa_id', 'fk_peserta_pkl_to_siswa')
                 ->references('id')->on('siswa')->onDelete('CASCADE')
                 ->onUpdate('CASCADE');
+            $table->foreign('lowongan_id', 'fk_peserta_pkl_to_lowongan')
+                ->references('id')->on('lowongan')->onDelete('CASCADE')
+                ->onUpdate('CASCADE');
             $table->foreign('mitra_id', 'fk_peserta_pkl_to_mitra')
                 ->references('id')->on('mitra')->onDelete('CASCADE')
                 ->onUpdate('CASCADE');
@@ -33,6 +36,7 @@ return new class extends Migration
         Schema::table('peserta_pkl', function (Blueprint $table) {
             //
             $table->dropForeign('fk_peserta_pkl_to_siswa');
+            $table->dropForeign('fk_peserta_pkl_to_lowongan');
             $table->dropForeign('fk_peserta_pkl_to_mitra');
             $table->dropForeign('fk_peserta_pkl_to_periode_pkl');
         });

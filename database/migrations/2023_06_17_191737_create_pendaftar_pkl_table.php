@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('pendaftar_pkl', function (Blueprint $table) {
             $table->id();
             $table->foreignId('siswa_id')->nullable()->index('fk_pendaftar_pkl_to_siswa');
+            $table->foreignId('lowongan_id')->nullable()->index('fk_pendaftar_pkl_to_lowongan');
             $table->foreignId('mitra_id')->nullable()->index('fk_pendaftar_pkl_to_mitra');
             $table->enum('status', [0, 1, 2, 3])->default(0);
             // $table->timestamps();

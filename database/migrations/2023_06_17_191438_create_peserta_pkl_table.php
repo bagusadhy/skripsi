@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('peserta_pkl', function (Blueprint $table) {
             $table->id();
              $table->foreignId('siswa_id')->nullable()->index('fk_peserta_pkl_to_siswa');
+             $table->foreignId('lowongan_id')->nullable()->index('fk_peserta_pkl_to_lowongan');
              $table->foreignId('mitra_id')->nullable()->index('fk_peserta_pkl_to_mitra');
              $table->foreignId('periode_id')->nullable()->index('fk_peserta_pkl_to_periode_pkl');
             // $table->timestamps();
