@@ -57,7 +57,7 @@
                         </span>
                         <p class="font-bold text-sm">Template Laporan Akhir</p>
                     </div>
-                    <a href="https://docs.google.com/document/d/1qOHdF2KBOwCVD1Q1yu_hKh5N5EFtIC8rT16UChpGum8/edit?usp=sharing"
+                    <a href="{{ $template != null ? url($template->laporan) : '' }}"
                         class="block h-11 text-center px-10 py-2 rounded border border-primary hover:bg-primaryhover hover:text-white font-bold">Download</a>
                 </div>
 
