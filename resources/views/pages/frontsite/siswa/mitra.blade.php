@@ -112,7 +112,7 @@
                                 </div>
                             </div>
 
-                            @if ($peserta == null)
+                            @if ($peserta == null && $pendaftaran_access != null)
                                 <div class="w-2/6 lg:w-1/6 flex justify-center">
                                     <form action="{{ route('siswa.pendaftaran.store') }}" method="POST">
                                         @csrf

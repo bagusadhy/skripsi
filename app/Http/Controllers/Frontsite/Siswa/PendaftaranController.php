@@ -31,8 +31,9 @@ class PendaftaranController extends Controller
         $lowongan_terdaftar = PendaftarPkl::where('siswa_id', $siswa->id)->with('lowongan', 'mitra', 'mitra.bidang_usaha')->get();
 
         $peserta = PesertaPkl::where('siswa_id', $siswa->id)->first();
+        $pendaftaran_access = PeriodePkl::where('nama_timeline', 'pendaftaran')->where('status', '1')->first();
 
-        return view('pages.frontsite.siswa.mitra', compact('lowongan', 'lowongan_terdaftar', 'peserta'));
+        return view('pages.frontsite.siswa.mitra', compact('lowongan', 'lowongan_terdaftar', 'peserta', 'pendaftaran_access'));
     }
 
     /**
@@ -79,11 +80,11 @@ class PendaftaranController extends Controller
     public function update(Request $request, PendaftarPkl $pendaftaran)
     {
 
-        DB::transaction(function () use ($pendaftaran){
+        DB::transaction(function () use ($pendaftaran) {
             PendaftarPkl::where('siswa_id', $pendaftaran->siswa_id)->update(['status' => '2']);
             $pendaftaran->update(['status' => '3']);
 
-            $periode = PeriodePkl::where('status', '1')->first();
+            $periode = PeriodePkl::where('nama_timeline', 'kegiatan')->first();
             $guru = Bimbingan::where('mitra_id', $pendaftaran->mitra_id)->first();
 
             $peserta = [
