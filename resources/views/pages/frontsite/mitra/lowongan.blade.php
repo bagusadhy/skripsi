@@ -38,49 +38,53 @@
                 </div>
             </div>
 
-            <div id="accordionExample" class="shadow-lg mb-3 rounded-lg">
-                <div class="rounded-lg border border-neutral-200 bg-white px">
-                    <h2 class="mb-0" id="headingOne">
-                        <button
-                            class="group relative flex w-full items-center rounded-t-lg border-0 font-medium text-primary bg-blue-100 px-5 py-4 text-left text-base transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none   [&:not([data-te-collapse-collapsed])]:bg-blue-200 [&:not([data-te-collapse-collapsed])]:text-primary [&:not([data-te-collapse-collapsed])]:[box-shadow:inset_0_-1px_0_rgba(229,231,235)]"
-                            type="button" data-te-collapse-init data-te-target="#collapseOne" aria-expanded="false"
-                            aria-controls="collapseOne">
-                            <div class="flex gap-3">
-                                Tambah Lowongan
-                            </div>
-                            <span
-                                class="ml-auto h-5 w-5 shrink-0 rotate-[-180deg] fill-[#336dec] transition-transform duration-200 ease-in-out group-[[data-te-collapse-collapsed]]:rotate-0 group-[[data-te-collapse-collapsed]]:fill-[#212529] motion-reduce:transition-none dark:fill-blue-300 dark:group-[[data-te-collapse-collapsed]]:fill-white">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="1.5" stroke="currentColor" class="h-6 w-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-                                </svg>
-                            </span>
-                        </button>
-                    </h2>
-                    <div id="collapseOne" class="!visible hidden" data-te-collapse-item aria-labelledby="headingOne"
-                        data-te-parent="#accordionExample">
-                        <div class="px-5 py-4">
-                            <form action="{{ route('mitra.lowongan.store') }}" method="POST" enctype="multipart/form-data">
-                                @csrf
-
-                                <label for="nama" class="block">
-                                    <span class="font-medium">Lowongan <code class="text-red-500">*</code></span>
-                                </label>
-                                <textarea class="w-full h-20 rounded-md border border-gray-300 px-5 py-3 focus:outline-none resize-none"
-                                    name="nama"id="nama" required></textarea>
-                                @if ($errors->has('nama'))
-                                    <p style="font-style: bold; color: red;">{{ $errors->first('nama') }}</p>
-                                @endif
-
-                                <div class="flex justify-end mt-4">
-                                    <button type="submit" class="px-8 py-2 bg-blue-700 text-white rounded-md">Tambah
-                                    </button>
+            @if ($pendaftaran_access != null)
+                <div id="accordionExample" class="shadow-lg mb-3 rounded-lg">
+                    <div class="rounded-lg border border-neutral-200 bg-white px">
+                        <h2 class="mb-0" id="headingOne">
+                            <button
+                                class="group relative flex w-full items-center rounded-t-lg border-0 font-medium text-primary bg-blue-100 px-5 py-4 text-left text-base transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none   [&:not([data-te-collapse-collapsed])]:bg-blue-200 [&:not([data-te-collapse-collapsed])]:text-primary [&:not([data-te-collapse-collapsed])]:[box-shadow:inset_0_-1px_0_rgba(229,231,235)]"
+                                type="button" data-te-collapse-init data-te-target="#collapseOne" aria-expanded="false"
+                                aria-controls="collapseOne">
+                                <div class="flex gap-3">
+                                    Tambah Lowongan
                                 </div>
-                            </form>
+                                <span
+                                    class="ml-auto h-5 w-5 shrink-0 rotate-[-180deg] fill-[#336dec] transition-transform duration-200 ease-in-out group-[[data-te-collapse-collapsed]]:rotate-0 group-[[data-te-collapse-collapsed]]:fill-[#212529] motion-reduce:transition-none dark:fill-blue-300 dark:group-[[data-te-collapse-collapsed]]:fill-white">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="1.5" stroke="currentColor" class="h-6 w-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                                    </svg>
+                                </span>
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="!visible hidden" data-te-collapse-item aria-labelledby="headingOne"
+                            data-te-parent="#accordionExample">
+                            <div class="px-5 py-4">
+                                <form action="{{ route('mitra.lowongan.store') }}" method="POST"
+                                    enctype="multipart/form-data">
+                                    @csrf
+
+                                    <label for="nama" class="block">
+                                        <span class="font-medium">Lowongan <code class="text-red-500">*</code></span>
+                                    </label>
+                                    <textarea class="w-full h-20 rounded-md border border-gray-300 px-5 py-3 focus:outline-none resize-none"
+                                        name="nama"id="nama" required></textarea>
+                                    @if ($errors->has('nama'))
+                                        <p style="font-style: bold; color: red;">{{ $errors->first('nama') }}</p>
+                                    @endif
+
+                                    <div class="flex justify-end mt-4">
+                                        <button type="submit" class="px-8 py-2 bg-blue-700 text-white rounded-md">Tambah
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            @endif
 
             <div class="mt-10 py-4">
                 <div class="overflow-x-auto overflow-y-hidden py-5">
