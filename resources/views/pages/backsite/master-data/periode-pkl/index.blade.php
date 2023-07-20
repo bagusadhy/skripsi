@@ -38,100 +38,6 @@
                 </div>
             </div>
 
-            <div id="accordionExample" class="shadow-md mb-3 rounded-lg">
-                <div class="rounded-lg border border-neutral-200 bg-white px">
-                    <h2 class="mb-0" id="headingOne">
-                        <button
-                            class="group relative flex w-full items-center rounded-t-lg border-0 font-medium text-primary bg-blue-100 px-5 py-4 text-left text-base transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none   [&:not([data-te-collapse-collapsed])]:bg-blue-200 [&:not([data-te-collapse-collapsed])]:text-primary [&:not([data-te-collapse-collapsed])]:[box-shadow:inset_0_-1px_0_rgba(229,231,235)]"
-                            type="button" data-te-collapse-init data-te-target="#collapseOne" aria-expanded="false"
-                            aria-controls="collapseOne">
-                            Tambah Periode
-                            <span
-                                class="ml-auto h-5 w-5 shrink-0 rotate-[-180deg] fill-[#336dec] transition-transform duration-200 ease-in-out group-[[data-te-collapse-collapsed]]:rotate-0 group-[[data-te-collapse-collapsed]]:fill-[#212529] motion-reduce:transition-none dark:fill-blue-300 dark:group-[[data-te-collapse-collapsed]]:fill-white">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="1.5" stroke="currentColor" class="h-6 w-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-                                </svg>
-                            </span>
-                        </button>
-                    </h2>
-
-                    <div id="collapseOne" class="!visible hidden" data-te-collapse-item aria-labelledby="headingOne"
-                        data-te-parent="#accordionExample">
-                        <div class="px-5 py-4">
-                            <form action="{{ route('backsite.periode.store') }}" method="POST">
-                                @csrf
-                                <div class="mb-3">
-                                    <label for="nama_timeline" class="block">
-                                        <span class="font-medium">Nama Timeline<code class="text-red-500">*</code></span>
-                                    </label>
-                                    <input type="text"
-                                        class="w-full h-11 rounded-md border border-gray-300 px-5 py-3 focus:outline-none resize-none"
-                                        name="nama_timeline" id="nama_timeline" required
-                                        value="{{ old('nama_timeline') }}"></input>
-                                    @if ($errors->has('nama_timeline'))
-                                        <p style="font-style: bold; color: red;">{{ $errors->first('nama_timeline') }}</p>
-                                    @endif
-                                </div>
-                                <label class="relative block mb-5">
-                                    <span class="font-medium">Tanggal Mulai<code class="text-red-500">*</code></span>
-                                    <input type="text" id="tanggal_dimulai" name="tanggal_dimulai"
-                                        class="block w-full h-11 rounded-lg py-3 text-[#1E2B4F] font-medium placeholder:text-[#AFAEC3] placeholder:font-normal px-5 border border-[#d4d4d4] focus:outline-none focus:border-[#0D63F3]"
-                                        placeholder="Pilih Tanggal" required />
-                                    <span
-                                        class="absolute top-8 right-[20px] bottom-1/2 translate-y-[58%] hover:cursor-pointer">
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M19 4H5C3.89543 4 3 4.89543 3 6V20C3 21.1046 3.89543 22 5 22H19C20.1046 22 21 21.1046 21 20V6C21 4.89543 20.1046 4 19 4Z"
-                                                stroke="#AFAEC3" stroke-width="2" stroke-linecap="round"
-                                                stroke-linejoin="round" />
-                                            <path d="M3 10H21" stroke="#AFAEC3" stroke-width="2" stroke-linecap="round"
-                                                stroke-linejoin="round" />
-                                            <path d="M16 2V6" stroke="#AFAEC3" stroke-width="2" stroke-linecap="round"
-                                                stroke-linejoin="round" />
-                                            <path d="M8 2V6" stroke="#AFAEC3" stroke-width="2" stroke-linecap="round"
-                                                stroke-linejoin="round" />
-                                        </svg>
-                                    </span>
-                                </label>
-                                @if ($errors->has('tanggal_dimulai'))
-                                    <p style="font-style: bold; color: red;">{{ $errors->first('tanggal_dimulai') }}</p>
-                                @endif
-                                <label class="relative block mb-5">
-                                    <span class="font-medium">Tanggal Selesai<code class="text-red-500">*</code></span>
-                                    <input type="text" id="tanggal_berakhir" name="tanggal_berakhir"
-                                        class="block w-full h-11 rounded-lg py-3 text-[#1E2B4F] font-medium placeholder:text-[#AFAEC3] placeholder:font-normal px-5 border border-[#d4d4d4] focus:outline-none focus:border-[#0D63F3]"
-                                        placeholder="Pilih Tanggal" required />
-                                    <span
-                                        class="absolute top-8 right-[20px] bottom-1/2 translate-y-[58%] hover:cursor-pointer">
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M19 4H5C3.89543 4 3 4.89543 3 6V20C3 21.1046 3.89543 22 5 22H19C20.1046 22 21 21.1046 21 20V6C21 4.89543 20.1046 4 19 4Z"
-                                                stroke="#AFAEC3" stroke-width="2" stroke-linecap="round"
-                                                stroke-linejoin="round" />
-                                            <path d="M3 10H21" stroke="#AFAEC3" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round" />
-                                            <path d="M16 2V6" stroke="#AFAEC3" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round" />
-                                            <path d="M8 2V6" stroke="#AFAEC3" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round" />
-                                        </svg>
-                                    </span>
-                                </label>
-                                @if ($errors->has('tanggal_berakhir'))
-                                    <p style="font-style: bold; color: red;">{{ $errors->first('tanggal_berakhir') }}</p>
-                                @endif
-                                <div class="flex justify-end mt-4">
-                                    <button type="submit"
-                                        class="px-8 py-2 bg-blue-700 text-white rounded-md">Tambahkan</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
             <div class="bg-white py-4 md:py-7 px-4 shadow-md rounded-lg">
                 <div class="overflow-x-auto">
@@ -213,15 +119,6 @@
                                                         </a>
                                                     @endif
                                                 </li>
-                                                <li>
-                                                    <form action="{{ route('backsite.periode.destroy', $periode->id) }}"
-                                                        id="form-delete" method="post" data-te-dropdown-item-ref>
-                                                        @csrf
-                                                        @method('delete')
-                                                        <button type="submit"
-                                                            class="delete-confirm block w-full whitespace-nowrap bg-transparent px-16 py-2 text-sm text-left font-normal hover:bg-neutral-200">Hapus</button>
-                                                    </form>
-                                                </li>
                                             </ul>
                                         </div>
                                     </td>
@@ -243,26 +140,6 @@
         $(document).ready(function() {
 
             var table = $('#periode-table').DataTable();
-
-            $('.delete-confirm').on('click', function() {
-                event.preventDefault();
-                let form = $(this).closest('form');
-                Swal.fire({
-                    title: 'Apakah Yakin?',
-                    text: "Hapus Periode!",
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Hapus',
-                    icon: 'warning'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        form.submit()
-                    } else if (result.isDenied) {
-                        Swal.fire('Changes are not saved', '', 'info')
-                    }
-                });
-            });
 
         });
         const tanggal_mulai = flatpickr('#tanggal_dimulai', {

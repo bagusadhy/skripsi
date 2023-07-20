@@ -41,15 +41,7 @@ class PeriodePklController extends Controller
      */
     public function store(StorePeriodePklRequest $request)
     {
-        $data = [
-            'nama_timeline' => strtolower($request->nama_timeline),
-            'tanggal_dimulai' => $request->tanggal_dimulai,
-            'tanggal_berakhir' => $request->tanggal_berakhir,
-        ];
-        PeriodePkl::create($data);
-
-        alert()->success('Success Message', 'Berhasil Menambahkan Data');
-        return redirect(route('backsite.periode.index'));
+       return abort(404);
     }
 
     /**
@@ -89,10 +81,7 @@ class PeriodePklController extends Controller
      */
     public function destroy(PeriodePkl $periode)
     {
-        $periode->forceDelete();
-
-        alert()->success('Success Message', 'Berhasil Menghapus Data');
-        return back();
+        return abort(404);
     }
 
     public function activated(PeriodePkl $periode)
