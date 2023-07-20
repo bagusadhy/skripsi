@@ -24,6 +24,9 @@ class StorePeriodePklRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'nama_timeline' => [
+                'required', 'string', 'unique:periode_pkl',
+            ],
             'tanggal_dimulai' => [
                 'required', 'date', 'before:tanggal_berakhir',
             ],

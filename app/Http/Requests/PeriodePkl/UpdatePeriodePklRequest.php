@@ -5,6 +5,7 @@ namespace App\Http\Requests\PeriodePkl;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Validation\Rule;
 
 class UpdatePeriodePklRequest extends FormRequest
 {
@@ -24,6 +25,7 @@ class UpdatePeriodePklRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'nama_timeline' => 'required', 'string', Rule::unique('periode_pkl')->ignore($this->periode_pkl), 'max:255',
             'tanggal_dimulai' => [
                 'required', 'date',
             ],

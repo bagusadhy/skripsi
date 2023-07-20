@@ -15,6 +15,7 @@ class PeriodeSeeder extends Seeder
     {
         $data = [
             [
+                'nama_timeline' => 'pendaftaran',
                 'tanggal_dimulai' => '2021-01-01',
                 'tanggal_berakhir' => '2023-10-30',
             ]

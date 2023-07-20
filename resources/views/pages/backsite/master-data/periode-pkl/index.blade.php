@@ -61,6 +61,18 @@
                         <div class="px-5 py-4">
                             <form action="{{ route('backsite.periode.store') }}" method="POST">
                                 @csrf
+                                <div class="mb-3">
+                                    <label for="nama_timeline" class="block">
+                                        <span class="font-medium">Nama Timeline<code class="text-red-500">*</code></span>
+                                    </label>
+                                    <input type="text"
+                                        class="w-full h-11 rounded-md border border-gray-300 px-5 py-3 focus:outline-none resize-none"
+                                        name="nama_timeline" id="nama_timeline" required
+                                        value="{{ old('nama_timeline') }}"></input>
+                                    @if ($errors->has('nama_timeline'))
+                                        <p style="font-style: bold; color: red;">{{ $errors->first('nama_timeline') }}</p>
+                                    @endif
+                                </div>
                                 <label class="relative block mb-5">
                                     <span class="font-medium">Tanggal Mulai<code class="text-red-500">*</code></span>
                                     <input type="text" id="tanggal_dimulai" name="tanggal_dimulai"
@@ -127,6 +139,7 @@
                     <table id="periode-table" class="stripe">
                         <thead>
                             <tr>
+                                <th>Nama Timeline</th>
                                 <th>Tanggal mulai</th>
                                 <th>Tanggal selesai</th>
                                 <th>Status</th>
@@ -136,6 +149,7 @@
                         <tbody>
                             @forelse ($data as $periode)
                                 <tr data-entry-id="{{ $periode->id }}" class="hover:bg-neutral-200 outline-2">
+                                    <td>{{ ucwords($periode->nama_timeline) }}</td>
                                     <td>{{ $periode->tanggal_dimulai }}</td>
                                     <td>{{ $periode->tanggal_berakhir }}</td>
                                     <td>
@@ -200,13 +214,12 @@
                                                     @endif
                                                 </li>
                                                 <li>
-                                                     <form action="{{ route('backsite.periode.destroy', $periode->id) }}"
+                                                    <form action="{{ route('backsite.periode.destroy', $periode->id) }}"
                                                         id="form-delete" method="post" data-te-dropdown-item-ref>
                                                         @csrf
                                                         @method('delete')
                                                         <button type="submit"
-                                                            class="delete-confirm block w-full whitespace-nowrap bg-transparent px-16 py-2 text-sm text-left font-normal hover:bg-neutral-200"
-                                                            >Hapus</button>
+                                                            class="delete-confirm block w-full whitespace-nowrap bg-transparent px-16 py-2 text-sm text-left font-normal hover:bg-neutral-200">Hapus</button>
                                                     </form>
                                                 </li>
                                             </ul>

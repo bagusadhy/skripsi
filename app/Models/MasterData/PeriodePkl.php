@@ -27,6 +27,7 @@ class PeriodePkl extends Model
 
     // declare field that fillable
     protected $fillable = [
+        'nama_timeline',
         'tanggal_dimulai',
         'tanggal_berakhir',
         'status',
