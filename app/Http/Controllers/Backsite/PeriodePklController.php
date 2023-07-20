@@ -41,7 +41,11 @@ class PeriodePklController extends Controller
      */
     public function store(StorePeriodePklRequest $request)
     {
-        $data = $request->all();
+        $data = [
+            'nama_timeline' => strtolower($request->nama_timeline),
+            'tanggal_dimulai' => $request->tanggal_dimulai,
+            'tanggal_berakhir' => $request->tanggal_berakhir,
+        ];
         PeriodePkl::create($data);
 
         alert()->success('Success Message', 'Berhasil Menambahkan Data');
@@ -69,7 +73,11 @@ class PeriodePklController extends Controller
      */
     public function update(UpdatePeriodePklRequest $request, PeriodePkl $periode)
     {
-        $data = $request->all();
+        $data = [
+            'nama_timeline' => strtolower($request->nama_timeline),
+            'tanggal_dimulai' => $request->tanggal_dimulai,
+            'tanggal_berakhir' => $request->tanggal_berakhir,
+        ];
         $periode->update($data);
 
         alert()->success('Success Message', 'Berhasil Mengubah Data');
@@ -81,7 +89,7 @@ class PeriodePklController extends Controller
      */
     public function destroy(PeriodePkl $periode)
     {
-        $periode->delete();
+        $periode->forceDelete();
 
         alert()->success('Success Message', 'Berhasil Menghapus Data');
         return back();
