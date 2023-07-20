@@ -52,6 +52,7 @@ use App\Http\Controllers\Frontsite\Mitra\ProfileController;
 use App\Http\Controllers\Frontsite\Mitra\SiswaController as SiswaBimbinganMitraController;
 use App\Http\Controllers\Frontsite\Mitra\SurveyController as SurveyMitraController;
 use App\Http\Controllers\Frontsite\Mitra\AktivitasController as AktivitasMitraController;;
+
 use App\Http\Controllers\Frontsite\Mitra\LowonganController;
 
 // auth controller
@@ -149,6 +150,7 @@ Route::prefix('mitra')->name('mitra.')->middleware(['auth:sanctum', 'verified', 
 // siswa controller
 Route::prefix('siswa')->name('siswa.')->middleware(['auth:sanctum', 'verified', config('jetstream.auth_session')])->group(function () {
 
+    Route::get('pendaftaran/cari_lowongan', [PendaftaranController::class, 'cari_lowongan'])->name('pendaftaran.cari_lowongan');
     Route::resource('dashboard', DashboardSiswaController::class);
     Route::resource('pendaftaran', PendaftaranController::class);
     Route::resource('kegiatan', KegiatanController::class);
