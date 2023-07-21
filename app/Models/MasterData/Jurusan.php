@@ -2,6 +2,7 @@
 
 namespace App\Models\MasterData;
 
+use App\Models\Kegiatan\Lowongan;
 use App\Models\MasterData\Siswa;
 use App\Models\MasterData\Guru;
 use App\Models\MasterData\Template;
@@ -41,6 +42,10 @@ class   Jurusan extends Model
     public function guru()
     {
         return $this->hasMany(Guru::class, 'jurusan_id');
+    }
+    public function lowongan()
+    {
+        return $this->hasMany(Lowongan::class, 'lowongan_id');
     }
     public function template()
     {

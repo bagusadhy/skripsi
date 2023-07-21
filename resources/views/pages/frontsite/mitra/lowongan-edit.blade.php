@@ -45,10 +45,26 @@
             <form action="{{ route('mitra.lowongan.update', $lowongan->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
+                <div class="mb-3 w-full">
+                    <label for="jurusan" class="block">
+                        <span class="font-medium">Jurusan<code class="text-red-500">*</code></span>
+                    </label>
+                    <select data-te-select-init data-te-select-placeholder="Pilih Jurusan" name="jurusan_id" required>
+                        <option hidden selected></option>
+                        @foreach ($jurusan as $items)
+                            <option value="{{ $items->id }}" {{ $lowongan->jurusan_id == $items->id ? 'selected' : '' }}>
+                                {{ $items->jurusan }}
+                            </option>
+                        @endforeach
+                    </select>
+                    @if ($errors->has('jurusan'))
+                        <p style="font-style: bold; color: red;">{{ $errors->first('jurusan') }}</p>
+                    @endif
+                </div>
                 <label for="nama" class="block">
                     <span class="font-medium">Lowongan <code class="text-red-500">*</code></span>
                 </label>
-                <textarea class="w-full h-20 rounded-md border border-gray-300 px-5 py-3 focus:outline-none resize-none"
+                <textarea class="w-full h-20 rounded-md border border-gray-300 px-3 py-3 focus:outline-none resize-none"
                     name="nama"id="nama" required>{{ $lowongan->nama }}</textarea>
                 @if ($errors->has('nama'))
                     <p style="font-style: bold; color: red;">{{ $errors->first('nama') }}</p>

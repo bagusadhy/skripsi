@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Kegiatan\Lowongan;
 use App\Models\MasterData\Mitra;
 use App\Models\MasterData\PeriodePkl;
+use App\Models\MasterData\Jurusan;
 
 use App\Http\Requests\Lowongan\StoreLowonganRequest;
 use App\Http\Requests\Lowongan\UpdateLowonganRequest;
@@ -20,10 +21,11 @@ class LowonganController extends Controller
     public function index()
     {
         $mitra = Mitra::where('user_id', auth()->user()->id)->first();
-        $lowongan = Lowongan::where('mitra_id', $mitra->id)->get();
+        $lowongan = Lowongan::where('mitra_id', $mitra->id)->with('jurusan')->get();
         $pendaftaran_access = PeriodePkl::where('nama_timeline', 'pendaftaran')->where('status', '1')->first();
+        $jurusan = Jurusan::all();
 
-        return view('pages.frontsite.mitra.lowongan', compact('lowongan', 'pendaftaran_access'));
+        return view('pages.frontsite.mitra.lowongan', compact('lowongan', 'jurusan', 'pendaftaran_access'));
     }
 
     /**
@@ -63,7 +65,8 @@ class LowonganController extends Controller
      */
     public function edit(Lowongan $lowongan)
     {
-        return view('pages.frontsite.mitra.lowongan-edit', compact('lowongan'));
+        $jurusan = Jurusan::all();
+        return view('pages.frontsite.mitra.lowongan-edit', compact('lowongan', 'jurusan'));
     }
 
     /**

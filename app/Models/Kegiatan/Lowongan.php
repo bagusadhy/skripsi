@@ -5,6 +5,7 @@ namespace App\Models\Kegiatan;
 use App\Models\MasterData\Mitra;
 use App\Models\Kegiatan\PendaftarPkl;
 use App\Models\Kegiatan\PesertaPkl;
+use App\Models\MasterData\Jurusan;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -28,6 +29,7 @@ class Lowongan extends Model
     // declare field that fillable
     protected $fillable = [
         'mitra_id',
+        'jurusan_id',
         'nama',
         'created_at',
         'updated_at',
@@ -37,6 +39,10 @@ class Lowongan extends Model
     public function mitra()
     {
         return $this->belongsTo(Mitra::class, 'mitra_id', 'id');
+    }
+    public function jurusan()
+    {
+        return $this->belongsTo(Jurusan::class, 'jurusan_id', 'id');
     }
 
     public function pendaftar()

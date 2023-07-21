@@ -24,6 +24,9 @@ class UpdateLowonganRequest extends FormRequest
     {
         return [
             'nama' => 'required', 'string', 'max:255', Rule::unique('lowongan')->ignore($this->lowongan),
+            'jurusan_id' => [
+                'required', 'integer',
+            ],
         ];
     }
 }

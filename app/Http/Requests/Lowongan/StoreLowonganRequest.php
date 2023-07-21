@@ -25,6 +25,9 @@ class StoreLowonganRequest extends FormRequest
             'nama' => [
                 'required', 'string', 'max:255', 'unique:lowongan'
             ],
+            'jurusan_id' => [
+                'required', 'integer',
+            ],
         ];
     }
 }

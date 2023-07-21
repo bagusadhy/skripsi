@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('lowongan', function (Blueprint $table) {
             $table->id();
             $table->foreignId('mitra_id')->nullable()->index('fk_lowongan_to_mitra');
+            $table->foreignId('jurusan_id')->nullable()->index('fk_lowongan_to_jurusan');
             $table->longText('nama');
             // $table->timestamps();
             $table->timestamp('created_at')->useCurrent();
