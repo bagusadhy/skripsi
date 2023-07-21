@@ -238,7 +238,7 @@
                             if (data.total_row > 0) {
                                 $('#empty-lowongan').html("")
                                 $('#lowongan').html(data.lowongan)
-                            }else{
+                            } else {
                                 $('#lowongan').html("")
                                 $('#empty-lowongan').html(data.lowongan)
                             }

@@ -27,7 +27,7 @@ class PendaftaranController extends Controller
         $siswa = Siswa::where('user_id', auth()->user()->id)->first();
 
         $pendaftaran = PendaftarPkl::select('lowongan_id')->where('siswa_id', $siswa->id)->get()->toArray();
-        $lowongan = Lowongan::whereNotIn('id', $pendaftaran)->with('mitra', 'mitra.bidang_usaha')->get();
+        $lowongan = Lowongan::whereNotIn('id', $pendaftaran)->where('jurusan_id', $siswa->jurusan_id)->with('mitra', 'mitra.bidang_usaha')->get();
         $lowongan_terdaftar = PendaftarPkl::where('siswa_id', $siswa->id)->with('lowongan', 'mitra', 'mitra.bidang_usaha')->get();
 
         $peserta = PesertaPkl::where('siswa_id', $siswa->id)->first();
@@ -124,9 +124,9 @@ class PendaftaranController extends Controller
             $output = '';
             $query = $request->get('query');
             if ($query != '') {
-                $lowongan = Lowongan::where('lowongan.nama', 'like', '%' . $query . '%')->whereNotIn('id', $pendaftaran)->with('mitra')->get();
+                $lowongan = Lowongan::where('lowongan.nama', 'like', '%' . $query . '%')->whereNotIn('id', $pendaftaran)->where('jurusan_id', $siswa->jurusan_id)->with('mitra')->get();
             } else {
-                $lowongan = Lowongan::whereNotIn('id', $pendaftaran)->with('mitra', 'mitra.bidang_usaha')->get();
+                $lowongan = Lowongan::whereNotIn('id', $pendaftaran)->where('jurusan_id', $siswa->jurusan_id)->with('mitra', 'mitra.bidang_usaha')->get();
             }
 
 
