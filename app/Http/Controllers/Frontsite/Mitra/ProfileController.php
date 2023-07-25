@@ -4,7 +4,13 @@ namespace App\Http\Controllers\Frontsite\Mitra;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
+use App\Models\MasterData\Mitra;
+use App\Models\MasterData\BidangUsaha;
+use App\Models\User;
+
+use App\Http\Requests\Mitra\UpdateMitraRequest;
 class ProfileController extends Controller
 {
     /**
@@ -12,7 +18,11 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        //
+        $mitra = Mitra::where('user_id', auth()->user()->id)->first();
+        $bidang_usaha = BidangUsaha::all();
+
+
+        return view('pages.frontsite.mitra.profile', compact('mitra', 'bidang_usaha'));
     }
 
     /**
@@ -50,9 +60,29 @@ class ProfileController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateMitraRequest $request, Mitra $profile)
     {
-        //
+        $data = $request->all();
+
+        if ($request->hasFile('foto')) {
+
+            // delete old photo from storage
+            if ($profile->foto != null) {
+                File::delete('storage/' . $profile->foto);
+            }
+
+            // add new photo path
+            $data['foto'] = $request->file('foto')->store('images/mitra', 'public');
+
+            $user = new User;
+            $user->where('id', $profile->user_id)->update(['profile_photo_path' => $data['foto']]);
+        }
+
+
+        $profile->update($data);
+
+        alert()->success('Berhasil', 'Data anda berhasil diupdate');
+        return back();
     }
 
     /**

@@ -75,11 +75,11 @@ class ProfileController extends Controller
 
             // add new photo path
             $data['foto'] = $request->file('foto')->store('images/siswa', 'public');
+            $user = new User;
+            $user->where('id', $profile->user_id)->update(['profile_photo_path' => $data['foto']]);
         }
 
 
-        $user = new User;
-        $user->where('id', $profile->user_id)->update(['profile_photo_path' => $data['foto']]);
         $profile->update($data);
 
         alert()->success('Berhasil', 'Data anda berhasil diupdate');
