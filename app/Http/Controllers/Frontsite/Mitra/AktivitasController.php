@@ -19,7 +19,7 @@ class AktivitasController extends Controller
     {
         $mitra = Mitra::where('user_id', auth()->user()->id)->first();
         $siswa_id = PesertaPkl::select('siswa_id')->where('mitra_id', $mitra->id)->get()->toArray();
-        $aktivitas = AktivitasSiswa::leftJoin('siswa', 'siswa.id', '=', 'aktivitas_siswa.siswa_id')->whereIn('siswa_id', $siswa_id)->select('siswa.id', 'siswa.nama', AktivitasSiswa::raw('COUNT(presensi) as total_presensi'))->groupBy('siswa.id', 'siswa.nama')->get();
+        $aktivitas = AktivitasSiswa::leftJoin('siswa', 'siswa.id', '=', 'aktivitas_siswa.siswa_id')->whereIn('siswa_id', $siswa_id)->select('siswa.id', 'siswa.nama', AktivitasSiswa::raw('COUNT(presensi) as total_presensi, COUNT(CASE WHEN status IS NULL THEN jurnal ELSE NULL END) as total_jurnal_perlu_review'))->groupBy('siswa.id', 'siswa.nama')->get();
 
         return view('pages.frontsite.mitra.aktivitas', compact('aktivitas'));
     }
@@ -63,7 +63,13 @@ class AktivitasController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $data = [
+            'status' => '1',
+        ];
+
+        AktivitasSiswa::where('id', $request->id)->update($data);
+        alert()->success('Berhasil', 'Jurnal Harian Diterima');
+        return back();
     }
 
     /**

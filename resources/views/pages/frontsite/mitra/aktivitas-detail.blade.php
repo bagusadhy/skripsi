@@ -100,7 +100,7 @@
                             </p>
 
                             @if ($data->status == null)
-                                <div class="flex justify-center gap-3 mt-10">
+                                <div class="flex justify-end gap-3 mt-10">
                                     <button
                                         class="px-10 py-2 text-center bg-red-500 text-sm text-white rounded active:border-none"
                                         id="tolak-{{ $data->id }}"
