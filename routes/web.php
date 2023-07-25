@@ -135,6 +135,7 @@ Route::prefix('mitra')->name('mitra.')->middleware(['auth:sanctum', 'verified', 
 
     Route::get('laporan/download/{siswa}', [MitraLaporanController::class, 'download'])->name('laporan.download');
     Route::get('nilai/download_template', [MitraNilaiController::class, 'download_template'])->name('nilai.download_template');
+    Route::put('aktivitas/tolak/{id}', [AktivitasMitraController::class, 'tolak'])->name('aktivitas.tolak');
 
     Route::resource('dashboard', DashboardMitraController::class);
     Route::resource('profile', ProfileController::class);

@@ -17,6 +17,9 @@ return new class extends Migration
             $table->date('tanggal');
             $table->enum('presensi', [1, 2, 3, 4]);
             $table->longText('jurnal');
+            $table->enum('status', [0, 1])->nullable();
+            $table->longText('revisi')->nullable();
+
             // $table->timestamps();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->nullable()->useCurrentOnUpdate();

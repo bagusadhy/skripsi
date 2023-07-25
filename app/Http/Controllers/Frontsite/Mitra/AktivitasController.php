@@ -73,4 +73,16 @@ class AktivitasController extends Controller
     {
         //
     }
+
+    public function tolak(Request $request,string $id){
+        $data = [
+            'status' => '0',
+            'revisi' => $request->revisi
+        ];
+
+        AktivitasSiswa::where('id', $request->id)->update($data);
+        alert()->success('Berhasil', 'Jurnal Harian Ditolak');
+        return back();
+
+    }
 }

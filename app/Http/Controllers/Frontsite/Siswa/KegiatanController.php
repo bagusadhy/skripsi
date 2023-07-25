@@ -13,6 +13,7 @@ use App\Models\MasterData\PeriodePkl;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\AktivitasSiswa\StoreAktivitasSiswaRequest;
+use App\Http\Requests\AktivitasSiswa\UpdateAktivitasSiswaRequest;
 
 class KegiatanController extends Controller
 {
@@ -39,7 +40,9 @@ class KegiatanController extends Controller
             $access_laporan = true;
         }
 
-        return view('pages.frontsite.siswa.kegiatan', compact('peserta', 'aktivitas', 'access_laporan'));
+        $total_revisi = AktivitasSiswa::where('siswa_id', $siswa->id)->where('status', '0')->count();
+
+        return view('pages.frontsite.siswa.kegiatan', compact('peserta', 'aktivitas', 'access_laporan', 'total_revisi'));
     }
 
     /**
@@ -81,17 +84,27 @@ class KegiatanController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(AktivitasSiswa $kegiatan)
     {
-        //
+        $logbook = $kegiatan;
+
+        return view('pages.frontsite.siswa.logbook-edit', compact('logbook'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateAktivitasSiswaRequest $request, AktivitasSiswa $kegiatan)
     {
-        //
+        $data = [
+            'status' => null,
+            'jurnal' => $request->jurnal,
+        ];
+
+        $kegiatan->update($data);
+
+        alert()->success('Berhasil', 'Logbook Berhasil Direvisi.');
+        return redirect(route('siswa.kegiatan.index'));
     }
 
     /**

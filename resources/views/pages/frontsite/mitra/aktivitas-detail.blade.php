@@ -59,6 +59,9 @@
                                 data-te-target="#collapse{{ $data->id }}" aria-expanded="false"
                                 aria-controls="collapse{{ $data->id }}">
                                 {{ date('D, d M Y', strtotime($data->tanggal)) }}
+                                @if ($data->status == null)
+                                    <div class="ml-10 bg-blue-500 px-2 py-1 text-xs leading-normal text-white font-bold rounded">Perlu Direview</div>
+                                @endif
                                 <span
                                     class="-mr-1 ml-auto h-5 w-5 shrink-0 rotate-[-180deg] fill-[#336dec] transition-transform duration-200 ease-in-out group-[[data-te-collapse-collapsed]]:mr-0 group-[[data-te-collapse-collapsed]]:rotate-0 group-[[data-te-collapse-collapsed]]:fill-[#212529] motion-reduce:transition-none dark:fill-blue-300 dark:group-[[data-te-collapse-collapsed]]:fill-white">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -82,7 +85,11 @@
                                     @break
 
                                     @case('3')
-                                        <p class="text-sm text-red-500 font-bold">Tidak Hadir</p>
+                                        <p class="text-sm text-red-500 font-bold">Sakit</p>
+                                    @break
+
+                                    @case('4')
+                                        <p class="text-sm text-red-500 font-bold">Libur</p>
                                     @break
 
                                     @default
@@ -91,6 +98,36 @@
                             <p class="flex gap-3 items-center text-justify">
                                 {{ $data->jurnal }}
                             </p>
+
+                            @if ($data->status == null)
+                                <div class="flex justify-center gap-3 mt-10">
+                                    <button
+                                        class="px-10 py-2 text-center bg-red-500 text-sm text-white rounded active:border-none"
+                                        id="tolak-{{ $data->id }}"
+                                        onclick="event.preventDefault(); $('#revisi-{{ $data->id }}').toggleClass('hidden')">Tolak</button>
+                                    <div>
+                                        <form action="{{ route('mitra.aktivitas.update', $data->id) }}" method="POST">
+                                            @csrf
+                                            @method('PUT')
+                                            <input type="hidden" name="id" value="{{ $data->id }}">
+                                            <button type="submit"
+                                                class="px-10 py-2 text-sm text-center bg-blue-500 text-white rounded">Terima</button>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="mt-10 hidden" id="revisi-{{ $data->id }}">
+                                    <form action="{{ route('mitra.aktivitas.tolak', $data->id) }}" method="POST">
+                                        @csrf
+                                        @method('PUT')
+                                        <input type="hidden" name="id" value="{{ $data->id }}" required>
+                                        <textarea name="revisi" class="w-full h-32 rounded border-2 border-gray-200 resize-none" required></textarea>
+                                        <div class="flex justify-end">
+                                            <button type="submit"
+                                                class="px-10 py-2 text-center bg-blue-500 text-sm text-white rounded">Revisi</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>
