@@ -105,7 +105,7 @@
                 </div>
 
             @empty
-                <div class="flex justify-center items-center">
+                <div class="flex justify-center items-center py-20">
                     <p>Belum ada pendaftar</p>
                 </div>
             @endforelse
