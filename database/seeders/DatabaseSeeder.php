@@ -31,9 +31,9 @@ class DatabaseSeeder extends Seeder
             GuruSeeder::class,
             SiswaSeeder::class,
             LowonganSeeder::class,
-            PesertaPklSeeder::class,
+            // PesertaPklSeeder::class,
             BimbinganSeeder::class,
-            AktivitasSiswaSeeder::class,
+            // AktivitasSiswaSeeder::class,
         ]);
     }
 }

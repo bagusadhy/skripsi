@@ -18,6 +18,11 @@ class PeriodeSeeder extends Seeder
                 'nama_timeline' => 'pendaftaran',
                 'tanggal_dimulai' => '2021-01-01',
                 'tanggal_berakhir' => '2023-10-30',
+            ],
+            [
+                'nama_timeline' => 'kegiatan',
+                'tanggal_dimulai' => '2021-01-01',
+                'tanggal_berakhir' => '2023-10-30',
             ]
         ];
 
