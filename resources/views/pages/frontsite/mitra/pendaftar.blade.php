@@ -86,54 +86,58 @@
                         </div>
                     @else
                         <div class="w-2/6 lg:w-1/6 flex justify-center">
-                           @switch($data->status)
-                               @case('1')
-                                    <p class="py-3 block w-full md:w-fit text-sm text-center font-medium rounded text-red-500">Ditolak</p>
-                                   @break
-                               @case('2')
-                                    <p class="py-3 block w-full md:w-fit text-sm text-center font-medium rounded text-blue-500">Diterima</p>
-                                   @break
-                               @case('3')
-                                    <p class="py-3 block w-full md:w-fit text-sm text-center font-medium rounded text-green-500">Aktif</p>
-                                   @break
+                            @switch($data->status)
+                                @case('1')
+                                    <p class="py-3 block w-full md:w-fit text-sm text-center font-medium rounded text-blue-500">
+                                        Diterima</p>
+                                @break
 
-                               @default
+                                @case('2')
+                                    <p class="py-3 block w-full md:w-fit text-sm text-center font-medium rounded text-red-500">
+                                        Ditolak</p>
+                                @break
 
-                           @endswitch
+                                @case('3')
+                                    <p class="py-3 block w-full md:w-fit text-sm text-center font-medium rounded text-green-500">
+                                        Aktif</p>
+                                @break
+
+                                @default
+                            @endswitch
                         </div>
                     @endif
                 </div>
 
-            @empty
-                <div class="flex justify-center items-center py-20">
-                    <p>Belum ada pendaftar</p>
-                </div>
-            @endforelse
+                @empty
+                    <div class="flex justify-center items-center py-20">
+                        <p>Belum ada pendaftar</p>
+                    </div>
+                @endforelse
+            </div>
+        </main>
         </div>
-    </main>
-    </div>
-    </section>
-@endsection
+        </section>
+    @endsection
 
-@push('after-script')
-    <script>
-        $('#tolak').on('click', function() {
-            event.preventDefault();
-            Swal.fire({
-                title: 'Apakah Yakin?',
-                text: "Tolak pendaftaran!",
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Tolak',
-                icon: 'warning'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    $('#form-tolak').submit()
-                } else if (result.isDenied) {
-                    Swal.fire('Changes are not saved', '', 'info')
-                }
+    @push('after-script')
+        <script>
+            $('#tolak').on('click', function() {
+                event.preventDefault();
+                Swal.fire({
+                    title: 'Apakah Yakin?',
+                    text: "Tolak pendaftaran!",
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Tolak',
+                    icon: 'warning'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $('#form-tolak').submit()
+                    } else if (result.isDenied) {
+                        Swal.fire('Changes are not saved', '', 'info')
+                    }
+                });
             });
-        });
-    </script>
-@endpush
+        </script>
+    @endpush

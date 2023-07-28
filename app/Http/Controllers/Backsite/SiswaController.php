@@ -15,6 +15,8 @@ use App\Http\Requests\Siswa\UpdateSiswaRequest;
 
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\newUser;
 
 class SiswaController extends Controller
 {
@@ -82,6 +84,15 @@ class SiswaController extends Controller
             alert()->error('Gagal', 'Data Siswa Gagal Ditambahkan');
             return redirect(route('backsite.siswa.index'));
         }
+
+        $maildata = [
+            'nama' => $request->nama,
+            'email' => $request->email,
+            'password' => $request->email,
+            'role' => 'Mitra',
+        ];
+
+        Mail::to($maildata['email'])->send(new newUser($maildata));
 
         alert()->success('Berhasil', 'Data Siswa Berhasil Ditambahkan');
         return redirect(route('backsite.siswa.index'));

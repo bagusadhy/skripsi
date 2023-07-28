@@ -5,8 +5,8 @@ Anda telah didaftarkan sebagai **{{ $role }}** pada website PKL SMKN 2 Malang.
 
 Berikut adalah beberapa detail penting tentang akun Anda:
 
-- **Email:** {{ $email }}
-- **Password:** {{ $password }}
+- **<pre>Email : {{ $email }}</pre>**
+- **<pre>Password : {{ $password }}</pre>**
 
 Terima kasih telah menjadi bagian dari PKL SMKN 2 Malang!
 

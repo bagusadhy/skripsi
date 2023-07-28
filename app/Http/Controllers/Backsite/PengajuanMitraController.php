@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\pengajuanMitra as MailPengajuanMitra;
 
 use App\Models\Kegiatan\PengajuanMitra;
 use App\Models\User;
@@ -23,7 +25,7 @@ class PengajuanMitraController extends Controller
      */
     public function index()
     {
-        $pengajuan = PengajuanMitra::with('siswa','siswa.kelas', 'bidang_usaha')->get();
+        $pengajuan = PengajuanMitra::with('siswa', 'siswa.kelas', 'bidang_usaha')->get();
 
         return view('pages.backsite.kegiatan.pengajuan-mitra.index', compact('pengajuan'));
     }
@@ -42,7 +44,7 @@ class PengajuanMitraController extends Controller
      */
     public function store(Request $request)
     {
-        $data = PengajuanMitra::where('id', $request->id_pengajuan)->first();
+        $data = PengajuanMitra::where('id', $request->id_pengajuan)->with('siswa', 'siswa.user')->first();
 
         try {
             DB::transaction(function () use ($data) {
@@ -75,6 +77,16 @@ class PengajuanMitraController extends Controller
             return back()->with('error', 'Terjadi kesalahan');
         }
 
+        $maildata = [
+            'nama_siswa' => $data->siswa->nama,
+            'nama_perusahaan' => $data->nama,
+            'kontak' => $data->kontak,
+            'alamat' => $data->alamat,
+            'markdown' => 'emails.pengajuan-mitra'
+        ];
+
+        Mail::to($data->siswa->user->email)->send(new MailPengajuanMitra($maildata));
+
         alert()->success('Berhasil', 'Pengajuan mitra diterima');
         return redirect()->route('backsite.pengajuan_mitra.index');
     }
@@ -103,10 +115,22 @@ class PengajuanMitraController extends Controller
      */
     public function update(Request $request, PengajuanMitra $pengajuan)
     {
-        $data = [
+        $status = [
             'status' => 3,
         ];
-        $pengajuan->update($data);
+        $data = PengajuanMitra::where('id', $request->id_pengajuan)->with('siswa', 'siswa.user')->first();
+
+        $maildata = [
+            'nama_siswa' => $data->siswa->nama,
+            'nama_perusahaan' => $data->nama,
+            'kontak' => $data->kontak,
+            'alamat' => $data->alamat,
+            'markdown' => 'emails.pengajuan-mitra-tolak'
+        ];
+
+
+        $pengajuan->update($status);
+        Mail::to($data->siswa->user->email)->send(new MailPengajuanMitra($maildata));
 
         alert()->success('Berhasil', 'Pengajuan mitra telah ditolak');
         return redirect()->route('backsite.pengajuan_mitra.index');

@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Frontsite\Mitra;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\pendaftaran;
 
 use App\Models\Kegiatan\PendaftarPkl;
 use App\Models\MasterData\Mitra;
@@ -60,17 +62,31 @@ class PendaftarController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified needless resource in storage.
      */
     public function update(Request $request, PendaftarPkl $pendaftar)
     {
         $data = $request->all();
 
+
         $pendaftar->update($data);
 
+        $data = PendaftarPkl::where('id', $pendaftar->id)->with('siswa', 'siswa.user', 'lowongan')->first();
+
+        $maildata = [
+            'nama' => $data->siswa->nama,
+            'email' => $data->siswa->user->email,
+            'nama_lowongan' => $data->lowongan->nama,
+        ];
+
         if ($data['status'] == '1') {
+
+            $maildata['markdown'] = 'emails.pendaftaran';
+            Mail::to($maildata['email'])->send(new pendaftaran($maildata));
             alert()->success('Berhasil', 'Pendaftaran Diterima');
         } else {
+            $maildata['markdown'] = 'emails.pendaftaran-tolak';
+            Mail::to($maildata['email'])->send(new pendaftaran($maildata));
             alert()->success('Berhasil', 'Pendaftaran Ditolak');
         }
 

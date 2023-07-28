@@ -9,6 +9,8 @@ use App\Models\MasterData\BidangUsaha;
 
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\newUser;
 
 use App\Http\Requests\Mitra\StoreMitraRequest;
 use App\Http\Requests\Mitra\UpdateMitraRequest;
@@ -45,22 +47,38 @@ class MitraController extends Controller
      */
     public function store(StoreMitraRequest $request)
     {
-        DB::transaction(function () use ($request) {
-            $user_data = [
-                'name' => $request->nama,
-                'email' => $request->email,
-                'password' => Hash::make($request->email),
-                'role_id' => 2
-            ];
+        try {
+            //code...
+            DB::transaction(function () use ($request) {
+                $user_data = [
+                    'name' => $request->nama,
+                    'email' => $request->email,
+                    'password' => Hash::make($request->email),
+                    'role_id' => 2
+                ];
 
-            $user = User::create($user_data);
+                $user = User::create($user_data);
 
-            $mitra = $request->all();
-            $mitra['user_id'] = $user->id;
-            unset($mitra['email']);
+                $mitra = $request->all();
+                $mitra['user_id'] = $user->id;
+                unset($mitra['email']);
 
-            Mitra::create($mitra);
-        });
+                Mitra::create($mitra);
+            });
+        } catch (\Throwable $th) {
+            //throw $th;
+            alert()->error('Gagal', 'Data Mitra Gagal Ditambahkan');
+            return redirect(route('backsite.mitra.index'));
+        }
+
+        $maildata = [
+            'nama' => $request->nama,
+            'email' => $request->email,
+            'password' => $request->email,
+            'role' => 'Mitra',
+        ];
+
+        Mail::to($maildata['email'])->send(new newUser($maildata));
 
         alert()->success('Berhasil', 'Data Mitra Berhasil Ditambahkan');
         return redirect(route('backsite.mitra.index'));

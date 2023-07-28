@@ -111,11 +111,10 @@
             @if ($pengajuan->status == '1')
                 <div class="flex gap-5">
                     <a class="block whitespace-nowrap bg-blue-500 w-44 py-2 text-sm text-white text-center font-bold rounded leading-normal hover:bg-blue-700"
-                        href=""
-                        onclick="event.preventDefault(); document.getElementById('form-terima').submit();"
+                        href="" onclick="event.preventDefault(); document.getElementById('form-terima').submit();"
                         id="terima">Terima
-                        <form action="{{ route('backsite.pengajuan_mitra.store') }}" id="form-terima"
-                            method="POST" style="display: none">
+                        <form action="{{ route('backsite.pengajuan_mitra.store') }}" id="form-terima" method="POST"
+                            style="display: none">
                             @csrf
                             <input type="hidden" name="id_pengajuan" value="{{ $pengajuan->id }}">
                         </form>
@@ -126,6 +125,7 @@
                             method="POST" style="display: none">
                             @csrf
                             @method('PUT')
+                            <input type="hidden" name="id_pengajuan" value="{{ $pengajuan->id }}">
                         </form>
                     </a>
                 </div>

@@ -10,8 +10,9 @@ use Illuminate\Support\Facades\Hash;
 
 use App\Http\Requests\Guru\StoreGuruRequest;
 use App\Http\Requests\Guru\UpdateGuruRequest;
-
+use App\Mail\newUser;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class GuruController extends Controller
 {
@@ -68,6 +69,15 @@ class GuruController extends Controller
             alert()->error('Gagal', 'Data Guru Gagal Ditambahkan');
             return redirect(route('backsite.guru.index'));
         }
+
+        $maildata = [
+            'nama' => $request->nama,
+            'email' => $request->email,
+            'password' => $request->email,
+            'role' => 'Guru',
+        ];
+
+        Mail::to($maildata['email'])->send(new newUser($maildata));
 
         alert()->success('Berhasil', 'Data Guru Berhasil Ditambahkan');
         return redirect(route('backsite.guru.index'));
