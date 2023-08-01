@@ -110,20 +110,25 @@
                     <ul class="show !visible relative m-0 hidden list-none p-0 data-[te-collapse-show]:block "
                         data-te-sidenav-collapse-ref>
 
+
+                        <li class="relative">
+                            <p class="text-xs mx-4 mt-3 font-bold border-b leading-normal text-gray-600">Guru</p>
+                        </li>
                         <li class="relative">
                             <a class="flex h-6 cursor-pointer items-center truncate rounded-[5px] py-4 px-8 text-[0.78rem] text-gray-600 outline-none transition duration-300 ease-linear hover:bg-slate-200 hover:text-inherit hover:outline-none focus:bg-slate-50 focus:text-inherit focus:outline-none active:bg-slate-50 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10 {{ request()->is('backsite/monitoring') || request()->is('backsite/monitoring/*') ? 'bg-slate-300 font-bold' : '' }}"
                                 href="{{ route('backsite.monitoring.index') }}" data-te-sidenav-link-ref>Monitoring</a>
+                        </li>
+
+
+                        <li class="relative">
+                            <p class="text-xs mx-4 mt-3 font-bold border-b leading-normal text-gray-600">Siswa</p>
                         </li>
                         <li class="relative">
                             <a class="flex h-6 cursor-pointer items-center truncate rounded-[5px] py-4 px-8 text-[0.78rem] text-gray-600 outline-none transition duration-300 ease-linear hover:bg-slate-200 hover:text-inherit hover:outline-none focus:bg-slate-50 focus:text-inherit focus:outline-none active:bg-slate-50 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10 {{ request()->is('backsite/pengajuan_mitra') || request()->is('backsite/pengajuan_mitra/*') ? 'bg-slate-300 font-bold' : '' }}"
                                 href="{{ route('backsite.pengajuan_mitra.index') }}" data-te-sidenav-link-ref>Pengajuan
                                 Mitra</a>
                         </li>
-                        <li class="relative">
-                            <a class="flex h-6 cursor-pointer items-center truncate rounded-[5px] py-4 px-8 text-[0.78rem] text-gray-600 outline-none transition duration-300 ease-linear hover:bg-slate-200 hover:text-inherit hover:outline-none focus:bg-slate-50 focus:text-inherit focus:outline-none active:bg-slate-50 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10 {{ request()->is('backsite/lowongan') || request()->is('backsite/lowongan/*') ? 'bg-slate-300 font-bold' : '' }}"
-                                href="{{ route('backsite.lowongan.index') }}" data-te-sidenav-link-ref>Lowongan
-                                PKL</a>
-                        </li>
+
                         <li class="relative">
                             <a class="flex h-6 cursor-pointer items-center truncate rounded-[5px] py-4 px-8 text-[0.78rem] text-gray-600 outline-none transition duration-300 ease-linear hover:bg-slate-200 hover:text-inherit hover:outline-none focus:bg-slate-50 focus:text-inherit focus:outline-none active:bg-slate-50 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10 {{ request()->is('backsite/pendaftar') || request()->is('backsite/pendaftar/*') ? 'bg-slate-300 font-bold' : '' }}"
                                 href="{{ route('backsite.pendaftar.index') }}" data-te-sidenav-link-ref>Pendaftar
@@ -145,6 +150,16 @@
                         <li class="relative">
                             <a class="flex h-6 cursor-pointer items-center truncate rounded-[5px] py-4 px-8 text-[0.78rem] text-gray-600 outline-none transition duration-300 ease-linear hover:bg-slate-200 hover:text-inherit hover:outline-none focus:bg-slate-50 focus:text-inherit focus:outline-none active:bg-slate-50 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10 {{ request()->is('backsite/laporan') || request()->is('backsite/laporan/*') ? 'bg-slate-300 font-bold' : '' }}"
                                 href="{{ route('backsite.laporan.index') }}" data-te-sidenav-link-ref>Laporan</a>
+                        </li>
+
+
+                        <li class="relative">
+                            <p class="text-xs mx-4 mt-3 font-bold border-b leading-normal text-gray-600">Mitra</p>
+                        </li>
+                        <li class="relative">
+                            <a class="flex h-6 cursor-pointer items-center truncate rounded-[5px] py-4 px-8 text-[0.78rem] text-gray-600 outline-none transition duration-300 ease-linear hover:bg-slate-200 hover:text-inherit hover:outline-none focus:bg-slate-50 focus:text-inherit focus:outline-none active:bg-slate-50 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10 {{ request()->is('backsite/lowongan') || request()->is('backsite/lowongan/*') ? 'bg-slate-300 font-bold' : '' }}"
+                                href="{{ route('backsite.lowongan.index') }}" data-te-sidenav-link-ref>Lowongan
+                                PKL</a>
                         </li>
                         <li class="relative">
                             <a class="flex h-6 cursor-pointer items-center truncate rounded-[5px] py-4 px-8 text-[0.78rem] text-gray-600 outline-none transition duration-300 ease-linear hover:bg-slate-200 hover:text-inherit hover:outline-none focus:bg-slate-50 focus:text-inherit focus:outline-none active:bg-slate-50 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10 {{ request()->is('backsite/nilai') || request()->is('backsite/nilai/*') ? 'bg-slate-300 font-bold' : '' }}"
