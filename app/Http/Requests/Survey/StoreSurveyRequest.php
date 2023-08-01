@@ -27,6 +27,9 @@ class StoreSurveyRequest extends FormRequest
             'title' => [
                 'required', 'string',
             ],
+            'kategori' => [
+                'required', 'string',
+            ],
         ];
     }
 }

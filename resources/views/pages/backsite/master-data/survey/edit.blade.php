@@ -55,6 +55,17 @@
                     @if ($errors->has('title'))
                         <p style="font-style: bold; color: red;">{{ $errors->first('title') }}</p>
                     @endif
+
+                    <label for="kategori" class="block">
+                        <span class="font-medium">Kategori <code class="text-red-500">*</code></span>
+                    </label>
+                    <input type="text"
+                        class="w-full h-11 rounded-md border border-gray-300 px-5 py-3 focus:outline-none resize-none"
+                        name="kategori"id="kategori" required></input>
+                    @if ($errors->has('kategori'))
+                        <p style="font-style: bold; color: red;">{{ $errors->first('title') }}</p>
+                    @endif
+
                     <div class="flex justify-end mt-4">
                         <button type="submit" class="px-8 py-2 bg-blue-700 text-white rounded-md">Simpan</button>
                     </div>

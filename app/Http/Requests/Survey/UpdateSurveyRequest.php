@@ -27,6 +27,9 @@ class UpdateSurveyRequest extends FormRequest
             'title' => [
                 'required', 'string',
             ],
+            'kategori' => [
+                'required', 'string',
+            ],
         ];
     }
 }

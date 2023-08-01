@@ -69,6 +69,15 @@
                                 @if ($errors->has('title'))
                                     <p style="font-style: bold; color: red;">{{ $errors->first('title') }}</p>
                                 @endif
+
+                                <label for="kategori" class="block">
+                                    <span class="font-medium">Kategori <code class="text-red-500">*</code></span>
+                                </label>
+                                <input type="text" class="w-full h-11 rounded-md border border-gray-300 px-5 py-3 focus:outline-none resize-none"
+                                    name="kategori"id="kategori" required></input>
+                                @if ($errors->has('kategori'))
+                                    <p style="font-style: bold; color: red;">{{ $errors->first('title') }}</p>
+                                @endif
                                 <div class="flex justify-end mt-4">
                                     <button type="submit"
                                         class="px-8 py-2 bg-blue-700 text-white rounded-md">Tambahkan</button>
@@ -86,6 +95,7 @@
                         <thead>
                             <tr>
                                 <th>Pertanyaan</th>
+                                <th>Kategori</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -93,6 +103,7 @@
                             @forelse ($data as $survey)
                                 <tr data-entry-id="{{ $survey->id }}" class="hover:bg-neutral-200 outline-2">
                                     <td>{{ $survey->title }}</td>
+                                    <td>{{ $survey->kategori }}</td>
                                     <td>
                                         <div class="relative" data-te-dropdown-ref>
                                             <button

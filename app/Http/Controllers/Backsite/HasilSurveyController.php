@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Backsite;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use App\Models\Kegiatan\HasilSurvey;
+
 class HasilSurveyController extends Controller
 {
     public function __construct()
@@ -17,7 +19,20 @@ class HasilSurveyController extends Controller
      */
     public function index()
     {
-        return view('pages.backsite.kegiatan.hasil-survey.index');
+        $query = HasilSurvey::select('survey_id', HasilSurvey::raw('AVG(skala) as rata_rata'))->with('survey')->groupBy('survey_id')->get();
+
+        $label = [];
+        $dataset = [];
+        foreach ($query as $value) {
+
+            array_push($dataset,$value->rata_rata);
+            array_push($label,$value->survey->kategori);
+        }
+
+        $labels = json_encode($label);
+        $datasets = json_encode($dataset);
+
+        return view('pages.backsite.kegiatan.hasil-survey.index', compact('labels','datasets'));
     }
 
 

@@ -26,6 +26,7 @@ class Survey extends Model
     // declare field that fillable
     protected $fillable = [
         'title',
+        'kategori',
         'created_at',
         'updated_at',
         'deleted_at',
