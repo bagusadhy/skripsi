@@ -99,19 +99,19 @@
                                     <ul class="!visible relative m-0 hidden list-none p-0 data-[te-collapse-show]:block "
                                         data-te-sidenav-collapse-ref>
                                         <li class="relative">
-                                            <a href="{{ route('backsite.survey.index') }}"
-                                                class="flex h-6 cursor-pointer items-center truncate rounded-[5px] py-4 px-8 text-[0.78rem] text-gray-600 outline-none transition duration-300 ease-linear hover:bg-slate-200 hover:text-inherit hover:outline-none focus:bg-slate-50 focus:text-inherit focus:outline-none active:bg-slate-50 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10 {{ request()->is('backsite/survey') || request()->is('backsite/survey/*') ? 'bg-slate-300 font-bold' : '' }}"
-                                                data-te-sidenav-link-ref>Survey</a>
-                                        </li>
-                                        <li class="relative">
                                             <a href="{{ route('backsite.periode.index') }}"
                                                 class="flex h-6 cursor-pointer items-center truncate rounded-[5px] py-4 px-8 text-[0.78rem] text-gray-600 outline-none transition duration-300 ease-linear hover:bg-slate-200 hover:text-inherit hover:outline-none focus:bg-slate-50 focus:text-inherit focus:outline-none active:bg-slate-50 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10 {{ request()->is('backsite/periode') || request()->is('backsite/periode/*') ? 'bg-slate-300 font-bold' : '' }}"
                                                 data-te-sidenav-link-ref>Periode PKL</a>
                                         </li>
                                         <li class="relative">
+                                            <a href="{{ route('backsite.survey.index') }}"
+                                                class="flex h-6 cursor-pointer items-center truncate rounded-[5px] py-4 px-8 text-[0.78rem] text-gray-600 outline-none transition duration-300 ease-linear hover:bg-slate-200 hover:text-inherit hover:outline-none focus:bg-slate-50 focus:text-inherit focus:outline-none active:bg-slate-50 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10 {{ request()->is('backsite/survey') || request()->is('backsite/survey/*') ? 'bg-slate-300 font-bold' : '' }}"
+                                                data-te-sidenav-link-ref>Survey Kepuasan Mitra</a>
+                                        </li>
+                                        <li class="relative">
                                             <a href="{{ route('backsite.bidang_usaha.index') }}"
                                                 class="flex h-6 cursor-pointer items-center truncate rounded-[5px] py-4 px-8 text-[0.78rem] text-gray-600 outline-none transition duration-300 ease-linear hover:bg-slate-200 hover:text-inherit hover:outline-none focus:bg-slate-50 focus:text-inherit focus:outline-none active:bg-slate-50 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10 {{ request()->is('backsite/bidang_usaha') || request()->is('backsite/bidang_usaha/*') ? 'bg-slate-300 font-bold' : '' }}"
-                                                data-te-sidenav-link-ref>Bidang Usaha</a>
+                                                data-te-sidenav-link-ref>Bidang Usaha Mitra</a>
                                         </li>
                                         <li class="relative">
                                             <a href="{{ route('backsite.jurusan.index') }}"
@@ -126,27 +126,27 @@
                                         <li class="relative">
                                             <a href="{{ route('backsite.template.index') }}"
                                                 class="flex h-6 cursor-pointer items-center truncate rounded-[5px] py-4 px-8 text-[0.78rem] text-gray-600 outline-none transition duration-300 ease-linear hover:bg-slate-200 hover:text-inherit hover:outline-none focus:bg-slate-50 focus:text-inherit focus:outline-none active:bg-slate-50 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10 {{ request()->is('backsite/template') || request()->is('backsite/template/*') ? 'bg-slate-300 font-bold' : '' }}"
-                                                data-te-sidenav-link-ref>Template</a>
+                                                data-te-sidenav-link-ref>Template Laporan & Penilaian</a>
                                         </li>
                                         <li class="relative">
                                             <a class="flex h-6 cursor-pointer items-center truncate rounded-[5px] py-4 px-8 text-[0.78rem] text-gray-600 outline-none transition duration-300 ease-linear hover:bg-slate-200 hover:text-inherit hover:outline-none focus:bg-slate-50 focus:text-inherit focus:outline-none active:bg-slate-50 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10 {{ request()->is('backsite/bimbingan') || request()->is('backsite/bimbingan/*') ? 'bg-slate-300 font-bold' : '' }}"
                                                 href="{{ route('backsite.bimbingan.index') }}"
-                                                data-te-sidenav-link-ref>Bimbingan</a>
+                                                data-te-sidenav-link-ref>Guru Pembimbing</a>
                                         </li>
                                         <li class="relative">
                                             <a href="{{ route('backsite.siswa.index') }}"
                                                 class="flex h-6 cursor-pointer items-center truncate rounded-[5px] py-4 px-8 text-[0.78rem] text-gray-600 outline-none transition duration-300 ease-linear hover:bg-slate-200 hover:text-inherit hover:outline-none focus:bg-slate-50 focus:text-inherit focus:outline-none active:bg-slate-50 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10 {{ request()->is('backsite/siswa') || request()->is('backsite/siswa/*') ? 'bg-slate-300 font-bold' : '' }}"
-                                                data-te-sidenav-link-ref>Siswa</a>
+                                                data-te-sidenav-link-ref>Data Siswa</a>
                                         </li>
                                         <li class="relative">
                                             <a href="{{ route('backsite.guru.index') }}"
                                                 class="flex h-6 cursor-pointer items-center truncate rounded-[5px] py-4 px-8 text-[0.78rem] text-gray-600 outline-none transition duration-300 ease-linear hover:bg-slate-200 hover:text-inherit hover:outline-none focus:bg-slate-50 focus:text-inherit focus:outline-none active:bg-slate-50 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10 {{ request()->is('backsite/guru') || request()->is('backsite/guru/*') ? 'bg-slate-300 font-bold' : '' }}"
-                                                data-te-sidenav-link-ref>Guru</a>
+                                                data-te-sidenav-link-ref>Data Guru</a>
                                         </li>
                                         <li class="relative">
                                             <a href="{{ route('backsite.mitra.index') }}"
                                                 class="flex h-6 cursor-pointer items-center truncate rounded-[5px] py-4 px-8 text-[0.78rem] text-gray-600 outline-none transition duration-300 ease-linear hover:bg-slate-200 hover:text-inherit hover:outline-none focus:bg-slate-50 focus:text-inherit focus:outline-none active:bg-slate-50 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10 {{ request()->is('backsite/mitra') || request()->is('backsite/mitra/*') ? 'bg-slate-300 font-bold' : '' }}"
-                                                data-te-sidenav-link-ref>Mitra</a>
+                                                data-te-sidenav-link-ref>Data Mitra</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -242,7 +242,7 @@
                                             <a class="flex h-6 cursor-pointer items-center truncate rounded-[5px] py-4 px-8 text-[0.78rem] text-gray-600 outline-none transition duration-300 ease-linear hover:bg-slate-200 hover:text-inherit hover:outline-none focus:bg-slate-50 focus:text-inherit focus:outline-none active:bg-slate-50 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10 {{ request()->is('backsite/hasil_survey') || request()->is('backsite/hasil_survey/*') ? 'bg-slate-300 font-bold' : '' }}"
                                                 href="{{ route('backsite.hasil_survey.index') }}"
                                                 data-te-sidenav-link-ref>Hasil
-                                                Survey</a>
+                                                Survey Kepuasan</a>
                                         </li>
                                     </ul>
                                 </li>
