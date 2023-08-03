@@ -179,11 +179,6 @@
                                     @break
 
                                     @case('1')
-                                        <p class="py-3 block w-full md:w-fit text-sm text-center font-medium rounded text-red-500">
-                                            Ditolak</p>
-                                    @break
-
-                                    @case('2')
                                         <div class="w-full lg:w-1/6 flex sm:justify-center md:justify-end">
                                             <form action="{{ route('siswa.pendaftaran.update', $data->id) }}" method="POST">
                                                 @csrf
@@ -192,6 +187,11 @@
                                                     class="text-white px-10 py-3 block w-fit text-center text-sm font-medium bg-primary hover:bg-primaryhover rounded">Terima</button>
                                             </form>
                                         </div>
+                                    @break
+
+                                    @case('2')
+                                        <p class="py-3 block w-full md:w-fit text-sm text-center font-medium rounded text-red-500">
+                                            Ditolak</p>
                                     @break
 
                                     @case('3')

@@ -29,9 +29,16 @@ class PendaftaranController extends Controller
         $pendaftaran = PendaftarPkl::select('lowongan_id')->where('siswa_id', $siswa->id)->get()->toArray();
         $lowongan = Lowongan::whereNotIn('id', $pendaftaran)->where('jurusan_id', $siswa->jurusan_id)->with('mitra', 'mitra.bidang_usaha')->get();
         $lowongan_terdaftar = PendaftarPkl::where('siswa_id', $siswa->id)->with('lowongan', 'mitra', 'mitra.bidang_usaha')->get();
-
         $peserta = PesertaPkl::where('siswa_id', $siswa->id)->first();
-        $pendaftaran_access = PeriodePkl::where('nama_timeline', 'pendaftaran')->where('status', '1')->first();
+
+
+        $tahun = date('Y');
+        $periode = PeriodePkl::where('tahun', $tahun)->where('status', '1')->first();
+
+        $batas_pendaftaran = date_create($periode->kegiatan);
+        date_sub($batas_pendaftaran, date_interval_create_from_date_string('1 days'));
+
+        $pendaftaran_access = date('Y-m-d') <= $batas_pendaftaran ? true : false;
 
         return view('pages.frontsite.siswa.mitra', compact('lowongan', 'lowongan_terdaftar', 'peserta', 'pendaftaran_access'));
     }
@@ -84,7 +91,8 @@ class PendaftaranController extends Controller
             PendaftarPkl::where('siswa_id', $pendaftaran->siswa_id)->update(['status' => '2']);
             $pendaftaran->update(['status' => '3']);
 
-            $periode = PeriodePkl::where('nama_timeline', 'kegiatan')->first();
+            $tahun = date('Y-m-d');
+            $periode = PeriodePkl::where('tahun', $tahun)->where('status', '1')->first();
             $guru = Bimbingan::where('mitra_id', $pendaftaran->mitra_id)->first();
 
             $peserta = [
@@ -164,26 +172,26 @@ class PendaftaranController extends Controller
                                     </p>
                                 </div>
                         </div>';
-                        if($peserta == null && $pendaftaran_access != null){
-                            $output.= '<div class="w-2/6 lg:w-1/6 flex justify-center">
+                    if ($peserta == null && $pendaftaran_access != null) {
+                        $output .= '<div class="w-2/6 lg:w-1/6 flex justify-center">
                                 <form action="{{ route("siswa.pendaftaran.store" method="POST">';
-                                    csrf_token();
-                                    $output.='<input type="hidden" name="lowongan_id" value="'.$data->id.'">
-                                    <input type="hidden" name="mitra_id" value="'.$data->mitra->id .'">
+                        csrf_token();
+                        $output .= '<input type="hidden" name="lowongan_id" value="' . $data->id . '">
+                                    <input type="hidden" name="mitra_id" value="' . $data->mitra->id . '">
                                     <button type="submit"
                                         class="text-white px-10 py-3 block w-full md:w-fit text-center text-sm font-medium bg-primary hover:bg-primaryhover rounded">Daftar</button>
                                 </form>
                             </div>';
-                        }else{
-                            $output.= '<div class="w-2/6 lg:w-1/6 flex justify-center">
+                    } else {
+                        $output .= '<div class="w-2/6 lg:w-1/6 flex justify-center">
                                             <div
                                                 class="text-white px-10 py-3 block md:w-fit text-center text-sm font-medium bg-gray-400 cursor-not-allowed rounded">
                                                 Daftar
                                             </div>
                                        </div>';
-                        }
+                    }
 
-                        $output.= '</div>
+                    $output .= '</div>
                     ';
                 }
             } else {
