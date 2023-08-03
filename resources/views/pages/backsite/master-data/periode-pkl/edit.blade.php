@@ -46,23 +46,34 @@
                 <form action="{{ route('backsite.periode.update', $periode->id) }}" method="POST">
                     @csrf
                     @method('PUT')
-                    <div class="mb-3">
-                        <label for="nama_timeline" class="block">
-                            <span class="font-medium">Nama Timeline<code class="text-red-500">*</code></span>
-                        </label>
-                        <input type="text"
-                            class="w-full h-11 rounded-md border border-gray-300 px-5 py-3 focus:outline-none resize-none"
-                            name="nama_timeline" id="nama_timeline" required
-                            value="{{ ucwords($periode->nama_timeline) }}"></input>
-                        @if ($errors->has('nama_timeline'))
-                            <p style="font-style: bold; color: red;">{{ $errors->first('nama_timeline') }}</p>
+                    <label class="relative block mb-5">
+                        <span class="font-medium">Tanggal Mulai Pendaftaran<code class="text-red-500">*</code></span>
+                        <input type="text" id="pendaftaran" name="pendaftaran"
+                            class="block w-full h-11 rounded-lg py-3 text-[#1E2B4F] font-medium placeholder:text-[#AFAEC3] placeholder:font-normal px-7 border border-[#d4d4d4] focus:outline-none focus:border-[#0D63F3]"
+                            value="{{ $periode->pendaftaran }}" required />
+                        <span class="absolute top-8 right-[20px] bottom-1/2 translate-y-[58%] hover:cursor-pointer">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M19 4H5C3.89543 4 3 4.89543 3 6V20C3 21.1046 3.89543 22 5 22H19C20.1046 22 21 21.1046 21 20V6C21 4.89543 20.1046 4 19 4Z"
+                                    stroke="#AFAEC3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M3 10H21" stroke="#AFAEC3" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <path d="M16 2V6" stroke="#AFAEC3" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <path d="M8 2V6" stroke="#AFAEC3" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                        </span>
+                        @if ($errors->has('pendaftaran'))
+                            <p style="font-style: bold; color: red;">{{ $errors->first('pendaftaran') }}</p>
                         @endif
-                    </div>
+                    </label>
                     <label class="relative block mb-5">
-                        <span class="font-medium">Tanggal Mulai<code class="text-red-500">*</code></span>
-                        <input type="text" id="tanggal_dimulai" name="tanggal_dimulai"
+                        <span class="font-medium">Tanggal Mulai Kegiatan<code class="text-red-500">*</code></span>
+                        <input type="text" id="kegiatan" name="kegiatan"
                             class="block w-full h-11 rounded-lg py-3 text-[#1E2B4F] font-medium placeholder:text-[#AFAEC3] placeholder:font-normal px-7 border border-[#d4d4d4] focus:outline-none focus:border-[#0D63F3]"
-                            value="{{ $periode->tanggal_dimulai }}" required />
+                            value="{{ $periode->kegiatan }}" required />
                         <span class="absolute top-8 right-[20px] bottom-1/2 translate-y-[58%] hover:cursor-pointer">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -77,15 +88,15 @@
                                     stroke-linejoin="round" />
                             </svg>
                         </span>
+                        @if ($errors->has('kegiatan'))
+                            <p style="font-style: bold; color: red;">{{ $errors->first('kegiatan') }}</p>
+                        @endif
                     </label>
-                    @if ($errors->has('tanggal_dimulai'))
-                        <p style="font-style: bold; color: red;">{{ $errors->first('tanggal_dimulai') }}</p>
-                    @endif
                     <label class="relative block mb-5">
-                        <span class="font-medium">Tanggal Selesai<code class="text-red-500">*</code></span>
-                        <input type="text" id="tanggal_berakhir" name="tanggal_berakhir"
+                        <span class="font-medium">Tanggal Selesai Kegiatan<code class="text-red-500">*</code></span>
+                        <input type="text" id="kegiatan_selesai" name="kegiatan_selesai"
                             class="block w-full h-11 rounded-lg py-3 text-[#1E2B4F] font-medium placeholder:text-[#AFAEC3] placeholder:font-normal px-7 border border-[#d4d4d4] focus:outline-none focus:border-[#0D63F3]"
-                            value="{{ $periode->tanggal_berakhir }}" required />
+                            value="{{ $periode->kegiatan_selesai }}" required />
                         <span class="absolute top-8 right-[20px] bottom-1/2 translate-y-[58%] hover:cursor-pointer">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -100,10 +111,10 @@
                                     stroke-linejoin="round" />
                             </svg>
                         </span>
+                        @if ($errors->has('kegiatan_selesai'))
+                            <p style="font-style: bold; color: red;">{{ $errors->first('kegiatan_selesai') }}</p>
+                        @endif
                     </label>
-                    @if ($errors->has('tanggal_berakhir'))
-                        <p style="font-style: bold; color: red;">{{ $errors->first('tanggal_berakhir') }}</p>
-                    @endif
                     <label class="relative block mb-5">
                         <span class="font-medium">Status<code class="text-red-500">*</code></span>
                         <select data-te-select-init name="status">
@@ -127,11 +138,15 @@
 @push('after-script')
     <script>
         document.querySelector('select').style.height = '20px !important';
-        flatpickr('#tanggal_dimulai', {
+        flatpickr('#kegiatan', {
             enableTime: false,
             dateFormat: 'Y-m-d',
         });
-        flatpickr('#tanggal_berakhir', {
+        flatpickr('#pendaftaran', {
+            enableTime: false,
+            dateFormat: 'Y-m-d',
+        });
+        flatpickr('#kegiatan_selesai', {
             enableTime: false,
             dateFormat: 'Y-m-d',
         });

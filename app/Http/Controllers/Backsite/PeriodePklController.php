@@ -8,6 +8,7 @@ use App\Models\MasterData\PeriodePkl;
 use Symfony\Component\HttpFoundation\Request;
 use App\Http\Requests\PeriodePkl\StorePeriodePklRequest;
 use App\Http\Requests\PeriodePkl\UpdatePeriodePklRequest;
+use Illuminate\Support\Facades\DB;
 
 class PeriodePklController extends Controller
 {
@@ -21,7 +22,9 @@ class PeriodePklController extends Controller
      */
     public function index()
     {
-        $data = PeriodePkl::orderBy('id', 'ASC')->get();
+        $data = PeriodePkl::all();
+
+        // dd($data);
 
         confirmDelete();
         return view('pages.backsite.master-data.periode-pkl.index', compact('data'));
@@ -41,7 +44,26 @@ class PeriodePklController extends Controller
      */
     public function store(StorePeriodePklRequest $request)
     {
-       return abort(404);
+        $data = [
+            'tahun' => date('Y', strtotime($request->kegiatan)),
+            'pendaftaran' => $request->pendaftaran,
+            'kegiatan' => $request->kegiatan,
+            'kegiatan_selesai' => $request->kegiatan_selesai,
+            'status' => '1'
+        ];
+
+        $isTahunExist = PeriodePkl::where('tahun', $data['tahun'])->count();
+
+        if ($isTahunExist > null) {
+            alert()->warning('Warning', 'Tahun Periode Telah Ada');
+            return redirect(route('backsite.periode.index'));
+        }
+
+
+        PeriodePkl::create($data);
+
+        alert()->success('Success Message', 'Data Periode Berhasil Ditambahkan');
+        return redirect(route('backsite.periode.index'));
     }
 
     /**
@@ -65,12 +87,23 @@ class PeriodePklController extends Controller
      */
     public function update(UpdatePeriodePklRequest $request, PeriodePkl $periode)
     {
+
         $data = [
-            'nama_timeline' => strtolower($request->nama_timeline),
-            'tanggal_dimulai' => $request->tanggal_dimulai,
-            'tanggal_berakhir' => $request->tanggal_berakhir,
+            'tahun' => date('Y', strtotime($request->kegiatan)),
+            'pendaftaran' => $request->pendaftaran,
+            'kegiatan' => $request->kegiatan,
+            'kegiatan_selesai' => $request->kegiatan_selesai,
+            'status' => $request->status
         ];
-        $periode->update($data);
+
+        $isTahunExist = PeriodePkl::where('tahun', $data['tahun'])->where('id', '!=', $periode->id)->count();
+
+        if ($isTahunExist > 0) {
+            alert()->warning('Warning', 'Tahun Periode Telah Ada');
+            return back();
+        }
+
+        PeriodePkl::where('id', $periode->id)->update($data);
 
         alert()->success('Success Message', 'Berhasil Mengubah Data');
         return redirect(route('backsite.periode.index'));

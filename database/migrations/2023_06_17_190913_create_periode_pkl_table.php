@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('periode_pkl', function (Blueprint $table) {
             $table->id();
-            $table->text('nama_timeline');
-            $table->date('tanggal_dimulai');
-            $table->date('tanggal_berakhir');
+            $table->year('tahun');
+            $table->date('pendaftaran');
+            $table->date('kegiatan');
+            $table->date('kegiatan_selesai');
             $table->enum('status', [1, 2]);
             // $table->timestamps();
             $table->timestamp('created_at')->useCurrent();

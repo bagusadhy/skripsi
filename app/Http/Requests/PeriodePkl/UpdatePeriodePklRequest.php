@@ -25,12 +25,14 @@ class UpdatePeriodePklRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nama_timeline' => 'required', 'string', Rule::unique('periode_pkl')->ignore($this->periode_pkl), 'max:255',
-            'tanggal_dimulai' => [
-                'required', 'date',
+            'pendaftaran' => [
+                'required', 'date', 'before:kegiatan',
             ],
-            'tanggal_berakhir' => [
-                'required', 'date',
+            'kegiatan' => [
+                'required', 'date', 'after:pendaftaran',
+            ],
+            'kegiatan_selesai' => [
+                'required', 'date', 'after:kegiatan',
             ],
         ];
     }

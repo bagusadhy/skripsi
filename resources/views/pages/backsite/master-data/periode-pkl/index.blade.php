@@ -39,15 +39,128 @@
             </div>
 
 
+            <div id="accordionExample" class="shadow-md mb-3 rounded-lg">
+                <div class="rounded-lg border border-neutral-200 bg-white px">
+                    <h2 class="mb-0" id="headingOne">
+                        <button
+                            class="group relative flex w-full items-center rounded-t-lg border-0 font-medium text-primary bg-blue-100 px-5 py-4 text-left text-base transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none   [&:not([data-te-collapse-collapsed])]:bg-blue-200 [&:not([data-te-collapse-collapsed])]:text-primary [&:not([data-te-collapse-collapsed])]:[box-shadow:inset_0_-1px_0_rgba(229,231,235)]"
+                            type="button" data-te-collapse-init data-te-target="#collapseOne" aria-expanded="false"
+                            aria-controls="collapseOne">
+                            Tambah Bidang Usaha
+                            <span
+                                class="ml-auto h-5 w-5 shrink-0 rotate-[-180deg] fill-[#336dec] transition-transform duration-200 ease-in-out group-[[data-te-collapse-collapsed]]:rotate-0 group-[[data-te-collapse-collapsed]]:fill-[#212529] motion-reduce:transition-none dark:fill-blue-300 dark:group-[[data-te-collapse-collapsed]]:fill-white">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="h-6 w-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                                </svg>
+                            </span>
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="!visible hidden" data-te-collapse-item aria-labelledby="headingOne"
+                        data-te-parent="#accordionExample">
+                        <div class="px-5 py-4">
+                            <form action="{{ route('backsite.periode.store') }}" method="POST">
+                                @csrf
+                                <label class="relative block mb-5">
+                                    <span class="font-medium">Tanggal Mulai Pendaftaran<code
+                                            class="text-red-500">*</code></span>
+                                    <input type="text" id="pendaftaran" name="pendaftaran"
+                                        class="block w-full h-11 rounded-lg py-3 text-[#1E2B4F] font-medium placeholder:text-[#AFAEC3] placeholder:font-normal px-7 border border-[#d4d4d4] focus:outline-none focus:border-[#0D63F3]"
+                                        value="{{ old('pendaftaran') }}" required />
+                                    <span
+                                        class="absolute top-8 right-[20px] bottom-1/2 translate-y-[58%] hover:cursor-pointer">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M19 4H5C3.89543 4 3 4.89543 3 6V20C3 21.1046 3.89543 22 5 22H19C20.1046 22 21 21.1046 21 20V6C21 4.89543 20.1046 4 19 4Z"
+                                                stroke="#AFAEC3" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round" />
+                                            <path d="M3 10H21" stroke="#AFAEC3" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round" />
+                                            <path d="M16 2V6" stroke="#AFAEC3" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round" />
+                                            <path d="M8 2V6" stroke="#AFAEC3" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round" />
+                                        </svg>
+                                    </span>
+                                    @if ($errors->has('pendaftaran'))
+                                        <p style="font-style: bold; color: red;">{{ $errors->first('pendaftaran') }}</p>
+                                    @endif
+                                </label>
+                                <label class="relative block mb-5">
+                                    <span class="font-medium">Tanggal Mulai Kegiatan<code
+                                            class="text-red-500">*</code></span>
+                                    <input type="text" id="kegiatan" name="kegiatan"
+                                        class="block w-full h-11 rounded-lg py-3 text-[#1E2B4F] font-medium placeholder:text-[#AFAEC3] placeholder:font-normal px-7 border border-[#d4d4d4] focus:outline-none focus:border-[#0D63F3]"
+                                        value="{{ old('kegiatan') }}" required />
+                                    <span
+                                        class="absolute top-8 right-[20px] bottom-1/2 translate-y-[58%] hover:cursor-pointer">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M19 4H5C3.89543 4 3 4.89543 3 6V20C3 21.1046 3.89543 22 5 22H19C20.1046 22 21 21.1046 21 20V6C21 4.89543 20.1046 4 19 4Z"
+                                                stroke="#AFAEC3" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round" />
+                                            <path d="M3 10H21" stroke="#AFAEC3" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round" />
+                                            <path d="M16 2V6" stroke="#AFAEC3" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round" />
+                                            <path d="M8 2V6" stroke="#AFAEC3" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    </span>
+                                    @if ($errors->has('kegiatan'))
+                                        <p style="font-style: bold; color: red;">{{ $errors->first('kegiatan') }}</p>
+                                    @endif
+                                </label>
+
+                                <label class="relative block mb-5">
+                                    <span class="font-medium">Tanggal Selesai Kegiatan<code
+                                            class="text-red-500">*</code></span>
+                                    <input type="text" id="kegiatan_selesai" name="kegiatan_selesai"
+                                        class="block w-full h-11 rounded-lg py-3 text-[#1E2B4F] font-medium placeholder:text-[#AFAEC3] placeholder:font-normal px-7 border border-[#d4d4d4] focus:outline-none focus:border-[#0D63F3]"
+                                        value="{{ old('kegiatan_selesai') }}" required />
+                                    <span
+                                        class="absolute top-8 right-[20px] bottom-1/2 translate-y-[58%] hover:cursor-pointer">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M19 4H5C3.89543 4 3 4.89543 3 6V20C3 21.1046 3.89543 22 5 22H19C20.1046 22 21 21.1046 21 20V6C21 4.89543 20.1046 4 19 4Z"
+                                                stroke="#AFAEC3" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round" />
+                                            <path d="M3 10H21" stroke="#AFAEC3" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round" />
+                                            <path d="M16 2V6" stroke="#AFAEC3" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round" />
+                                            <path d="M8 2V6" stroke="#AFAEC3" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    </span>
+                                    @if ($errors->has('kegiatan_selesai'))
+                                        <p style="font-style: bold; color: red;">{{ $errors->first('kegiatan_selesai') }}</p>
+                                    @endif
+                                </label>
+                                <div class="flex justify-end mt-4">
+                                    <button type="submit"
+                                        class="px-8 py-2 bg-blue-700 text-white rounded-md">Simpan</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
             <div class="bg-white py-4 md:py-7 px-4 shadow-md rounded-lg">
                 <div class="overflow-x-auto">
 
                     <table id="periode-table" class="stripe">
                         <thead>
                             <tr>
-                                <th>Nama Timeline</th>
-                                <th>Tanggal mulai</th>
-                                <th>Tanggal selesai</th>
+                                <th>Tahun PKL</th>
+                                <th>Tanggal Mulai Pendaftaran</th>
+                                <th>Tanggal Mulai Kegiatan</th>
+                                <th>Tanggal Selesai Kegiatan</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
@@ -55,9 +168,10 @@
                         <tbody>
                             @forelse ($data as $periode)
                                 <tr data-entry-id="{{ $periode->id }}" class="hover:bg-neutral-200 outline-2">
-                                    <td>{{ ucwords($periode->nama_timeline) }}</td>
-                                    <td>{{ $periode->tanggal_dimulai }}</td>
-                                    <td>{{ $periode->tanggal_berakhir }}</td>
+                                    <td>{{ $periode->tahun }}</td>
+                                    <td>{{ $periode->pendaftaran }}</td>
+                                    <td>{{ $periode->kegiatan }}</td>
+                                    <td>{{ $periode->kegiatan_selesai }}</td>
                                     <td>
                                         @if ($periode->status == '1')
                                             <span
@@ -142,7 +256,7 @@
             var table = $('#periode-table').DataTable();
 
         });
-        const tanggal_mulai = flatpickr('#tanggal_dimulai', {
+        const pendaftaran = flatpickr('#pendaftaran', {
             altInput: true,
             altFormat: 'd F Y',
             dateFormat: 'Y-m-d',
@@ -152,7 +266,17 @@
                 "firstDayOfWeek": 1 // start week on Monday
             }
         });
-        const tanggal_selesai = flatpickr('#tanggal_berakhir', {
+        const kegiatan = flatpickr('#kegiatan', {
+            altInput: true,
+            altFormat: 'd F Y',
+            dateFormat: 'Y-m-d',
+            disableMobile: 'true',
+            minDate: "today",
+            locale: {
+                "firstDayOfWeek": 1 // start week on Monday
+            }
+        });
+        const kegiatan_selesai = flatpickr('#kegiatan_selesai', {
             altInput: true,
             altFormat: 'd F Y',
             dateFormat: 'Y-m-d',

@@ -15,15 +15,12 @@ class PeriodeSeeder extends Seeder
     {
         $data = [
             [
-                'nama_timeline' => 'pendaftaran',
-                'tanggal_dimulai' => '2021-01-01',
-                'tanggal_berakhir' => '2023-10-30',
+                'tahun' => '2023',
+                'pendaftaran' => '2023-01-01',
+                'kegiatan' => '2023-10-30',
+                'kegiatan_selesai' => '2023-11-30',
+                'status' => '1'
             ],
-            [
-                'nama_timeline' => 'kegiatan',
-                'tanggal_dimulai' => '2021-01-01',
-                'tanggal_berakhir' => '2023-10-30',
-            ]
         ];
 
         PeriodePkl::insert($data);
