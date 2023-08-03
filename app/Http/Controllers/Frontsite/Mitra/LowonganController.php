@@ -20,10 +20,17 @@ class LowonganController extends Controller
      */
     public function index()
     {
+        $tahun = date('Y');
         $mitra = Mitra::where('user_id', auth()->user()->id)->first();
         $lowongan = Lowongan::where('mitra_id', $mitra->id)->with('jurusan')->get();
-        $pendaftaran_access = PeriodePkl::where('nama_timeline', 'pendaftaran')->where('status', '1')->first();
+        $periode = PeriodePkl::where('tahun', $tahun)->where('status', '1')->first();
         $jurusan = Jurusan::all();
+
+
+
+        $batas_pendaftaran = date_create($periode->kegiatan);
+        date_sub($batas_pendaftaran, date_interval_create_from_date_string("1 days"));
+        $pendaftaran_access = date('Y-m-d') <= $batas_pendaftaran ? true : false;
 
         return view('pages.frontsite.mitra.lowongan', compact('lowongan', 'jurusan', 'pendaftaran_access'));
     }

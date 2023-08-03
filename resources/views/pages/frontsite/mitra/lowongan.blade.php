@@ -38,7 +38,7 @@
                 </div>
             </div>
 
-            @if ($pendaftaran_access != null)
+            @if ($pendaftaran_access)
                 <div id="accordionExample" class="shadow-lg mb-3 rounded-lg">
                     <div class="rounded-lg border border-neutral-200 bg-white px">
                         <h2 class="mb-0" id="headingOne">
