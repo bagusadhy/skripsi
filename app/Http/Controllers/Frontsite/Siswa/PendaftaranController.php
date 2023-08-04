@@ -60,6 +60,9 @@ class PendaftaranController extends Controller
 
         $data['siswa_id'] = Siswa::where('user_id', auth()->user()->id)->first()->id;
 
+        $periode = PeriodePkl::where('tahun', date('Y'))->where('status', '1')->first();
+        $data['periode_id'] = $periode->id;
+
         PendaftarPkl::create($data);
         alert()->success('Berhasil', 'Pendaftaran berhasil');
         return back();

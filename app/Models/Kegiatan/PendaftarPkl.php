@@ -3,6 +3,7 @@
 namespace App\Models\Kegiatan;
 
 use App\Models\MasterData\Mitra;
+use App\Models\MasterData\PeriodePkl;
 use App\Models\MasterData\Siswa;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -29,6 +30,7 @@ class PendaftarPkl extends Model
         'siswa_id',
         'mitra_id',
         'lowongan_id',
+        'periode_id',
         'status',
         'created_at',
         'updated_at',
@@ -46,5 +48,9 @@ class PendaftarPkl extends Model
     public function lowongan()
     {
         return $this->belongsTo(Lowongan::class, 'lowongan_id', 'id');
+    }
+    public function periode_pkl()
+    {
+        return $this->belongsTo(PeriodePkl::class, 'periode_id', 'id');
     }
 }

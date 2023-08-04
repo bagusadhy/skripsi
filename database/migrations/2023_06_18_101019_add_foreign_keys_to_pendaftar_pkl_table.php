@@ -22,6 +22,9 @@ return new class extends Migration
             $table->foreign('mitra_id', 'fk_pendaftar_pkl_to_mitra')
                 ->references('id')->on('mitra')->onDelete('CASCADE')
                 ->onUpdate('CASCADE');
+            $table->foreign('periode_id', 'fk_pendaftar_pkl_to_periode_pkl')
+                ->references('id')->on('periode_pkl')->onDelete('CASCADE')
+                ->onUpdate('CASCADE');
         });
     }
 
@@ -35,6 +38,7 @@ return new class extends Migration
             $table->dropForeign('fk_pendaftar_pkl_to_siswa');
             $table->dropForeign('fk_pendaftar_pkl_to_lowongan');
             $table->dropForeign('fk_pendaftar_pkl_to_mitra');
+            $table->dropForeign('fk_pendaftar_pkl_to_periode_pkl');
         });
     }
 };
