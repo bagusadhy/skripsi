@@ -19,6 +19,9 @@ return new class extends Migration
             $table->foreign('mitra_id', 'fk_hasil_survey_to_mitra')
                 ->references('id')->on('mitra')->onDelete('CASCADE')
                 ->onUpdate('CASCADE');
+            $table->foreign('periode_id', 'fk_hasil_survey_to_periode_pkl')
+                ->references('id')->on('periode_pkl')->onDelete('CASCADE')
+                ->onUpdate('CASCADE');
         });
     }
 
@@ -31,6 +34,7 @@ return new class extends Migration
             //
             $table->dropForeign('fk_hasil_survey_to_survey');
             $table->dropForeign('fk_hasil_survey_to_mitra');
+            $table->dropForeign('fk_hasil_survey_to_periode_pkl');
         });
     }
 };

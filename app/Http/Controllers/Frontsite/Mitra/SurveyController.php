@@ -9,6 +9,7 @@ use App\Models\MasterData\Mitra;
 use App\Models\Kegiatan\Saran;
 use App\Models\MasterData\Survey;
 use App\Models\Kegiatan\HasilSurvey;
+use App\Models\MasterData\PeriodePkl;
 
 
 class SurveyController extends Controller
@@ -42,12 +43,16 @@ class SurveyController extends Controller
             alert()->warning('Peringatan', 'Anda Telah Mengisi Survey');
             return back();
         }
+
         $survey = $request->all();
+
+        $periode = PeriodePkl::where('tahun', date('Y'))->where('status', '1')->first();
 
         foreach ($survey['survey'] as $key => $value) {
             $data = [
                 'survey_id' => $key,
                 'mitra_id' => $mitra->id,
+                'periode_pkl' => $periode->id,
                 'skala' => $value
             ];
 

@@ -3,6 +3,7 @@
 namespace App\Models\Kegiatan;
 
 use App\Models\MasterData\Mitra;
+use App\Models\MasterData\PeriodePkl;
 use App\Models\MasterData\Survey;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -28,6 +29,7 @@ class HasilSurvey extends Model
     protected $fillable = [
         'survey_id',
         'mitra_id',
+        'periode_id',
         'skala',
         'created_at',
         'updated_at',
@@ -41,5 +43,9 @@ class HasilSurvey extends Model
     public function mitra()
     {
         return $this->belongsTo(Mitra::class, 'mitra_id', 'id');
+    }
+    public function periode_pkl()
+    {
+        return $this->belongsTo(PeriodePkl::class, 'periode_id', 'id');
     }
 }

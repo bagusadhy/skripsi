@@ -4,6 +4,7 @@ namespace App\Models\MasterData;
 
 use App\Models\Kegiatan\AktivitasSiswa;
 use App\Models\Kegiatan\DokumenSiswa;
+use App\Models\Kegiatan\HasilSurvey;
 use App\Models\Kegiatan\Laporan;
 use App\Models\Kegiatan\Lowongan;
 use App\Models\Kegiatan\Monitoring;
@@ -85,5 +86,9 @@ class PeriodePkl extends Model
     public function nilai()
     {
         return $this->hasMany(Nilai::class, 'periode_id');
+    }
+    public function hasil_survey()
+    {
+        return $this->hasMany(HasilSurveykl::class, 'periode_id');
     }
 }

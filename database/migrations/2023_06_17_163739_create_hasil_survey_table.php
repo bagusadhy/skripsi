@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('survey_id')->nullable()->index('fk_hasil_survey_to_survey');
             $table->foreignId('mitra_id')->nullable()->index('fk_hasil_survey_to_mitra');
+            $table->foreignId('periode_id')->nullable()->index('fk_hasil_survey_to_periode_pkl');
             $table->integer('skala')->nullable();
             // $table->timestamps();
             $table->timestamp('created_at')->useCurrent();
