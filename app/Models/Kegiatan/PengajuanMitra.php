@@ -3,6 +3,7 @@
 namespace App\Models\Kegiatan;
 
 use App\Models\MasterData\BidangUsaha;
+use App\Models\MasterData\PeriodePkl;
 use App\Models\MasterData\Siswa;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -28,6 +29,7 @@ class PengajuanMitra extends Model
     protected $fillable = [
         'siswa_id',
         'bidang_usaha_id',
+        'periode_id',
         'nama',
         'email',
         'kontak',
@@ -46,5 +48,9 @@ class PengajuanMitra extends Model
     public function siswa()
     {
         return $this->belongsTo(Siswa::class, 'siswa_id', 'id');
+    }
+    public function periode_pkl()
+    {
+        return $this->belongsTo(PeriodePkl::class, 'periode_id', 'id');
     }
 }

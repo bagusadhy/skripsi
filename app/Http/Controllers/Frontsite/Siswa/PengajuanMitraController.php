@@ -10,6 +10,7 @@ use App\Models\MasterData\BidangUsaha;
 use App\Models\MasterData\Siswa;
 
 use App\Http\Requests\PengajuanMitra\StorePengajuanMitraRequest;
+use App\Models\MasterData\PeriodePkl;
 
 class PengajuanMitraController extends Controller
 {
@@ -39,6 +40,10 @@ class PengajuanMitraController extends Controller
     public function store(StorePengajuanMitraRequest $request)
     {
         $data = $request->all();
+
+
+        $periode = PeriodePkl::where('tahun', date('Y'))->where('status', '1')->first();
+        $data['periode_id'] = $periode->id;
 
         PengajuanMitra::create($data);
 
