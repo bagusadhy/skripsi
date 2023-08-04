@@ -64,11 +64,11 @@ class ProfileController extends Controller
     public function update(UpdateMitraRequest $request, Mitra $profile)
     {
         $data = $request->all();
-        $data_user = [];
-
 
         try {
-            DB::transaction(function () use ($request, $profile, $data_user, $data) {
+            DB::transaction(function () use ($request, $profile, $data) {
+
+                $data_user = [];
                 if ($request->hasFile('foto')) {
 
                     // delete old photo from storage
@@ -78,8 +78,6 @@ class ProfileController extends Controller
 
                     // add new photo path
                     $data['foto'] = $request->file('foto')->store('images/mitra', 'public');
-
-
                     $data_user['profile_photo_path'] = $data['foto'];
                 }
 

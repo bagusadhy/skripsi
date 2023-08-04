@@ -10,8 +10,8 @@ use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
-
 use Illuminate\Support\Facades\Auth;
+
 use App\Http\Requests\Guru\UpdateGuruRequest;
 
 class ProfileGuruController extends Controller
@@ -67,26 +67,40 @@ class ProfileGuruController extends Controller
 
         $data = $request->all();
 
-        if ($request->hasFile('foto')) {
+        try {
 
-            // delete old photo from storage
-            if ($profile->foto != null) {
-                File::delete('storage/' . $profile->foto);
-            }
+            DB::transaction(function () use ($request, $profile, $data) {
 
-            // add new photo path
-            $data['foto'] = $request->file('foto')->store('images/guru', 'public');
-            $user = new User;
-            $user->where('id', $profile->user_id)->update(['profile_photo_path' => $data['foto']]);
+                $data_user = [];
+                if ($request->hasFile('foto')) {
+
+                    // delete old photo from storage
+                    if ($profile->foto != null) {
+                        File::delete('storage/' . $profile->foto);
+                    }
+
+                    // add new photo path
+                    $data['foto'] = $request->file('foto')->store('images/guru', 'public');
+                    $data_user['profile_photo_path'] = $data['foto'];
+                }
+
+                $data_user['name'] = $data['nama'];
+                User::where('id', $profile->user_id)->update($data_user);
+
+                unset($data['_token']);
+                unset($data['_method']);
+
+
+                $profile->update($data);
+            });
+            alert()->success('Berhasil', 'Data anda berhasil diupdate');
+
+        } catch (\Throwable $th) {
+            alert()->error('Gagal', 'Data anda gagal diupdate');
+
+            //throw $th;
         }
 
-        unset($data['_token']);
-        unset($data['_method']);
-
-
-        $profile->update($data);
-
-        alert()->success('Berhasil', 'Data anda berhasil diupdate');
         return back();
     }
 
