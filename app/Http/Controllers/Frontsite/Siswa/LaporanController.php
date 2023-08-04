@@ -38,13 +38,13 @@ class LaporanController extends Controller
         $siswa = Siswa::where('user_id', auth()->user()->id)->first();
         $total_aktivitas = AktivitasSiswa::where('siswa_id', $siswa->id)->count();
 
-        $periode = PeriodePkl::first();
-        $tanggal_mulai = Carbon::parse($periode->tanggal_dimulai);
-        $tanggal_berakhir =  Carbon::parse($periode->tanggal_berakhir);
+        $periode = PeriodePkl::where('tahun', date('Y'))->where('status', '1')->first();
+        $kegiatan = Carbon::parse($periode->kegiatan);
+        $kegiatan_selesai =  Carbon::parse($periode->kegiatan_selesai);
 
-        $total_hari = $tanggal_mulai->diffInDaysFiltered(function (Carbon $date) {
+        $total_hari = $kegiatan->diffInDaysFiltered(function (Carbon $date) {
             return $date->isWeekday();
-        }, $tanggal_berakhir);
+        }, $kegiatan_selesai);
 
         if ($total_aktivitas < $total_hari) {
             return back();

@@ -28,17 +28,19 @@ class KegiatanController extends Controller
         $total_aktivitas = AktivitasSiswa::where('siswa_id', $siswa->id)->count();
 
         $periode = PeriodePkl::first();
-        $tanggal_mulai = Carbon::parse($periode->tanggal_dimulai);
-        $tanggal_berakhir =  Carbon::parse($periode->tanggal_berakhir);
+        $kegiatan_mulai = Carbon::parse($periode->kegiatan);
+        $kegiatan_selesai =  Carbon::parse($periode->kegiatan_selesai);
 
-        $total_hari = $tanggal_mulai->diffInDaysFiltered(function (Carbon $date) {
+        $total_hari = $kegiatan_mulai->diffInDaysFiltered(function (Carbon $date) {
             return $date->isWeekday();
-        }, $tanggal_berakhir);
+        }, $kegiatan_selesai);
 
         $access_laporan = false;
         if($total_aktivitas >= $total_hari){
             $access_laporan = true;
         }
+
+        
 
         $total_revisi = AktivitasSiswa::where('siswa_id', $siswa->id)->where('status', '0')->count();
 
