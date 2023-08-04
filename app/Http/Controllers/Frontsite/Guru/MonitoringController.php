@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Models\MasterData\Guru;
+use App\Models\MasterData\PeriodePkl;
 use App\Models\Kegiatan\Bimbingan;
 use App\Models\Kegiatan\Monitoring;
 use Illuminate\Support\Facades\File;
@@ -51,9 +52,12 @@ class MonitoringController extends Controller
         $guru = Guru::where('user_id', auth()->user()->id)->first();
         $data['guru_id'] = $guru->id;
 
+        $periode = PeriodePkl::where('tahun', date('Y'))->where('status', '1')->first();
+        $data['periode_id'] = $periode->id;
+
 
         Monitoring::create($data);
-        alert()->success('Berhasil', 'Data anda berhasil diupdate');
+        alert()->success('Berhasil', 'Data Monitoring Berhasil Ditambahkan');
         return back();
     }
 

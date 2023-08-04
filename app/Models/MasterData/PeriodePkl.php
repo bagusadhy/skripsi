@@ -2,6 +2,7 @@
 
 namespace App\Models\MasterData;
 
+use App\Models\Kegiatan\Monitoring;
 use App\Models\Kegiatan\PesertaPkl;
 use App\Models\MasterData\Siswa;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -44,6 +45,10 @@ class PeriodePkl extends Model
     }
     public function siswa()
     {
-        return $this->hasMany(PesertaPkl::class, 'periode_id');
+        return $this->hasMany(Siswa::class, 'periode_id');
+    }
+    public function monitoring()
+    {
+        return $this->hasMany(Monitoring::class, 'periode_id');
     }
 }
