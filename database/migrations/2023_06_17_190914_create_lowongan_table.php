@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('mitra_id')->nullable()->index('fk_lowongan_to_mitra');
             $table->foreignId('jurusan_id')->nullable()->index('fk_lowongan_to_jurusan');
+            $table->foreignId('periode_id')->nullable()->index('fk_lowongan_to_periode_pkl');
             $table->longText('nama');
             // $table->timestamps();
             $table->timestamp('created_at')->useCurrent();

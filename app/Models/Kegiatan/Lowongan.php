@@ -6,6 +6,7 @@ use App\Models\MasterData\Mitra;
 use App\Models\Kegiatan\PendaftarPkl;
 use App\Models\Kegiatan\PesertaPkl;
 use App\Models\MasterData\Jurusan;
+use App\Models\MasterData\PeriodePkl;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -30,6 +31,7 @@ class Lowongan extends Model
     protected $fillable = [
         'mitra_id',
         'jurusan_id',
+        'periode_id',
         'nama',
         'created_at',
         'updated_at',
@@ -43,6 +45,10 @@ class Lowongan extends Model
     public function jurusan()
     {
         return $this->belongsTo(Jurusan::class, 'jurusan_id', 'id');
+    }
+    public function periode_pkl()
+    {
+        return $this->belongsTo(PeriodePkl::class, 'periode_id', 'id');
     }
 
     public function pendaftar()

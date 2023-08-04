@@ -53,6 +53,10 @@ class LowonganController extends Controller
         $mitra = Mitra::where('user_id', auth()->user()->id)->first();
         $data['mitra_id'] = $mitra->id;
 
+        $periode = PeriodePkl::where('tahun', date('Y'))->where('status', '1')->first();
+        $data['periode_id'] = $periode->id;
+
+
         Lowongan::create($data);
 
         alert()->success('Berhasil', 'Lowongan berhasil ditambahkan');

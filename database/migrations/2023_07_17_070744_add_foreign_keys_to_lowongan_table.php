@@ -18,6 +18,9 @@ return new class extends Migration
             $table->foreign('jurusan_id', 'fk_lowongan_to_jurusan')
             ->references('id')->on('jurusan')->onDelete('CASCADE')
                 ->onUpdate('CASCADE');
+            $table->foreign('periode_id', 'fk_lowongan_to_periode_pkl')
+            ->references('id')->on('periode_pkl')->onDelete('CASCADE')
+                ->onUpdate('CASCADE');
         });
     }
 
@@ -29,6 +32,7 @@ return new class extends Migration
         Schema::table('lowongan', function (Blueprint $table) {
             $table->dropForeign('fk_lowongan_to_mitra');
             $table->dropForeign('fk_lowongan_to_jurusan');
+            $table->dropForeign('fk_lowongan_to_periode_pkl');
         });
     }
 };
