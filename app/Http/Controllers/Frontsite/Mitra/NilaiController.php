@@ -12,6 +12,7 @@ use App\Models\MasterData\Mitra;
 use App\Models\MasterData\Siswa;
 use App\Models\Kegiatan\PesertaPkl;
 use App\Models\MasterData\Template;
+use App\Models\MasterData\PeriodePkl;
 
 use App\Http\Requests\Nilai\StoreNilaiRequest;
 use App\Http\Requests\Nilai\UpdateNilaiRequest;
@@ -48,6 +49,10 @@ class NilaiController extends Controller
     {
 
         $data = $request->all();
+
+        $periode = PeriodePkl::where('tahun', date('Y'))->where('status', '1')->first();
+        $data['periode_id'] = $periode->id;
+
 
         if ($request->hasFile('nilai')) {
 

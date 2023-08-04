@@ -2,6 +2,7 @@
 
 namespace App\Models\Kegiatan;
 
+use App\Models\MasterData\PeriodePkl;
 use App\Models\MasterData\Siswa;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -26,6 +27,7 @@ class Nilai extends Model
     // declare field that fillable
     protected $fillable = [
         'siswa_id',
+        'periode_id',
         'nilai',
         'created_at',
         'updated_at',
@@ -35,5 +37,9 @@ class Nilai extends Model
     public function siswa()
     {
         return $this->belongsTo(Siswa::class, 'siswa_id', 'id');
+    }
+    public function periode_pkl()
+    {
+        return $this->belongsTo(PeriodePkl::class, 'periode_id', 'id');
     }
 }

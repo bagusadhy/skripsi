@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('nilai', function (Blueprint $table) {
             $table->id();
-             $table->foreignId('siswa_id')->nullable()->index('fk_nilai_to_siswa');
+            $table->foreignId('siswa_id')->nullable()->index('fk_nilai_to_siswa');
+            $table->foreignId('periode_id')->nullable()->index('fk_nilai_to_periode_pkl');
             $table->longText('nilai');
             // $table->timestamps();
             $table->timestamp('created_at')->useCurrent();

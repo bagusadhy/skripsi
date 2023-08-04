@@ -7,6 +7,7 @@ use App\Models\Kegiatan\DokumenSiswa;
 use App\Models\Kegiatan\Laporan;
 use App\Models\Kegiatan\Lowongan;
 use App\Models\Kegiatan\Monitoring;
+use App\Models\Kegiatan\Nilai;
 use App\Models\Kegiatan\PendaftarPkl;
 use App\Models\Kegiatan\PengajuanMitra;
 use App\Models\Kegiatan\PesertaPkl;
@@ -80,5 +81,9 @@ class PeriodePkl extends Model
     public function lowongan()
     {
         return $this->hasMany(Lowongan::class, 'periode_id');
+    }
+    public function nilai()
+    {
+        return $this->hasMany(Nilai::class, 'periode_id');
     }
 }
