@@ -2,6 +2,7 @@
 
 namespace App\Models\MasterData;
 
+use App\Models\Kegiatan\AktivitasSiswa;
 use App\Models\Kegiatan\DokumenSiswa;
 use App\Models\Kegiatan\Monitoring;
 use App\Models\Kegiatan\PendaftarPkl;
@@ -65,5 +66,9 @@ class PeriodePkl extends Model
     public function dokumen()
     {
         return $this->hasMany(DokumenSiswa::class, 'periode_id');
+    }
+    public function aktivitas_siswa()
+    {
+        return $this->hasMany(AktivitasSiswa::class, 'periode_id');
     }
 }

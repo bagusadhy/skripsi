@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('aktivitas_siswa', function (Blueprint $table) {
             $table->id();
-             $table->foreignId('siswa_id')->nullable()->index('fk_aktivitas_siswa_to_siswa');
+            $table->foreignId('siswa_id')->nullable()->index('fk_aktivitas_siswa_to_siswa');
+            $table->foreignId('periode_id')->nullable()->index('fk_aktivitas_siswa_to_periode_pkl');
             $table->date('tanggal');
             $table->enum('presensi', [1, 2, 3, 4]);
             $table->longText('jurnal');

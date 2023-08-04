@@ -40,7 +40,7 @@ class KegiatanController extends Controller
             $access_laporan = true;
         }
 
-        
+
 
         $total_revisi = AktivitasSiswa::where('siswa_id', $siswa->id)->where('status', '0')->count();
 
@@ -68,6 +68,10 @@ class KegiatanController extends Controller
 
         $data = $request->all();
         $data['siswa_id'] = $siswa->id;
+
+        $periode = PeriodePkl::where('tahun', date('Y'))->where('status', '1')->first();
+        $data['periode_id'] = $periode->id;
+
 
         AktivitasSiswa::create($data);
 
