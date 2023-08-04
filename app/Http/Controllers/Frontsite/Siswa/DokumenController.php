@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Models\MasterData\Siswa;
 use App\Models\Kegiatan\DokumenSiswa;
+use App\Models\MasterData\PeriodePkl;
 
 use App\Http\Requests\DokumenSiswa\StoreDokumenSiswaRequest;
 use App\Http\Requests\DokumenSiswa\UpdateDokumenSiswaRequest;
@@ -43,6 +44,9 @@ class DokumenController extends Controller
         // dd($isExist);
 
         $data = $request->all();
+        
+        $periode = PeriodePkl::where('tahun', date('Y'))->where('status', '1')->first();
+        $data['periode_id'] = $periode->id;
 
         if ($isExist) {
             DokumenSiswa::where('siswa_id', $siswa->id)->forceDelete();
