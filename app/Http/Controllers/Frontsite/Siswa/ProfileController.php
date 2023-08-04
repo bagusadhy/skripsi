@@ -90,7 +90,7 @@ class ProfileController extends Controller
             alert()->success('Berhasil', 'Data anda berhasil diupdate');
         } catch (\Throwable $th) {
             //throw $th;
-            alert()->success('Berhasil', 'Data anda berhasil diupdate');
+            alert()->error('Gagal', 'Data anda gagal diupdate');
         }
 
 
