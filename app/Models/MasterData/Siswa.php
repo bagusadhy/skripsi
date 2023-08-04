@@ -12,6 +12,7 @@ use App\Models\Kegiatan\PesertaPkl;
 use App\Models\MasterData\Jurusan;
 use App\Models\MasterData\Kelas;
 use App\Models\User;
+use App\Models\MasterData\PeriodePkl;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -39,6 +40,7 @@ class Siswa extends Model
         'user_id',
         'jurusan_id',
         'kelas_id',
+        'periode_id',
         'nama',
         'nisn',
         'tempat_lahir',
@@ -56,6 +58,10 @@ class Siswa extends Model
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+    public function periode_pkl()
+    {
+        return $this->belongsTo(PeriodePkl::class, 'periode_id', 'id');
     }
     public function jurusan()
     {

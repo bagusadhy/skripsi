@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id')->nullable()->index('fk_siswa_to_users');
             $table->foreignId('jurusan_id')->nullable()->index('fk_siswa_to_jurusan');
             $table->foreignId('kelas_id')->nullable()->index('fk_siswa_to_kelas');
+            $table->foreignId('periode_id')->nullable()->index('fk_siswa_to_periode_pkl');
             $table->string('nisn');
             $table->string('nama');
             $table->enum('jenis_kelamin', [1, 2])->nullable();

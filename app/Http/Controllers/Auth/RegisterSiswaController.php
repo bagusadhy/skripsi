@@ -12,6 +12,7 @@ use App\Models\User;
 use App\Models\MasterData\Siswa;
 use App\Models\MasterData\Jurusan;
 use App\Models\MasterData\Kelas;
+use App\Models\MasterData\PeriodePkl;
 
 class RegisterSiswaController extends Controller
 {
@@ -41,7 +42,7 @@ class RegisterSiswaController extends Controller
         $validatedEmail = $request->validate([
             'email' => ['email', 'unique:users', 'max:255'],
         ]);
-        
+
         $user = [
             'name' => $request->nama,
             'email' => $request->email,
@@ -53,6 +54,8 @@ class RegisterSiswaController extends Controller
         unset($siswa['email']);
         unset($siswa['password']);
 
+        $periode = PeriodePkl::where('tahun', date('Y'))->where('status', '1')->first();
+        $siswa['periode_id'] = $periode->id;
 
         try {
             DB::transaction(function () use ($user, $siswa) {

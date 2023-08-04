@@ -3,6 +3,7 @@
 namespace App\Models\MasterData;
 
 use App\Models\Kegiatan\PesertaPkl;
+use App\Models\MasterData\Siswa;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -38,6 +39,10 @@ class PeriodePkl extends Model
     ];
 
     public function peserta()
+    {
+        return $this->hasMany(PesertaPkl::class, 'periode_id');
+    }
+    public function siswa()
     {
         return $this->hasMany(PesertaPkl::class, 'periode_id');
     }

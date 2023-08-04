@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\MasterData\Siswa;
 use App\Models\MasterData\Kelas;
 use App\Models\MasterData\Jurusan;
+use App\Models\MasterData\PeriodePkl;
 
 use App\Http\Requests\User\StoreUserRequest;
 use App\Http\Requests\User\UpdateUserRequest;
@@ -63,10 +64,13 @@ class SiswaController extends Controller
 
                 $user = User::create($user_data);
 
+                $periode = PeriodePkl::where('tahun', date('Y'))->where('status', '1')->first();
+
                 $siswa = [
                     'user_id' => $user->id,
                     'jurusan_id' => $request->jurusan_id,
                     'kelas_id' => $request->kelas_id,
+                    'periode_id' => $periode->id,
                     'nisn' => $request->nisn,
                     'nama' => $request->nama,
                     'jenis_kelamin' => $request->jenis_kelamin,
@@ -79,7 +83,6 @@ class SiswaController extends Controller
 
                 Siswa::create($siswa);
             });
-
         } catch (\Throwable $th) {
             alert()->error('Gagal', 'Data Siswa Gagal Ditambahkan');
             return redirect(route('backsite.siswa.index'));
@@ -89,7 +92,7 @@ class SiswaController extends Controller
             'nama' => $request->nama,
             'email' => $request->email,
             'password' => $request->email,
-            'role' => 'Mitra',
+            'role' => 'Siswa',
         ];
 
         Mail::to($maildata['email'])->send(new newUser($maildata));
@@ -103,7 +106,7 @@ class SiswaController extends Controller
      */
     public function show(Siswa $siswa)
     {
-       $siswa->with('jurusan', 'kelas');
+        $siswa->with('jurusan', 'kelas');
 
         return view('pages.backsite.master-data.siswa.show', compact('siswa'));
     }
