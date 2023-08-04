@@ -16,6 +16,9 @@ return new class extends Migration
             $table->foreign('siswa_id', 'fk_laporan_to_siswa')
                 ->references('id')->on('siswa')->onDelete('CASCADE')
                 ->onUpdate('CASCADE');
+            $table->foreign('periode_id', 'fk_laporan_to_periode_pkl')
+                ->references('id')->on('periode_pkl')->onDelete('CASCADE')
+                ->onUpdate('CASCADE');
         });
     }
 
@@ -27,6 +30,7 @@ return new class extends Migration
         Schema::table('laporan', function (Blueprint $table) {
             //
             $table->dropForeign('fk_laporan_to_siswa');
+            $table->dropForeign('fk_laporan_to_periode_pkl');
         });
     }
 };

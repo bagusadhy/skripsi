@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('laporan', function (Blueprint $table) {
             $table->id();
-             $table->foreignId('siswa_id')->nullable()->index('fk_laporan_to_siswa');
+            $table->foreignId('siswa_id')->nullable()->index('fk_laporan_to_siswa');
+            $table->foreignId('periode_id')->nullable()->index('fk_laporan_to_periode_pkl');
             $table->longText('laporan');
             // $table->timestamps();
             $table->timestamp('created_at')->useCurrent();

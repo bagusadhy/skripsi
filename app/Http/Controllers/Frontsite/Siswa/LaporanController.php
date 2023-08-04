@@ -73,6 +73,9 @@ class LaporanController extends Controller
         $data = $request->all();
         $data['siswa_id'] = $siswa->id;
 
+        $periode = PeriodePkl::where('tahun', date('Y'))->where('status', '1')->first();
+        $data['periode_id'] = $periode->id;
+
 
         if ($isExist->count()) {
             File::delete(public_path($isExist->laporan));
