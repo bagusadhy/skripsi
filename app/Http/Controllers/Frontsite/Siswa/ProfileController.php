@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontsite\Siswa;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\DB;
 
 use App\Models\User;
 use App\Models\MasterData\Siswa;
@@ -65,24 +66,35 @@ class ProfileController extends Controller
     {
         $data = $request->all();
 
-        // dd($data);
-        if ($request->hasFile('foto')) {
+        try {
+            DB::transaction(function () use ($request, $profile, $data) {
+                $data_user = [];
+                if ($request->hasFile('foto')) {
 
-            // delete old photo from storage
-            if ($profile->foto != null) {
-                File::delete('storage/' . $profile->foto);
-            }
+                    // delete old photo from storage
+                    if ($profile->foto != null) {
+                        File::delete('storage/' . $profile->foto);
+                    }
 
-            // add new photo path
-            $data['foto'] = $request->file('foto')->store('images/siswa', 'public');
-            $user = new User;
-            $user->where('id', $profile->user_id)->update(['profile_photo_path' => $data['foto']]);
+                    // add new photo path
+                    $data['foto'] = $request->file('foto')->store('images/siswa', 'public');
+
+                    $data_user['profile_photo_path'] = $data['foto'];
+                }
+                $data_user['name'] = $data['nama'];
+
+                User::where('id', $profile->user_id)->update($data_user);
+                $profile->update($data);
+            });
+
+            alert()->success('Berhasil', 'Data anda berhasil diupdate');
+        } catch (\Throwable $th) {
+            //throw $th;
+            alert()->success('Berhasil', 'Data anda berhasil diupdate');
         }
 
 
-        $profile->update($data);
 
-        alert()->success('Berhasil', 'Data anda berhasil diupdate');
         return back();
     }
 
