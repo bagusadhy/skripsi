@@ -60,19 +60,7 @@
                     @if ($data->status == '0')
                         <div class="w-3/6 flex gap-5 justify-end">
                             <a href=""
-                                class="text-white px-3 py-3 block w-full md:w-fit text-center text-sm font-medium bg-primary hover:bg-primaryhover rounded"
-                                onclick="event.preventDefault(); document.getElementById('form-terima').submit()">
-                                Terima
-                                <form action="{{ route('mitra.pendaftar.update', $data->id) }}" method="POST"
-                                    id="form-terima">
-                                    @csrf
-                                    @method('PUT')
-                                    <input type="hidden" name="status" value="1">
-                                    <input type="hidden" name="siswa_id" value="{{ $data->siswa->id }}">
-                                </form>
-                            </a>
-                            <a href=""
-                                class="text-white px-3 py-3 block w-full md:w-fit text-center text-sm font-medium bg-red-700 hover:bg-red-800 rounded"
+                                class="text-white px-3 py-3 block w-full text-center text-sm font-medium bg-red-700 hover:bg-red-800 rounded"
                                 id="tolak">
                                 Tolak
                                 <form action="{{ route('mitra.pendaftar.update', $data->id) }}" method="POST"
@@ -80,6 +68,18 @@
                                     @csrf
                                     @method('PUT')
                                     <input type="hidden" name="status" value="2">
+                                    <input type="hidden" name="siswa_id" value="{{ $data->siswa->id }}">
+                                </form>
+                            </a>
+                            <a href=""
+                                class="text-white px-3 py-3 block w-full text-center text-sm font-medium bg-primary hover:bg-primaryhover rounded"
+                                id="terima">
+                                Terima
+                                <form action="{{ route('mitra.pendaftar.update', $data->id) }}" method="POST"
+                                    id="form-terima">
+                                    @csrf
+                                    @method('PUT')
+                                    <input type="hidden" name="status" value="1">
                                     <input type="hidden" name="siswa_id" value="{{ $data->siswa->id }}">
                                 </form>
                             </a>
@@ -124,8 +124,8 @@
             $('#tolak').on('click', function() {
                 event.preventDefault();
                 Swal.fire({
-                    title: 'Apakah Yakin?',
-                    text: "Tolak pendaftaran!",
+                    title: 'Tolak Pendaftaran?',
+                    text: "apakah anda yakin!",
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
@@ -134,6 +134,26 @@
                 }).then((result) => {
                     if (result.isConfirmed) {
                         $('#form-tolak').submit()
+                    } else if (result.isDenied) {
+                        Swal.fire('Changes are not saved', '', 'info')
+                    }
+                });
+            });
+
+            $('#terima').on('click', function() {
+                event.preventDefault();
+                Swal.fire({
+                    title: 'Terima Pendaftaran?',
+                    text: "siswa akan menerima pemberitahuan pendaftaran diterima!",
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Terima',
+                    icon: 'warning',
+                    reverseButtons: true
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $('#form-terima').submit()
                     } else if (result.isDenied) {
                         Swal.fire('Changes are not saved', '', 'info')
                     }
