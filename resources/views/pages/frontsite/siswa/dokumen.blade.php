@@ -39,7 +39,8 @@
             </div>
 
             <div class="mt-5 w-full">
-                <form action="{{ route('siswa.dokumen.store') }}" method="POST" enctype="multipart/form-data" x-data="{ parent: '', school: '' }">
+                <form action="{{ route('siswa.dokumen.store') }}" method="POST" enctype="multipart/form-data"
+                    x-data="{ parent: '', school: '' }">
                     @csrf
                     <input type="hidden" name="siswa_id" value="{{ $siswa->id }}">
                     <div class="mb-10">
@@ -58,13 +59,18 @@
                                         </svg>
                                     </span>
 
-                                    <p id="parentText" class="font-semibold text-sm text-center">Upload File PDF. Max Size 2
-                                        MB</p>
+                                    @if ($dokumen == null)
+                                        <p id="parentText" class="font-semibold text-sm text-center">Upload File PDF. Max
+                                            Size 2
+                                            MB</p>
+                                    @else
+                                        <a href="{{ url($dokumen->surat_izin_ortu) }}" id="parentText" target="__blank"
+                                            class="font-semibold text-sm text-center">Surat Izin Orang Tua</a>
+                                    @endif
                                 </div>
                                 <input type="file"
                                     class="file:rounded file:px-10 file:py-2 file:bg-transparent file:border file:border-blue-400 file:text-blue-400 text-transparent md:-mr-24 -mr-[185px] mt-5 md:mt-0 focus:outline-none"
-                                    name="surat_izin_ortu"
-                                    id="parentFile" x-model="parent">
+                                    name="surat_izin_ortu" id="parentFile" x-model="parent">
                             </div>
                         </label>
                     </div>
@@ -84,12 +90,17 @@
                                         </svg>
                                     </span>
 
-                                    <p id="schoolText" class="font-semibold text-sm">Upload File PDF. Max Size 2 MB</p>
+                                    @if ($dokumen == null)
+                                        <p id="schoolText" class="font-semibold text-sm">Upload File PDF. Max Size 2 MB</p>
+                                    @else
+                                        <a href="{{ url($dokumen->surat_pernyataan_siswa) }}" target="__blank" id="schoolText"
+                                            class="font-semibold text-sm text-center">Surat Penyataan Siswa</a>
+                                    @endif
+
                                 </div>
                                 <input type="file"
                                     class="cursor-pointer file:rounded file:px-10 file:py-2 file:bg-transparent file:border file:border-blue-400 file:text-blue-400 text-transparent md:-mr-24 -mr-[185px] mt-5 md:mt-0 focus:outline-none"
-                                    name="surat_pernyataan_siswa"
-                                    id="schoolFile" x-model="school">
+                                    name="surat_pernyataan_siswa" id="schoolFile" x-model="school">
                             </div>
                         </label>
                     </div>
@@ -98,8 +109,7 @@
                             x-show="!parent.length || !school.length">
                             Simpan Dokumen
                         </div>
-                        <button type="submit"
-                            class="px-10 py-3 rounded bg-primary text-sm text-white font-medium"
+                        <button type="submit" class="px-10 py-3 rounded bg-primary text-sm text-white font-medium"
                             x-show="parent.length && school.length">
                             Simpan Dokumen
                         </button>

@@ -20,7 +20,10 @@ class DokumenController extends Controller
     public function index()
     {
         $siswa = Siswa::where('user_id', auth()->user()->id)->first();
-        return view('pages.frontsite.siswa.dokumen', compact('siswa'));
+
+        $dokumen = DokumenSiswa::where('siswa_id', $siswa->id)->first();
+
+        return view('pages.frontsite.siswa.dokumen', compact('siswa', 'dokumen'));
     }
 
     /**
@@ -44,7 +47,7 @@ class DokumenController extends Controller
         // dd($isExist);
 
         $data = $request->all();
-        
+
         $periode = PeriodePkl::where('tahun', date('Y'))->where('status', '1')->first();
         $data['periode_id'] = $periode->id;
 
