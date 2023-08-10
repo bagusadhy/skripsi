@@ -106,11 +106,12 @@
 
                                 @if ($peserta == null && $pendaftaran_access != null)
                                     <div class="w-2/6 lg:w-1/6 flex justify-center">
-                                        <form action="{{ route('siswa.pendaftaran.store') }}" method="POST">
+                                        <form action="{{ route('siswa.pendaftaran.store') }}" method="POST"
+                                            id="form-daftar">
                                             @csrf
                                             <input type="hidden" name="lowongan_id" value="{{ $data->id }}">
                                             <input type="hidden" name="mitra_id" value="{{ $data->mitra->id }}">
-                                            <button type="submit"
+                                            <button type="submit" id="daftar"
                                                 class="text-white px-10 py-3 block w-full md:w-fit text-center text-sm font-medium bg-primary hover:bg-primaryhover rounded">Daftar</button>
                                         </form>
                                     </div>
@@ -180,10 +181,10 @@
 
                                     @case('1')
                                         <div class="w-full lg:w-1/6 flex sm:justify-center md:justify-end">
-                                            <form action="{{ route('siswa.pendaftaran.update', $data->id) }}" method="POST">
+                                            <form action="{{ route('siswa.pendaftaran.update', $data->id) }}" method="POST" id="form-terima">
                                                 @csrf
                                                 @method('PUT')
-                                                <button
+                                                <button type="submit" id="terima"
                                                     class="text-white px-10 py-3 block w-fit text-center text-sm font-medium bg-primary hover:bg-primaryhover rounded">Terima</button>
                                             </form>
                                         </div>
@@ -250,6 +251,49 @@
                     var query = $(this).val();
                     fetch_list_lowongan(query);
                 })
+
+
+                $('#daftar').on('click', function() {
+                    event.preventDefault();
+                    Swal.fire({
+                        title: 'Lanjutkan Pendaftaran?',
+                        text: "Dengan melanjutkan pendaftaran, anda setuju untuk melaksanakan rangkaian seleksi!",
+                        showCancelButton: true,
+                        cancelButtonColor: '#d33',
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'Lanjutkan',
+                        cancelButtonText: 'Batalkan',
+                        icon: 'warning',
+                        reverseButtons: true
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            $('#form-daftar').submit()
+                        } else if (result.isDenied) {
+                            Swal.fire('Changes are not saved', '', 'info')
+                        }
+                    });
+                });
+
+                $('#terima').on('click', function() {
+                    event.preventDefault();
+                    Swal.fire({
+                        title: 'Selamat Pendaftaran Anda Diterima',
+                        text: "Dengan menekan tombol terima, anda setuju untuk melaksanakan kegiatan pkl diperusahaan ini!",
+                        showCancelButton: true,
+                        cancelButtonColor: '#d33',
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'Terima',
+                        cancelButtonText: 'Batalkan',
+                        icon: 'success',
+                        reverseButtons: true
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            $('#form-terima').submit()
+                        } else if (result.isDenied) {
+                            Swal.fire('Changes are not saved', '', 'info')
+                        }
+                    });
+                });
 
 
             });

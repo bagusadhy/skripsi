@@ -15,6 +15,7 @@ use App\Models\MasterData\PeriodePkl;
 use App\Models\Kegiatan\Bimbingan;
 
 use App\Http\Requests\PendaftarPkl\StorePendaftarPklRequest;
+use Illuminate\Console\View\Components\Confirm;
 
 class PendaftaranController extends Controller
 {
@@ -39,6 +40,8 @@ class PendaftaranController extends Controller
         date_sub($batas_pendaftaran, date_interval_create_from_date_string('1 days'));
 
         $pendaftaran_access = date('Y-m-d') <= $batas_pendaftaran ? true : false;
+
+        confirmDelete();
 
         return view('pages.frontsite.siswa.mitra', compact('lowongan', 'lowongan_terdaftar', 'peserta', 'pendaftaran_access'));
     }
