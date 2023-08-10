@@ -60,6 +60,13 @@ class PendaftaranController extends Controller
 
         $data['siswa_id'] = Siswa::where('user_id', auth()->user()->id)->first()->id;
 
+        $total_pendaftaran = PendaftarPkl::where('siswa_id', $data['siswa_id'])->count();
+
+        if($total_pendaftaran > 5){
+            alert()->warning('Peringatan', 'Pendaftaran melebihi batas jumlah pengajuan');
+            return back();
+        }
+
         $periode = PeriodePkl::where('tahun', date('Y'))->where('status', '1')->first();
         $data['periode_id'] = $periode->id;
 
