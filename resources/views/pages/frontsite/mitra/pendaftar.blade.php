@@ -58,9 +58,9 @@
                     </div>
 
                     @if ($data->status == '0')
-                        <div class="w-3/6 flex gap-5 justify-end">
+                        <div class="w-3/6 flex gap-5 justify-end flex-col md:flex-row">
                             <a href=""
-                                class="text-white px-3 py-3 block w-full text-center text-sm font-medium bg-red-700 hover:bg-red-800 rounded"
+                                class="text-white px-3 py-3 block w-full md:w-32 text-center text-sm font-medium bg-red-700 hover:bg-red-800 rounded"
                                 id="tolak">
                                 Tolak
                                 <form action="{{ route('mitra.pendaftar.update', $data->id) }}" method="POST"
@@ -72,7 +72,7 @@
                                 </form>
                             </a>
                             <a href=""
-                                class="text-white px-3 py-3 block w-full text-center text-sm font-medium bg-primary hover:bg-primaryhover rounded"
+                                class="text-white px-3 py-3 block w-full md:w-32 text-center text-sm font-medium bg-primary hover:bg-primaryhover rounded"
                                 id="terima">
                                 Terima
                                 <form action="{{ route('mitra.pendaftar.update', $data->id) }}" method="POST"
@@ -150,7 +150,6 @@
                     cancelButtonColor: '#d33',
                     confirmButtonText: 'Terima',
                     icon: 'warning',
-                    reverseButtons: true
                 }).then((result) => {
                     if (result.isConfirmed) {
                         $('#form-terima').submit()

@@ -257,7 +257,7 @@
                     event.preventDefault();
                     Swal.fire({
                         title: 'Lanjutkan Pendaftaran?',
-                        text: "Dengan melanjutkan pendaftaran, anda setuju untuk melaksanakan rangkaian seleksi!",
+                        text: "Dengan melanjutkan pendaftaran, anda setuju untuk melaksanakan rangkaian seleksi.!",
                         showCancelButton: true,
                         cancelButtonColor: '#d33',
                         confirmButtonColor: '#3085d6',
@@ -278,7 +278,7 @@
                     event.preventDefault();
                     Swal.fire({
                         title: 'Selamat Pendaftaran Anda Diterima',
-                        text: "Dengan menekan tombol terima, anda setuju untuk melaksanakan kegiatan pkl diperusahaan ini!",
+                        text: "Dengan menekan tombol terima, anda setuju untuk melaksanakan kegiatan PKL diperusahaan ini. Pendaftaran anda pada lowongan yang lain akan dibatalkan!",
                         showCancelButton: true,
                         cancelButtonColor: '#d33',
                         confirmButtonColor: '#3085d6',

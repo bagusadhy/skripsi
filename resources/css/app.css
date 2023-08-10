@@ -28,3 +28,8 @@
 ::-webkit-scrollbar-thumb:hover {
     background: #C1C1C1;
 }
+
+#swal2-html-container {
+    font-size: 1em;
+    text-align: center;
+}

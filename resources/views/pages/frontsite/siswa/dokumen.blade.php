@@ -65,7 +65,7 @@
                                             MB</p>
                                     @else
                                         <a href="{{ url($dokumen->surat_izin_ortu) }}" id="parentText" target="__blank"
-                                            class="font-semibold text-sm text-center">Surat Izin Orang Tua</a>
+                                            class="text-sm text-center text-blue-500">Surat Izin Orang Tua</a>
                                     @endif
                                 </div>
                                 <input type="file"
@@ -94,7 +94,7 @@
                                         <p id="schoolText" class="font-semibold text-sm">Upload File PDF. Max Size 2 MB</p>
                                     @else
                                         <a href="{{ url($dokumen->surat_pernyataan_siswa) }}" target="__blank" id="schoolText"
-                                            class="font-semibold text-sm text-center">Surat Penyataan Siswa</a>
+                                            class="text-sm text-center text-blue-500">Surat Penyataan Siswa</a>
                                     @endif
 
                                 </div>
