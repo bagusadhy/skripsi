@@ -127,6 +127,7 @@
                 altFormat: 'd F Y',
                 dateFormat: 'Y-m-d',
                 disableMobile: 'true',
+                maxDate: new Date(),
                 disable: {!! $disable_date !!},
                 locale: {
                     "firstDayOfWeek": 1 // start week on Monday
