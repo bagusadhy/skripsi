@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Kegiatan\PengajuanMitra;
 use App\Models\MasterData\BidangUsaha;
 use App\Models\MasterData\Siswa;
+use App\Models\Kegiatan\PesertaPkl;
 
 use App\Http\Requests\PengajuanMitra\StorePengajuanMitraRequest;
 use App\Models\MasterData\PeriodePkl;
@@ -22,8 +23,15 @@ class PengajuanMitraController extends Controller
         $bidang = BidangUsaha::all();
         $siswa = Siswa::where('user_id', auth()->user()->id)->first();
 
+        $peserta = PesertaPkl::where('siswa_id', $siswa->id)->first();
+        $pengajuan_access = true;
+
+        if($peserta != null){
+            $pengajuan_access = false;
+        }
+
         $pengajuan = PengajuanMitra::where('siswa_id', $siswa->id)->get();
-        return view('pages.frontsite.siswa.pengajuan-mitra', compact('bidang', 'siswa', 'pengajuan'));
+        return view('pages.frontsite.siswa.pengajuan-mitra', compact('bidang', 'siswa', 'pengajuan', 'pengajuan_access'));
     }
 
     /**

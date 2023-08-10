@@ -144,9 +144,11 @@
                                 </label>
                             </div>
                             <div class="flex justify-end items-center">
-                                <button type="submit" class="bg-primary text-white px-10 py-2 rounded">
-                                    Ajukan
-                                </button>
+                                @if ($pengajuan_access)
+                                    <button type="submit" class="bg-primary text-white px-10 py-2 rounded">
+                                        Ajukan
+                                    </button>
+                                @endif
                             </div>
                         </form>
                     </div>
