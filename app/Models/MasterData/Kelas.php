@@ -25,6 +25,7 @@ class Kelas extends Model
 
     // declare field that fillable
     protected $fillable = [
+        'jurusan_id',
         'kelas',
         'created_at',
         'updated_at',

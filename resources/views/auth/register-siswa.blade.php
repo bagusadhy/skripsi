@@ -16,8 +16,8 @@
             <div class="w-screen h-screen -mx-10">
                 <div class="drop-shadow-lg rounded px-10 py-8 bg-white h-full w-full">
                     <a href="{{ route('index') }}" class="w-1/2">
-                        <img src="{{ asset('assets/frontsite/logo-smk-dark.png') }}" class="mx-auto scale-75 hidden lg:block"
-                            alt="">
+                        <img src="{{ asset('assets/frontsite/logo-smk-dark.png') }}"
+                            class="mx-auto scale-75 hidden lg:block" alt="">
                     </a>
 
                     {{-- alert --}}
@@ -63,7 +63,7 @@
                             <div class="block mb-2 lg:mb-5 w-full">
                                 <label for="jurusan" class="block mb-1 font-medium">Jurusan<code
                                         class="text-red-600">*</code></label>
-                                <select data-te-select-init id='jurusan' name='jurusan_id' x-model="jurusan" required>
+                                <select style="text-overflow: ellipsis !important;" data-te-select-init id='jurusan' name='jurusan_id' x-model="jurusan" required>
                                     <option value="" hidden selected></option>
                                     @foreach ($jurusan as $data)
                                         <option value="{{ $data->id }}">{{ $data->jurusan }}</option>
@@ -79,9 +79,6 @@
                                         class="text-red-600">*</code></label>
                                 <select data-te-select-init id="kelas" name='kelas_id' x-model="kelas" required>
                                     <option value="" hidden selected></option>
-                                    @foreach ($kelas as $data)
-                                        <option value="{{ $data->id }}">{{ $data->kelas }}</option>
-                                    @endforeach
                                 </select>
                                 @if ($errors->has('kelas_id'))
                                     <p class="text-red-500 mb-3 text-sm">{{ $errors->first('kelas_id') }}</p>
@@ -106,13 +103,12 @@
                             <div class="block w-full" x-data="{ show: true }">
                                 <label for="password" class="block mb-1 font-medium">Kata Sandi <code
                                         class="text-red-600">*</code></label>
-                                <div
-                                    class="relative w-full h-11 rounded-md">
+                                <div class="relative w-full h-11 rounded-md">
 
                                     <input :type="show ? 'password' : 'text'" name="password" id="password"
                                         value="{{ old('password') }} }}"
                                         class="w-full h-full pl-5 pr-14 rounded-md focus:outline-none border border-gray-300 "
-                                       x-model="password" required>
+                                        x-model="password" required>
                                     @if ($errors->has('password'))
                                         <p class="text-red mb-3 text-sm">{{ $errors->first('password') }}</p>
                                     @endif
@@ -153,7 +149,7 @@
                     </form>
                     <div class="lg:mt-10">
                         <p class="text-sm text-gray-500 text-center">Sudah memiliki akun? <a
-                                href="{{ route('auth.register.index') }}"
+                                href="{{ route('login') }}"
                                 class="text-primary font-bold text-sm">Masuk</a>
                         </p>
                     </div>
@@ -162,3 +158,32 @@
         </div>
     </section>
 @endsection
+
+@push('after-script')
+    <script>
+        $(document).ready(function() {
+
+            $('#jurusan').on('change', function() {
+                var jurusanId = this.value;
+                $("#kelas").html('');
+                $.ajax({
+                    url: "{{ route('auth.register_siswa.list_kelas') }}",
+                    type: "POST",
+                    data: {
+                        jurusan_id: jurusanId,
+                        _token: '{{ csrf_token() }}'
+                    },
+                    dataType: 'json',
+                    success: function(result) {
+                        $('#kelas').html(
+                            '<option value="" hidden selected></option>');
+                        $.each(result.kelas, function(key, value) {
+                            $("#kelas").append('<option value="' + value
+                                .id + '">' + value.kelas + '</option>');
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+@endpush

@@ -15,21 +15,27 @@ class KelasSeeder extends Seeder
     {
         $kelas = [
             [
+                'jurusan_id' => 1,
                 'kelas'      => 'XII KUL', // 1
             ],
             [
+                'jurusan_id' => 2,
                 'kelas'      => 'XII TKJ', // 2
             ],
             [
+                'jurusan_id' => 3,
                 'kelas'      => 'XII PHT', // 3
             ],
             [
+                'jurusan_id' => 4,
                 'kelas'      => 'XII ULW', // 4
             ],
             [
+                'jurusan_id' => 5,
                 'kelas'      => 'XII PS', // 5
             ],
             [
+                'jurusan_id' => 6,
                 'kelas'      => 'XII AKC', // 6
             ],
         ];

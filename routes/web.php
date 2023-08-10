@@ -76,6 +76,7 @@ use App\Http\Controllers\Auth\RegisterSiswaController;
 Route::resource('/', LandingController::class);
 
 Route::prefix('auth')->name('auth.')->middleware(['guest'])->group(function () {
+    Route::post('list_kelas', [RegisterSiswaController::class, 'list_kelas'])->name('register_siswa.list_kelas');
     Route::resource('register', RegisterController::class);
     Route::resource('register_siswa', RegisterSiswaController::class);
     Route::resource('register_guru', RegisterGuruController::class);

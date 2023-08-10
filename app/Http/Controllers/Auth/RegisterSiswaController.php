@@ -65,7 +65,7 @@ class RegisterSiswaController extends Controller
                 Siswa::create($siswa);
             });
         } catch (\Throwable $th) {
-           return back();
+            return back();
         }
 
         return redirect(route('login'));
@@ -101,5 +101,12 @@ class RegisterSiswaController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function list_kelas(Request $request)
+    {
+        $data['kelas'] = Kelas::where('jurusan_id', $request->jurusan_id)->get();
+
+        return response()->json($data);
     }
 }
