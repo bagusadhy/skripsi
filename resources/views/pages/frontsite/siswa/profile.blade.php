@@ -204,7 +204,7 @@
                     </div>
                     <div class="mb-3 w-full">
                         <label for="kontak" class="block">
-                            <span class="font-medium">Kontak<code class="text-red-500">*</code></span>
+                            <span class="font-medium">Nomor Handphone<code class="text-red-500">*</code></span>
                         </label>
                         <input type="number"
                             class="w-full h-11 rounded-md border border-gray-300 px-5 py-3 focus:outline-none resize-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
@@ -259,6 +259,15 @@
 
 @push('after-script')
     <script>
+        $(document).ready(function() {
+
+            const tanggal = flatpickr('#tanggal_lahir', {
+                altInput: true,
+                altFormat: 'd F Y',
+                dateFormat: 'Y-m-d',
+                disableMobile: 'true',
+            });
+        });
         var profil = document.getElementById("profil-circle");
         var pic = document.getElementById("profil-pic");
         var input = document.getElementById("input-pic");
