@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+use App\Models\MasterData\PeriodePkl;
 class LandingController extends Controller
 {
     /**
@@ -26,7 +27,10 @@ class LandingController extends Controller
             }
         }
 
-        return view('pages.frontsite.landing.index', compact('route'));
+        $timeline = PeriodePkl::where('status', '1')->where('tahun', date('Y'))->get();
+
+
+        return view('pages.frontsite.landing.index', compact('route', 'timeline'));
     }
 
     /**

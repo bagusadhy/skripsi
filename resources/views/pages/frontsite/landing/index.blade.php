@@ -9,64 +9,49 @@
     <main class="">
         <div class="-mx-10 bg-no-repeat text-white bg-center lg:h-[624px] overflow-hidden bg-cover"
             style="background-image: url('assets/frontsite/hero.png')">
-            <div class="h-full w-full backdrop-blur-sm px-10 self-center flex flex-col justify-center py-10">
-                <h1 class="font-bold text-6xl lg:text-6xl mb-10 lg:max-w-2xl">Program Praktik Kerja Lapangan
+            <div class="h-full w-full backdrop-blur-sm backdrop-brightness-75 px-10 self-center flex flex-col justify-center py-10">
+                <h1 class="font-bold text-6xl lg:text-6xl mb-10 lg:max-w-2xl">Selamat Datang Di Website Praktik Kerja Lapangan
                     SMK Negeri 2 Malang</h1>
-                <p class="text-justify max-w-2xl">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna
-                    aliqua.</p>
             </div>
         </div>
 
-        <!-- pengumuman section start -->
+        <!-- timeline section start -->
         <section class="">
-            <h1 class="font-bold text-4xl lg:text-5xl text-center py-14">Pengumuman</h1>
-            <div class="flex gap-5 justify-center flex-col lg:flex-row">
-                <div
-                    class="w-full h-fit rounded-3xl px-5 py-5 text-center hover:bg-[#FDDBDB] shadow-[0_0_55px_5px_rgb(0,0,0,0.1)]">
-                    <div class="flex justify-center mb-5">
-                        <img src="{{ asset('assets/frontsite/speaker.png') }}" class="" alt="">
-                    </div>
-                    <h3 class="font-medium mb-5">Pengumuman </h3>
-                    <h3 class="font-medium mb-5">22 - 27 Desember 2022</h3>
-                    <p class="font-normal mb-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                        eiusmod tempor incididunt ut labore et dolore magna
-                        aliqua.</p>
-                </div>
-                <div
-                    class="w-full h-fit rounded-3xl px-5 py-5 text-center hover:bg-[#FDDBDB] shadow-[0_0_55px_5px_rgb(0,0,0,0.1)]">
-                    <div class="flex justify-center mb-5">
-                        <img src="{{ asset('assets/frontsite/speaker.png') }}" class="" alt="">
-                    </div>
-                    <h3 class="font-medium mb-5">Pengumuman </h3>
-                    <h3 class="font-medium mb-5">22 - 27 Desember 2022</h3>
-                    <p class="font-normal mb-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                        eiusmod tempor incididunt ut labore et dolore magna
-                        aliqua.</p>
-                </div>
-                <div
-                    class="w-full h-fit rounded-3xl px-5 py-5 text-center hover:bg-[#FDDBDB] shadow-[0_0_55px_5px_rgb(0,0,0,0.1)]">
-                    <div class="flex justify-center mb-5">
-                        <img src="{{ asset('assets/frontsite/speaker.png') }}" class="" alt="">
-                    </div>
-                    <h3 class="font-medium mb-5">Pengumuman </h3>
-                    <h3 class="font-medium mb-5">22 - 27 Desember 2022</h3>
-                    <p class="font-normal mb-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                        eiusmod tempor incididunt ut labore et dolore magna
-                        aliqua.</p>
-                </div>
-                <div
-                    class="w-full h-fit rounded-3xl px-5 py-5 text-center hover:bg-[#FDDBDB] shadow-[0_0_55px_5px_rgb(0,0,0,0.1)]">
-                    <div class="flex justify-center mb-5">
-                        <img src="{{ asset('assets/frontsite/speaker.png') }}" class="" alt="">
-                    </div>
-                    <h3 class="font-medium mb-5">Pengumuman </h3>
-                    <h3 class="font-medium mb-5">22 - 27 Desember 2022</h3>
-                    <p class="font-normal mb-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                        eiusmod tempor incididunt ut labore et dolore magna
-                        aliqua.</p>
-                </div>
+            <h1 class="font-bold text-4xl lg:text-5xl text-center py-14">Timeline</h1>
+            <div class="flex gap-5 justify-center flex-col lg:flex-row flex-shrink">
+                @forelse ($timeline as $periode)
+                    <div class="w-fit h-fit md:w-full lg:w-96 lg:h-96 rounded-3xl px-5 py-5 hover:bg-[#FDDBDB] shadow-[0_0_55px_5px_rgb(0,0,0,0.1)]">
+                        <div class="w-full text-center">
 
+                            <div class="flex justify-center mb-5">
+                                <img src="{{ asset('assets/frontsite/speaker-1.png') }}" class="w-40 h-40 scale-75" alt="">
+                            </div>
+                            <h2 class="font-bold mb-5 text-xl">Periode Pendaftaran</h2>
+                            <h3 class="font-medium mb-5 text-normal">
+                                {{ date('d M', strtotime($periode->pendaftaran)) . ' - ' . date('d M Y', strtotime(\Carbon\Carbon::parse($periode->kegiatan)->subDay())) }}
+                            </h3>
+                        </div>
+                        <p class="font-normal mb-5 text-justify text-sm">Melakukan pendaftaran pada lowongan PKL yang telah
+                            dibuka
+                            oleh mitra, atau dapat mengajukan mitra PKL secara mandiri.</p>
+                    </div>
+                    <div
+                        class="w-fit h-fit md:w-full lg:w-96 lg:h-96 rounded-3xl px-5 py-5 hover:bg-[#FDDBDB] shadow-[0_0_55px_5px_rgb(0,0,0,0.1)]">
+                        <div class="w-full text-center">
+
+                            <div class="flex justify-center mb-5">
+                                <img src="{{ asset('assets/frontsite/speaker-1.png') }}" class="w-40 h-40 scale-75" alt="">
+                            </div>
+                            <h2 class="font-bold mb-5 text-xl">Periode Kegiatan</h2>
+                            <h3 class="font-medium mb-5 text-normal">
+                                {{ date('d M', strtotime($periode->kegiatan)) . ' - ' . date('d M Y', strtotime($periode->kegiatan_selesai)) }}
+                            </h3>
+                        </div>
+                        <p class="font-normal mb-5 text-justify text-sm">Meliputi kegiatan pengantaran ke mitra PKL, monitoring, dan penjemputan
+                            oleh pihak sekolah.</p>
+                    </div>
+                @empty
+                @endforelse
             </div>
 
         </section>
