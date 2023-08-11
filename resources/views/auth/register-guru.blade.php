@@ -139,7 +139,7 @@
                     </form>
                     <div class="lg:mt-10">
                         <p class="text-sm text-gray-500 text-center">Sudah memiliki akun? <a
-                                href="{{ route('auth.register.index') }}"
+                                href="{{ route('login') }}"
                                 class="text-primary font-bold text-sm">Masuk</a>
                         </p>
                     </div>
