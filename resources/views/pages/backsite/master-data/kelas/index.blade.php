@@ -60,15 +60,32 @@
                         <div class="px-5 py-4">
                             <form action="{{ route('backsite.kelas.store') }}" method="POST">
                                 @csrf
-                                <label for="kelas" class="block">
-                                    <span class="font-medium">Kelas<code class="text-red-500">*</code></span>
-                                </label>
-                                <input type="text"
-                                    class="w-full h-11 rounded-md border border-gray-300 px-5 py-3 focus:outline-none resize-none"
-                                    name="kelas"id="kelas" required></input>
-                                @if ($errors->has('kelas'))
-                                    <p style="font-style: bold; color: red;">{{ $errors->first('kelas') }}</p>
-                                @endif
+                                <div class="mb-5">
+                                    <label for="kelas" class="block">
+                                        <span class="font-medium">Jurusan<code class="text-red-500">*</code></span>
+                                    </label>
+                                    <select data-te-select-init name="jurusan_id">
+                                        <option value="" selected hidden></option>
+                                        @foreach ($jurusan as $data_jurusan)
+                                            <option value="{{ $data_jurusan->id }}">{{ $data_jurusan->jurusan }}</option>
+                                        @endforeach
+                                    </select>
+                                    @if ($errors->has('jurusan_id'))
+                                        <p style="font-style: bold; color: red;">{{ $errors->first('jurusan_id') }}</p>
+                                    @endif
+                                </div>
+
+                                <div>
+                                    <label for="kelas" class="block">
+                                        <span class="font-medium">Kelas<code class="text-red-500">*</code></span>
+                                    </label>
+                                    <input type="text"
+                                        class="w-full h-11 rounded-md border border-gray-300 px-5 py-3 focus:outline-none resize-none"
+                                        name="kelas"id="kelas" required></input>
+                                    @if ($errors->has('kelas'))
+                                        <p style="font-style: bold; color: red;">{{ $errors->first('kelas') }}</p>
+                                    @endif
+                                </div>
                                 <div class="flex justify-end mt-4">
                                     <button type="submit"
                                         class="px-8 py-2 bg-blue-700 text-white rounded-md">Tambahkan</button>
@@ -86,6 +103,7 @@
                         <thead>
                             <tr>
                                 <th>Kelas</th>
+                                <th>Jurusan</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -93,6 +111,7 @@
                             @forelse ($data as $kelas)
                                 <tr data-entry-id="{{ $kelas->id }}" class="hover:bg-neutral-200 outline-2">
                                     <td>{{ $kelas->kelas }}</td>
+                                    <td>{{ $kelas->jurusan->jurusan }}</td>
                                     <td>
                                         <div class="relative" data-te-dropdown-ref>
                                             <button
@@ -117,13 +136,12 @@
                                                         data-te-dropdown-item-ref>Edit</a>
                                                 </li>
                                                 <li>
-                                                   <form action="{{ route('backsite.kelas.destroy', $kelas->id) }}"
+                                                    <form action="{{ route('backsite.kelas.destroy', $kelas->id) }}"
                                                         id="form-delete" method="post" data-te-dropdown-item-ref>
                                                         @csrf
                                                         @method('delete')
                                                         <button type="submit"
-                                                            class="delete-confirm block w-full whitespace-nowrap bg-transparent px-16 py-2 text-sm text-left font-normal hover:bg-neutral-200"
-                                                            >Hapus</button>
+                                                            class="delete-confirm block w-full whitespace-nowrap bg-transparent px-16 py-2 text-sm text-left font-normal hover:bg-neutral-200">Hapus</button>
                                                     </form>
                                                 </li>
                                             </ul>
@@ -149,7 +167,7 @@
 
             var table = $('#kelas-table').DataTable();
 
-             $('.delete-confirm').on('click', function() {
+            $('.delete-confirm').on('click', function() {
                 event.preventDefault();
                 let form = $(this).closest('form');
                 Swal.fire({

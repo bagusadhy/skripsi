@@ -1,4 +1,3 @@
-
 @extends('layouts.app')
 
 @section('title', 'Kelas')
@@ -47,6 +46,19 @@
                 <form action="{{ route('backsite.kelas.update', $kelas->id) }}" method="POST">
                     @csrf
                     @method('PUT')
+                    <div class="mb-5">
+                        <label for="kelas" class="block">
+                            <span class="font-medium">Jurusan<code class="text-red-500">*</code></span>
+                        </label>
+                        <select data-te-select-init name="jurusan_id">
+                            @foreach ($jurusan as $data_jurusan)
+                                <option {{ $kelas->jurusan->id == $data_jurusan->id ? 'selected' : '' }} value="{{ $data_jurusan->id }}">{{ $data_jurusan->jurusan }}</option>
+                            @endforeach
+                        </select>
+                        @if ($errors->has('jurusan_id'))
+                            <p style="font-style: bold; color: red;">{{ $errors->first('jurusan_id') }}</p>
+                        @endif
+                    </div>
 
                     <label for="kelas" class="block">
                         <span class="font-medium">Kelas<code class="text-red-500">*</code></span>

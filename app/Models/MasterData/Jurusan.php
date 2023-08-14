@@ -6,6 +6,7 @@ use App\Models\Kegiatan\Lowongan;
 use App\Models\MasterData\Siswa;
 use App\Models\MasterData\Guru;
 use App\Models\MasterData\Template;
+use App\Models\MasterData\Kelas;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -42,6 +43,10 @@ class   Jurusan extends Model
     public function guru()
     {
         return $this->hasMany(Guru::class, 'jurusan_id');
+    }
+    public function kelas()
+    {
+        return $this->hasMany(Kelas::class, 'kelas_id');
     }
     public function lowongan()
     {

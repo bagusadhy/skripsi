@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backsite;
 
 use App\Http\Controllers\Controller;
 use App\Models\MasterData\Kelas;
+use App\Models\MasterData\Jurusan;
 
 use App\Http\Requests\Kelas\StoreKelasRequest;
 use App\Http\Requests\Kelas\UpdateKelasRequest;
@@ -19,10 +20,11 @@ class KelasController extends Controller
      */
     public function index()
     {
-        $data = Kelas::orderBy('id', 'ASC')->get();
+        $data = Kelas::with('jurusan')->orderBy('id', 'ASC')->get();
+        $jurusan = Jurusan::all();
 
         confirmDelete();
-        return view('pages.backsite.master-data.kelas.index', compact('data'));
+        return view('pages.backsite.master-data.kelas.index', compact('data', 'jurusan'));
     }
 
 
@@ -59,7 +61,8 @@ class KelasController extends Controller
      */
     public function edit(Kelas $kelas)
     {
-        return view('pages.backsite.master-data.kelas.edit', compact('kelas'));
+        $jurusan = Jurusan::all();
+        return view('pages.backsite.master-data.kelas.edit', compact('kelas', 'jurusan'));
     }
 
     /**
