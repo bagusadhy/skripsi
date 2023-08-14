@@ -84,7 +84,7 @@ Route::prefix('auth')->name('auth.')->middleware(['guest'])->group(function () {
 });
 
 // Backsite controller
-Route::prefix('backsite')->name('backsite.')->middleware(['auth:sanctum', 'verified', config('jetstream.auth_session')])->group(function () {
+Route::prefix('backsite')->name('backsite.')->middleware(['admin', 'auth:sanctum', 'verified', config('jetstream.auth_session')])->group(function () {
 
     Route::put('periode/activated/{periode}', [PeriodePklController::class, 'activated'])->name('periode.activated');
     Route::put('periode/disactivated/{periode}', [PeriodePklController::class, 'disactivated'])->name('periode.disactivated');
@@ -116,7 +116,7 @@ Route::prefix('backsite')->name('backsite.')->middleware(['auth:sanctum', 'verif
 });
 
 // guru controller
-Route::prefix('guru')->name('guru.')->middleware(['auth:sanctum', 'verified', config('jetstream.auth_session')])->group(function () {
+Route::prefix('guru')->name('guru.')->middleware(['guru','auth:sanctum', 'verified', config('jetstream.auth_session')])->group(function () {
 
     Route::get('laporan', [SiswaBimbinganController::class, 'laporan'])->name('siswa.laporan');
     Route::get('nilai', [SiswaBimbinganController::class, 'nilai'])->name('siswa.nilai');
@@ -132,7 +132,7 @@ Route::prefix('guru')->name('guru.')->middleware(['auth:sanctum', 'verified', co
     Route::resource('aktivitas', AktivitasController::class)->parameters(['aktivitas' => 'siswa']);
 });
 
-Route::prefix('mitra')->name('mitra.')->middleware(['auth:sanctum', 'verified', config('jetstream.auth_session')])->group(function () {
+Route::prefix('mitra')->name('mitra.')->middleware(['mitra','auth:sanctum', 'verified', config('jetstream.auth_session')])->group(function () {
 
     Route::get('laporan/download/{siswa}', [MitraLaporanController::class, 'download'])->name('laporan.download');
     Route::get('nilai/download_template', [MitraNilaiController::class, 'download_template'])->name('nilai.download_template');
@@ -150,7 +150,7 @@ Route::prefix('mitra')->name('mitra.')->middleware(['auth:sanctum', 'verified', 
 });
 
 // siswa controller
-Route::prefix('siswa')->name('siswa.')->middleware(['auth:sanctum', 'verified', config('jetstream.auth_session')])->group(function () {
+Route::prefix('siswa')->name('siswa.')->middleware(['siswa','auth:sanctum', 'verified', config('jetstream.auth_session')])->group(function () {
 
     Route::get('pendaftaran/cari_lowongan', [PendaftaranController::class, 'cari_lowongan'])->name('pendaftaran.cari_lowongan');
     Route::resource('dashboard', DashboardSiswaController::class);
@@ -161,23 +161,3 @@ Route::prefix('siswa')->name('siswa.')->middleware(['auth:sanctum', 'verified', 
     Route::resource('laporan', LaporanSiswaController::class);
     Route::resource('pengajuan', PengajuanSiswaController::class);
 });
-
-
-
-
-
-
-
-// Route::get('/', function () {
-//     return view('pages.frontsite.landing.index');
-// });
-
-// Route::middleware([
-//     'auth:sanctum',
-//     config('jetstream.auth_session'),
-//     'verified'
-// ])->group(function () {
-//     Route::get('/dashboard', function () {
-//         return view('dashboard');
-//     })->name('dashboard');
-// });
