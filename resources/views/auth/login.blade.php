@@ -92,7 +92,7 @@
                             <input type="checkbox" class="h-4 w-4 border-2 border-gray-100" name="checkbox" id="checkbox">
                             <label for="checkbox" class="ml-2 text-gray-500 text-sm">Ingat Saya</label>
                         </div> --}}
-                        <a href="" class="text-gray-500 text-sm">Lupa Password</a>
+                        <a href="{{ route('password.request') }}" class="text-gray-500 text-sm">Lupa Password</a>
                     </div>
                     <div>
                         <p class="text-sm text-gray-500 text-center">Belum memiliki akun? <a href="{{ route('auth.register.index') }}"
