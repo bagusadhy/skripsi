@@ -41,7 +41,7 @@
             <div class="mt-5 w-full">
                 @if ($peserta != null)
                     <div class="mb-3">
-                        <h4 class="font-bold ">{{ $peserta->mitra->nama }}</h4>
+                        <h4 class="font-bold ">{{ $peserta->lowongan->mitra->nama }} - {{ $peserta->lowongan->nama }}</h4>
                         <p class="flex gap-3 items-center text-gray-500">
                             <span>
                                 <svg width="14" height="16" viewBox="0 0 26 32" fill="none"

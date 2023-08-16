@@ -136,11 +136,11 @@
         </div>
     </nav>
 
-    @isset($complete)
-        @if ($complete)
-            <div class="-mx-10 hidden w-screen items-center rounded-lg bg-warning-300 px-6 py-2 text-base text-warning-800 data-[te-alert-show]:inline-flex"
+    @auth
+        @if (!Auth::user()->siswa->isProfileComplete())
+            <div class="-mx-10 hidden w-screen items-center bg-red-500 px-10 py-2 text-base text-white data-[te-alert-show]:inline-flex"
                 role="alert" data-te-alert-init data-te-alert-show>
-                <strong class="mr-1">Lengkapi Data Anda! </strong>
+                <p class="font-semibold">Lengkapi data anda pada menu profil. </p>
                 <button type="button"
                     class="ml-auto box-content rounded-none border-none p-1 text-warning-900 opacity-50 hover:text-warning-900 hover:no-underline hover:opacity-75 focus:opacity-100 focus:shadow-none focus:outline-none"
                     data-te-alert-dismiss aria-label="Close">
@@ -155,4 +155,4 @@
                 </button>
             </div>
         @endif
-    @endisset
+    @endauth
