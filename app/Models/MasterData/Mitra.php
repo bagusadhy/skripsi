@@ -46,6 +46,11 @@ class Mitra extends Model
         'deleted_at',
     ];
 
+    public function isProfileComplete(): bool
+    {
+        return !empty($this->bidang_usaha_id) && !empty($this->nama) && !empty($this->alamat) && !empty($this->kontak) && !empty($this->nama_pimpinan) && !empty($this->nama_pembimbing) && !empty($this->foto);
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id', 'id');

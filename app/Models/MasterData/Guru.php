@@ -42,6 +42,11 @@ class Guru extends Model
         'deleted_at',
     ];
 
+    public function isProfileComplete(): bool
+    {
+        return !empty($this->jurusan_id) && !empty($this->nama) && !empty($this->nip) && !empty($this->jenis_kelamin) && !empty($this->kontak) && !empty($this->alamat) && !empty($this->foto);
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
