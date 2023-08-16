@@ -116,7 +116,7 @@ Route::prefix('backsite')->name('backsite.')->middleware(['admin', 'auth:sanctum
 });
 
 // guru controller
-Route::prefix('guru')->name('guru.')->middleware(['guru','auth:sanctum', 'verified', config('jetstream.auth_session')])->group(function () {
+Route::prefix('guru')->name('guru.')->middleware(['guru', 'auth:sanctum', 'verified', config('jetstream.auth_session')])->group(function () {
 
     Route::get('laporan', [SiswaBimbinganController::class, 'laporan'])->name('siswa.laporan');
     Route::get('nilai', [SiswaBimbinganController::class, 'nilai'])->name('siswa.nilai');
@@ -132,7 +132,7 @@ Route::prefix('guru')->name('guru.')->middleware(['guru','auth:sanctum', 'verifi
     Route::resource('aktivitas', AktivitasController::class)->parameters(['aktivitas' => 'siswa']);
 });
 
-Route::prefix('mitra')->name('mitra.')->middleware(['mitra','auth:sanctum', 'verified', config('jetstream.auth_session')])->group(function () {
+Route::prefix('mitra')->name('mitra.')->middleware(['mitra', 'auth:sanctum', 'verified', config('jetstream.auth_session')])->group(function () {
 
     Route::get('laporan/download/{siswa}', [MitraLaporanController::class, 'download'])->name('laporan.download');
     Route::get('nilai/download_template', [MitraNilaiController::class, 'download_template'])->name('nilai.download_template');
@@ -150,9 +150,10 @@ Route::prefix('mitra')->name('mitra.')->middleware(['mitra','auth:sanctum', 'ver
 });
 
 // siswa controller
-Route::prefix('siswa')->name('siswa.')->middleware(['siswa','auth:sanctum', 'verified', config('jetstream.auth_session')])->group(function () {
+Route::prefix('siswa')->name('siswa.')->middleware(['siswa', 'auth:sanctum', 'verified', config('jetstream.auth_session')])->group(function () {
 
     Route::get('pendaftaran/cari_lowongan', [PendaftaranController::class, 'cari_lowongan'])->name('pendaftaran.cari_lowongan');
+    Route::post('list_kelas', [ProfileSiswaController::class, 'list_kelas'])->name('profile.list_kelas');
     Route::resource('dashboard', DashboardSiswaController::class);
     Route::resource('pendaftaran', PendaftaranController::class);
     Route::resource('kegiatan', KegiatanController::class);

@@ -120,7 +120,8 @@
                         <label for="jurusan" class="block">
                             <span class="font-medium">Jurusan<code class="text-red-500">*</code></span>
                         </label>
-                        <select data-te-select-init data-te-select-placeholder="Pilih Jurusan" name="jurusan_id" required>
+                        <select data-te-select-init data-te-select-placeholder="Pilih Jurusan"
+                        id="jurusan" name="jurusan_id" required>
                             <option hidden selected></option>
                             @foreach ($jurusan as $items)
                                 <option value="{{ $items->id }}"
@@ -136,13 +137,7 @@
                         <label for="kelas" class="block">
                             <span class="font-medium">Kelas<code class="text-red-500">*</code></span>
                         </label>
-                        <select data-te-select-init data-te-select-placeholder="Pilih Kelas" name="kelas_id" required>
-                            <option hidden selected></option>
-                            @foreach ($kelas as $items)
-                                <option value="{{ $items->id }}"
-                                    {{ $siswa->kelas_id == $items->id ? 'selected' : '' }}>{{ $items->kelas }}
-                                </option>
-                            @endforeach
+                        <select data-te-select-init data-te-select-placeholder="Pilih Kelas" id="kelas" name="kelas_id" required>
                         </select>
                         @if ($errors->has('kelas'))
                             <p style="font-style: bold; color: red;">{{ $errors->first('kelas') }}</p>
@@ -267,6 +262,29 @@
                 dateFormat: 'Y-m-d',
                 disableMobile: 'true',
             });
+
+            $('#jurusan').on('change', function() {
+                var jurusanId = this.value;
+                $("#kelas").html('');
+                $.ajax({
+                    url: "{{ route('siswa.profile.list_kelas') }}",
+                    type: "POST",
+                    data: {
+                        jurusan_id: jurusanId,
+                        _token: '{{ csrf_token() }}'
+                    },
+                    dataType: 'json',
+                    success: function(result) {
+                        $('#kelas').html(
+                            '<option value="" hidden selected></option>');
+                        $.each(result.kelas, function(key, value) {
+                            $("#kelas").append('<option value="' + value
+                                .id + '">' + value.kelas + '</option>');
+                        });
+                    }
+                });
+            });
+
         });
         var profil = document.getElementById("profil-circle");
         var pic = document.getElementById("profil-pic");

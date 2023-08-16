@@ -105,4 +105,11 @@ class ProfileController extends Controller
     {
         //
     }
+
+    public function list_kelas(Request $request)
+    {
+        $data['kelas'] = Kelas::where('jurusan_id', $request->jurusan_id)->get();
+
+        return response()->json($data);
+    }
 }
