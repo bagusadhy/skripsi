@@ -120,8 +120,8 @@
                         <label for="jurusan" class="block">
                             <span class="font-medium">Jurusan<code class="text-red-500">*</code></span>
                         </label>
-                        <select data-te-select-init data-te-select-placeholder="Pilih Jurusan"
-                        id="jurusan" name="jurusan_id" required>
+                        <select data-te-select-init data-te-select-placeholder="Pilih Jurusan" id="jurusan"
+                            name="jurusan_id" required>
                             <option hidden selected></option>
                             @foreach ($jurusan as $items)
                                 <option value="{{ $items->id }}"
@@ -137,7 +137,11 @@
                         <label for="kelas" class="block">
                             <span class="font-medium">Kelas<code class="text-red-500">*</code></span>
                         </label>
-                        <select data-te-select-init data-te-select-placeholder="Pilih Kelas" id="kelas" name="kelas_id" required>
+                        <select data-te-select-init data-te-select-placeholder="Pilih Kelas" id="kelas"
+                            name="kelas_id" required>
+                            @foreach ($kelas as $data_kelas)
+                                <option {{ $data_kelas->id == $siswa->kelas_id ? 'selected' : '' }} value="{{ $data_kelas->id }}">{{ $data_kelas->kelas }}</option>
+                            @endforeach
                         </select>
                         @if ($errors->has('kelas'))
                             <p style="font-style: bold; color: red;">{{ $errors->first('kelas') }}</p>
@@ -265,7 +269,6 @@
 
             $('#jurusan').on('change', function() {
                 var jurusanId = this.value;
-                $("#kelas").html('');
                 $.ajax({
                     url: "{{ route('siswa.profile.list_kelas') }}",
                     type: "POST",
@@ -275,8 +278,7 @@
                     },
                     dataType: 'json',
                     success: function(result) {
-                        $('#kelas').html(
-                            '<option value="" hidden selected></option>');
+                        $('#kelas').empty();
                         $.each(result.kelas, function(key, value) {
                             $("#kelas").append('<option value="' + value
                                 .id + '">' + value.kelas + '</option>');

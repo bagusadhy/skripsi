@@ -22,8 +22,8 @@ class ProfileController extends Controller
     public function index()
     {
         $jurusan = Jurusan::all();
-        $kelas = Kelas::all();
         $siswa = Siswa::where('user_id', auth()->user()->id)->first();
+        $kelas = Kelas::where('jurusan_id', $siswa->jurusan_id)->get();
 
         return view('pages.frontsite.siswa.profile', compact('siswa', 'jurusan', 'kelas'));
     }
