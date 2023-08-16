@@ -138,7 +138,7 @@
 
     @auth
         @if (!Auth::user()->siswa->isProfileComplete())
-            <div class="-mx-10 hidden w-screen items-center bg-red-500 px-10 py-2 text-base text-white data-[te-alert-show]:inline-flex"
+            <div class="-mx-10 hidden w-screen items-center bg-red-700 px-10 py-2 text-base text-white data-[te-alert-show]:inline-flex"
                 role="alert" data-te-alert-init data-te-alert-show>
                 <p class="font-semibold">Lengkapi data anda pada menu profil. </p>
                 <button type="button"
