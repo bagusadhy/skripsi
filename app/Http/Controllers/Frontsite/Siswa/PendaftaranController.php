@@ -139,7 +139,7 @@ class PendaftaranController extends Controller
         $lowongan_terdaftar = PendaftarPkl::where('siswa_id', $siswa->id)->with('lowongan', 'mitra', 'mitra.bidang_usaha')->get();
 
         $peserta = PesertaPkl::where('siswa_id', $siswa->id)->first();
-        $pendaftaran_access = PeriodePkl::where('nama_timeline', 'pendaftaran')->where('status', '1')->first();
+        $pendaftaran_access = PeriodePkl::where('tahun', date('Y'))->where('status', '1')->first();
 
         if ($request->ajax()) {
             $output = '';
