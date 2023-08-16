@@ -84,10 +84,10 @@ class User extends Authenticatable
     }
     public function guru()
     {
-        return $this->hasOne(Guru::class, 'guru_id');
+        return $this->hasOne(Guru::class, 'user_id');
     }
     public function mitra()
     {
-        return $this->hasOne(Mitra::class, 'mitra_id');
+        return $this->hasOne(Mitra::class, 'user_id');
     }
 }
