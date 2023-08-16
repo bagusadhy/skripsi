@@ -23,7 +23,7 @@ class KegiatanController extends Controller
     public function index()
     {
         $siswa = Siswa::where('user_id', auth()->user()->id)->first();
-        $peserta = PesertaPkl::where('siswa_id', $siswa->id)->with('mitra')->first();
+        $peserta = PesertaPkl::where('siswa_id', $siswa->id)->with('lowongan', 'lowongan.mitra')->first();
         $aktivitas = AktivitasSiswa::where('siswa_id', $siswa->id)->orderBy('tanggal', 'DESC')->paginate(2);
         $total_aktivitas = AktivitasSiswa::where('siswa_id', $siswa->id)->count();
 
@@ -39,6 +39,9 @@ class KegiatanController extends Controller
         if($total_aktivitas >= $total_hari){
             $access_laporan = true;
         }
+
+
+        // dd(auth()->user()->siswa);
 
 
 
