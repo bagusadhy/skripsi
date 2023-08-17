@@ -61,16 +61,16 @@
                                     <td class="whitespace-nowrap">
                                         @switch($data->status)
                                             @case('1')
-                                                <p
-                                                    class="uppercase inline-block whitespace-nowrap rounded-[0.27rem] bg-red-500 px-[0.65em] pb-[0.25em] pt-[0.35em] text-center align-baseline text-xs font-medium leading-normal text-white">
-                                                    Ditolak
+                                               <p
+                                                    class="uppercase inline-block whitespace-nowrap rounded-[0.27rem] bg-green-500 px-[0.65em] pb-[0.25em] pt-[0.35em] text-center align-baseline text-xs font-medium leading-normal text-white">
+                                                    Diterima
                                                 </p>
                                             @break
 
                                             @case('2')
-                                                <p
-                                                    class="uppercase inline-block whitespace-nowrap rounded-[0.27rem] bg-green-500 px-[0.65em] pb-[0.25em] pt-[0.35em] text-center align-baseline text-xs font-medium leading-normal text-white">
-                                                    Diterima
+                                                 <p
+                                                    class="uppercase inline-block whitespace-nowrap rounded-[0.27rem] bg-red-500 px-[0.65em] pb-[0.25em] pt-[0.35em] text-center align-baseline text-xs font-medium leading-normal text-white">
+                                                    Ditolak
                                                 </p>
                                             @break
 
