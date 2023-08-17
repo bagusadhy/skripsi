@@ -15,7 +15,7 @@
 
 <body class="bg-[#F9F9F9]" >
 
-    {{-- @include('sweetalert::alert') --}}
+    @include('sweetalert::alert')
 
     <section class="mx-10">
         @yield('content')

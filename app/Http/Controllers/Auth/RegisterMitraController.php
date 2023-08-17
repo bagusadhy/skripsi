@@ -62,10 +62,11 @@ class RegisterMitraController extends Controller
                 Mitra::create($mitra);
             });
         } catch (\Throwable $th) {
-            dd($th);
+            toast('Registrasi Gagal', 'error');
             return back();
         }
 
+        toast('Registrasi Berhasil', 'success');
         return redirect(route('login'));
     }
 

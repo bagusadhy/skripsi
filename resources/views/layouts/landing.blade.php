@@ -14,7 +14,7 @@
 
 <body>
 
-    {{-- @include('sweetalert::alert') --}}
+    @include('sweetalert::alert')
 
     <section class="mx-10">
         @include('components.frontsite.landing.header')

@@ -65,9 +65,11 @@ class RegisterSiswaController extends Controller
                 Siswa::create($siswa);
             });
         } catch (\Throwable $th) {
+            toast('Registrasi Gagal', 'error');
             return back();
         }
 
+        toast('Registrasi Berhasil', 'success');
         return redirect(route('login'));
     }
 
