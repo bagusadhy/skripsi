@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Models\Kegiatan\HasilSurvey;
+use App\Models\Kegiatan\Saran;
 
 class HasilSurveyController extends Controller
 {
@@ -25,14 +26,17 @@ class HasilSurveyController extends Controller
         $dataset = [];
         foreach ($query as $value) {
 
-            array_push($dataset,$value->rata_rata);
-            array_push($label,$value->survey->kategori);
+            array_push($dataset, $value->rata_rata);
+            array_push($label, $value->survey->kategori);
         }
 
         $labels = json_encode($label);
         $datasets = json_encode($dataset);
 
-        return view('pages.backsite.kegiatan.hasil-survey.index', compact('labels','datasets'));
+
+        $saran = Saran::paginate(5);
+
+        return view('pages.backsite.kegiatan.hasil-survey.index', compact('labels', 'datasets', 'saran'));
     }
 
 

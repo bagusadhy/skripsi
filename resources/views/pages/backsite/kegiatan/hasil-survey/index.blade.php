@@ -48,6 +48,18 @@
                 </div>
             </div>
         </div>
+
+        <div class="mt-10 sm:px-6 mb-10">
+            <p class="px-4 py-4 md:py-7 focus:outline-none text-base sm:text-lg md:text-xl lg:text-2xl font-bold leading-normal text-gray-800 mb-3">Kritik & Saran</p>
+            @forelse ($saran as $data_saran)
+                <div class="w-full px-10 py-5 shadow-md mb-3 rounded">{{ $data_saran->saran }}</div>
+            @empty
+            @endforelse
+        </div>
+
+        <div class="mt-5 px-10">
+            {{ $saran->links('pagination::tailwind') }}
+        </div>
     </main>
     </div>
     </section>
