@@ -47,7 +47,7 @@ class AktivitasController extends Controller
      */
     public function show(Siswa $siswa)
     {
-        $aktivitas = AktivitasSiswa::where('siswa_id', $siswa->id)->orderBy('tanggal', 'desc')->paginate(2);
+        $aktivitas = AktivitasSiswa::where('siswa_id', $siswa->id)->orderBy('tanggal', 'desc')->paginate(5);
 
         return view('pages.frontsite.guru.aktivitas-detail', compact('aktivitas'));
     }

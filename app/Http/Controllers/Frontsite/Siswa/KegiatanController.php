@@ -24,7 +24,7 @@ class KegiatanController extends Controller
     {
         $siswa = Siswa::where('user_id', auth()->user()->id)->first();
         $peserta = PesertaPkl::where('siswa_id', $siswa->id)->with('lowongan', 'lowongan.mitra')->first();
-        $aktivitas = AktivitasSiswa::where('siswa_id', $siswa->id)->orderBy('tanggal', 'DESC')->paginate(2);
+        $aktivitas = AktivitasSiswa::where('siswa_id', $siswa->id)->orderBy('tanggal', 'DESC')->paginate(5);
         $total_aktivitas = AktivitasSiswa::where('siswa_id', $siswa->id)->count();
 
         $periode = PeriodePkl::first();
