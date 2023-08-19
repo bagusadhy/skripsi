@@ -65,7 +65,7 @@ class PendaftaranController extends Controller
 
         $total_pendaftaran = PendaftarPkl::where('siswa_id', $data['siswa_id'])->count();
 
-        if($total_pendaftaran > 5){
+        if ($total_pendaftaran > 5) {
             alert()->warning('Peringatan', 'Pendaftaran melebihi batas jumlah pengajuan');
             return back();
         }

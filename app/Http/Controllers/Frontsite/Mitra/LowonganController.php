@@ -101,4 +101,25 @@ class LowonganController extends Controller
         alert()->success('Berhasil', 'Lowongan berhasil dihapus');
         return back();
     }
+
+    public function disactivated(Lowongan $lowongan){
+        $data = [
+            'status' => '0'
+        ];
+
+        $lowongan->update($data);
+
+        alert()->success('Berhasil', 'Lowongan Dinonaktifkan');
+        return back();
+    }
+    public function activated(Lowongan $lowongan){
+        $data = [
+            'status' => '1'
+        ];
+
+        $lowongan->update($data);
+
+        alert()->success('Berhasil', 'Lowongan Diaktifkan');
+        return back();
+    }
 }

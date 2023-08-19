@@ -33,6 +33,8 @@ class Lowongan extends Model
         'jurusan_id',
         'periode_id',
         'nama',
+        'kuota',
+        'status',
         'created_at',
         'updated_at',
         'deleted_at',

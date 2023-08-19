@@ -86,9 +86,10 @@ Route::prefix('auth')->name('auth.')->middleware(['guest'])->group(function () {
 // Backsite controller
 Route::prefix('backsite')->name('backsite.')->middleware(['admin', 'auth:sanctum', 'verified', config('jetstream.auth_session')])->group(function () {
 
+    Route::put('lowongan/activated/{lowongan}', [BacksiteLowonganController::class, 'activated'])->name('lowongan.activated');
+    Route::put('lowongan/disactivated/{lowongan}', [BacksiteLowonganController::class, 'disactivated'])->name('lowongan.disactivated');
     Route::put('periode/activated/{periode}', [PeriodePklController::class, 'activated'])->name('periode.activated');
     Route::put('periode/disactivated/{periode}', [PeriodePklController::class, 'disactivated'])->name('periode.disactivated');
-
     Route::post('pengajuan_mitra/terima/{pengajuan_mitra}', [PengajuanMitraController::class, 'terima'])->name('pengajuan_mitra.terima');
 
     // resource routes
@@ -137,6 +138,8 @@ Route::prefix('mitra')->name('mitra.')->middleware(['mitra', 'auth:sanctum', 've
     Route::get('laporan/download/{siswa}', [MitraLaporanController::class, 'download'])->name('laporan.download');
     Route::get('nilai/download_template', [MitraNilaiController::class, 'download_template'])->name('nilai.download_template');
     Route::put('aktivitas/tolak/{id}', [AktivitasMitraController::class, 'tolak'])->name('aktivitas.tolak');
+    Route::put('lowongan/activated/{lowongan}', [LowonganController::class, 'activated'])->name('lowongan.activated');
+    Route::put('lowongan/disactivated/{lowongan}', [LowonganController::class, 'disactivated'])->name('lowongan.disactivated');
 
     Route::resource('dashboard', DashboardMitraController::class);
     Route::resource('profile', ProfileController::class);

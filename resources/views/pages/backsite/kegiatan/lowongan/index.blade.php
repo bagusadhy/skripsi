@@ -46,7 +46,10 @@
                             <tr>
                                 <th class="whitespace-nowrap">Lowongan</th>
                                 <th class="whitespace-nowrap">Mitra</th>
+                                <th class="whitespace-nowrap">Kuota</th>
                                 <th class="whitespace-nowrap">Total Pendaftar</th>
+                                <th class="whitespace-nowrap">Status</th>
+                                <th class="whitespace-nowrap">Action</th>
                             </tr>
                         </thead>
                         <tbody class="overflow-x-scroll">
@@ -54,7 +57,68 @@
                                 <tr>
                                     <td class="whitespace-nowrap">{{ $data->nama }}</td>
                                     <td class="whitespace-nowrap">{{ $data->mitra->nama }}</td>
+                                    <td class="whitespace-nowrap">{{ $data->kuota }}</td>
                                     <td class="whitespace-nowrap">{{ $data->pendaftar_count }}</td>
+                                    <td class="whitespace-nowrap">
+                                        @if ($data->status == 1)
+                                            <span
+                                                class="uppercase inline-block whitespace-nowrap rounded-[0.27rem] bg-blue-500 px-[0.65em] pb-[0.25em] pt-[0.35em] text-center align-baseline text-[0.75em] font-medium leading-normal text-white">
+                                                Aktif
+                                            </span>
+                                        @else
+                                            <span
+                                                class="uppercase inline-block whitespace-nowrap rounded-[0.27rem] bg-red-500 px-[0.65em] pb-[0.25em] pt-[0.35em] text-center align-baseline text-[0.75em] font-medium leading-normal text-white">
+                                                Nonaktif
+                                            </span>
+                                        @endif
+
+                                    </td>
+                                    <td>
+                                        <div class="relative" data-te-dropdown-ref>
+                                            <button
+                                                class="flex items-center whitespace-nowrap rounded bg-blue-700 px-5 py-2 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] motion-reduce:transition-none dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
+                                                type="button" id="dropdownMenuButton1" data-te-dropdown-toggle-ref
+                                                aria-expanded="false" data-te-ripple-init data-te-ripple-color="light">
+                                                Action
+                                                <span class="ml-2 w-2">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                                        fill="currentColor" class="h-5 w-5">
+                                                        <path fill-rule="evenodd"
+                                                            d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                                                            clip-rule="evenodd" />
+                                                    </svg>
+                                                </span>
+                                            </button>
+                                            <ul class="absolute z-[1000] float-left m-0 hidden min-w-max list-none overflow-hidden rounded-lg border-none bg-white bg-clip-padding text-left text-base shadow-lg [&[data-te-dropdown-show]]:block"
+                                                aria-labelledby="dropdownMenuButton1" data-te-dropdown-menu-ref>
+                                                @if ($data->status == 1)
+                                                    <li>
+                                                        <form
+                                                            action="{{ route('backsite.lowongan.disactivated', $data->id) }}"
+                                                            method="POST">
+                                                            @csrf
+                                                            @method('PUT')
+                                                            <button
+                                                                class="block w-full whitespace-nowrap bg-transparent px-16 py-2 text-sm font-normal hover:bg-neutral-200"
+                                                                type="submit"
+                                                                data-te-dropdown-item-ref>Nonaktifkan</button>
+                                                        </form>
+                                                    </li>
+                                                @else
+                                                    <li>
+                                                        <form action="{{ route('backsite.lowongan.activated', $data->id) }}"
+                                                            method="POST">
+                                                            @csrf
+                                                            @method('PUT')
+                                                            <button
+                                                                class="block w-full whitespace-nowrap bg-transparent px-16 py-2 text-sm font-normal hover:bg-neutral-200"
+                                                                type="submit" data-te-dropdown-item-ref>Aktifkan</button>
+                                                        </form>
+                                                    </li>
+                                                @endif
+                                            </ul>
+                                        </div>
+                                    </td>>
                                 </tr>
                             @endforeach
                         </tbody>

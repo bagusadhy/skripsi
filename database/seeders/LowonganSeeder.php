@@ -15,19 +15,22 @@ class LowonganSeeder extends Seeder
     {
         $lowongan = [
             [
-                'mitra_id'  => 1,
-                'jurusan_id' => 3,
-                'nama'      => 'House Keeping', // 1
+                'mitra_id'      => 1,
+                'jurusan_id'    => 3,
+                'nama'          => 'House Keeping', // 1
+                'kuota'         => 5
             ],
             [
-                'mitra_id'  => 1,
-                'jurusan_id' => 1,
-                'nama'      => 'Chef', // 2
+                'mitra_id'      => 1,
+                'jurusan_id'    => 1,
+                'nama'          => 'Chef', // 2
+                'kuota'         => 5
             ],
             [
-                'mitra_id'  => 1,
-                'jurusan_id' => 2,
-                'nama'      => 'Teknisi Jaringan', // 3
+                'mitra_id'      => 1,
+                'jurusan_id'    => 2,
+                'nama'          => 'Teknisi Jaringan', // 3
+                'kuota'         => 5
             ],
         ];
 

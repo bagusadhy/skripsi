@@ -27,6 +27,9 @@ class UpdateLowonganRequest extends FormRequest
             'jurusan_id' => [
                 'required', 'integer',
             ],
+            'kuota' => [
+                'required', 'integer',
+            ],
         ];
     }
 }

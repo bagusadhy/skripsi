@@ -83,11 +83,23 @@
                                         @endif
                                     </div>
 
+                                    <div class="mb-3">
+                                        <label for="kuota" class="block">
+                                            <span class="font-medium">Kuota <code class="text-red-500">*</code></span>
+                                        </label>
+                                        <input type="number"
+                                            class="w-full h-11 rounded-md border border-gray-300 px-3 py-3 focus:outline-none resize-none"
+                                            name="kuota" id="kuota" placeholder="Kuota Peserta" required>
+                                        @if ($errors->has('kuota'))
+                                            <p style="font-style: bold; color: red;">{{ $errors->first('kuota') }}</p>
+                                        @endif
+                                    </div>
+
                                     <label for="nama" class="block">
                                         <span class="font-medium">Lowongan <code class="text-red-500">*</code></span>
                                     </label>
-                                    <textarea class="w-full h-20 rounded-md border border-gray-300 px-3 py-3 focus:outline-none resize-none"
-                                        name="nama"id="nama" required></textarea>
+                                    <textarea class="w-full h-20 rounded-md border border-gray-300 px-3 py-3 focus:outline-none resize-none" name="nama"
+                                        id="nama" placeholder="Contoh. Front Office" required></textarea>
                                     @if ($errors->has('nama'))
                                         <p style="font-style: bold; color: red;">{{ $errors->first('nama') }}</p>
                                     @endif
@@ -109,7 +121,9 @@
                         <thead>
                             <tr class="">
                                 <th class="whitespace-nowrap">Lowongan</th>
+                                <th class="whitespace-nowrap">Kuota</th>
                                 <th class="whitespace-nowrap">Jurusan</th>
+                                <th class="whitespace-nowrap">Status</th>
                                 <th class="whitespace-nowrap">Action</th>
                             </tr>
                         </thead>
@@ -117,7 +131,21 @@
                             @forelse ($lowongan as $data)
                                 <tr data-entry-id="{{ $data->id }}" class="hover:bg-neutral-200 outline-2">
                                     <td class="whitespace-nowrap">{{ $data->nama }}</td>
+                                    <td class="whitespace-nowrap">{{ $data->kuota }} Peserta</td>
                                     <td class="whitespace-nowrap">{{ $data->jurusan->jurusan }}</td>
+                                    <td class="whitespace-nowrap">
+                                        @if ($data->status == 1)
+                                            <span
+                                                class="uppercase inline-block whitespace-nowrap rounded-[0.27rem] bg-blue-500 px-[0.65em] pb-[0.25em] pt-[0.35em] text-center align-baseline text-[0.75em] font-medium leading-normal text-white">
+                                                Aktif
+                                            </span>
+                                        @else
+                                            <span
+                                                class="uppercase inline-block whitespace-nowrap rounded-[0.27rem] bg-red-500 px-[0.65em] pb-[0.25em] pt-[0.35em] text-center align-baseline text-[0.75em] font-medium leading-normal text-white">
+                                                Nonaktif
+                                            </span>
+                                        @endif
+                                    </td>
                                     <td class="whitespace-nowrap">
                                         <div class="relative" data-te-dropdown-ref>
                                             <button
@@ -136,6 +164,31 @@
                                             </button>
                                             <ul class="absolute z-[1000] float-left m-0 hidden min-w-max list-none overflow-hidden rounded-lg border-none bg-white bg-clip-padding text-left text-base shadow-lg [&[data-te-dropdown-show]]:block"
                                                 aria-labelledby="dropdownMenuButton1" data-te-dropdown-menu-ref>
+                                                @if ($data->status == 1)
+                                                    <li>
+                                                        <form
+                                                            action="{{ route('mitra.lowongan.disactivated', $data->id) }}"
+                                                            method="POST">
+                                                            @csrf
+                                                            @method('PUT')
+                                                            <button type="submit"
+                                                                class="block w-full whitespace-nowrap bg-transparent px-16 py-2 text-sm font-normal hover:bg-neutral-200"
+                                                                data-te-dropdown-item-ref>Nonaktifkan</button>
+                                                        </form>
+                                                    </li>
+                                                @else
+                                                    <li>
+                                                        <form
+                                                            action="{{ route('mitra.lowongan.activated', $data->id) }}"
+                                                            method="POST">
+                                                            @csrf
+                                                            @method('PUT')
+                                                            <button type="submit"
+                                                                class="block w-full whitespace-nowrap bg-transparent px-16 py-2 text-sm font-normal hover:bg-neutral-200"
+                                                                data-te-dropdown-item-ref>Aktifkan</button>
+                                                        </form>
+                                                    </li>
+                                                @endif
                                                 <li>
                                                     <a class="block w-full whitespace-nowrap bg-transparent px-16 py-2 text-sm font-normal hover:bg-neutral-200"
                                                         href="{{ route('mitra.lowongan.edit', $data->id) }}"

@@ -87,7 +87,7 @@
                                         </div>
                                     @endif
                                     <div class="text-left">
-                                        <h4 class="font-bold">{{ $data->nama }}</h4>
+                                        <h4 class="font-bold">{{ $data->nama }} - {{ $data->kuota }} Siswa</h4>
                                         <p class="text-xs font-bold text-blue-700 mb-3">{{ $data->mitra->nama }}</p>
                                         <p class="flex gap-3 items-start">
                                             <span>
@@ -104,7 +104,7 @@
                                     </div>
                                 </div>
 
-                                @if ($peserta == null && $pendaftaran_access != null)
+                                @if ($peserta == null && $pendaftaran_access != null && $data->status == 1)
                                     <div class="w-2/6 lg:w-1/6 flex justify-center">
                                         <form action="{{ route('siswa.pendaftaran.store') }}" method="POST"
                                             id="form-daftar">

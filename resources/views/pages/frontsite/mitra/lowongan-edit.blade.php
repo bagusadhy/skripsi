@@ -61,6 +61,19 @@
                         <p style="font-style: bold; color: red;">{{ $errors->first('jurusan') }}</p>
                     @endif
                 </div>
+
+                <div class="mb-3">
+                    <label for="kuota" class="block">
+                        <span class="font-medium">Kuota <code class="text-red-500">*</code></span>
+                    </label>
+                    <input type="number"
+                        class="w-full h-11 rounded-md border border-gray-300 px-3 py-3 focus:outline-none resize-none"
+                        name="kuota" id="kuota" value="{{ $lowongan->kuota }}" required>
+                    @if ($errors->has('kuota'))
+                        <p style="font-style: bold; color: red;">{{ $errors->first('kuota') }}</p>
+                    @endif
+                </div>
+
                 <label for="nama" class="block">
                     <span class="font-medium">Lowongan <code class="text-red-500">*</code></span>
                 </label>
