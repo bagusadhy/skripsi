@@ -147,6 +147,11 @@
                                                 aria-labelledby="dropdownMenuButton1" data-te-dropdown-menu-ref>
                                                 <li>
                                                     <a class="block w-full whitespace-nowrap bg-transparent px-16 py-2 text-sm font-normal hover:bg-neutral-200"
+                                                        href="{{ route('backsite.bimbingan.show', $bimbingan[$keys[$i]][0]->guru_id) }}"
+                                                        data-te-dropdown-item-ref>Detail</a>
+                                                </li>
+                                                <li>
+                                                    <a class="block w-full whitespace-nowrap bg-transparent px-16 py-2 text-sm font-normal hover:bg-neutral-200"
                                                         href="{{ route('backsite.bimbingan.edit', $bimbingan[$keys[$i]][0]->guru_id) }}"
                                                         data-te-dropdown-item-ref>Edit</a>
                                                 </li>

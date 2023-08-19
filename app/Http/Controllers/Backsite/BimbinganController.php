@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Kegiatan\Bimbingan;
 use App\Models\MasterData\Guru;
 use App\Models\MasterData\Mitra;
+use App\Models\Kegiatan\PesertaPkl;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\Bimbingan\StoreBimbinganRequest;
@@ -65,9 +66,17 @@ class BimbinganController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $guru_id)
     {
-        return abort(404);
+        $mitra = Bimbingan::where('guru_id', $guru_id)->pluck('mitra_id');
+
+        // dd($mitra);
+
+        $peserta = PesertaPkl::whereIn('mitra_id', $mitra)->with('siswa', 'mitra')->get()->groupBy('mitra.nama');
+
+
+        // dd($siswa);
+        return view('pages.backsite.kegiatan.bimbingan.show', compact('peserta'));
     }
 
     /**
