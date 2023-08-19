@@ -42,14 +42,6 @@ class LaporanController extends Controller
         $kegiatan = Carbon::parse($periode->kegiatan);
         $kegiatan_selesai =  Carbon::parse($periode->kegiatan_selesai);
 
-        $total_hari = $kegiatan->diffInDaysFiltered(function (Carbon $date) {
-            return $date->isWeekday();
-        }, $kegiatan_selesai);
-
-        if ($total_aktivitas < $total_hari) {
-            return back();
-        }
-
         return view('pages.frontsite.siswa.laporan', compact('filename', 'template'));
     }
 

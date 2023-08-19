@@ -65,32 +65,23 @@
                     <hr>
                     <p class="mb-3 mt-3">Laporan akhir dapat diupload setelah semua presensi dan jurnal harian telah terisi
                     </p>
-                    @if (!$access_laporan)
-                        <div
-                            class="flex justify-center items-center w-full py-3 bg-gray-500 cursor-not-allowed text-white rounded text-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                stroke="currentColor" class="w-6 h-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6" />
-                            </svg>
-                            Upload Laporan Akhir
-                        </div>
-                    @else
-                        <a href="{{ route('siswa.laporan.index') }}"
-                            class="flex justify-center items-center w-full py-3 bg-primary hover:bg-primaryhover text-white rounded text-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                stroke="currentColor" class="w-6 h-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6" />
-                            </svg>
-                            Upload Laporan Akhir
-                        </a>
-                    @endif
+                    <a href="{{ route('siswa.laporan.index') }}"
+                        class="flex justify-center items-center w-full py-3 bg-primary hover:bg-primaryhover text-white rounded text-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6" />
+                        </svg>
+                        Upload Laporan Akhir
+                    </a>
                 </div>
                 <div class="mt-10 mb-10">
                     <div class="flex items-center gap-3 mb-2">
                         <h4 class="font-bold text-xl">Presensi & Jurnal Harian</h4>
                         @if ($total_revisi != '0')
-                                    <div class="flex justify-center items-center bg-red-500 px-2 py-1 text-xs leading-normal text-white font-bold rounded">{{ $total_revisi }} Revisi</div>
-                                @endif
+                            <div
+                                class="flex justify-center items-center bg-red-500 px-2 py-1 text-xs leading-normal text-white font-bold rounded">
+                                {{ $total_revisi }} Revisi</div>
+                        @endif
                     </div>
                     <hr>
                     <p class="mb-3 mt-3">Segera mengisi presensi dan jurnal harian</p>
@@ -165,7 +156,8 @@
 
                                 @if ($data->status == '0')
                                     <div class="flex justify-center mt-10">
-                                        <a href="{{ route('siswa.kegiatan.edit', $data->id) }}" class="px-10 py-2 text-sm text-center bg-blue-500 text-white rounded">Revisi</a>
+                                        <a href="{{ route('siswa.kegiatan.edit', $data->id) }}"
+                                            class="px-10 py-2 text-sm text-center bg-blue-500 text-white rounded">Revisi</a>
                                     </div>
                                 @endif
                             </div>

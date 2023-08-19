@@ -31,23 +31,10 @@ class KegiatanController extends Controller
         $kegiatan_mulai = Carbon::parse($periode->kegiatan);
         $kegiatan_selesai =  Carbon::parse($periode->kegiatan_selesai);
 
-        $total_hari = $kegiatan_mulai->diffInDaysFiltered(function (Carbon $date) {
-            return $date->isWeekday();
-        }, $kegiatan_selesai);
-
-        $access_laporan = false;
-        if($total_aktivitas >= $total_hari){
-            $access_laporan = true;
-        }
-
-
-        // dd(auth()->user()->siswa);
-
-
 
         $total_revisi = AktivitasSiswa::where('siswa_id', $siswa->id)->where('status', '0')->count();
 
-        return view('pages.frontsite.siswa.kegiatan', compact('peserta', 'aktivitas', 'access_laporan', 'total_revisi'));
+        return view('pages.frontsite.siswa.kegiatan', compact('peserta', 'aktivitas', 'total_revisi'));
     }
 
     /**
