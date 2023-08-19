@@ -56,7 +56,7 @@
                         <span class="font-medium">Tanggal Pelaksanaan<code class="text-red-500">*</code></span>
                         <input type="text" id="tanggal" name="tanggal"
                             class="block w-full rounded-lg py-3 text-[#1E2B4F] font-medium placeholder:text-[#AFAEC3] placeholder:font-normal px-5 border border-[#d4d4d4] focus:outline-none focus:border-[#0D63F3]"
-                            value="{{ old('tanggal') }}" placeholder="dd mm yyyy" required />
+                            value="{{ old('tanggal') }}" required />
                         <span class="absolute top-8 right-[20px] bottom-1/2 translate-y-[58%] hover:cursor-pointer">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
