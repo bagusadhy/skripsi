@@ -48,9 +48,12 @@ class PendaftarController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(PendaftarPkl $pendaftar)
     {
-        //
+
+        $pendaftar->with('siswa', 'lowongan');
+
+        return view('pages.frontsite.mitra.pendaftar-detail', compact('pendaftar'));
     }
 
     /**
