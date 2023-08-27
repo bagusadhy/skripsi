@@ -35,6 +35,7 @@
                     <p tabindex="0"
                         class="focus:outline-none text-base sm:text-lg md:text-xl lg:text-2xl font-bold leading-normal text-gray-800">
                         Hasil Survey Kepuasan Mitra</p>
+                        <a href="{{ route('backsite.hasil_survey.export') }}" class="px-4 py-2 rounded bg-blue-500 text-sm font-bold text-white">Download PDF</a>
                 </div>
             </div>
 
@@ -50,7 +51,9 @@
         </div>
 
         <div class="mt-10 sm:px-6 mb-10">
-            <p class="px-4 py-4 md:py-7 focus:outline-none text-base sm:text-lg md:text-xl lg:text-2xl font-bold leading-normal text-gray-800 mb-3">Kritik & Saran</p>
+            <p
+                class="px-4 py-4 md:py-7 focus:outline-none text-base sm:text-lg md:text-xl lg:text-2xl font-bold leading-normal text-gray-800 mb-3">
+                Kritik & Saran</p>
             @forelse ($saran as $data_saran)
                 <div class="w-full px-10 py-5 shadow-md mb-3 rounded">{{ $data_saran->saran }}</div>
             @empty

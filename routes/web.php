@@ -86,6 +86,7 @@ Route::prefix('auth')->name('auth.')->middleware(['guest'])->group(function () {
 // Backsite controller
 Route::prefix('backsite')->name('backsite.')->middleware(['admin', 'auth:sanctum', 'verified', config('jetstream.auth_session')])->group(function () {
 
+    Route::get('hasil_survey/export', [HasilSurveyController::class, 'export'])->name('hasil_survey.export');
     Route::put('lowongan/activated/{lowongan}', [BacksiteLowonganController::class, 'activated'])->name('lowongan.activated');
     Route::put('lowongan/disactivated/{lowongan}', [BacksiteLowonganController::class, 'disactivated'])->name('lowongan.disactivated');
     Route::put('periode/activated/{periode}', [PeriodePklController::class, 'activated'])->name('periode.activated');
