@@ -32,6 +32,7 @@ class Monitoring extends Model
         'mitra_id',
         'periode_id',
         'topik',
+        'permasalahan',
         'tujuan',
         'peserta_pkl',
         'deskripsi',

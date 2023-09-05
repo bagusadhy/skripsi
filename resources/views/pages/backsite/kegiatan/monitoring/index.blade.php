@@ -47,6 +47,7 @@
                                 <th class="whitespace-nowrap">Guru</th>
                                 <th class="whitespace-nowrap">Mitra</th>
                                 <th class="whitespace-nowrap">Tanggal Pelaksanaan</th>
+                                <th class="whitespace-nowrap">Permasalahan</th>
                                 <th class="whitespace-nowrap">Action</th>
                             </tr>
                         </thead>
@@ -56,6 +57,7 @@
                                     <td class="whitespace-nowrap">{{ $data->guru->nama }}</td>
                                     <td class="whitespace-nowrap">{{ $data->mitra->nama }}</td>
                                     <td class="whitespace-nowrap">{{ $data->tanggal_pelaksanaan }}</td>
+                                    <td class="whitespace-nowrap">{{ $data->permasalahan }}</td>
                                     <td>
                                         <div class="relative" data-te-dropdown-ref>
                                             <button

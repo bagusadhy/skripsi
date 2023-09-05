@@ -28,10 +28,13 @@ class StoreMonitoringRequest extends FormRequest
                 'required', 'integer',
             ],
             'topik' => [
-                'required', 'string', 'max:255',
+                'required', 'string', 'max:1000',
+            ],
+            'permasalahan' => [
+                'required', 'string', 'max:1000',
             ],
             'tujuan' => [
-                'required', 'string', 'max:255',
+                'required', 'string', 'max:1000',
             ],
             'peserta_pkl' => [
                 'required', 'integer',

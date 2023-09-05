@@ -68,9 +68,21 @@
                                     </label>
                                     <input type="text"
                                         class="w-full h-11 rounded-md border border-gray-300 px-5 py-3 focus:outline-none resize-none"
-                                        name="topik" id="topik" required value="{{ old('topik') }}"></input>
+                                        name="topik" id="topik" required value="{{ old('topik') }}">
                                     @if ($errors->has('topik'))
                                         <p style="font-style: bold; color: red;">{{ $errors->first('topik') }}</p>
+                                    @endif
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="permasalahan" class="block">
+                                        <span class="font-medium">Permasalahan<code class="text-red-500">*</code></span>
+                                    </label>
+                                    <input type="text"
+                                        class="w-full h-11 rounded-md border border-gray-300 px-5 py-3 focus:outline-none resize-none"
+                                        name="permasalahan" id="permasalahan" required value="{{ old('permasalahan') }}">
+                                    @if ($errors->has('permasalahan'))
+                                        <p style="font-style: bold; color: red;">{{ $errors->first('permasalahan') }}</p>
                                     @endif
                                 </div>
 
@@ -80,7 +92,7 @@
                                     </label>
                                     <input type="text"
                                         class="w-full h-11 rounded-md border border-gray-300 px-5 py-3 focus:outline-none resize-none"
-                                        name="tujuan" id="tujuan" required value="{{ old('tujuan') }}"></input>
+                                        name="tujuan" id="tujuan" required value="{{ old('tujuan') }}">
                                     @if ($errors->has('tujuan'))
                                         <p style="font-style: bold; color: red;">{{ $errors->first('tujuan') }}</p>
                                     @endif
@@ -144,7 +156,7 @@
                                         <input type="number"
                                             class="w-full h-11 rounded-md border border-gray-300 px-5 py-3 focus:outline-none resize-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                                             name="peserta_pkl" id="peserta_pkl" required
-                                            value="{{ old('peserta_pkl') }}"></input>
+                                            value="{{ old('peserta_pkl') }}">
                                         @if ($errors->has('peserta_pkl'))
                                             <p style="font-style: bold; color: red;">{{ $errors->first('peserta_pkl') }}
                                             </p>

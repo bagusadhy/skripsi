@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('periode_id')->nullable()->index('fk_monitoring_to_periode_pkl');
             $table->longText('topik');
             $table->longText('tujuan');
+            $table->longText('permasalahan');
             $table->integer('peserta_pkl');
             $table->longText('deskripsi');
             $table->date('tanggal_pelaksanaan');
