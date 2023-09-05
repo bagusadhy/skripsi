@@ -26,10 +26,10 @@ class StoreTemplateRequest extends FormRequest
                 'required', 'integer', 'unique:template',
             ],
             'laporan' => [
-                'required', 'mimes:pdf', 'max:2048',
+                'required', 'max:2048',
             ],
             'penilaian' => [
-                'required', 'mimes:pdf', 'max:2048',
+                'required', 'max:2048',
             ],
         ];
     }
