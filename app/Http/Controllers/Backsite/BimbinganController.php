@@ -56,8 +56,16 @@ class BimbinganController extends Controller
                 'mitra_id' => $list_mitra,
             ];
 
+            $bimbingan = [
+                'guru_id' => $request->guru_id,
+            ];
+
+            PesertaPkl::where('mitra_id', $list_mitra)->update($bimbingan);
+
             Bimbingan::create($data);
         }
+
+
 
         alert()->success('Berhasil', 'Data Bimbingan Berhasil Ditambahkan');
         return redirect(route('backsite.bimbingan.index'));
