@@ -18,14 +18,14 @@ class BimbinganSeeder extends Seeder
                 'guru_id' => 1,
                 'mitra_id' => 1,
             ],
-            [
-                'guru_id' => 1,
-                'mitra_id' => 2,
-            ],
-            [
-                'guru_id' => 1,
-                'mitra_id' => 3,
-            ]
+            // [
+            //     'guru_id' => 1,
+            //     'mitra_id' => 2,
+            // ],
+            // [
+            //     'guru_id' => 1,
+            //     'mitra_id' => 3,
+            // ]
         ];
 
         Bimbingan::insert($data);

@@ -16,9 +16,9 @@ class PeriodeSeeder extends Seeder
         $data = [
             [
                 'tahun' => '2023',
-                'pendaftaran' => '2023-01-01',
-                'kegiatan' => '2023-10-30',
-                'kegiatan_selesai' => '2023-11-30',
+                'pendaftaran' => '2023-06-01',
+                'kegiatan' => '2023-07-01',
+                'kegiatan_selesai' => '2023-12-30',
                 'status' => '1'
             ],
         ];
