@@ -106,16 +106,19 @@ class PendaftaranController extends Controller
 
             $tahun = date('Y-m-d');
             $periode = PeriodePkl::where('tahun', $tahun)->where('status', '1')->first();
-            $guru = Bimbingan::where('mitra_id', $pendaftaran->mitra_id)->first();
 
             $peserta = [
                 'siswa_id' => $pendaftaran->siswa_id,
                 'mitra_id' => $pendaftaran->mitra_id,
                 'lowongan_id' => $pendaftaran->lowongan_id,
-                'guru_id' => $guru->guru_id,
                 'periode_id' => $periode->id
             ];
 
+            $guru = Bimbingan::where('mitra_id', $pendaftaran->mitra_id)->first();
+            if($guru != null){
+                $peserta['guru_id'] = $guru->guru_id;
+            }
+            
             PesertaPkl::create($peserta);
             alert()->success('Berhasil', 'Pendaftaran Diterima');
         });
