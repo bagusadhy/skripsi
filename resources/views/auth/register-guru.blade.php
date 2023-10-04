@@ -47,7 +47,7 @@
                                 @endif
                             </div>
                             <div class="block mb-2 lg:mb-5 w-full">
-                                <label for="nip" class="block mb-1 font-medium">NIP<code
+                                <label for="nip" class="block mb-1 font-medium">NIP/NIK<code
                                         class="text-red-600">*</code></label>
                                 <input type="number" name="nip" id="nip" value="{{ old('nip') }}"
                                     class="mb-2 block border w-full rounded-md border-gray-300 h-11 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-1 focus:border-blue-500 px-5 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none bg"

@@ -101,7 +101,7 @@
                                                 </svg>
                                             </span>
                                             <h4 class="font-bold">Upload From Device</h4>
-                                            <p class="text-xs text-gray-500">max: 2MB - pdf</p>
+                                            <p class="text-xs text-gray-500">max: 2MB - word</p>
                                         </div>
                                         <input type="file" class="hidden" id="laporan" name="laporan" required>
                                     </div>
@@ -162,8 +162,10 @@
                             @forelse ($data as $template)
                                 <tr data-entry-id="{{ $template->id }}" class="hover:bg-neutral-200 outline-2">
                                     <td class="whitespace-nowrap">{{ $template->jurusan->jurusan }}</td>
-                                    <td class="whitespace-nowrap"><a href="{{ url($template->laporan) }}" class="text-blue-500 cursor-pointer">Template Laporan</a></td>
-                                    <td class="whitespace-nowrap"><a href="{{ url($template->penilaian) }}" class="text-blue-500 cursor-pointer">Template Penilaian</a></td>
+                                    <td class="whitespace-nowrap"><a href="{{ url($template->laporan) }}"
+                                            class="text-blue-500 cursor-pointer">Template Laporan</a></td>
+                                    <td class="whitespace-nowrap"><a href="{{ url($template->penilaian) }}"
+                                            class="text-blue-500 cursor-pointer">Template Penilaian</a></td>
                                     <td class="whitespace-nowrap">
                                         <div class="relative" data-te-dropdown-ref>
                                             <button
@@ -252,4 +254,3 @@
         });
     </script>
 @endpush
-
