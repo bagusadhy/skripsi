@@ -130,6 +130,12 @@ class PeriodePklController extends Controller
     }
     public function disactivated(PeriodePkl $periode)
     {
+        $activePeriode = PeriodePkl::where('status', 1)->count();
+
+        if($activePeriode <= 1){
+            alert()->warning('Warning', 'Tidak Bisa Menonaktifkan Periode, Karena Tidak Ada Periode Aktif Lainnya');
+            return back();
+        }
         $data = [
             'status' => 2
         ];
