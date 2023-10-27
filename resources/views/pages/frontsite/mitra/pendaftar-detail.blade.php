@@ -45,6 +45,7 @@
             <h1 class="font-bold text-2xl mb-3 mt-5">Detail Pendaftar</h1>
             <hr class="bg-black">
 
+            @foreach($data as $pendaftar)
             <div class="mt-5">
                 <div class="py-2">
                     <ul class="list-none w-34">
@@ -135,6 +136,7 @@
                     </ul>
                 </div>
             </div>
+            @endforeach
         </div>
     </main>
     </div>
